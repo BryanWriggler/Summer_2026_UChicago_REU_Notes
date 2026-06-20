@@ -1,0 +1,210 @@
+\documentclass{article}
+\usepackage{Self_Style}
+
+\title{UChicago REU Notes}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Week 1}
+Here it's mainly the preparation for any further theory in spectra. To learn the material, here I focused mainly on some topological preliminaries. 
+
+\begin{rem}
+I believe most texts assume that compactness means not only the existence of finite subcover for arbitrary open cover, but also Hausdorffness on the space. Here, we also assume this.
+\end{rem}
+
+\subsection{Compactly Generated Spaces}
+
+In most literatures I've read, the spaces are assumed to be compactly generated. So, this section is collecting some information I have about it. First, starting with the notion of $k$-spaces:
+
+\begin{defn}
+    Given a topological space $X$, a subset $A \subseteq X$ is \emph{$k$-closed}, if for any compact space $K$, and continuous map $g:K\rightarrow X$, the preimage $g^{-1}(A) \subseteq K$ is closed.
+
+    $X$ is a \emph{$k$-space}, if any $k$-closed subset $A \subseteq X$ is closed.
+\end{defn}
+
+Which, adapting the usual continuous maps, this realizes a \emph{Category of $k$-spaces}, denoting $k\mathcal{U}$. There are some properties about this category, regarding a functor from regular category of spaces $\mathcal{U}$, and this category's completeness / cocompleteness.
+
+\begin{defn}
+    Given a space $X$, define a topological space $kX$ where the underlying set coincides with $X$, while requiring all $k$-closed sets $A \subseteq X$ to be closed in $kX$ as its new topology.
+\end{defn}
+
+This construction satisfies the closed sets axioms, hence form a topology; also, under the new topology, $kX$ is a $k$-space. Furthermore, since all closed sets are automaticlaly $k$-closed, the set identity function $\iota_X:kX\rightarrow X$ is in fact continuous.
+
+We want to further argue $k$ is a functor $\mathcal{U}\rightarrow k\mathcal{U}$, which can be achieved with the following proposition:
+
+\begin{prop}
+Let $Z$ be a $k$-space, $Y$ arbitrary topological space, and $f:Z\rightarrow Y$ a continuous map. Then, there exists a unique continuous map $kf:Z\rightarrow kY$, such that the following diagram commutes:
+\[\xymatrix{
+    Z \ar@{-->}[dr]_-{\exists ! kf} \ar[rr]^-{\forall f} && Y\\
+    & kY \ar[ur]_-{\iota_Y}
+} \]
+\end{prop}
+\begin{proof}
+    Since $\iota_Y$ is a set identity map, uniqueness of $kf$ is clear (as set function it coincides with $f$). To show $kf$ is continuous, it suffices to show all $k$-closed set $A\subseteq Y$ has preimage $f^{-1}(A)\subseteq Z$ being closed.
+
+    Let $g:K\rightarrow Z$ be arbitrary continuous map, with $K$ being compact. Consider $f\circ g:K\rightarrow Z\rightarrow Y$, for any $A\subseteq Y$ that's $k$-closed, $(f\circ g)^{-1}(A)= g^{-1}(f^{-1}(A))\subseteq K$ is closed, hence $f^{-1}(A)\subseteq Z$ is also $k$-closed. Since $Z$ is a $k$-space, $f^{-1}(A)$ is closed.
+\end{proof}
+
+\begin{cor}
+Given any continuous map $f:X\rightarrow Y$, there exists a unique continuous map $kf:kX\rightarrow kY$, such that the following diagram commutes:
+\[\xymatrix{
+    X \ar[r]^-{\forall f} & Y\\
+    kX \ar[u]^-{\iota_X} \ar@{-->}[r]_-{\exists ! kf} & kY \ar[u]_-{\iota_Y}
+} \]
+\end{cor}
+\begin{proof}
+    Since $f\circ \iota_X:kX\rightarrow Y$ is continuous, with $kX$ being a $k$-space, \textbf{Proposition 1.4} guarantees the existence and uniqueness of $kf$ (which as set map it also agrees with $f$, as $\iota_X$ is set identity).
+\end{proof}
+This formulates $k:\mathcal{U}\rightarrow k\mathcal{U}$ as a functor. And, if consider the inclusion functor $\mathcal{I}:k\mathcal{U}\rightarrow\mathcal{U}$, \textbf{Proposition 1.4} also insists $(\mathcal{I},k)$ as an adjoint pair, as it phrases a natural isomorphism as follow:
+\[\Hom_\mathcal{U}(\mathcal{I}Z, Y)\cong \Hom_{k\mathcal{U}}(Z,kY),\quad f\mapsto kf\]
+Using some categorical nonsense, $k$ as a right adjoint preserves all limits, so $k\mathcal{U}$ is a complete category. In paticular, we denote $X\times^k Y:=k(X\times Y)$ as the product of two $k$-spaces $X,Y$. 
+
+To show it's also cocomplete, consider the following:
+\begin{prop}
+    Quotient of a $k$-space is still a $k$-space; arbitrary disjoint union of $k$-spaces is a $k$-space.
+\end{prop}
+\begin{proof}
+    Let $X$ be a $k$-space, and $f:X\rightarrow Y$ be a quotient map. For any $k$-closed subset $A\subseteq Y$, consider arbitrary continuous map $g:K\rightarrow X$ with $K$ compact. Given the composition $f\circ g:K\rightarrow X\rightarrow Y$, $(f\circ g)^{-1}(A) = g^{-1}(f^{-1}(A))\subseteq K$ is closed, hence $f^{-1}(A)\subseteq X$ is $k$-closed, which is closed as $X$ is a $k$-space. Then, using the quotient space property, $A = f(f^{-1}(A))\subseteq Y$ is closed, concluding that $Y$ is also a $k$-space.
+
+    \hfil
+
+    Now, given $\{X_i\}_i$ a family of $k$-spaces, consider $Z:= \coprod_i X_i$, with $\iota_i:X_i\rightarrow Z$ the canonical inclusion. Given any $k$-closed subset $A\subseteq Z$, similar logic from previous proofs show that $A\cap X_i = \iota_i^{-1}(A)\subseteq X_i$ are all $k$-closed, hence closed (as $X_i$'s are $k$-spaces). Which, this verifies $A\subseteq Z$ is closed under the disjoint union topology, showing $Z$ is also a $k$-space.
+\end{proof}
+This guarantees the corproduct and coequalizers of $k$-spaces (and maps between them) in $\mathcal{U}$ are still $k$-spaces, which these colimits exist in $k\mathcal{U}$, showing the cocompleteness.
+
+\hfil
+
+Now, move on to another criterion for compactly generated spaces:
+\begin{defn}
+    A space $X$ is \emph{$k$-Hausdorff} if the diagonal $\Delta X\subset k(X\times X)$ is closed.
+\end{defn}
+
+Denote $h\mathcal{U}$ as the \emph{Category of $k$-Hausdorff spaces}. 
+
+There's a lot more details for this, I'll try and fill it in afterward==.
+
+There is another functor $h:\mathcal{U}\rightarrow h\mathcal{U}$ which generates a $k$-Hausdorff space out of any topological spaces, and with inclusion functor $\mathcal{J}:h\mathcal{U}\rightarrow \mathcal{U}$, they form an adjoint pair $(h,\mathcal{J})$. So, $h$ as a left adjoint preserves colimits. 
+
+\hfil
+
+Finally, for compactly generated spaces, it's defined as a $k$-Hausdorff $k$-space. In this space, limits and colimits exist, but need to be constructed in $\mathcal{U}$, then apply the functor $h$ or $k$ to yield the desired results.
+
+Another equivalent way to phrase $k$-Hausdorffness when given a $k$-space, is the \emph{weak Hausdorffness}: Given any continuous map $g:K\rightarrow X$ with $K$ compact, $g(K)\subseteq X$ is a closed subset.
+
+\hfil
+
+\subsection{Spaces of Maps}
+This section, we'd like to realize $Y^X:=\Hom_\Top(X,Y)$ (the set of all continuous maps $X\rightarrow Y$) as a topological space. Here, we consider the \emph{compact open topology}.
+
+First, given the any map $f:K\times X\rightarrow Y$, there is a corresponding set function $\tilde{f}:K\rightarrow Y^X$ by $\tilde{f}(k) = f(k,\_):X\rightarrow Y$. 
+\begin{defn}
+    The \emph{compact open topology} on $\Hom_\Top (X,Y)$, has $S\subseteq Y^X$ being open iff all compact space $K$, continuous map $f:K\times X\rightarrow Y$, the set 
+    \[\tilde{f}^{-1}(S) = \{k\in K | f(k,\_)\in S\}\]
+    is open in $K$.
+\end{defn}
+Obviously, $\emptyset, Y^X$ are both open; if $\{S_i\subseteq Y^X\}_i$ are open, then $\tilde{f}^{-1}(\bigcup_i S_i)=\bigcup_i \tilde{f}^{-1}(S_i)$ is open in $K$, so $\bigcup_i S_i$ is open; finally, if $S,S'\subseteq Y^x$ are open, then $\tilde{f}^{-1}(S\cap S')=\tilde{f}^{-1}(S)\cap \tilde{f}^{-1}(S')$ is open in $K$, so $S\cap S'$ is also open. This defines a topology.
+
+Here is some nice properties of composition of maps:
+\begin{prop}
+    Given $g:X'\rightarrow X$, the precomposition $g^*:=\_\circ g:Y^X\rightarrow Y^{X'}$ is continuous. Dually, given $h:Y\rightarrow Y'$, the postcomposition $h_*:=h\circ\_:Y^X\rightarrow Y'^X$ is continuous.
+\end{prop}
+\begin{proof}
+    In the first scenario, given arbitrary open subset $S'\subseteq Y^{X'}$, the preimage $S:=(g^*)^{-1}(S') = \{\ell\in Y^X|\ell\circ g\in S'\}$. Fix arbitrary continuous map $f:K\times X\rightarrow Y$ with $K$ compact, consider $\tilde{f}^{-1}(S)\subseteq K$, we get:
+    \[\tilde{f}^{-1}(S) = \{k\in K|f(k,\_)\in S\} = \{k\in K|f(k,\_)\circ g\in S'\}\]
+    Similarly, consider $f' := f\circ (\id_K\times g):K\times X'\rightarrow Y$ (by $f'(k,x') = f(k,g(x'))$), the set $\tilde{f'}^{-1}(S')\subseteq K$ is open by assumption, which it has the following description:
+    \[\tilde{f'}^{-1}(S')=\{k\in K|f'(k,\_)\in S'\} = \{k\in K|f(k,\_)\circ g\in S'\} = \tilde{f}^{-1}(S)\] 
+    This shows the openness of $S\subseteq Y^X$.
+
+    \hfil
+
+    For the second scenario, given arbitrary open subset $S'\subseteq Y'^X$, the preimage $S:= h_*^{-1}(S') = \{\ell\in Y^X|h\circ \ell\in S'\}$. Fix arbitrary continuous map $f:K\times X\rightarrow Y$ with $K$ compact, notice the following description:
+    \[\tilde{f}^{-1}(S) = \{k\in K|f(k,\_)\in S\} = \{k\in K|h\circ f(k,\_)\in S'\}\]
+    Which, notice $h\circ f:K\times X\rightarrow Y\rightarrow Y'$ satisfies $\tilde{(h\circ f)}^{-1}(S') = \{k\in K|h\circ f(k,\_)\in S'\} = \tilde{f}^{-1}(S)$, and by assumption this set is open. So, $S\subseteq Y^X$ is open, finishing the claim.
+\end{proof}
+
+As a result, the Hom functor $\Hom_\Top:\Top^\Op \times \Top\rightarrow \Top$ is a bifunctor.
+
+\hfil
+
+If restrict to the compactly generated spaces, there is a homeomorphism \[\Hom_\Top (X\times^k Y, Z)\cong \Hom_\Top (X, \Hom_\Top (Y,Z))\]
+Yeah, more detailes to fill in.
+
+\subsection{Cofibration}
+
+Intuitively, these are the maps where homotopy can be extended to the codomain:
+\begin{defn}
+    A map $\iota:A\rightarrow X$ is a \emph{cofibration}, if it satisfies the \emph{Homotopy ExtensionProperty} (HEP). This means, given any map $f:X\rightarrow Y$, homotopy $H:A\times I\rightarrow Y$, zeroth inclusions $i_0:A\rightarrow A\times I$ and $i_0:X\rightarrow X\times I$ (by $x\mapsto (x,0)$), and product map $\iota\times \id_I:A\times I\rightarrow X\times I$, the homotopy extends to $\tilde{H}:X\times I\rightarrow Y$, with the following commutes:
+    \[\xymatrix{
+    A \ar[dd]_-{\iota} \ar[rr]^-{i_0} && A\times I \ar[dl]_-{H} \ar[dd]^-{\iota\times \id_I}\\
+    & Y\\
+    X \ar[ur]^-{f} \ar[rr]_-{i_0} && X\times I \ar@{-->}[ul]_-{\exists \tilde{H}}
+} \]
+\end{defn}
+Intuitively, it gives a description of how to map $X$ into $Y$ (also how to map $A$ into $Y$), generates a homotopy $H$ on $A$ only, and the property guarantees it to extend to a homotopy on $X$.
+
+It's preserved under fibre product:
+\begin{lem}
+    If $\iota:A\rightarrow X$ is a cofibration, $g:A\rightarrow B$ any map, then the induced pushout $\iota':B\rightarrow B\sqcup_A X$ is a cofibration:
+    \[\xymatrix{
+        A \ar[d]_-{g} \ar[r]^-{\iota} & X \ar[d]^-{g'}\\
+        B \ar[r]_-{\iota'} & B\sqcup_A X
+    }\]
+\end{lem}
+\begin{proof}
+    Before starting, notice that product preserves adjunction/fibre coproduct, because $(B\sqcup_A X)\times I\cong (B\times I)\sqcup_(A\times I) (X\times I)$ (i.e. the first space can be viewed as the disjoint union of the product, then glue using identical methods at each $t\in I$).
+
+    Then, given map $f:B\sqcup_A X\rightarrow Y$, homotopy $H:B\times I$, and the fibre coproduct maps, we get:
+    \[\xymatrix{
+        A \ar[dr]^-{g} \ar[dddd]_-{\iota} \ar[rrrr]^-{i_0} &&&& A\times I \ar[dddd]^-{\iota\times \id_I} \ar[dl]_-{g\times \id_I}\\
+        & B \ar[dd]_-{\iota'} \ar[rr]^-{i_0} && B\times I \ar[dd]^-{\iota'\times \id_I} \ar[dl]_-{H}\\
+        && Y\\
+        & B\sqcup_A X \ar[ur]^-{f} \ar[rr]_-{i_0} && (B\sqcup_A X)\times I\\
+        X \ar[ur]^-{g'} \ar[rrrr]_-{i_0} &&&& X\times I \ar[ul]_-{g'\times \id_I} \ar@{-->}@(l,d)[uull]^-{\exists \tilde{H}}
+    }\]
+    The existence of $\tilde{H}$ is given by HEP of $\iota:A\rightarrow X$. This induces the following diagram:
+    \[\xymatrix{
+        A\times I \ar[r]^-{\iota\times \id_I} \ar[d]_-{g\times \id_I} & X\times I \ar[d]^-{g'\times \id_I} \ar@(r,u)[ddr]^-{\tilde{H}}\\
+        B\times I \ar@(d,l)[drr]_-{H} \ar[r]_-{\iota'\times \id_I} & (B\sqcup_A X)\times I \ar@{-->}[dr]^-{\exists ! \overline{H}}\\
+        && Y
+    }\]
+    where $\overline{H}$ is induced by the fibre coproduct property. Plugin to the previous diagram, we yield the desired homotopy extension for the inner square.
+\end{proof}
+
+\hfil
+
+If consider the ``special case'' $Y= M_\iota$, the mapping cylinder of $\iota:A\rightarrow X$ (which is constructed as $M_\iota := (A\times I\sqcup X)/\sim$, where $(a,0)\sim f(a)$). Notice it generates the following fibre coproduct diagram:
+\[\xymatrix{
+    A \ar[d]_-{\iota} \ar[r]^-{i_0} & A\times I \ar[d]^-{H}\\
+    X \ar[r]_-{i_0'} & M_\iota
+}\]
+So, the HEP and fibre coproduct property guarantees the following diagram:
+\[\xymatrix{
+    A \ar[dd]_-{\iota} \ar[rr]^-{i_0} && A\times I \ar[dl]_-{H} \ar[dd]^-{\iota\times \id_I}\\
+    & M_\iota \ar@{-->}@/_{.5pc}/[dr]_-{\exists ! j}\\
+    X \ar[ur]^-{i_0'} \ar[rr]_-{i_0} && X\times I \ar@{-->}@/_{.5pc}/[ul]_-{\exists \tilde{H}}
+} \]
+Here, $\tilde{H}$ is the homotopy extension, $j$ is the factorization by fibre coproduct. And, this enforces $\tilde{H}\circ j = \id_{M_\iota}$, showing $j$ is injective. If restrict to $t=1$, then $j:A\times \{1\}\rightarrow X\times\{1\}$ is precisely the map $\iota$, showing it's injective (in fact it's an embedding, because we also have a retract $\tilde{H}:X\times\{1\}\rightarrow A\times\{1\}$).
+
+From other sources I can find, $\iota$ unfortunately doesn't have closed image in general, yet for the case of $A,X$ being compactly generated (for instance, CW Complexes) I believe this is true. (Maybe by $k$-closed property).
+
+\hfil
+
+So, we see $\iota:A\rightarrow X$ is a cofibration (for compactly generated spaces) directly implies $\iota$ is an embedding with closed image (or $A$ is a closed subspace of $X$); and, the mapping cylinder is precisely $M_\iota=X\times \{0\}\cup A\times I$ in $X\times I$, the extended homotopy guarantees it's a retract of $X\times I$.
+
+Conversely, given $A\subseteq X$ a closed subspace, while its mapping cylinder $M_\iota\subseteq X\times I$ is a retract of $X\times I$. Then, use the retract as the extended homotopy (together with the fact that it's a fibre coproduct, hence the ``initial extension diagram'' whenever seeking the homotopy extension for other $Y$), we get $A\hookrightarrow X$ is a cofibration.
+
+\hfil
+
+\subsection{}
+
+\begin{defn}
+Given a based topological space $X$, its \emph{reduced/based suspension} $\Sigma X:= X\times I/X \vee I$, where $X\vee I$ is the wedge sum of $X$ and inteveral $I$ once fixed a basepoint $x_0\in X$ and $i\in I$, while $X\times I$ has basepoint $(x_0,i)\in X\times I$.
+
+Equivalently, $\Sigma X \cong X\wedge S^1:= X\times S^1/X\vee S^1$.
+\end{defn}
+
+
+\end{document}
