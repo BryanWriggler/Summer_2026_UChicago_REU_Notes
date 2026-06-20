@@ -1,15 +1,16 @@
 \documentclass{article}
 \usepackage{Self_Style}
 
-\title{UChicago REU Notes}
+\title{UChicago REU Notes Week 1}
 \author{Zih-Yu Hsieh}
 \date{\today}
 
 \begin{document}
 \maketitle
+\tableofcontents
 
 \section{Week 1}
-Here it's mainly the preparation for any further theory in spectra. To learn the material, here I focused mainly on some topological preliminaries. 
+Here it's mainly the preparation for any further theory in spectra. To learn the material, here I focused mainly on some topological preliminaries. Main reference comes from \emph{Concise Course in Algebraic Topology}.
 
 \begin{rem} %changes
 I believe most texts assume that compactness means not only the existence of finite subcover for arbitrary open cover, but also Hausdorffness on the space. Here, we also assume this.
@@ -196,7 +197,38 @@ So, we see $\iota:A\rightarrow X$ is a cofibration (for compactly generated spac
 
 Conversely, given $A\subseteq X$ a closed subspace, while its mapping cylinder $M_\iota\subseteq X\times I$ is a retract of $X\times I$. Then, use the retract as the extended homotopy (together with the fact that it's a fibre coproduct, hence the ``initial extension diagram'' whenever seeking the homotopy extension for other $Y$), we get $A\hookrightarrow X$ is a cofibration.
 
+So, for compactly generated spaces, it's equivalent to say: a cofibration is a closed embedding $A\subseteq X$, such that the mapping cylinder $X\times \{0\}\cup A\times I$ is a retract of $X\times I$.
+
 \hfil
+
+To talk about homotopy equivalences of cofibers (which are not necessarily cofibrations, but just maps $A\rightarrow X$ when fixing $A$). Given, $i:A\rightarrow X$, $j:A\rightarrow Y$ two cofibers, a map $f:X\rightarrow Y$ is a morphism, if the following diagram commutes:
+\[\xymatrix{
+    & A \ar[dl]_-{i} \ar[dr]^-{j}\\
+    X \ar[rr]_-{f} && Y
+}\]
+
+\begin{defn}
+    Two such morphisms $f,f':X\rightarrow Y$ are homotopic in this category (under $A$), if they're homotopic relative to $A$, i.e. there exists homotopy $H:X\times I\rightarrow Y$ of $f,f'$, where all $a\in A, t\in I$ satisfies $H(i(a),t)=j(a)$ (namely $A$ is fixed under this homotopy). This is called \emph{cofiber homotopy}.
+
+    The homotopy equivalence built on cofiber homotopies is called \emph{cofiber homotopy equivalence}.
+\end{defn}
+
+This notion of homotopy equivalence is much stronger than original homotopy. Yet, when restricting to cofibrations, then it doesn't make a difference:
+\begin{prop}
+    Given $i:A\rightarrow X$, $j:A\rightarrow Y$ two cofibrations, if morphism $f:X\rightarrow Y$ is a homotopy equivalence, then it's a cofiber homotopy equivalence.
+\end{prop}
+
+\begin{proof}
+    It suffices to find $g:Y\rightarrow X$ that's a homotopy invese, with $g\circ f\simeq \id_X$ relative to $A$ (because then apply the same argument on $g:Y \rightarrow X$, there is a homotopy inverse $f':X\rightarrow Y$, such that $f'\circ g\simeq \id_Y$ relative to $A$. As a result, $f = \id_Y \circ f\simeq f'\circ g\circ f\simeq f'\circ \id_X = f'$ relative to $A$, hence $f\circ g\simeq f'\circ g\simeq id_Y$ relative to $A$, showing it's a cofiber homotopy equivalence).
+
+    First, by hypothesis, there is $g'':Y\rightarrow X$ a homotopy inverse of $f$. (Not done)
+\end{proof}
+
+\hfil
+
+\subsection{Fibration}
+
+
 
 \subsection{}
 
