@@ -228,9 +228,83 @@ This notion of homotopy equivalence is much stronger than original homotopy. Yet
 
 \subsection{Fibration}
 
+As a dual notion to cofibration (which ``extends'' homotopy to the target space), fibration is the one that ``lifts'' the homotopy to the source space. 
+
+\begin{defn}
+    A surjective map $p:E\twoheadrightarrow B$ is a \emph{fibration}, if it satisfies \emph{covering homotopy property} (CHP in May's book), or \emph{homotopy lifting property}. Meaning, given any $f:Y\rightarrow E$, and homotopy $H:Y\times I\rightarrow B$ of $p\circ f:Y\rightarrow E\twoheadrightarrow B$, there exists a homotopy $\tilde{H}:Y\times I\rightarrow E$ of $f$, with the following diagram comutes:
+    \[\xymatrix{
+        Y \ar[d]_-{i_0} \ar[r]^-{\forall f} & E \ar@{->>}[d]^-{p}\\
+        Y\times I \ar@{-->}[ur]^-{\exists \tilde{H}} \ar[r]_-{\forall H} & B
+    }\]
+\end{defn}
+A typical example is the covering map, where homotopies can be lifted uniquely once a basepoint of the covering is chosen. So, fibration can be viewed as a generalization of covering space, where homotopy liftings exist.
+
+Using the $k$-ified compact-open topology of the function space (in particular, the homeomorphism $\Hom_\Top (K\times X,Y)\cong \Hom_\Top (K,\Hom_\Top (X,Y))$, and $Y^X:=\Hom_\Top (X,Y)$), the above can be reformulated as the following (which is structure wise more similar to the dual of the cofibration diagram):
+\[\xymatrix{
+    E \ar@{->>}[dd]_-{p} && E^I \ar[ll]_-{p_0} \ar[dd]_-{p\circ \_}\\
+    & Y \ar[ul]^-{\forall f} \ar[dr]_-{\forall H} \ar@{-->}[ur]^-{\exists \tilde{H}}\\
+    B && B^I \ar[ll]^-{p_0}
+}\]
+Then, by dualizing the proof for cofibration, we yield the following result:
+\begin{lem}
+    Pullback of fibration is fibration: Given fibration $p:E\twoheadrightarrow B$, and any map $g:B'\rightarrow B$, the base change $p':E\times_B B' \rightarrow B'$ is a fibration:
+    \[\xymatrix{
+        E\times_B B' \ar[r]^-{g'} \ar@{->>}[d]_-{p'} & E \ar@{->>}[d]^-{p}\\
+        B' \ar[r]_-{g}& B
+    }\]
+\end{lem}
+
+\hfil
+
+Similar to the existence of mapping cylinder $M_\iota$ as the ``initial test diagram'' for cofibration (as it's the fibre coproduct of cofibration $A\rightarrow X$, and inclusion $A\rightarrow A\times I$), it suggests the exitence of ``final test diagram'' for fibration, when choosing $Y=N_p := E\times_B B^I$ (the fibre product of fibration $E\rightarrow B$, and evaluation by zero map $B^I\rightarrow B$). The fibre product property (together with the test diagram of fibration) guarantees $N_p$ is the final diagram (namely, all other choices of $Y$ factors uniquely through $N_p$).
+
+A precise description of $N_p$ is as follow:
+\[N_p = \{(e,\beta) | \beta(0)=p(e)\} \subseteq E\times B^I\]  
+
+Plugin to the diagram, we observe the following using the fibration and fibre product property:
+\[\xymatrix{
+    E \ar@{->>}[dd]_-{p} && E^I \ar@{-->}@/_{.5pc}/[dl]_-{\exists ! k} \ar[ll]_-{p_0} \ar[dd]^-{p\circ \_}\\
+    & N_p \ar[ul]^-{p_1} \ar[dr]_-{p_2} \ar@{-->}@/_{.5pc}/[ur]_-{\exists s}\\
+    B && B^I \ar[ll]^-{p_0}
+}\]
+Here, $k$ is induced by fibre coproduct, $s$ is induced by fibration property. Universality of $N_p$ (as fibre product) guarantees that $k\circ s = id_{N_p}$, another name for these lifting $s$ is called \emph{path lifting function} (as it lifts a pair $(e,\beta)\in N_p$ with $\beta(0)=p(e)$, to a path $\tilde{beta}\in E^I$, that satisfies $\tilde{\beta}(0)=e$, and $p\circ \tilde{beta}=\beta\in B^I$).
+
+A special case - when $p:E\rightarrow B$ is a covering, then $s$ is in fact unique, due to the unique path lifting property (whenever fixing a path and a basepoint). 
+
+\hfil
+
+For common types of fibrations, the case for covering space suggests the notion of fibre bundle could work: Given covering $p:E\rightarrow B$, every point $x\in B$ has an open neighborhood $U_x\subseteq B$, such that $p^{-1}(U_x)\cong U_x\times p^{-1}(x)$ (where $p^{-1}(x)$ is a discrete subspace), and all fibres are homeomorphic to each other (i.e. same cardinality when the fibre is discrete).
+
+If restricts the bundle to have \emph{numerable open covers} (namely, an open cover $\{U_i\}_i$, such that each point $x\in B$ is contained in finitely many $U_i$'s, and each $U_i$ is equipped with a continuous function $\lambda_i:B\rightarrow I$ such that $\lambda_i^{-1}(0,1] = U_i$). Then, the following theorem holds:
+\begin{thm}
+Given a map $p:E\rightarrow B$ and $\{U_i\}_i$ a numerable open cover of $B$. Then, $p$ is a fibration iff the restrictions $p|_{U_i}:p^{-1}(U_i)\rightarrow U_i$ is a fibration for every $U_i$.
+\end{thm}
+
+This guarantees all fibre bundles with numerable trivialization cover to be a fibration.
+
+\hfil
+
+Similar to cofibre homotopy, we define fibre homotopy as follow:
+\begin{defn}
+    Given two fibres $p:D\rightarrow B$ and $p':E\rightarrow B$ (Note: they're not necessarily fibrations), a map $f:D\rightarrow E$ is a morphism if the following diagram commutes:
+    \[\xymatrix{
+        D \ar[dr]_-{p} \ar[rr]^-{f} && E \ar[dl]^-{p'}\\
+        & B
+    }\]
+    And, given two morphisms $f,f':D\rightarrow E$, they're \emph{fibre homotopic} if there is a homotopy $H:D\times I\rightarrow E$, such that $p = p'\circ H:D\rightarrow B$ (namely, at all time $t\in I$, the map preserves $p$).
+\end{defn}
+
+By dualizing the notion fro cofibre, we again have the following criterion of fibre homotopy equivalence:
+\begin{prop}
+    Let $p:D\rightarrow B$, $q:E\rightarrow B$ be two fibrations. If $f:D\rightarrow E$ be a homotopy equivalence morphism (i.e. $q\circ f=p$), then it's a fibre homotopy equivalence.
+\end{prop}
+
+\hfil
 
 
-\subsection{}
+
+
+\subsection{Based Homotopy}
 
 \begin{defn}
 Given a based topological space $X$, its \emph{reduced/based suspension} $\Sigma X:= X\times I/X \vee I$, where $X\vee I$ is the wedge sum of $X$ and inteveral $I$ once fixed a basepoint $x_0\in X$ and $i\in I$, while $X\times I$ has basepoint $(x_0,i)\in X\times I$.
