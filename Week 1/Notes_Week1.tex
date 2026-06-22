@@ -95,7 +95,7 @@ Finally, for compactly generated spaces, it's defined as a $k$-Hausdorff $k$-spa
 
 Another equivalent way to phrase $k$-Hausdorffness when given a $k$-space, is the \emph{weak Hausdorffness}: Given any continuous map $g:K\rightarrow X$ with $K$ compact, $g(K)\subseteq X$ is a closed subset.
 
-\hfil
+\newpage
 
 \subsection{Spaces of Maps}
 This section, we'd like to realize $Y^X:=\Hom_\Top(X,Y)$ (the set of all continuous maps $X\rightarrow Y$) as a topological space. Here, we consider the \emph{compact open topology}.
@@ -132,6 +132,8 @@ As a result, the Hom functor $\Hom_\Top:\Top^\Op \times \Top\rightarrow \Top$ is
 
 If restrict to the compactly generated spaces, there is a homeomorphism \[\Hom_\Top (X\times^k Y, Z)\cong \Hom_\Top (X, \Hom_\Top (Y,Z))\]
 Yeah, more detailes to fill in.
+
+\newpage
 
 \subsection{Cofibration}
 
@@ -224,7 +226,7 @@ This notion of homotopy equivalence is much stronger than original homotopy. Yet
     First, by hypothesis, there is $g'':Y\rightarrow X$ a homotopy inverse of $f$. (Not done)
 \end{proof}
 
-\hfil
+\newpage
 
 \subsection{Fibration}
 
@@ -339,13 +341,111 @@ So, it induces a map $\tilde{\beta}_1:F_b\rightarrow F_{b'}$ (more generally, it
     Then, since a constant path $c_b$ incudes identity $[\tilde{c_b}_1]:F_b\rightarrow F_b$, we see $[\tilde{\beta^{-1}}_1]\circ [\tilde{\beta}_1]=[\tilde{\beta^{-1}\dot \beta}_1] = [\tilde{c_p}] = [id_{F_b}]$, showing $[\tilde{\beta}_1]$ is a homotopy equivalence.
 \end{proof}
 
-\subsection{Based Homotopy}
+\newpage
 
+\subsection{Based Homotopy, Suspension, and Loop Spaces}
+
+For stable homotopy theory, I believe we're mainly working with spaces that fix a basepoint, and study the based homotopy between based maps. Which, let $\mathcal{C}$ denotes the category of based spaces, with $F(X,Y)$ denotes the morphisms (all the based maps $X\rightarrow Y$, meaning it preserves basepoint). Notice $F(X,Y)\subseteq Y^X$ has a natural subspace topology, and it has a natural basepoint, namely the \emph{constant basepoint map} $c_{y_0}$ that sends everything in $X$ to the basepoint $y_0\in Y$.
+
+Consider the following definition, which serve as a universal object in this category:
 \begin{defn}
-Given a based topological space $X$, its \emph{reduced/based suspension} $\Sigma X:= X\times I/X \vee I$, where $X\vee I$ is the wedge sum of $X$ and inteveral $I$ once fixed a basepoint $x_0\in X$ and $i\in I$, while $X\times I$ has basepoint $(x_0,i)\in X\times I$.
-
-Equivalently, $\Sigma X \cong X\wedge S^1:= X\times S^1/X\vee S^1$.
+    Let $X,Y\in\mathcal{C}$ equipped with basepoints $x_0\in X,y_0\in Y$. Let the \emph{wedge sum} $X\vee Y:= X\sqcup Y\/\{x_0,y_0\}$. Which, it nautrally embedds into $X\times Y$ as a based space with basepoint $(x_0,y_0)$:
+    \[X\vee Y\rightarrow X\times Y,\quad x\mapsto (x,y_0),\quad y\mapsto (x_0,y)\]
+    Now, define the \emph{smash product} $X\wedge Y:= X\times Y/X\vee Y$, equipped with basepoint $x_0\wedge y_0$ (the class of $(x_0,y_0)$ under the quotient).
 \end{defn}
 
+I want to complain a bit, why does wedge sum use vee instead of wedge, while smash product uses wedge...I'm always typing it in the wrong order.
+
+Here, we assume $0\in I$, $1\in S^1\hookrightarrow \CC$ are the corresponding basepoints of the two spaces. The other three important objects are as follow:
+\begin{defn}
+    Given a based space $X$. Define the following:
+    \begin{itemize}
+        \item The \emph{reduced cone} $CX:= X\wedge I$.
+        \item The \emph{reduced suspension} $\Sigma X:= X\wedge S^1$.
+        \item The \emph{loop space} $\Omega X:= F(S^1,X)$.
+    \end{itemize}
+\end{defn}
+For the latter two objects, it in fact has the following adjunction property:
+\begin{prop}
+    Given based space $X,Y$, there is a natural homeomorphism $F(\Sigma X,Y)\cong F(X,\Omega Y)$.
+\end{prop}
+\begin{proof}
+    To establish a natural bijection is easy, for the topology I think I need to blackbox a bit... 
+
+    \hfil
+
+    For each based map $f:X\wedge S^1\rightarrow Y$, it pullsback to the product map $f':X\times S^1\rightarrow Y$, where $f'(x,s) = f(x\wedge s)$. Using the adjunction property $\Hom_{\Top}(X\times S^1,Y)\cong \Hom_\Top (X, Y^{S^1})$, this induces $\tilde{f}:X\rightarrow Y^{S^1}$, where $\tilde{f}(x)=\tilde{f}_x: S^1\rightarrow Y$ by $\tilde{f}_x (s)=f'(x,s)$.
+    
+    Notice each $\tilde{f}_x$ is a based map, as $\tilde{f}_x (1) = f'(x,1) = f(x\wedge 1)=y_0$ (as $x\wedge 1=x_0\wedge 1$ under smash product, and $f$ is based). Also, notice $\tilde{f}_{x_0}$ is the based constant map, as $\tilde{f}_{x_0}(s)= f'(x_0,s)=f(x_0\wedge s)=y_0$. So, $\tilde{f}:X\rightarrow F(S^1,Y)=\Omega Y$ in fact, and it's a based map.
+
+    This induces $F(\Sigma X,Y)\rightarrow F(X,\Omega Y)$, by $f\mapsto \tilde{f}$.
+
+    \hfil
+
+    Conversely, for each based map $\tilde{g}:X\rightarrow F(S^1,Y)$, viewing $F(S^1,Y)\subseteq Y^{S^1}$ as a subspace, the adjunction on regular maps induce $g':X\times S^1\rightarrow Y$, by $g'(x,s)=\tilde{g}_x (s)$.
+
+    Since each $\tilde{g}_x$ is a based map, we have $g'(x,1)=\tilde{g}_x (1)=y_0$; also, since $\tilde{g}$ itself is a based map, $\tilde{g}_{x_0}$ is a constant based map, hence $\tilde{g}_{x_0}(s) = y_0$ regardless of $s\in S^1$. Hence, all $(x,s)\in X\vee S^1$ are mapped to $y_0\in S^1$ under $g'$, showing $g'$ factors uniquely to $g:X\wedge S^1\rightarrow Y$, with $g(x_0\wedge 1)=y_0$, hence a based map.
+
+    This induces $F(X,\Omega Y)\leftarrow F(\Sigma X,Y)$, by $\tilde{g}\mapsto g$.
+
+    \hfil
+
+    Finally, it's a routine check that the two are actually mutual inverses, so I wouldn't note it down here (as I've done on paper).
+\end{proof}
+
+If denote $[X,Y]$ as all the homotopy classes of based maps $X\rightarrow Y$ (which are the set of morphisms in $h\mathcal{C}$, the \emph{homotopy category of based spaces}), we have the following corollary:
+\begin{cor}
+    In $h\mathcal{C}$, the adjunction still holds, namely $[\Sigma X,Y]\cong [X,\Omega Y]$.
+\end{cor}
+\begin{proof}
+    Given two based maps $f,g\in F(X,Y)$, we have $f\simeq g$ iff there exists $H:X\times I\rightarrow Y$, such that $H(x,0)=f(x)$, $H(x,1)=g(x)$, and $H(x_0,t)=y_0$ (for based homotopy, it's required to fix the basepoint at all time).
+    
+    Notice the final condition insists each $H_t:X\rightarrow Y$ is a based map, using the adjunction property of maps, the second statement is equivalent to a map $\tilde{H}:I\rightarrow F(X,Y)\subseteq \Hom_\Top (X,Y)$, showing $f\simeq g$ in $F(X,Y)$ iff they're connected by paths.
+
+    So, the natural homeomorphism $F(\Sigma X,Y)\cong F(X,\Omega Y)$ descends to a homeomorphism $[\Sigma X,Y]\cong [X,\Omega Y]$, as homotopy relation is equivalent to path connectedness on the space of based maps.
+\end{proof}
+
+\hfil
+
+Notice as set, $[X,\Omega Y]$ has a group structure via \emph{concatination}, as given $f,g\in F(X,\Omega Y)$, each $f(x),g(x):S^1\rightarrow Y$ is a based map, so concatination $g(x)\cdot f(x):S^1\rightarrow Y$ still makes sense. If define $(g\cdot f)(x):= g(x)\cdot f(x)$ in $F(X,\Omega Y)$, then the homotopy between loops guarantee such concatination is associative in $[X,\Omega Y]$. 
+
+Which, the homeomorphism also induces a concatination structure on $[\Sigma X,Y]$, with precise description as follow for all $f,g\in [\Sigma X,Y]$:
+\[(g\cdot f)(x\wedge t) = \begin{cases}
+    f(x\wedge 2t) & 0\leq t\leq \frac{1}{2}\\
+    g(x\wedge (2t-1)) & \frac{1}{2}\leq t\leq 1
+\end{cases}\]
+Here, we view $S^1 := I/ \partial I$ when constructing the concatination. If defining $f^{-1}(x\wedge t):= f(x\wedge (1-t))$, the same proof as fundamental group guarantees this class of function is the inverse for $[f]\in [\Sigma X,Y]$, forming it as a group.
+
+As a preliminary remark for the next result, smash product is associative up to homeomorphism (intuitively, given $(X\wedge Y)\wedge Z$, when pulling back to $X\times Y\times Z$, the points projecting down to $(x_0\wedge y_0)\wedge z_0$ is precisely $(X\vee Y)\vee Z$, and wedge sum is associative up to homeomorphism).
+
+\begin{prop}
+    $[\Sigma^2 X,Y]$ is abelian.
+\end{prop}
+\begin{proof}
+    Given $\Sigma^2 X = X\wedge S^1\wedge S^1$, the standard concatination uses the last entry (as demonstrated above). Yet, we also have concatination using the second entry also! So, let $\_\cdot_2\_$ denote the second entry concatination, $\_\cdot_3\_$ denote the third entry concatination, the following holds (if view horizontal as $2$, vertical as $3$):
+    \[\begin{pmatrix}
+        g\\f
+    \end{pmatrix} = \begin{pmatrix}
+        g & c\\
+        c & f
+    \end{pmatrix} = \begin{pmatrix}
+        g & f
+    \end{pmatrix} = \begin{pmatrix}
+         c & f\\
+         g & c
+    \end{pmatrix} = \begin{pmatrix}
+        f\\g
+    \end{pmatrix}\]
+    Here,  vertical vector means w're concatinating using the third entry, horizontal vector means concatinating using the second entry, and $c$ denotes the constant map (i.e. identity) we're concatinating with. 
+
+    This shows the commutativity.
+\end{proof}
+\begin{cor}
+    All $n\geq 2$ has $[\Sigma^n X,Y]$ being abelian, by applying \textbf{Proposition 1.25} inductively.
+\end{cor}
+
+\newpage
+
+\subsection{Based Homotopy of Fibres, Cofibres, and Adjunction $(\Sigma, \Omega)$}
 
 \end{document}
