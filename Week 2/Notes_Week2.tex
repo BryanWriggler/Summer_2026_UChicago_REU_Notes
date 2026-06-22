@@ -1,3 +1,4 @@
+\documentclass{article}
 \usepackage{Self_Style}
 
 \title{UChicago REU Notes Week 2}
@@ -9,9 +10,50 @@
 \tableofcontents
 
 \section{Week 2}
-For this week, I want to start with some basic definitions covered by professor May in his office, about the definition of spectra / prespectra / generalized cohomology theory. I'll probably skip some of the details to make sure I can keep on track.
+For this week, I want to start with some basic definitions covered by professor May in his office, about the definition of spectra / prespectra / generalized cohomology theory. I'll probably skip some of the details in the intro to make sure I can keep on track.
 
-\subsection{Brief Intro - Brown Representability Theorem}
-Let $h\mathcal{C}$ denotes the homotopy category of based spaces, then a functor $F:h\mathcal{C}^\Op\rightarrow \Ab$ is \emph{representable}, if there exists a based space $Y\in h\mathcal{C}$, such that $F\cong [\_,Y]$ 
+\subsection{Intro}
+\subsubsection{Brown Representability Theorem, and Generalized Cohomology}
+Let $h\mathcal{C}$ denotes the homotopy category of based spaces (that admits a CW structure, as on them weak equivalences and homotopy equivalence are the same), then a functor $F:h\mathcal{C}^\Op\rightarrow \Ab$ is \emph{representable}, if there exists a based space $Y\in h\mathcal{C}$, such that $F\cong [\_,Y]$.
+\begin{exmp}
+    The \emph{reduced cohomology functor} $\tilde{H}^n(\_;A)$ is one, for all $n\geq 0$ and a fixed abelian group $A$ (as coefficient). Let $K(A,n)$ be the \emph{Eilenberg-Maclane Space} of abelian group $A$ and index $n\geq 0$ (i.e. the $n$th homotopy group $\pi_n (K(A,n))=A$), then the following group isomorphism holds:
+    \[\tilde{H}^n(X;A) \cong [X, K(A,n)]\]
+    Using more adjunction property, since $\pi_n (A,n) = A = \pi_{n+1}(K(A,n+1)) = [S^{n+1}, K(A,n+1)] = [S^n \wedge S^1, K(A,n+1)] \cong [S^n, \Omega K(A,n+1)]= \pi_n (\Omega K(A,n+1))$, there is a homotopy equivalence $K(A,n)\xrightarrow{\simeq} \Omega K(A,n+1)$.
+\end{exmp} 
 
-\end{comment}
+(Yeah, need to understand more about the details)
+
+So, the regular cohomology we see on spaces, are one type of representable functors.
+
+The classification of all such functors is given by \emph{Brown Representability Theorem}:
+\begin{thm}
+Suppose the functor $F:h\mathcal{C}^\Op\rightarrow \Sets$ satisfies:
+\begin{itemize}
+    \item $F(\bigvee_\alpha X_\alpha)\cong \prod_\alpha F(X_\alpha)$ (i.e. maps coproduct to product).
+    \item $F$ maps \emph{homotopy pushouts} (I believe this is the reduced mapping cylinder?) to \emph{weak pullbacks} (omit the uniqueness of maps). This condition is equivalent to \emph{Mayer-Vietoris axiom} (which seems like a weaker form of the gluing axiom in sheaf theory, and restrict to CW subcomplexes instead of open sets).
+\end{itemize}
+Then, $F$ is representable by some $CW$ complex $C$, or $F\cong [\_,C]$.
+\end{thm}
+The converse for the theorem also holds, as $[\_,C]$ also satisfies the above axioms (need more details here). 
+
+\hfil
+
+Here is a definition of generalized cohomology:
+
+\begin{defn}
+A \emph{generalized cohomology}, is a sequence of spaces $\{E_n\}_{n\geq 0}$, with homotopy equivalences $\{\epsilon_n:E_n \xrightarrow{\simeq} \Omega E_{n+1}\}_{n\geq 0}$. 
+
+In a more explicit form, $E^n(X) := [X,E_n]$ has all $n\geq 0$ satisfies $E^n(X) = [X,E_n]\cong [X,\Omega E_{n+1}]$, which is naturally a group (and an abelian group for $n\geq 2$, due to the abelian group structure on $[X,\Omega^m Y]$ for $m\geq 2$).
+\end{defn}
+I remembered the motivation is that, by Brown Representability Theorem, if a sequence of representable functors $E^*:h\mathcal{C}^\Op\rightarrow \Sets$ satisfy similar properties to ordinary cohomology (for instance, the connecting morphism $E^n\rightarrow E^{n+1}$, and excision axiom?), then Brown Representability Theorem guarantees it must be the above form. So, they're precisely all the generalized cohomology.
+
+\hfil
+
+\subsubsection{$\Omega$-Prespectra, Prespectra, and Spectra}
+When talking about generalized cohomology, we have a sequence of spaces $\{E_n\}_{n\geq 0}$, together with homotopy equivalences $\epsilon_n:E_n \xrightarrow{\simeq}\Omega E_{n+1}$, which is a prototype of what's called \emph{$\Omega$-Prespectra}.
+
+In general, fixing a based space $X\in h\mathcal{C}$, the sequence $\{\Sigma^n X\}_{n\geq 0}$ has a collection of natural maps $\{\id_n:\Sigma (\Sigma^n X)\rightarrow \Sigma^{n+1}X\}_{n\geq 0}$, which the adjunction $(\Sigma, \Omega)$ guarantees a collection of maps $\{\eta_n:\Sigma^n X\rightarrow \Omega (\Sigma^{n+1}X)\}_{n\geq 0}$. In general these maps are not homotopy equivalence, so these type of sequences are a type of \emph{Prespectra}.
+
+For the strongest form possible, if such map $\epsilon_n:E_n\rightarrow \Omega E_{n+1}$ is a homeomorphism, then these are called \emph{Spectra}.
+
+\end{document}
