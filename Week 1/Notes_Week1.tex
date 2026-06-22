@@ -301,8 +301,43 @@ By dualizing the notion fro cofibre, we again have the following criterion of fi
 
 \hfil
 
+To talk about the relations between the fibres (for instance, for fibre bundle all fibres are homeomorphic), the use of paths (as homotopy between points) can also b lifted given fibration, and can be used to study such relation.
 
+Let $p:E\rightarrow B$ be a $\beta:I\rightarrow B$ be a path with $\beta(0)=b$ and $\beta(1)=b'$, and $F_x:=p^{-1}(x)\subseteq E$ as the fibre (as subspace under $E$). Then, one can consider the following diagram, using the lifting property:
+\[\xymatrix{
+    F_b\times \{0\}\cong F_b \ar[dd]_-{i_0} \ar[rr]^-{\iota_b} && E \ar[dd]^-{p}\\
+    \\
+    F_b\times I \ar@{-->}[uurr]^-{\exists \tilde{\beta}} \ar[r]_-{\pi_2} & I \ar[r]_-{\beta} & B
+}\]
+Which, specify to $t=1$ for $\tilde{\beta}$, we realize the following:
+\[p\circ \tilde{\beta}_1 (F_b) = \beta\circ \pi_2 (F_b\times\{1\}) = \beta(1)=b'\implies \tilde{\beta}_1(F_b)\subseteq F_{b'}\]
+So, it induces a map $\tilde{\beta}_1:F_b\rightarrow F_{b'}$ (more generally, it induces a continuous family of maps $\tilde{\beta}_t:F_b\rightarrow F_{\beta(t)}$.
 
+\begin{prop}
+    Suppose paths $\beta,\beta':I\rightarrow B$ are homotopic, then the induced maps $\tilde{\beta}_1,\tilde{\beta'}_1:F_b\rightarrow F_{b'}$ are also homotopic.
+\end{prop}
+\begin{proof}
+    Let $H:I\times I\rightarrow B$ be the path homotopy of $\beta\simeq \beta'$, so that $H(s,0)=\beta(s)$, $H(s,1)=\beta'(s)$, $H(0,t)=b$, and $H(1,t)=b'$. If consider the subspace of $I\times I$, say $J := (I\times \{0\})\cup (I\times \{1\})\cup (\{0\}\times I)$ (in the homotopy $H$, first side represents $\beta$, second side represents $\beta'$, and the third side represents the side that's constant as $b$), notice there is an automorphism on $I\times I$, so that $J$ gets mapped to $I\times \{0\}$, so the lifting property can be used whenever a map is defined on $J\subset I\times I$.
+
+    Now, define the map map $f:F_b\times J\rightarrow E$, so that on $I\times \{0\}$ it's $\tilde{\beta}:F_b\times I\cong F_b\times I\times \{0\}\rightarrow E$, on $I\times \{1\}$ it's $\tilde{\beta'}:F_b\times I\cong F_b\times I\times \{1\}\rightarrow E$, and on $\{0\}\times I$ it's the map $\iota_b\circ p_1:F_b\times I \cong F_b\times \{0\}\times I \rightarrow F_b \rightarrow E$ (more precisely, we only consider the value in $F_b$, and include it into $E$). By the defining property of each $\tilde{\beta},\tilde{\beta'}$, these three maps glue together, hence $f$ is well-defined. 
+
+    Then, consider the inclusion $i:J\hookrightarrow I\times I$, we form the following diagram using the lifting property:
+    \[\xymatrix{
+        F_b\times J \ar[dd]_-{\id_{F_b}\times i} \ar[rr]^-{f} && E \ar[dd]^-{p}\\
+        \\
+        F_b\times I\times I \ar@{-->}[uurr]^-{\exists \tilde{H}} \ar[r]_-{\pi_{2,3}} & I\times I \ar[r]_-{H} & B
+    }\]
+    Which, if restrict to $F_b\times I\times \{0\}$, $\tilde{H}$ restricts to $\tilde{\beta}$ by our chohice of $f$; similarly, restricting to $F_b\times I\times \{1\}$, $\tilde{H}$ restricts to $\tilde{\beta'}$, showing the two homotopic. So, specify to $t=1$, we get $\tilde{\beta}_1\simeq \tilde{\beta'}_1$, showing the map $[\tilde{\beta}_1]:F_b\rightarrow F_{b'}$ is a well-defined map between fibres, and dependent only on homotopy classes of paths $[\beta]:I\rightarrow B$, connectinb $b$ to $b'$.
+\end{proof}
+
+\begin{cor}
+    Given a fibration, any two points in the same path component have homotopy equivalent fibres.
+\end{cor}
+\begin{proof}
+    This is because if $\beta,\gamma:I\rightarrow B$ are two paths such that $\beta(1)=\gamma(0)$, then if $b:= \beta(0), b':= \beta(1)=\gamma(0), b'':=\gamma(1)$, then $\tilde{\beta}_1:F_b\rightarrow F_{b'}$ and $\tilde{\gamma}:F_{b'}\rightarrow F_{b''}$ composes to be the same as $\tilde{(\gamma\cdot \beta)}_1:F_b\rightarrow F_{b''}$ (it's induced by the concatination of maps). So, $[\tilde{\gamma\cdot \beta}_1] = [\tilde{\gamma}_1]\circ [\tilde{\beta}_1]$ when passing to homotopy classes of maps.
+
+    Then, since a constant path $c_b$ incudes identity $[\tilde{c_b}_1]:F_b\rightarrow F_b$, we see $[\tilde{\beta^{-1}}_1]\circ [\tilde{\beta}_1]=[\tilde{\beta^{-1}\dot \beta}_1] = [\tilde{c_p}] = [id_{F_b}]$, showing $[\tilde{\beta}_1]$ is a homotopy equivalence.
+\end{proof}
 
 \subsection{Based Homotopy}
 
