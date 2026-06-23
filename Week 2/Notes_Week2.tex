@@ -12,7 +12,7 @@
 \section{Week 2}
 
 \subsection{Intro}
-For this portion, I want to start with some basic definitions covered by professor May in his office, about the definition of spectra / prespectra / generalized cohomology theory. I'll probably skip some of the details in the intro to make sure I can keep on track.
+For this portion, I want to start with some basic definitions covered by professor May in his office, about the definition of spectra / prespectra / generalized cohomology theory. I'll probably skip some of the details in the intro to make sure I can keep on track. (Also, I probably involve quite a lot of errors in between...I'll try to fix them)
 \subsubsection{Brown Representability Theorem, and Generalized Cohomology}
 Let $h\mathcal{C}$ denotes the homotopy category of based spaces (that admits a CW structure, as on them weak equivalences and homotopy equivalence are the same), then a functor $F:h\mathcal{C}^\Op\rightarrow \Ab$ is \emph{representable}, if there exists a based space $Y\in h\mathcal{C}$, such that $F\cong [\_,Y]$.
 \begin{exmp}
@@ -50,14 +50,62 @@ I remembered the motivation is that, by Brown Representability Theorem, if a seq
 \hfil
 
 \subsubsection{$\Omega$-Prespectra, Prespectra, and Spectra}
-When talking about generalized cohomology, we have a sequence of spaces $\{E_n\}_{n\geq 0}$, together with homotopy equivalences $\epsilon_n:E_n \xrightarrow{\simeq}\Omega E_{n+1}$, which is a prototype of what's called \emph{$\Omega$-Prespectra}.
+When talking about generalized cohomology, we have a sequence of based spaces $\{E_n\}_{n\geq 0}$, together with homotopy equivalences $\epsilon_n:E_n \xrightarrow{\simeq}\Omega E_{n+1}$, which is a prototype of what's called \emph{$\Omega$-Prespectra}.
 
-In general, fixing a based space $X\in h\mathcal{C}$, the sequence $\{\Sigma^n X\}_{n\geq 0}$ has a collection of natural maps $\{\id_n:\Sigma (\Sigma^n X)\rightarrow \Sigma^{n+1}X\}_{n\geq 0}$, which the adjunction $(\Sigma, \Omega)$ guarantees a collection of maps $\{\eta_n:\Sigma^n X\rightarrow \Omega (\Sigma^{n+1}X)\}_{n\geq 0}$. In general these maps are not homotopy equivalence, so these type of sequences are a type of \emph{Prespectra}. More generally, \emph{Prespectra} is a sequence of spaces $\{X_n\}_{n\geq 0}$, with morphisms $\{\mu_n:X_n\rightarrow \Omega X_{n+1}\}_{n\geq 0}$.
+In general, fixing a based space $X\in h\mathcal{C}$, the sequence $\{\Sigma^n X\}_{n\geq 0}$ has a collection of natural maps $\{\id_n:\Sigma (\Sigma^n X)\rightarrow \Sigma^{n+1}X\}_{n\geq 0}$, which the adjunction $(\Sigma, \Omega)$ guarantees a collection of maps $\{\eta_n:\Sigma^n X\rightarrow \Omega (\Sigma^{n+1}X)\}_{n\geq 0}$. In general these maps are not homotopy equivalence, so these type of sequences are a type of \emph{Prespectra}, called \emph{suspension prespectra}. More generally, \emph{Prespectra} is a sequence of spaces $\{X_n\}_{n\geq 0}$, with morphisms $\{\mu_n:X_n\rightarrow \Omega X_{n+1}\}_{n\geq 0}$.
 
 For the strongest form possible, if such map $\epsilon_n:E_n\rightarrow \Omega E_{n+1}$ is a homeomorphism, then these are called \emph{Spectra}.
 
 \hfil
 
-Professor May restricts to three specific categories: Let $\mathcal{P}$ denotes the \emph{category of prespectra}, $\mathcal{Q}$ denotes the \emph{category of inclusion prespectra}, and \emph{}
+Professor May restricts to three specific categories: 
+\begin{itemize}
+    \item Let $\mathcal{P}$ denotes the \emph{category of prespectra}.
+    \item Let $\mathcal{Q}$ denotes the \emph{category of inclusion prespectra}, meaningeach defining morphism $\mu_n:X_n\rightarrow \Omega X_{n+1}$ is an inclusion.
+    \item Let $\mathcal{S}$ denotes the \emph{category of spectra}.
+\end{itemize}
+For each category, we require the morphism $\phi:X_\cdot\rightarrow T_\cdot$ to be a sequence of based maps $\phi_n:X_n\rightarrow T_n$, such that the following diagram commutes:
+\[\xymatrix{
+    \Sigma X_n \ar[d]_-{\mu'_{X_n}} \ar[r]^-{\Sigma\phi_n} & \Sigma T_n \ar[d]^-{\mu'_{T_n}}\\
+    X_{n+1} \ar[r]_-{\phi_{n+1}} & T_{n+1}
+}\]
+where the map $\Sigma X_n\rightarrow X_{n+1}$ is based on the adjoint property $[\Sigma X_n,X_{n+1}]\cong [X_n,\Omega X_{n+1}]$. Here professor May had talked about how the prototype of the morphism only requires it to commute up to homotopy, but turns out it's too weak as a condition.
+
+\hfil
+
+With these morphisms, there is an obvious forgetful functor $\mathcal{S}\rightarrow \mathcal{Q}\rightarrow \mathcal{P}$. It seems to satisfy all the conditions for Freyd's Adjoint Functor Theorem to hold, both of the forgetful functors have a left adjoint.
+
+Here, the left adjoint of $\mathcal{Q} \rightarrow \mathcal{P}$ is hard to construct, yet there is a clear construction for the left adjoint of $\mathcal{S}\rightarrow \mathcal{Q}$, denoted as $L:\mathcal{Q}\rightarrow\mathcal{S}$, by $T_\cdot \mapsto (LT)_\cdot$, where $(LT)_n := \colim_{q}\Omega^{n+q}T_q$ (due to the inclusion $T_q\rightarrow \Omega T_{q+1}$, it induces $\Omega^{n+q}T_q\rightarrow \Omega^{n+(q+1)}T_{q+1}$, hence having a sequence of direct system).
+
+Professor May had claimed the homeoomorphism $(LT)_n \cong \Omega (LT)_{n+1}$ due to the fact that $\Omega$ commutes with colimit (I do need to work out the detail, as normally $\Omega$ as a right adjoint of $\Sigma$ would be thought of preserving limits instead of colimits).
+
+\newpage
+
+Most part of the following notesare from professor May's \emph{Infinite Loop Space Theory} paper 
+
+(https://www.math.uchicago.edu/~may/PAPERS/18.pdf).
+
+\subsection{Spectra, Infinite Loop Spaces, and Stabilization Functor}
+If require spectra to be a sequence of spaces $E=\{E_n\}_{n\geq 0}$ with homeomorphism $E_n\cong \Omega E_{n+1}$, we have the following definition:
+\begin{defn}
+    A space $X$ that has a homotopy type of $E_0$ for some spectra $E$ is called an \emph{infinite loop space}.
+
+    If $X,Y$ are infinite loop spaces of spectra $E,F$ respectively, then a map $f:X\rightarrow Y$ is caled an \emph{infinite loop map}, if it's induced by some morphism of spectra $\tilde{f}:E\rightarrow F$.
+\end{defn}
+
+Also, we have the notion of stable homotopy groups:
+\begin{defn}
+    Given a space $X$, its\emph{$n$th stable homotopy group} $\pi_n^s (X) := \colim_j \pi_{n+j}(\Sigma^j X)$. 
+    
+    Here, the colimit is due to the natural map $\Sigma(\Sigma^{j}X)\rightarrow \Sigma^{j+1}X$, inducing $\Sigma^j X\rightarrow \Omega (\Sigma^{j+1}X)$. Hence, the following isomorphism holds:
+    \[\pi_k (\Sigma^j X)\rightarrow \pi_k (\Omega(\Sigma^{j+1}X)) =[\Sigma^k S^0, \Omega (\Sigma^{j+1}X)]\cong [\Sigma^{k+1}S^0, \Sigma^{j+1}X] = \pi_{k+1}(\Sigma^{j+1}X)\]
+    Hence, fixing $k:= n+j$, this induces a map $\pi_{n+j}(\Sigma^j X)\rightarrow \pi_{n+(j+1)}(\Sigma^{j+1}X)$.
+\end{defn}
+I remembered part of the reason this is called stable homotopy group, is because for large enough $j$ this direct system in fact stabilizes.
+
+\hfil
+
+For stabilization, it's a functor $Q X := \colim_q \Omega^q \Sigma^q X$. Which, it has the following isomorphism on homotopy groups:
+\[\pi_n (Q X)\cong \pi^s_n (X)\]
 
 \end{document}
