@@ -10,9 +10,9 @@
 \tableofcontents
 
 \section{Week 2}
-For this week, I want to start with some basic definitions covered by professor May in his office, about the definition of spectra / prespectra / generalized cohomology theory. I'll probably skip some of the details in the intro to make sure I can keep on track.
 
 \subsection{Intro}
+For this portion, I want to start with some basic definitions covered by professor May in his office, about the definition of spectra / prespectra / generalized cohomology theory. I'll probably skip some of the details in the intro to make sure I can keep on track.
 \subsubsection{Brown Representability Theorem, and Generalized Cohomology}
 Let $h\mathcal{C}$ denotes the homotopy category of based spaces (that admits a CW structure, as on them weak equivalences and homotopy equivalence are the same), then a functor $F:h\mathcal{C}^\Op\rightarrow \Ab$ is \emph{representable}, if there exists a based space $Y\in h\mathcal{C}$, such that $F\cong [\_,Y]$.
 \begin{exmp}
@@ -52,8 +52,12 @@ I remembered the motivation is that, by Brown Representability Theorem, if a seq
 \subsubsection{$\Omega$-Prespectra, Prespectra, and Spectra}
 When talking about generalized cohomology, we have a sequence of spaces $\{E_n\}_{n\geq 0}$, together with homotopy equivalences $\epsilon_n:E_n \xrightarrow{\simeq}\Omega E_{n+1}$, which is a prototype of what's called \emph{$\Omega$-Prespectra}.
 
-In general, fixing a based space $X\in h\mathcal{C}$, the sequence $\{\Sigma^n X\}_{n\geq 0}$ has a collection of natural maps $\{\id_n:\Sigma (\Sigma^n X)\rightarrow \Sigma^{n+1}X\}_{n\geq 0}$, which the adjunction $(\Sigma, \Omega)$ guarantees a collection of maps $\{\eta_n:\Sigma^n X\rightarrow \Omega (\Sigma^{n+1}X)\}_{n\geq 0}$. In general these maps are not homotopy equivalence, so these type of sequences are a type of \emph{Prespectra}.
+In general, fixing a based space $X\in h\mathcal{C}$, the sequence $\{\Sigma^n X\}_{n\geq 0}$ has a collection of natural maps $\{\id_n:\Sigma (\Sigma^n X)\rightarrow \Sigma^{n+1}X\}_{n\geq 0}$, which the adjunction $(\Sigma, \Omega)$ guarantees a collection of maps $\{\eta_n:\Sigma^n X\rightarrow \Omega (\Sigma^{n+1}X)\}_{n\geq 0}$. In general these maps are not homotopy equivalence, so these type of sequences are a type of \emph{Prespectra}. More generally, \emph{Prespectra} is a sequence of spaces $\{X_n\}_{n\geq 0}$, with morphisms $\{\mu_n:X_n\rightarrow \Omega X_{n+1}\}_{n\geq 0}$.
 
 For the strongest form possible, if such map $\epsilon_n:E_n\rightarrow \Omega E_{n+1}$ is a homeomorphism, then these are called \emph{Spectra}.
+
+\hfil
+
+Professor May restricts to three specific categories: Let $\mathcal{P}$ denotes the \emph{category of prespectra}, $\mathcal{Q}$ denotes the \emph{category of inclusion prespectra}, and \emph{}
 
 \end{document}
