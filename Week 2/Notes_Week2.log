@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.6.12)  22 JUN 2026 23:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.6.12)  23 JUN 2026 23:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -567,26 +567,26 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 52.
 
-<xymatrix 2x2 194> [2] [3] [4] (Notes_Week2.aux)
+<xymatrix 2x2 194> [2] [3] Excluding 'comment' comment. <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 146> <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> [4] <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x1 102> [5] <xymatrix 3x1 102> <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x2 314> [6] [7] (Notes_Week2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `Notes_Week2.out' has not changed.
-(rerunfilecheck)             Checksum: 1F8E171EE36C1E73AF46FD35D3C0E04A;1266.
+(rerunfilecheck)             Checksum: BA0E94035CCF342A3F114903DF5B42C0;1303.
  ) 
 Here is how much of TeX's memory you used:
- 16660 strings out of 474486
- 252876 string characters out of 5744227
- 1942542 words of memory out of 5000000
- 38658 multiletter control sequences out of 15000+600000
+ 16692 strings out of 474486
+ 253233 string characters out of 5744227
+ 1953542 words of memory out of 5000000
+ 38682 multiletter control sequences out of 15000+600000
  570760 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,13n,107p,3308b,650s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,13n,107p,3308b,749s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/xypic/xyatip10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/xypic/xybtip10.pfb>
-Output written on Notes_Week2.pdf (4 pages, 224190 bytes).
+Output written on Notes_Week2.pdf (7 pages, 248776 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 16 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 177 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

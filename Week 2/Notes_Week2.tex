@@ -81,11 +81,13 @@ Professor May had claimed the homeoomorphism $(LT)_n \cong \Omega (LT)_{n+1}$ du
 
 \newpage
 
+\begin{comment}
+
+\subsection{Spectra, Infinite Loop Spaces, and Stabilization Functor}
 Most part of the following notesare from professor May's \emph{Infinite Loop Space Theory} paper 
 
 (https://www.math.uchicago.edu/~may/PAPERS/18.pdf).
 
-\subsection{Spectra, Infinite Loop Spaces, and Stabilization Functor}
 If require spectra to be a sequence of spaces $E=\{E_n\}_{n\geq 0}$ with homeomorphism $E_n\cong \Omega E_{n+1}$, we have the following definition:
 \begin{defn}
     A space $X$ that has a homotopy type of $E_0$ for some spectra $E$ is called an \emph{infinite loop space}.
@@ -107,5 +109,163 @@ I remembered part of the reason this is called stable homotopy group, is because
 
 For stabilization, it's a functor $Q X := \colim_q \Omega^q \Sigma^q X$. Which, it has the following isomorphism on homotopy groups:
 \[\pi_n (Q X)\cong \pi^s_n (X)\]
+
+\end{comment}
+
+\subsection{Review: Adjoint Functors}
+
+This part is converging to the preparation of the theory of monads :) (as professor May had mentioned it quite often as an essential tool to understand operad, so I decided to do related review).
+
+\begin{defn}
+    Let $\mathcal{C},\mathcal{D}$ be two categories. Two opposite functors $F:\mathcal{C}\rightarrow \mathcal{D}$, $\mathcal{C}\leftarrow \mathcal{D}:G$ are \emph{adjoint pairs} - in particular, $F$ is a \emph{left adjoint of $G$},and $G$ is a \emph{right adjoint of $F$} - if there is a natural isomorphism
+    \[\Hom_\mathcal{D}(F(X),Y)\cong \Hom_\mathcal{C}(X,G(Y))\]
+    For any $X\in\mathcal{C}$ and $Y\in\mathcal{D}$.
+
+    Notation wise, it's denoted as $(F,G)$ or $F\dashv G$.
+\end{defn}
+
+More formally, it's a natural isomorphism $(\_)^\sharp:\Hom_\mathcal{D}(F(\_),\_)\xrightarrow{\sim}\Hom_\mathcal{C}(\_,G(\_))$ of bifunctors $\mathcal{C}^\Op\times\mathcal{D}\rightarrow\Sets$ (here, we also denote $(\_)^\flat$ as the inverse transformation). 
+
+This means, given morphism $f:X\rightarrow X'$ in $\mathcal{C}$, and morphism $g:Y\rightarrow Y'$ in $\mathcal{D}$, we have diagrams as follow:
+\[\xymatrix{
+    \Hom_\mathcal{D}(F(X'),Y) \ar[d]_-{\_\circ Ff}\ar[r]^-{\sim} & \Hom_\mathcal{C}(X',G(Y)) \ar[d]^-{\_\circ f}\\
+    \Hom_\mathcal{D}(F(X),Y)\ar[r]^-{\sim} & \Hom_\mathcal{C}(X,G(Y))
+},\quad \quad \xymatrix{
+    \Hom_\mathcal{D}(F(X),Y) \ar[d]_-{g\circ \_} \ar[r]^-{\sim} & \Hom_\mathcal{C}(X,G(Y)) \ar[d]^-{Gg\circ \_}\\
+    \Hom_\mathcal{D}(F(X),Y')\ar[r]^-{\sim} & \Hom_\mathcal{C}(F(X),Y')
+}\]
+The first diagram insists that any morphism $h:F(X')\rightarrow Y$ in $\mathcal{D}$ satisfies $(h\circ Ff)^\sharp = h^\sharp \circ f$ in $\mathcal{C}$. The second diagram insists that any morhpism $\ell:F(X)\rightarrow Y$ satisfies $(g\circ \ell)^\sharp = Gg\circ \ell^\sharp$. Or, the following diagram holds in $\mathcal{C}$:
+\[\xymatrix{
+    X' \ar[d]_-{f} \ar[dr]^-{(h\circ f)^\sharp}\\
+    X \ar[r]_-{h^\sharp} & G(Y)
+},\quad\quad \xymatrix{
+    X \ar[r]^-{\ell^\sharp} \ar[dr]^-{(g\circ \ell)^\sharp} & G(Y) \ar[d]^-{Gg}\\
+    & G(Y')
+}\]
+If use the inverse transformation $(\_)^\flat$, the above can also be phrased as: Any morphism $\tilde{h}:X'\rightarrow G(Y)$ satisfies $(\tilde{h}\circ f)^\flat = (\tilde{h})^\flat \circ Ff$, and any morhpism $\tilde{\ell}:X\rightarrow G(Y)$ satisfies $(Gg\circ \tilde{\ell})^\flat = g\circ (\tilde{\ell})^\flat$ in $\mathcal{D}$.
+
+\hfil
+
+A property of adjoint functor is it connects the commutativity of certain diagrams between the two categories:
+
+\begin{lem}
+Fix arbitrary $f:X\rightarrow X'$ in $\mathcal{C}$, $g:Y\rightarrow Y'$ in $\mathcal{D}$, and two morphsisms $h:F(X)\rightarrow Y$, $h':F(X')\rightarrow Y'$ in $\mathcal{D}$. The commutativity of following two diagrams are equivalent:
+\[\xymatrix{
+    F(X) \ar[d]_-{Ff} \ar[r]^-{h} & Y \ar[d]^-{g}\\
+    F(X')\ar[r]_-{h'} & Y'
+} \text{ in }\mathcal{D},\quad \quad \xymatrix{
+    X \ar[d]_-{f} \ar[r]^-{h^\sharp} & G(Y) \ar[d]^-{Gg}\\
+    X'\ar[r]_-{h'^\sharp} & G(Y')
+} \text{ in }\mathcal{C}\]
+\end{lem}
+\begin{proof}
+    As a remark, $(\_)^\sharp$ is a bijection on each homset, so two morphisms $F(X)\rightarrow Y'$ are equal iff after applying $(\_)^\sharp$ they're equal as morphisms $X\rightarrow G(Y')$. 
+    
+    Using the notation from above, we see the following equivalence:
+    \[g\circ h=h'\circ Ff \iff (g\circ h)^\sharp = (h'\circ Ff)^\sharp \iff Gg\circ h^\sharp = h'^\sharp \circ f \]
+    Where, the second equivalence is the property from above. The left and right most equalities represent the two commutative diagrams respectively, hence showing the equivalence of commutativity.
+\end{proof}
+
+\hfil
+
+Given the adjoint properties, we have the following two natural isomorphisms, given any $X\in\mathcal{C}$ and $Y\in\mathcal{D}$:
+\[(\_)^\sharp:\Hom_\mathcal{D}(F(X),F(X))\xrightarrow{\sim} \Hom_\mathcal{C}(X,GF(X)),\quad\quad \Hom_\mathcal{D}(FG(Y),Y)\xleftarrow{\sim} \Hom_\mathcal{C}(G(Y),G(Y)):(\_)^\flat\]
+Hence, we can define a collection of maps $\eta_X := (\id_{F(X)})^\sharp:X\rightarrow GF(X)$, and $\epsilon_Y := (\id_{G(Y)})^\flat:FG(Y)\rightarrow Y$.
+
+\begin{prop}
+The two collections form natural transformations $\eta:\Id_\mathcal{C}\rightarrow GF$, and $\epsilon:FG\rightarrow \Id_\mathcal{D}$.
+\end{prop}
+\begin{proof}
+    Here, fix arbitrary $f:X\rightarrow X'$ in $\mathcal{C}$, and $g:Y\rightarrow Y'$ in $\mathcal{D}$. Using \textbf{Lemma 1.5}, the following two diagrams have equivalent commutativity:
+    \[\xymatrix{
+        F(X) \ar[d]_-{Ff} \ar[r]^-{\id_{F(X)}} & F(X) \ar[d]^-{Ff}\\
+        F(X)\ar[r]_-{\id_{F(X')}} & F(X')
+    } \text{ in }\mathcal{D},\quad \quad \xymatrix{
+        X \ar[d]_-{f} \ar[rr]^-{(\id_{F(X)})^\sharp=\eta_X} && GF(X) \ar[d]^-{GFf}\\
+        X'\ar[rr]_-{(\id_{F(X')})^\sharp=\eta_{X'}} && GF(X')
+    } \text{ in }\mathcal{C}\]
+    Where, the left side obviously commutes, so the right side commutes, showing naturality of $\eta$.
+
+    Dually, since $(\epsilon_Y)^\sharp = \id_{G(Y)}$ by the inverse property, we also have the equivalence of the following two diagrams:
+    \[\xymatrix{
+        FG(Y) \ar[d]_-{FGg} \ar[r]^-{\epsilon_Y} & Y \ar[d]^-{g}\\
+        FG(Y)\ar[r]_-{\epsilon_{Y'}} & Y'
+    } \text{ in }\mathcal{D},\quad \quad \xymatrix{
+        G(Y) \ar[d]_-{f} \ar[rr]^-{(\epsilon_Y)^\sharp = \id_{G(Y)}} && G(Y) \ar[d]^-{Gg}\\
+        G(Y')\ar[rr]_-{(\epsilon_{Y'})^\sharp=\id_{G(Y')}} && G(Y')
+    } \text{ in }\mathcal{C}\]
+    Where, the right side obviously commutes, so the left side commutes, showing the naturality of $\epsilon$.
+\end{proof}
+
+These natural transformations are named as follow:
+\begin{defn}
+    Given the adjoint pairs $F\dashv G$, the natural transformation $\eta:\Id_\mathcal{C}\rightarrow GF$ is called the \emph{unit transformation}, while $\epsilon:FG\rightarrow \Id_\mathcal{D}$ is called the \emph{counit transformation}.
+\end{defn}
+
+They satisfy what's called the \emph{Triangle Identity} as follow:
+\begin{prop}
+    The following two diagrams of natural transformation holds:
+    \[\xymatrix{
+        F \ar[r]^-{F\eta} \ar[dr]_-{\id_F} & FGF \ar[d]^-{\epsilon_F}\\
+        & F
+    } \text{ in }\mathcal{D}^\mathcal{C},\quad \quad \xymatrix{
+        G \ar[r]^-{\eta_G} \ar[dr]_-{\id_G} & GFG \ar[d]^-{G\epsilon}\\
+        & F
+    } \text{ in }\mathcal{C}^\mathcal{D}\]
+\end{prop}
+Here, $\mathcal{D}^\mathcal{C}$ denotes the \emph{functor categories} of all functors $\mathcal{C}\rightarrow \mathcal{D}$, with morphisms being natural transformations between functors.
+
+\begin{proof}
+    Given arbitrary $X\in\mathcal{C}$, the goal is to show the horizontal morphisms of the following diagram are identities:
+    \[\xymatrix{
+        F(X) \ar[r]^-{F\eta_X} & FGF(X) \ar[r]^-{\epsilon_{F(X)}} & F(X)
+    }\]
+    Using out notation and the naturality, we see the following equality of morphisms after applying $(\_)^\sharp$:
+    \[(\epsilon_{F(X)}\circ F\eta_X)^\sharp = (\epsilon_{F(X)})^\sharp \circ \eta_X = \id_{GF(X)}\circ \eta_X = \eta_X:GF(X)\rightarrow X\]
+    But, recall that $\eta_X:= (\id_{F(X)})^\sharp$, using the bijectivity of $(\_)^\sharp$, this enforces $\epsilon_{F(X)}\circ F\eta_X = \id_{F(X)}$, showing $\epsilon_F\circ F\eta=\id_F$ as natural transformations.
+
+    \hfil
+
+    Dually, given arbitrary $Y\in \mathcal{D}$, the goal is again to show the following morphism is identity:
+    \[\xymatrix{
+        G(Y) \ar[r]^-{\eta_{G(Y)}} & GFG(Y) \ar[r]^-{G\epsilon_{Y}} & G(Y)
+    }\]
+    Similarly, after applying $(\_)^\flat$ we get:
+    \[(G\epsilon_Y\circ \eta_{G(Y)})^\flat = \epsilon_Y\circ (\eta_{G(Y)})^\flat = \epsilon_Y\circ \id_{FG(Y)}= \epsilon_Y\]
+    The second equality relies on the fact $(\id_{F(X)})^\sharp = \eta_X$. Which, since $(\_)^\flat$ is again a bijection, and $\epsilon_Y := (\id_G(Y))^\flat$, we see $G\epsilon_Y\circ \eta_{G(Y)}=\id_{G(Y)}$, showing $G\epsilon\circ \eta_{G} = \id_G$ as natural transformations.
+\end{proof}
+
+This will be an important result when classifying monads. We also want to say the converse of Triangle Identity holds, that it generates an adjoint pair:
+\begin{lem}
+    Suppose $F:\mathcal{C}\rightarrow \mathcal{D}$ and $\mathcal{C}\leftarrow \mathcal{D}:G$ are two opposite functors, together with natural transformations $\eta:\Id_\mathcal{C}\rightarrow GF$ and $\epsilon:FG\rightarrow \Id_\mathcal{D}$ such that Triangle Identity holds:
+    \[\xymatrix{
+        F \ar[r]^-{F\eta} \ar[dr]_-{\id_F} & FGF \ar[d]^-{\epsilon_F}\\
+        & F
+    } \text{ in }\mathcal{D}^\mathcal{C},\quad \quad \xymatrix{
+        G \ar[r]^-{\eta_G} \ar[dr]_-{\id_G} & GFG \ar[d]^-{G\epsilon}\\
+        & F
+    } \text{ in }\mathcal{C}^\mathcal{D}\]
+    then $F\dashv G$ is an adjoint pair.
+\end{lem}
+\begin{proof}
+    Given any $X\in \mathcal{C}$ (associated to $\eta_X:X\rightarrow GF(X)$) and $Y\in\mathcal{D}$ (associated to $\epsilon_Y:FG(Y)\rightarrow Y$), for any morphism $h:F(X)\rightarrow Y$, we have a corresponding morphism $Gh:GF(X)\rightarrow G(Y)$. This defines the following map:
+    \[(\_)^\sharp:\Hom_\mathcal{D}(F(X),Y)\rightarrow \Hom_\mathcal{C}(X,G(Y)),\quad h^\sharp := Gh\circ \eta_X\]
+    Similarly, for any morphism $\ell:X\rightarrow G(Y)$, we have a corresponding morphism $F\ell:F(X)\rightarrow FG(Y)$. This again defines the following map:
+    \[\Hom_\mathcal{D}(F(X),Y)\leftarrow \Hom_\mathcal{C}(X,G(Y)):(\_)^\flat,\quad \ell^\flat := \epsilon_Y\circ F\ell\]
+    To show they're mutual inverses, we expand the following:
+    \[(h^\sharp)^\flat = \epsilon_Y\circ Fh^\sharp = \epsilon_Y\circ F(Gh\circ \eta_X) = \epsilon_Y \circ FGh\circ F\eta_X\]
+    Expanding the right hand side in terms of diagram (includes the triangle identity and naturality of $\epsilon$), we get:
+    \[\xymatrix{
+        F(X) \ar@(u,u)[rr]^-{\id_{F(X)}} \ar[r]^-{F\eta_X} & FGF(X) \ar[d]_-{FGh} \ar[r]^-{\epsilon_{F(X)}} & F(X)\ar[d]^-{h}\\
+        & FG(Y) \ar[r]_-{\epsilon_{Y}} & Y
+    }\]
+    So, we see $(h^\sharp)^\flat = \epsilon_Y\circ FGh\circ F\eta_X = h$ by the above commutative diagram.
+
+    Expand the dual diagram with the other triangle identity and naturality of $\eta$, we'll get that $(\ell^\flat)^\sharp = \ell$ instead, showing the two are mutual inverses.
+\end{proof}
+
+\newpage
+
+\subsection{Monads and Monad Algebra}
 
 \end{document}
