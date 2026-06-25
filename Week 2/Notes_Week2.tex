@@ -266,7 +266,7 @@ This will be an important result when classifying monads. We also want to say th
 
 \newpage
 
-\subsection{Monads and Monad Algebra}
+\subsection{Monads and Relations to Adjoint Functors}
 
 Let's first observe the case when we have an adjoint pair $F\dashv G$ from above, inducing an endofunctor $GF:\mathcal{C}\rightarrow\mathcal{C}$, with unit transformation $\eta:\Id_\mathcal{C}\rightarrow GF$, together with \emph{multiplication transformation} $\mu:=G\epsilon_F:GFGF\rightarrow GF$ (as we have $\epsilon:FG\rightarrow\Id_\mathcal{D}$). Notice they provide the following identities:
 \begin{itemize}
@@ -324,6 +324,202 @@ Which, starting portion shows that any adjoint pair $(F\dashv G)$ generates a mo
     \hfil
 
     In this case, the unit map $\eta_X = \id_{X_*}|_X$, which becomes the canonical inclusion $X\hookrightarrow X_*$; the counit map $\epsilon_Y = \tilde{\id_Y}$, which is the map $Y_*\rightarrow Y$ that collapse the new basepoint $*$ to the original basepoint $y_0$. So, the multiplication map $\eta_X = F\epsilon_{X_*}:(X_*)_*\rightarrow X_*$ by collapsing the two added basepoints (in different iteration) to the unique basepoint (with one iteration).
+
+    Since collapsing of three added points to one doesn't care about the collapse order, this explicitly forms a monad (or using the adjunction property this directly follows :)
 \end{exmp}
 
+\hfil
+
+Another question to ask: Is every monad of a category induced by adjoint pairs of functors? The answer is yes, but one needs to introduce some relevant categories constructed out of the monads.
+
+\begin{defn}
+    Let $(T,\eta, \mu)$ be a monad on category $\mathcal{C}$. Its \emph{Eilenberg-Moore category} for $T$ (or the \emph{category of $T$-algebras}), is a category $\mathcal{C}^T$ consists of:
+    \begin{itemize}
+        \item Objects of pairs $(A,a)$, where $A\in\mathcal{C}$ is an object, and $a:T(A)\rightarrow A$ is a morphism, so the following diagram commutes:
+        \[\xymatrix{
+            A \ar[dr]_-{\id_A} \ar[r]^-{\eta_A} & T(A) \ar[d]^-{a}\\
+            & A
+        },\quad\quad \xymatrix{
+            T^2(A) \ar[r]^-{\mu_A} \ar[d]_-{Ta} & T(A) \ar[d]^-{a}\\
+            T(A) \ar[r]_-{a} & A
+        }\]
+        \item A morphism $f:(A,a)\rightarrow (B,b)$ is a morhpism $f:A\rightarrow B$, such that the following diagram commutes:
+        \[\xymatrix{
+            T(A) \ar[d]_-{a} \ar[r]^-{Tf} & T(B)\ar[d]^-{b}\\
+            A \ar[r]_-{f} & B
+        }\]
+    \end{itemize}
+\end{defn}
+
+For this category, there is an obvious ``forgetful functor'' $G^T:\mathcal{C}^T\rightarrow \mathcal{C}$ by $G^T (A,a) = A$ and $G^T f = f$ for any $f:(A,a)\rightarrow (B,b)$. 
+
+Similarly, since $\mathcal{C}$ is given a monad, there is also an obvious ``algebra functor'' $F^T:\mathcal{C}\rightarrow \mathcal{C}^T$, by $F^T(A) := (T(A),\mu_A)$, and $F^Tf = Tf$ for any $f:A\rightarrow B$. This is because $\mu_A$ satisfies the following two identities, by the definition of monad:
+\[\xymatrix{
+    T(A) \ar[dr]_-{\id_{T(A)}} \ar[r]^-{\eta_{T(A)}} & T^2(A) \ar[d]^-{\mu_{T(A)}}\\
+    & T(A)
+},\quad\quad \xymatrix{
+    T^2(T(A)) \ar[r]^-{\mu_{T(A)}} \ar[d]_-{T\mu_A} & T(T(A)) \ar[d]^-{\mu_A}\\
+    T(T(A)) \ar[r]_-{\mu_A} & T(A)
+}\]
+Also, since $\mu:T^2\rightarrow T$ is a natural transformation, the following diagram commutes:
+\[\xymatrix{
+    T(T(A)) \ar[d]_-{\mu_A} \ar[r]^-{Tf} & T(T(B))\ar[d]^-{\mu_B}\\
+    T(A) \ar[r]_-{f} & T(B)
+}\]
+showing $Tf:(T(A),\mu_A)\rightarrow (T(B),\mu_B)$ is a morphism.
+
+Here comes an important result regarding this category:
+\begin{thm}
+    The two functors are adjoint pairs $(F^T\dashv G^T)$, and the induced monad is $(T,\eta,\mu)$.
+\end{thm}
+\begin{proof}
+    Given arbitrary $A\in\mathcal{C}$ and $(B,b)\in\mathcal{C}^T$, we shall show a natural isomorphism between the two:
+    \[\Phi:\Hom_{\mathcal{C}^T}((T(A),\mu_A), (B,b))\rightleftarrows \Hom_\mathcal{C}(A,B):\Psi\]
+    Given a morphism $f:(T(A),\mu_A)\rightarrow (B,b)$, recall the existence of unit morphism $\eta_A:A\rightarrow T(A)$, so $\Phi(f):= f\circ \eta_A:A\rightarrow T(A)\rightarrow B$ defines a map. 
+    
+    Conversely, given any morhpism $g:A\rightarrow B$, it naturally promotes to $Tg:(T(A),\mu_A)\rightarrow (T(B),\mu_B)$; and, since $(B,b)\in\mathcal{C}^T$, postcomposing with the morphism $b:(T(B),\mu_B)\rightarrow (B,b)$ provides $b\circ Tg:(T(A),\mu_A)\rightarrow (T(B),\mu_B)\rightarrow  (B,b)$. Define $\Psi(g):= b\circ Tg$.
+
+    \begin{rem}
+        The reason why $b:T(B)\rightarrow B$ is also a morphism in $\mathcal{C}^T$, is because of the commutative square as follow by the fact $(B,b)\in\mathcal{C}^T$:
+        \[\xymatrix{
+            T(T(B)) \ar[r]^-{\mu_B} \ar[d]_-{Tb} & T(B) \ar[d]^-{b}\\
+            T(B) \ar[r]_-{b} & B
+        }\ \implies \ \xymatrix{
+            T(T(B)) \ar[r]^-{Tb} \ar[d]_-{\mu_B} & T(B) \ar[d]^-{b}\\
+            T(B) \ar[r]_-{b} & B
+        }\]
+        The right hand side is the transpose of the left hand side, also the defining diagram of $b:(T(B),\mu_B)\rightarrow (B,b)$ as a morphism in $\mathcal{C}^T$.
+    \end{rem}
+
+    The two maps $\Phi,\Psi$ are for sure functorial, hence suffices to check they're mutual inverses. Let's compute them respectively:
+    \begin{itemize}
+        \item \[\Psi(\Phi(f)) = \Psi(f\circ \eta_A) = b\circ T(f\circ \eta_A)= b\circ Tf\circ T\eta_A\]
+        To reduce this, consider the following diagram, using triangle identities of monad and the assumptions about morphisms:
+        \[\xymatrix{
+            T(A) \ar[dr]_-{\id_{T(A)}} \ar[r]^-{T\eta_A}& T^2(A) \ar[d]_-{\mu_A} \ar[r]^-{Tf} & T(B) \ar[d]^-{b}\\
+            & T(A) \ar[r]_-{f} & B
+        }\]
+        So, we see $b\circ Tf \circ T\eta_A = f\circ \id_{T(A)}=f:T(A)\rightarrow B$ as morphism in $\mathcal{C}$ (and hence in $\mathcal{C}^T$), showing $\Psi(\Phi(f))=f$.
+        \item \[\Phi(\Psi(g)) = \Phi(b\circ Tg)= b\circ Tg \circ \eta_A\]
+        To reduce this, again consider similar definitions (and the fact $\eta:\Id_\mathcal{C}\rightarrow T$ is a natural transformation):
+        \[\xymatrix{
+            A \ar[r]^-{g} \ar[d]_-{\eta_A} & B \ar[d]_-{\eta_B} \ar[dr]^-{\id_B}\\
+            T(A) \ar[r]_-{Tg} & T(B) \ar[r]_-{b} & B
+        }\]
+        So, we get $b\circ Tg\circ \eta_A = \id_B\circ g=g$ as morphism in $\mathcal{C}$, hence $\Phi(\Psi(g))=g$.
+    \end{itemize}
+    This shows $(F^T\dashv G^T)$ in fact forms an adjoint pair.
+
+    \hfil
+
+    To show they generate monad $(T,\eta,\mu)$ on $\mathcal{C}$, notice the following action on each object $A\in\mathcal{C}$ / morphism $f:A\rightarrow B$:
+    \[G^T F^T(A) = G^T(T(A),\mu_A) = T(A),\quad G^T F^T f = G^T(T f) = Tf\]
+    Hence, $G^T F^T = T$ as endofunctor on $\mathcal{C}$.
+
+    Similarly, the unit transformation $\eta':\Id_\mathcal{C}\rightarrow G^T F^T$ as $\eta'_A := \Phi(\id_{(T(A),\mu_A)}) = \id_{T(A)}\circ \eta_A = \eta_A$, showing $\eta'=\eta$.
+
+    Finally, we have counit transformation $\epsilon':F^TG^T \rightarrow \Id_{\mathcal{C}^T}$ as $\epsilon'_{(B,b)}:= \Psi(\id_B) = b\circ T(\id_B) = b\circ \id_{T(B)}=b$. So, the induced multiplication transformation $\mu' := G^T \epsilon'_{F^T}:(G^T F^T)^2\rightarrow G^T F^T$ satisfies $\mu'_A = G^T \epsilon'_{(T(A),\mu_A)} = G^T(\mu_A) = \mu_A$, showing $\mu'=\mu$.
+
+    Hence, $(F^T\dashv G^T)$ induces monad $(T,\eta,\mu)$.
+\end{proof}
+
+This demonstrates each monad is induced by some adjoint pairs.
+
+\begin{exmp}
+    For the basepoint monad demonstrated in \textbf{Example 1.11}, the Eilenber-Moore category $\mathcal{T}^{(\_)_*}$ consists of pairs $(X,a)$ where $a:X_*\rightarrow X$ is a map that satisfies the following:
+    \[\xymatrix{
+        X \ar[dr]_-{\id_X} \ar[r]^-{\eta_X} & X_* \ar[d]^-{a}\\
+        & X
+    },\quad\quad \xymatrix{
+        (X_*)_* \ar[r]^-{Ta} \ar[d]_-{\mu_X} & X_* \ar[d]^-{a}\\
+        X_* \ar[r]_-{a} & X
+    }\]
+    The first diagram enforces $a|_X = \id_X$ (as $\eta_X:X\rightarrow X_*$ is the canonical inclusion $X\hookrightarrow X\sqcup\{*\}$). Given this data, the second diagram automatically commutes (by checking where the added points are sent to), so we see $a$ is purely determined by $a(*)\in X$, in other words, it's specified by $(X,x_0)$ for $x_0\in X$.
+
+    Then, given a morphism $f:(X,a)\rightarrow (Y,b)$, the following diagram commutes:
+    \[\xymatrix{
+        X_* \ar[d]_-{a} \ar[r]^-{\tilde{f}} & Y_* \ar[d]^-{b}\\
+        X \ar[r]_-{f} & Y
+    }\]
+    Which, $f(a(*))= b(\tilde(f)(*))=b(*)$ is enforced, showing $f$ must map the chosen point in $X$ to the chosen point in $Y$.
+
+    Hence, the functor $\mathcal{T}^{(\_)_*}\rightarrow \mathcal{T}^*$ by $(X,a)\mapsto (X,a(x))$, and $f\mapsto f$ is in fact an equivalence of category. So, the Eilenberg-Moore category of the basepoint functor is the category of based space.
+\end{exmp}
+
+\hfil
+
+Afterward, there's more question to ask: Given a monad on $\mathcal{C}$, how many ways are there to create adjoint pairs which induce the provided monad? Can we find such universal adjoint pair? For this, there are more definitions to make:
+\begin{defn}
+    Given a monad $(T,\eta,\mu)$ on category $\mathcal{C}$. The \emph{Kleisli category} $\mathcal{C}_T$ consists of:
+    \begin{itemize}
+        \item Objects are carried over from $C$.
+        \item Morphism $f:A\rightsquigarrow B$ in $\mathcal{C}_T$ is a morphism $f:A\rightarrow T(B)$ in $\mathcal{C}$. Under this definition, $\eta_A:A\rightsquigarrow A$ serve as the identity morphism of $A\in\mathcal{C}_T$, while given $f:A\rightsquigarrow B$ and $g:B\rightsquigarrow C$, the following morphism in $\mathcal{C}$ serves as the composition of the two:
+        \[g\circ_* f:= A \xrightarrow{f} T(B) \xrightarrow{Tg} T(T(C)) \xrightarrow{\mu_C}T(C)\]
+    \end{itemize}
+\end{defn}
+\begin{proof}
+    First, let's show associativity: Given $f:A\rightsquigarrow B$, $g:B\rightsquigarrow C$, and $h:C\rightsquigarrow D$, the two ways of composition provide the following in $\mathcal{C}$:
+    \[h\circ_* (g\circ_* f) = A\xrightarrow{f}T(B)\xrightarrow{Tg}T^2(C)\xrightarrow{\mu_C}T(C) \xrightarrow{Th}T^2(D)\xrightarrow{\mu_D}T(D)\]
+    \[(h\circ_* g)\circ_* f = A\xrightarrow{f}T(B) \xrightarrow{Tg} T^2(C) \xrightarrow{T^2h}T^3(D) \xrightarrow{T\mu_D}T^2(D) \xrightarrow{\mu_D} T(D)\]
+    To show the two procedures agree, it suffices to show the middle right portion $\mu_D\circ Th\circ \mu_C = \mu_D \circ T\mu_D \circ T^2h$. However, this follows by the monad property:
+    \[\xymatrix{
+        T^2(C) \ar[r]^-{T^2 h}\ar[d]_-{\mu_C} & T^3(D) \ar[d]^-{\mu_{T(D)}} \ar[r]^-{T\mu_{D}} & T^2(D) \ar[d]^-{\mu_D}\\
+        T(C) \ar[r]_-{Th} & T^2(D) \ar[r]_-{\mu_D} & T(D)
+    }\]
+    the left square commutes by naturality of $\mu$, the right square commutes by associativity of $\mu$.
+
+    \hfil
+
+    To show $\eta_A$ serves as identity, we compute the following given $f:A\rightsquigarrow B$ and $g:Z\rightsquigarrow A$:
+    \begin{itemize}
+        \item \[f\circ_* \eta_A = A\xrightarrow{\eta_A}T(A) \xrightarrow{Tf} T^2(B) \xrightarrow{\mu_B}T(B)\]
+        This can be simplified using triangle identity, and the fact $\eta:\Id_\mathcal{C}\rightarrow T$ is a natural transformation:
+        \[\xymatrix{
+            A \ar[d]_-{\eta_A} \ar[r]^-{f} & T(B) \ar[d]_-{\eta_{T(B)}} \ar[dr]^-{\id_{T(B)}}\\
+            T(A) \ar[r]_-{Tf} & T^2(B) \ar[r]_-{\mu_{B}} & T(B)
+        }\]
+        So, we deduce $f\circ_* \eta_A =\mu_B\circ Tf\circ \eta_A = \id_{T(B)}\circ f = f$.
+        \item \[\eta_A\circ_* g = Z\xrightarrow{g}T(A) \xrightarrow{T\eta_A} T^2(A) \xrightarrow{\mu_A}T(A)\]
+        Notice that $\mu_A\circ T\eta_A = \id_{T(A)}$ in $\mathcal{C}$ (by triangle identity),so we see $\mu_A\circ_* T\eta_A =\mu_A\circ T\eta_A \circ g = \id_{T(A)}\circ g= g$.
+    \end{itemize}
+\end{proof}
+
+\hfil
+
+For this category, there is a functor $G_T:\mathcal{C}_T\rightarrow \mathcal{C}$, by $G_T (A) = T(A)$, and $G_T f:= \mu_B\circ Tf:T(A)\rightarrow T^2(B)\rightarrow T(B)$ for arbitrary $A\in\mathcal{C}_T$ and morphism $f:A\rightsquigarrow B$. This is functorial, as $G_T \eta_A = \mu_A\circ T\eta_A = \id_{T(A)}$ by applying triangle identity, and given $f:A\rightsquigarrow B$, $g:B\rightsquigarrow C$, we have the following diagram commutes:
+\[\xymatrix{
+    T(A) \ar[r]^-{Tf} & T^2(B) \ar[d]_-{\mu_B} \ar[r]^-{T^2 g} & T^3(C) \ar[d]_-{\mu_{T(C)}} \ar[r]^-{T\mu_C} & T^2(C) \ar[d]^-{\mu_C}\\
+    & T(B) \ar[r]_-{Tg} & T^2(C) \ar[r]_-{\mu_C} & T(C)
+}\]
+This shows $G_T(g\circ_* f) = \mu_C \circ T(\mu_C\circ Tg\circ f) = \mu_C\circ T\mu_C \circ T^2g\circ Tf = (\mu_C\circ Tg)\circ (\mu_B\circ Tf) = G_T g\circ G_T f$.
+
+Conversely, there is a ``coalgebra functor'' $F_T:\mathcal{C}\rightarrow\mathcal{C}_T$, by $F_T(A) = A$, and $F_T f:= \eta_B\circ f:A\rightarrow B\rightarrow T(B)$ for all $A\in\mathcal{C}$ and $f:A\rightarrow B$ in $\mathcal{C}$. This is again functorial, as $F_T \id_A := \eta_A\circ \id_A = \eta_A$ is the identity in $\mathcal{C}_T$, and given $f:A\rightarrow B$, $g:B\rightarrow C$ the following diagram commutes:
+\[\xymatrix{
+    A \ar[dr]_-{F_T f} \ar[r]^-{f} & B \ar[d]_-{\eta_B} \ar[r]^-{g} & C\ar[d]^-{\eta_C}\\
+    & T(B) \ar[dr]_-{T(F_T g)} \ar[r]^-{Tg} & T(C) \ar[d]^-{T\eta_C} \ar[dr]^-{\id_{T(C)}}\\
+    && T^2(C) \ar[r]_-{\mu_C} & T(C)
+}\]
+(Two left triangles are definition of $F_T$, the square is the naturality of $\eta:\Id_C\rightarrow T$, and bottom right is the triangle identity of monad).
+
+This shows $F_T (g\circ f)=\eta_C\circ (g\circ f)=\id_{T(C)}\circ \eta_C\circ g\circ f = \mu_C \circ T(F_T g)\circ F_T f = F_T g\circ_* F_T f$.
+
+Similar to the Eilenberg-Moore category, we have the adjunction:
+\begin{thm}
+The two functors are adjoint pairs $(F_T\dashv G_T)$, and the induced monad is $(T,\eta,\mu)$.
+\end{thm}
+\begin{proof}
+    Fill in details, I'm tired, it's 1 am 6/25 now...
+\end{proof}
+
+
+\hfil
+
+The universality of these two categories are given as follow:
+\begin{thm}
+    In the \emph{adjoint category} $\text{Adg}_T$ (categories of all category with adjoint functors between $\mathcal{C}$, inducing monad $T$; the morphisms are functors that commutes with the left/right adjoints for each category), the Kleisli category $(\mathcal{C}_T, F_T\dashv G_T)$ is initial, while Eilenberg-Moore category $(\mathcal{C}^T,F^T\dashv G^T)$ is final.
+\end{thm}
+
+\begin{lem}
+    The canonical functor $\mathcal{C}_T\rightarrow\mathcal{C}^T$ is fully faithful, with essential image being all the free $T$-algebra (all pairs $(T(A),\mu_A)$).
+\end{lem}
 \end{document}
