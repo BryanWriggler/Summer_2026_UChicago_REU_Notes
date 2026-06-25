@@ -252,7 +252,7 @@ This will be an important result when classifying monads. We also want to say th
     \[(\_)^\sharp:\Hom_\mathcal{D}(F(X),Y)\rightarrow \Hom_\mathcal{C}(X,G(Y)),\quad h^\sharp := Gh\circ \eta_X\]
     Similarly, for any morphism $\ell:X\rightarrow G(Y)$, we have a corresponding morphism $F\ell:F(X)\rightarrow FG(Y)$. This again defines the following map:
     \[\Hom_\mathcal{D}(F(X),Y)\leftarrow \Hom_\mathcal{C}(X,G(Y)):(\_)^\flat,\quad \ell^\flat := \epsilon_Y\circ F\ell\]
-    To show they're mutual inverses, we expand the following:
+    These are evidently functorial. To show they're mutual inverses, we expand the following:
     \[(h^\sharp)^\flat = \epsilon_Y\circ Fh^\sharp = \epsilon_Y\circ F(Gh\circ \eta_X) = \epsilon_Y \circ FGh\circ F\eta_X\]
     Expanding the right hand side in terms of diagram (includes the triangle identity and naturality of $\epsilon$), we get:
     \[\xymatrix{
@@ -267,5 +267,63 @@ This will be an important result when classifying monads. We also want to say th
 \newpage
 
 \subsection{Monads and Monad Algebra}
+
+Let's first observe the case when we have an adjoint pair $F\dashv G$ from above, inducing an endofunctor $GF:\mathcal{C}\rightarrow\mathcal{C}$, with unit transformation $\eta:\Id_\mathcal{C}\rightarrow GF$, together with \emph{multiplication transformation} $\mu:=G\epsilon_F:GFGF\rightarrow GF$ (as we have $\epsilon:FG\rightarrow\Id_\mathcal{D}$). Notice they provide the following identities:
+\begin{itemize}
+    \item This can be viewed as \emph{Associativity of Multiplication}:
+    \[\xymatrix{
+        (GF)^3 \ar[d]_-{\mu_{GF}} \ar[r]^-{GF\mu} & (GF)^2\ar[d]^-{\mu}\\
+        (GF)^2 \ar[r]_-{\mu} & GF
+    }\]
+    Fix arbitrary $X\in\mathcal{C}$, expand the definition, we get the following diagram:
+    \[\xymatrix{
+        GFG(FGF(X)) \ar[d]_-{G\epsilon_{FGF(X)}} \ar[r]^-{GFG\epsilon_{F(X)}} & GFG(F(X)) \ar[d]^-{G\epsilon_{F(X)}}\\
+        G(FGF(X)) \ar[r]_-{G\epsilon_{F(X)}} & G(F(X))
+    }\]
+    Disregard the left most $G$, the above diagram commutes because $\epsilon:FG\rightarrow\Id_\mathcal{D}$ is a natural transformation.
+
+    \item This can be viewed as \emph{Unit Property}:
+    \[\xymatrix{
+        GF \ar[dr]_-{\id_{GF}} \ar[r]^-{\eta_{GF}} & (GF)^2 \ar[d]^-{\mu} & GF \ar[l]_-{GF\eta} \ar[dl]^-{\id_{GF}}\\
+        & GF
+    }\]
+    Using the definition $\mu:= G\epsilon_F$, we have the following two equalities using \emph{Triangle Identities of Adjunction}:
+    \[G\epsilon_F \circ \eta_{GF} = (G\psi_F\circ \eta_G)_F = (\id_G)_F = \id_{GF}\]
+    \[G\epsilon_F\circ GF\eta = G(\epsilon_F \circ F\eta) = G(\id_F) = \id_{GF} \]
+    Thse two identities reflect the commutativity of the above diagram.
+\end{itemize}
+
+This reflects the structure of \emph{Monad}:
+\begin{defn}
+    Given a category $\mathcal{C}$, a \emph{Monad} on $\mathcal{C}$ consists of the following:
+    \begin{itemize}
+        \item An endofunctor $T:\mathcal{C}\rightarrow\mathcal{C}$.
+        \item A \emph{unit transformation} $\eta:\Id_\mathcal{C}\rightarrow T$.
+        \item A \emph{multiplication transformation} $\mu:T^2\rightarrow T$.
+    \end{itemize}
+    There are extra requirements of satisfying the following two diagrams as endofunctors on $\mathcal{C}$:
+    \[\xymatrix{
+        T^3 \ar[d]_-{\mu_{T}} \ar[r]^-{T\mu} & T^2\ar[d]^-{\mu}\\
+        T^2 \ar[r]_-{\mu} & T
+    },\quad\quad \xymatrix{
+        T \ar[dr]_-{\id_{T}} \ar[r]^-{\eta_{T}} & T^2 \ar[d]^-{\mu} & T \ar[l]_-{T\eta} \ar[dl]^-{\id_{T}}\\
+        & T
+    }\]
+    Which are analogs to \emph{associativity} and \emph{unit} of monoids.
+\end{defn}
+
+Which, starting portion shows that any adjoint pair $(F\dashv G)$ generates a monad on category $\mathcal{C}$ (the source category of the left adjoint $F$).
+
+\begin{exmp}
+    As a more relevant example, let $\mathcal{T}^*$ denotes the category of based spaces, $\mathcal{T}$ denotes the category of topological spaces, there is a natural forgetful functor $F:\mathcal{T}^*\rightarrow \mathcal{T}$ that forgets the based spaces.
+
+    It has a left adjoint $(\_)_*:\mathcal{T}\rightarrow\mathcal{T}^*$, where $(X)_* := X\sqcup \{*\}$ by adding a point as basepoint, and any map $f:X\rightarrow Y$ naturally extends to a based map $\tilde{f}:X_*\rightarrow Y_*$ where $\tilde{f}|_X = f$, and $\tilde{f}(*)=*$.
+
+    For any space $X\in\mathcal{T}$ and based space $Y\in\mathcal{T}^*$ (with $y_0\in Y$ as basepoint), the natural isomorphism $\Hom_{\mathcal{T}^*}(X_*, Y)\cong \Hom_\mathcal{T}(X,Y)$ is given by $g\mapsto g|_X$, and inverse is $f\mapsto \tilde{f}$.
+
+    \hfil
+
+    In this case, the unit map $\eta_X = \id_{X_*}|_X$, which becomes the canonical inclusion $X\hookrightarrow X_*$; the counit map $\epsilon_Y = \tilde{\id_Y}$, which is the map $Y_*\rightarrow Y$ that collapse the new basepoint $*$ to the original basepoint $y_0$. So, the multiplication map $\eta_X = F\epsilon_{X_*}:(X_*)_*\rightarrow X_*$ by collapsing the two added basepoints (in different iteration) to the unique basepoint (with one iteration).
+\end{exmp}
 
 \end{document}
