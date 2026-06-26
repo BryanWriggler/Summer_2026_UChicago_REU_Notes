@@ -114,7 +114,7 @@ For stabilization, it's a functor $Q X := \colim_q \Omega^q \Sigma^q X$. Which, 
 
 \subsection{Review: Adjoint Functors}
 
-This part is converging to the preparation of the theory of monads :) (as professor May had mentioned it quite often as an essential tool to understand operad, so I decided to do related review).
+This part is converging to the preparation of the theory of monads :) (as professor May had mentioned it quite often as an essential tool to understand operad, so I decided to do related review). The main reference is Riehl's \emph{Category Theory in Context}.
 
 \begin{defn}
     Let $\mathcal{C},\mathcal{D}$ be two categories. Two opposite functors $F:\mathcal{C}\rightarrow \mathcal{D}$, $\mathcal{C}\leftarrow \mathcal{D}:G$ are \emph{adjoint pairs} - in particular, $F$ is a \emph{left adjoint of $G$},and $G$ is a \emph{right adjoint of $F$} - if there is a natural isomorphism
@@ -351,6 +351,10 @@ Another question to ask: Is every monad of a category induced by adjoint pairs o
     \end{itemize}
 \end{defn}
 
+I think intuitively $T(A)$ consists of data about ``pairs of actions'', while $a$ encodes how this action appears on $A$. The square provides the ``associativity'' of action (for instance, $(ab)\dot v = a\dot (b\dot v)$ as action on modules). I do need to agree with professory May, that this system is more like a module instead of algebra in the traditional sense.
+
+\hfil
+
 For this category, there is an obvious ``forgetful functor'' $G^T:\mathcal{C}^T\rightarrow \mathcal{C}$ by $G^T (A,a) = A$ and $G^T f = f$ for any $f:(A,a)\rightarrow (B,b)$. 
 
 Similarly, since $\mathcal{C}$ is given a monad, there is also an obvious ``algebra functor'' $F^T:\mathcal{C}\rightarrow \mathcal{C}^T$, by $F^T(A) := (T(A),\mu_A)$, and $F^Tf = Tf$ for any $f:A\rightarrow B$. This is because $\mu_A$ satisfies the following two identities, by the definition of monad:
@@ -508,13 +512,29 @@ Similar to the Eilenberg-Moore category, we have the adjunction:
 The two functors are adjoint pairs $(F_T\dashv G_T)$, and the induced monad is $(T,\eta,\mu)$.
 \end{thm}
 \begin{proof}
-    Fill in details, I'm tired, it's 1 am 6/25 now...
+    Similar manner, we ought to show a natural isomorphism between the two homsets:
+    \[\Phi:\Hom_{\mathcal{C}_T}(A,B)\rightleftarrows \Hom_\mathcal{C}(A,T(B)):\Psi\]
+    In fact, by definition these two sets are equal, as a morphism $f:A\rightsquigarrow B$ in $\mathcal{C}_T$, is precisely a morphism $f:A\rightarrow T(B)$, so the ``identity map'' between the two sets provide an obvious bijection.
+
+    About functoriality, this is established by the properties of morphisms that're established beforehand, here we can comfortably omit it :)
+
+    \hfil
+
+    It remains to check they do form the monad $T$: Fix $A\in\mathcal{C}$, and morphism $f:A\rightarrow B$, we get the following description:
+    \[G_T F_T (A) = G_T (A) = T(A),\quad G^T(F^T f) = G_T (\eta_B\circ f) = \mu_B \circ T(\eta_B\circ f) = \mu_B\circ T\eta_B\circ Tf = Tf\]
+    The morphism equality is due to triangle identity, $\mu_B\circ T\eta_B = \id_{T(B)}$. This shows $T = G_T F_T$.
+
+    About the unit transformation $\eta':\Id_\mathcal{C}\rightarrow G_T F_T$ is given by $\eta'_A = \Phi(\eta_A) =\eta_A$ (because $\eta_A$ is the identity of $A$ in $\mathcal{C}_T$), showing $\eta'=\eta$.
+
+    About the counit transformation $\epsilon':F_T G_T\rightarrow \Id_{\mathcal{C}_T}$, every $B\in\mathcal{C}_T$ satisfies $\epsilon'_B = \Psi(\id_{T(B)}) = \id_{T(B)}:T(B)\rightsquigarrow B$. Then, the multiplication transformation $\mu':=G_T \epsilon_{F_T}$ satisfies $\mu'_A = G_T \epsilon_{F_T (A)} = G_T(\id_{T(A)}) = \mu_A\circ T\id_{T(A)} = \mu_A\circ \id_{T^2(A)} = \mu_A$, showing $\mu' = \mu$.
+
+    So, the given adjunction does induce the monad $(T,\eta,\mu)$, finishing the proof.
 \end{proof}
 
 
 \hfil
 
-The universality of these two categories are given as follow:
+Finally, the universality of these two categories are given as follow:
 \begin{thm}
     In the \emph{adjoint category} $\text{Adg}_T$ (categories of all category with adjoint functors between $\mathcal{C}$, inducing monad $T$; the morphisms are functors that commutes with the left/right adjoints for each category), the Kleisli category $(\mathcal{C}_T, F_T\dashv G_T)$ is initial, while Eilenberg-Moore category $(\mathcal{C}^T,F^T\dashv G^T)$ is final.
 \end{thm}
@@ -522,4 +542,8 @@ The universality of these two categories are given as follow:
 \begin{lem}
     The canonical functor $\mathcal{C}_T\rightarrow\mathcal{C}^T$ is fully faithful, with essential image being all the free $T$-algebra (all pairs $(T(A),\mu_A)$).
 \end{lem}
+
+\newpage
+
+\subsection{Monad Algebra and Monadicity}
 \end{document}
