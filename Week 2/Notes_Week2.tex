@@ -139,7 +139,7 @@ The first diagram insists that any morphism $h:F(X')\rightarrow Y$ in $\mathcal{
     X' \ar[d]_-{f} \ar[dr]^-{(h\circ f)^\sharp}\\
     X \ar[r]_-{h^\sharp} & G(Y)
 },\quad\quad \xymatrix{
-    X \ar[r]^-{\ell^\sharp} \ar[dr]^-{(g\circ \ell)^\sharp} & G(Y) \ar[d]^-{Gg}\\
+    X \ar[r]^-{\ell^\sharp} \ar[dr]_-{(g\circ \ell)^\sharp} & G(Y) \ar[d]^-{Gg}\\
     & G(Y')
 }\]
 If use the inverse transformation $(\_)^\flat$, the above can also be phrased as: Any morphism $\tilde{h}:X'\rightarrow G(Y)$ satisfies $(\tilde{h}\circ f)^\flat = (\tilde{h})^\flat \circ Ff$, and any morhpism $\tilde{\ell}:X\rightarrow G(Y)$ satisfies $(Gg\circ \tilde{\ell})^\flat = g\circ (\tilde{\ell})^\flat$ in $\mathcal{D}$.
@@ -604,7 +604,87 @@ More general result need more definition:
 \end{defn}
 \end{comment}
 
-\subsection{Operads}
+\subsection{Review: Monoidal and Symmetric Monoidal Caetgories}
+ 
+This part follows \emph{Operads, Algebras, and Modules} by May. Let's first review on monoidal/symmetric monoidal category:
+\begin{defn}
+    A category $\mathcal{V}$ is a \emph{monoidal caetgory}, if there is a bifunctor $\tensor:\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ (called \emph{monoidal product}), and an object $1\in\mathcal{V}$ (called \emph{unit/monoidal unit}), together with the following natural isomorphisms:
+    \begin{itemize}
+        \item The \emph{associator} $a:(\_\tensor \_)\tensor \_ \xrightarrow{\sim} \_\tensor(\_\tensor \_)$ of functors $\mathcal{V}\times\mathcal{V}\times\mathcal{V}\xrightarrow{\sim}\mathcal{V}$. (So, $(X\tensor Y)\tensor Z\cong X\tensor(Y\tensor Z)$ in a canoncial way).
+        \item The \emph{left unit} $\lambda:1\tensor\_\xrightarrow{\sim} \Id_{\mathcal{V}}$ ($1\tensor X\cong X$ in a canonical way).
+        \item The \emph{right unit} $\rho:\_\tensor 1\xrightarrow{\sim}\Id_\mathcal{V}$ ($X\tensor 1\cong X$ in a canonical way).
+    \end{itemize}
+
+    They also satisfy two extra axioms:
+    \begin{itemize}
+        \item \emph{Triangle Axiom:}
+        \[\xymatrix{
+            (X\tensor 1)\tensor Y \ar[dr]_-{\rho_X \tensor \id_Y} \ar[rr]^-{a_{X,1,Y}} && X\tensor (1\tensor Y) \ar[dl]^-{\id_X\tensor \lambda_Y}\\
+            & X\tensor Y
+        }\]
+        \item \emph{Pentagon Axiom:}
+        \[\xymatrix{
+            ((X\tensor Y)\tensor Z)\tensor W \ar[rr]^-{a_{X\tensor Y,Z,W}} \ar[d]_-{a_{X,Y,Z}\tensor \id_W} && (X\tensor Y)\tensor(Z\tensor W) \ar[d]^-{a_{X,Y,Z\tensor W}}\\
+            (X\tensor (Y\tensor Z))\tensor W \ar[dr]_-{a_{X,Y\tensor Z,W}} && X\tensor (Y\tensor (Z\tensor W)) \\
+            & X\tensor ((Y\tensor Z)\tensor W) \ar[ur]_-{\id_X\tensor a_{Y,Z,W}}
+        }\]
+    \end{itemize}
+\end{defn}
+Based on \emph{Maclane's Coherence Theorem}, the above two axioms guarantees all finite sequences of ``associators'' (the morphisms involving $a,\lambda,\rho$ and their inverses only) between finite products agree, namely there is a unique isomorphism $P_1\rightarrow P_2$, where $P_i$ are (possibly) different orders of performing product on $X_1,...,X_n\in\mathcal{V}$.
+
+This guarantees all monoidal category to be equivalent to a \emph{strict monoidal category},namely all $a,\lambda,\rho$ above are ``identity transformations'', or $1\tensor X=X,X\tensor 1=X$, and $(X\tensor Y)\tensor Z=X\tensor (Y\tensor Z)$, so WLOG one can assume the product $\tensor$ is associative.
+
+\begin{defn}
+    A monoidal category $\mathcal{V}$ is \emph{braided}, if there is a natural isomorphism $B:\__{1} \tensor \__{2}\xrightarrow{\sim} \__{2}\tensor \__{1}$ (so $B_{X,Y}:X\tensor Y\xrightarrow{\sim}Y\tensor X$ is an isomorphism), together with the \emph{Hexagon axioms} satisfied:
+    \[\xymatrix{
+        (X\tensor Y)\tensor Z \ar[r]^-{a_{X,Y,Z}} \ar[d]_-{B_{X,Y}\tensor \Id_Z} & X\tensor (Y\tensor Z)\ar[r]^-{B_{X,Y\tensor Z}} & (Y\tensor Z)\tensor X \ar[d]^-{a_{Y,Z,X}}\\
+        (Y\tensor X)\tensor Z \ar[r]_-{a_{Y,X,Z}} & Y\tensor (X\tensor Z) \ar[r]_-{\id_Y\tensor B_{X,Z}} & Y\tensor (Z\tensor X)
+    }\]
+    \[\xymatrix{
+        X\tensor (Y\tensor Z) \ar[d]_-{\id_X\tensor B_{Y,Z}} & (X\tensor Y)\tensor Z \ar[l]_-{a_{X,Y,Z}} \ar[r]^-{B_{X\tensor Y,Z}} & Z\tensor (X\tensor Y)\\
+        X\tensor (Z\tensor Y) & (X\tensor Z)\tensor Y \ar[l]^-{a_{X,Z,Y}} \ar[r]_-{B_{X,Z}\tensor \id_Y} & (Z\tensor X)\tensor Y \ar[u]_-{a_{Z,X,Y}}
+    }\]
+    $\mathcal{V}$ is a \emph{symmetric monoidal category}, if $B_{Y,X}=B_{X,Y}^{-1}$ for all $X,Y\in\mathcal{V}$.
+\end{defn}
+The two hexagons are guaranteeing the ability to perform 3-cycle permutations on three consecutive objects in a product, hence together with $B$ serving as transpositions, it guarantees isomorphism between all permutations of finite products. The symmetric axiom further imposes that there is a single way of doing such permutation (so we don't have ``nontrivial braiding'', namely $B_{Y,X}\circ B_{X,Y}:X\tensor Y\rightarrow Y\tensor X\rightarrow X\tensor Y$ is not identity).
+
+From my naive understanding, the coherence theorem guarantees a treatment $X\tensor Y=Y\tensor X$ without loss of generality.
+
+\newpage
+
+\subsection{Operads and Operadic Algebra}
+When searching up extra sources, there is another approach using multicategories (having multimorphisms $\Hom(a_1,...,a_n; b)$, diagramatically like a ``fork'', and different ways of compiling the forks. I think this understanding is more intuitive than traditional definition). 
+
+However for understanding in the literature of homotopy theory, I think I'll focus on the original definition. This part cf. May's \emph{Operads, Algebras, and Modules}, \emph{Geometry of Iterated Loop Spaces}, with supplemnts through an arxiv document (https://arxiv.org/pdf/2508.01886) by Felicia Ferraioli, and Maclane's \emph{Category Theory for Working Mathematicians}.
+
+\begin{defn}
+Given symmetric monoidal category $\mathcal{V}$(use $\kappa$ to denote unit), a \emph{planar operad} $C$ in $\mathcal{V}$ is a collection of objects $\{C(j)\in\mathcal{V}\}_{j\in\NN}$, a \emph{unit map} $\eta:1\rightarrow C(1)$, together with composition maps
+\[\gamma:C(k)\tensor C(j_1)\tensor...\tensor C(j_k)\rightarrow C(j_1+...+j_k)\]
+that satisfies the following axioms:
+\begin{itemize}
+    \item \emph{Unital Axiom:}
+    \[\xymatrix{
+        C(j)\tensor \kappa^{\tensor j} \ar[dr]_-{\id_{C(j)}\tensor \eta^{\tensor j}} \ar[rr]^-{\sim} && C(j)\\
+        & C(j)\tensor C(1)^{\tensor j} \ar[ur]_-{\gamma}
+    },\quad\quad \xymatrix{
+        \kappa\tensor C(j) \ar[dr]_-{\eta\tensor \id_{C(j)}} \ar[rr]^-{\sim} && C(j)\\
+        & C(1)\tensor C(j) \ar[ur]_-{\gamma}
+    }\]
+    These also guarantee the $n$-fold unit map $\eta^{\tensor j}$ is a monomorphism, and $\gamma$ for involving only index $j$ and $1$ are epimorphisms.
+    \item \emph{Associativity Axiom:} Fix natural numbers $k$, $j = \sum_{s=1}^k j_s$, define index $g_s:= j_1+...+j_s$ for $1\leq s\leq k$. For each $i_1,...,i_{g_k}=i_j$, with sum $i=\sum_{r=1}^j i_r$, and $h_s:= i_{g_{(s-1)}+1}+...+i_{g_s}$ (so $i=\sum_{s=1}^k h_s$ also), the following diagram commutes:
+    \[\xymatrix{
+        \left[C(k)\tensor \left(\bigtensor_{s=1}^k C(j_s)\right)\right]\tensor \left(\bigtensor_{r=1}^j C(i_r)\right) \ar[dd]_-{\text{shuffle}} \ar[r]^-{\gamma\tensor \id} & C(j) \tensor \left(\bigtensor_{r=1}^j C(i_r)\right) \ar[dr]^-{\gamma}\\
+        && C(i)\\
+        C(k) \tensor \left[\bigtensor_{s=1}^k \left(C(j_s)\tensor \left(\bigtensor_{q=1}^{j_s} C(i_{g_{(s-1)}+q})\right)\right)\right] \ar[r]_-{\id_{C(k)} \tensor (\bigtensor_s \gamma)} & C(k)\tensor \left(\bigtensor_{s=1}^k C(h_s)\right) \ar[ur]_-{\gamma}
+    }\]
+\end{itemize}
+\end{defn}
+From my intuitive understanding, unital axiom is saying ``action with unit $\eta:\kappa\rightarrow C(1)$'' is doing nothing on any other objects $C(j)$, regardless of the order it's composed. 
+
+On the other hand, associativity axiom is accounting for associativity when ``joining different actions'': For instance, given $k=3$, $j_1=2,j_2=2,j_3=3$ (so $j=7$), and $i_\ell=\ell$ (so $h_1 = 3, h_2=7, h_3 = 18$, and $i=28$). ne can first perform the action $C(3) \tensor (C(j_1=2)\tensor C(j_2=2)\tensor C(j_3=3))\rightarrow C(j=7)$, then perform the action $C(7)\tensor \left(\bigtensor_{\ell=1}^7 C(i_\ell)\right)\rightarrow C(i=28)$. 
+
+Alternatively, one can let each $C(j_s)$ act on $\bigtensor_{q=1}^{j_s}C(i_{g_{(s-1)}+q})$
+
 
 
 \end{document}
