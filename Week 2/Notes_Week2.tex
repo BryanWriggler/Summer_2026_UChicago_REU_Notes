@@ -546,4 +546,57 @@ Finally, the universality of these two categories are given as follow:
 \newpage
 
 \subsection{Monad Algebra and Monadicity}
+
+Fix a monad $(T,\eta,\mu)$ on category $\mathcal{C}$, we're mainly concerned with the Eilenber-Moore category $\mathcal{C}^T$ (or the category of $T$-algebras). In particular, we wish to study the free algebras, namely the pair $(T(A),\mu_A)\in \mathcal{C}^T$, and see under what situation this covers all the possible $T$-algebras.
+
+The first goal is to show in $\mathcal{C}^T$, any $T$-algebra $(A,a)$ satisfies the following coequalizer diagram:
+\[\xymatrix{
+    (T^2(A),\mu_{T(A)}) \ar@/_{-.5pc}/[r]^-{Ta} \ar@/_{.5pc}/[r]_-{\mu_A} & (T(A),\mu_A) \ar[r]^-{a} & A
+}\]
+
+For this, let's do some definition:
+\begin{defn}
+    A \emph{split coequalizer diagram} consists of the following morphisms:
+    \[\xymatrix{
+        X \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & Y \ar@(d,d)[l]^-{t} \ar[r]^-{h} & Z \ar@(d,d)[l]^-{s}
+    }\]
+    with the requirement $h\circ f=h\circ g$, $h\circ s=\id_Z$, $g\circ t = \id_Y$, and $f\circ t=s\circ h$ as endomorphism on $Y$.
+\end{defn}
+
+\begin{lem}
+    Given a split coequalizer diagram as above, then $h:Y\rightarrow Z$ serves as a categorical coequalizer of $f,g:X\rightarrow Y$. Also, it's an \emph{absolute colimit}, meaning all functor preserves this coequalizer.
+\end{lem}
+\begin{proof}
+    It is evident why all functor preserves this, simply because functor preserves identity, hence split coequalizer diagram is preserved under any functor. Hence, it suffices to show a split coequalizer diagram is a coequalizer.
+
+    Let $h':Y\rightarrow Z'$ satisfies $h'\circ f=h'\circ g$, consider the morphism $h'\circ s:Z\rightarrow Y\rightarrow Z'$. Notice its composition with $h$ provides the following:
+    \[(h'\circ s)\circ h = h'\circ (f\circ t) = (h'\circ g)\circ t = h'\circ \id_{Y} = h'\]
+    Hence, the following factorization holds:
+    \[\xymatrix{
+        X \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & Y\ar[r]^-{h} \ar[dr]_-{h'} & Z \ar[d]^-{h'\circ s}\\
+        && Z'
+    }\]
+    Then, the uniqueness of $h'\circ s$ is due to the fact $h$ is an epimorphism: Recall that $h\circ s=\id_Z$, with $\id_Z$ being epimorphism, so is $h$. Then, if $\psi:Z\rightarrow Z'$ also satisfies $(h'\circ s)\circ h=h' = \psi\circ h$, right cancellative property guarantees $\psi=h'\circ s$. This shows $h:Y\rightarrow Z$ is a coequalizer of $f,g$.
+\end{proof}
+
+For instance, given $(A,a)\in \mathcal{C}^T$ a $T$-algebra, the following diagram is a split coequalizerin $\mathcal{C}$ (\textbf{Remark:} NOT in $\mathcal{C}^T$):
+\[\xymatrix{
+    T^2(A) \ar@/_{-.5pc}/[r]^-{Ta} \ar@/_{.5pc}/[r]_-{\mu_A} & T(A) \ar@(d,d)[l]^-{\eta_{T(A)}} \ar[r]^-{a} & A \ar@(d,d)[l]^-{\eta_A}
+}\]
+Since $a\circ Ta = a\circ \mu_A$ using associativity diagram while $a\circ \eta_A = \id_A$ by unit diagram of monad algebra, $\mu_A\circ \eta_{T(A)}=\id_{T(A)}$ by triangle identity of monad, and finally $Ta \circ \eta_{T(A)}=\eta_A\circ a$ due to the fact $\eta:\Id_\mathcal{C}\rightarrow T$ is a natural transformation.
+
+\hfil
+
+More general result need more definition:
+\begin{defn}
+    Given a functor $U:\mathcal{D}\rightarrow\mathcal{C}$.
+    \begin{itemize}
+        \item a \emph{$U$-split coequalizer} of $f,g:X\rightarrow Y$ in $\mathcal{D}$, is an object $Z\in\mathcal{C}$, together with morphism $h:U(Y)\rightarrow Z$, $s:Z\rightarrow U(Y)$, and $t:U(Y)\rightarrow U(X)$, such that the following diagram is a split coequalizer in $\mathcal{C}$:
+        \[\xymatrix{
+            U(X) \ar@/_{-.5pc}/[r]^-{Uf} \ar@/_{.5pc}/[r]_-{Ug} & U(Y) \ar@(d,d)[l]^-{t} \ar[r]^-{h} & Z \ar@(d,d)[l]^-{s}
+        }\]
+        \item $U$ \emph{creates coequalizers of $U$-split pairs}, if any $U$-split coequalizer admits a coequalizer $h':Y\rightarrow Z'$ in $\mathcal{D}$, such that its image $Uh':U(Y)\rightarrow U(Z')$ is isomorphic to $h:U(Y)\rightarrow Z$ in $\mathcal{C}$.
+        \item $U$ \emph{strictly creates coequalizers of $U$-split pairs}, if it creates coequalizer of $U$-split pairs, while such lift $h'$ in $\mathcal{D}$ is unique (up to isomorphism in $\mathcal{D}$).
+    \end{itemize}
+\end{defn}
 \end{document}
