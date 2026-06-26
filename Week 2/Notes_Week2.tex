@@ -658,7 +658,7 @@ When searching up extra sources, there is another approach using multicategories
 However for understanding in the literature of homotopy theory, I think I'll focus on the original definition. This part cf. May's \emph{Operads, Algebras, and Modules}, \emph{Geometry of Iterated Loop Spaces}, with supplemnts through an arxiv document (https://arxiv.org/pdf/2508.01886) by Felicia Ferraioli, and Maclane's \emph{Category Theory for Working Mathematicians}.
 
 \begin{defn}
-Given symmetric monoidal category $\mathcal{V}$(use $\kappa$ to denote unit), a \emph{planar operad} $C$ in $\mathcal{V}$ is a collection of objects $\{C(j)\in\mathcal{V}\}_{j\in\NN}$, a \emph{unit map} $\eta:1\rightarrow C(1)$, together with composition maps
+Given symmetric monoidal category $\mathcal{V}$(use $\kappa$ to denote unit), a \emph{planar operad} $\mathcal{C}$ in $\mathcal{V}$ is a collection of objects $\{C(j)\in\mathcal{V}\}_{j\in\NN}$, a \emph{unit map} $\eta:1\rightarrow C(1)$, together with composition maps
 \[\gamma:C(k)\tensor C(j_1)\tensor...\tensor C(j_k)\rightarrow C(j_1+...+j_k)\]
 that satisfies the following axioms:
 \begin{itemize}
@@ -683,8 +683,63 @@ From my intuitive understanding, unital axiom is saying ``action with unit $\eta
 
 On the other hand, associativity axiom is accounting for associativity when ``joining different actions'': For instance, given $k=3$, $j_1=2,j_2=2,j_3=3$ (so $j=7$), and $i_\ell=\ell$ (so $h_1 = 3, h_2=7, h_3 = 18$, and $i=28$). ne can first perform the action $C(3) \tensor (C(j_1=2)\tensor C(j_2=2)\tensor C(j_3=3))\rightarrow C(j=7)$, then perform the action $C(7)\tensor \left(\bigtensor_{\ell=1}^7 C(i_\ell)\right)\rightarrow C(i=28)$. 
 
-Alternatively, one can let each $C(j_s)$ act on $\bigtensor_{q=1}^{j_s}C(i_{g_{(s-1)}+q})$
+Alternatively, one can let each $C(j_s)$ act on $\bigtensor_{q=1}^{j_s}C(i_r{g_{(s-1)}+q})$ (for instance, $C(j_1=2)$ action $C(j_1=2)\tensor C(i_1=1)\tensor C(i_2=2)\rightarrow C(3)$), which collects to a morphsim to $C(3)\tensor C(7)\tensor C(18)$; finally, consider the action of $C(k=3)$ on these three.
 
+The associativity is requiring any such pair of actions must commute, reducing the ambiguity of the action.
 
+\begin{rem}
+    Most of the time, there is an extra requirement on the unit, namely $C(0):= \kappa$, and the action morphism $\gamma:C(0)\rightarrow C(0)$ (namely the action of nothing) is $\id_{C(0)}$.
+\end{rem}
+
+\begin{defn}
+    Let $\mathcal{C},\mathcal{C}'$ be two operads on symmetric monoidal category $\mathcal{V}$, a \emph{morphism of operads} $\psi:\mathcal{C}\rightarrow \mathcal{C}'$, is a sequence of morphisms $\psi_j:C(j)\rightarrow C'(j)$ in $\mathcal{V}$, such that it preserves the operad's structure morphism:
+    \[\xymatrix{
+        C(k)\tensor C(j_1)\tensor...\tensor C(j_k) \ar[d]_-{\psi_k\tensor \psi_{j_1}\tensor...\tensor \psi_{j_k}} \ar[r]^-{\gamma} & C(j_1+...+j_k) \ar[d]^-{\psi_{j_1+...+j_k}}\\
+        C'(k)\tensor C'(j_1)\tensor ..\tensor C'(j_k) \ar[r]_-{\gamma'} & C'(j_1+...+j_k)
+    }\]
+\end{defn}
+
+\hfil
+
+\begin{exmp}
+    (Endomorphism Operad on Based Spaces) First, recall that the category of based spaces $\mathcal{T}$ is a symmetric monoidal category under regular cartesian product $\times$, and it's self enriched (as all homset has induced topology from regular function space, and has a basepoint called constant basepoint map).
+    
+    For each based space $X\in\mathcal{T}$ (with $*$ denotes the basepoint), consider the collection $\mathcal{E}_X (j):= F(X^j,X)$ (all based map from $j$th cartesian product $X^j\rightarrow X$). Notice that give $j=j_1+...+j_k$, given based maps $g_i\in \mathcal{E}_X (j_i)$, the universality of product guarantees $k$ maps $g_i\circ \pi_i: \prod_{i=1}^k X^{j_i} = X^j \rightarrow X^{j_i}\rightarrow X$, hence induces a based map $\prod g_i:X^j\rightarrow X^k$. Define the action morphism as follow:
+    \[\gamma:\mathcal{E}_X (k)\times \prod_{i=1}^k \mathcal{E}_X (j_i)\rightarrow \mathcal{E}_X (j),\quad \gamma(f; g_1,...,g_k):= f\circ (\prod g_i):X^j\rightarrow X^k\rightarrow X\]
+    Which, $\mathcal{E}_X (0) = F(*,X)$ is a one-point set (as one can only include the basepoint to the basepoint of $X$), and the unit map $\eta:*\rightarrow \mathcal{E}_X (1)$ is $*\mapsto \id_X$. This forms an operad, after the routine check using the universality of product extensively...
+\end{exmp}
+This example of operad is encoding how ``product of morphisms'' can be communicated in a multi-entry sense (also talks about how such communication acts on $X$, in the most elementary way).
+
+\hfil
+
+For operads in spectra (specifically about symmetric and orthogonal spectra), each space (1-pt compactification of some $n$-dimensional real inner product space) is associated with a $n$th symmetric group $\Sigma_n$ action (once we fix a coordinate for instance).
+
+\begin{defn}
+    An \emph{operad} $\mathcal{C}$ in $\mathcal{V}$, is a planar operad, such tha each $C(j)$ is equipped with a right $\Sigma_j$-action. More formally, each $C(j)$ equips with a group homomorphism $\phi_j:\Sigma_j\rightarrow \Aut_\mathcal{V}(C(j))$, recognizing each permutation as a morphism, and act on $C(j)$ by precomposition.
+
+    Additionally, the symmetric group action satisfies the following axiom:
+    \begin{itemize}
+        \item Given $\sigma\in\Sigma_k$, $j_1+...+j_k = \Sigma_j$, let $\sigma(j_1,...,j_k)\in\Sigma_j$ denotes ``permutation of $k$-blocks of letters''.
+        \begin{exmp}
+            Given $j=5=2+3$, the permutation $(1\ 2)\in \Sigma_2$, $\sigma(2,3)$ is the permutation $\langle 1,2;3,4,5 \rangle \mapsto \langle 3,4,5;1,2\rangle$ (namely changing the blocks' order, without changing the order in each block).
+        \end{exmp} 
+        Then, the following diagram commutes:
+        \[\xymatrix{
+            C(k)\tensor \left(\bigtensor_{r=1}^k C(j_r)\right) \ar[d]_-{\gamma} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma^{-1}}} && C(k)\tensor \left(\bigtensor_{r=1}^k C(j_{\sigma(r)})\right) \ar[d]^-{\gamma}\\
+            C(j) \ar[rr]_-{\sigma(j_1,...,j_k)} && C(j)
+        }\]
+        \item Given $\tau_r\in \Sigma_{j_r}$, denote $\tau_1\oplus ... \oplus \tau_k\in \Sigma_j$ by letting each $\tau_r$ permuting the $j_r$th block in $j$ (for instance, let $\tau_1$ acts on $1,...,j_1$; let $\tau_2$ acts on $j_1+1,...,j_1+j_2$, etc.). Then, the following diagram commutes:
+        \[\xymatrix{
+            C(k)\tensor \left(\bigtensor_{r=1}^k C(j_r)\right)\ar[d]_-{\gamma} \ar[rr]^-{\id_{C(k)}\tensor (\bigtensor_r \tau_r)} && C(k)\tensor \left(\bigtensor_{r=1}^k C(j_r)\right) \ar[d]^-{\gamma}\\
+            C(j) \ar[rr]_{\tau_1\oplus...\oplus\tau_k} && C(j)
+        }\]
+    \end{itemize}
+\end{defn}
+
+The first axiom is ``permuting blocks of entries'', while the second one is ``permuting each block of entries'', combining the two it provides about how to permute all finite amount of actions.
+
+\begin{exmp}
+    Back to the endomorphism operad example, 
+\end{exmp}
 
 \end{document}

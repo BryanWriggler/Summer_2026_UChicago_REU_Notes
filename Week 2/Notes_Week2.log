@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.6.12)  26 JUN 2026 12:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.6.12)  26 JUN 2026 14:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -567,7 +567,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 52.
 
-<xymatrix 2x2 194> [2] [3] Excluding 'comment' comment. <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 146> <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> [4] <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x1 102> [5] <xymatrix 3x1 102> <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x2 314> [6] [7] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 242> <xymatrix 2x2 194> <xymatrix 3x2 242> [8] <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 150> <xymatrix 2x2 194> [9] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 290> [10] <xymatrix 3x2 286> <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> [11] <xymatrix 3x2 334> <xymatrix 3x2 286> [12] <xymatrix 4x2 386> <xymatrix 4x3 482> [13] [14] Excluding 'comment' comment. <xymatrix 3x2 154> <xymatrix 3x3 254> <xymatrix 3x2 290> <xymatrix 3x2 290> [15] [16] <xymatrix 3x2 154> <xymatrix 3x2 154> <xymatrix 3x3 250> [17] (Notes_Week2.aux)
+<xymatrix 2x2 194> [2] [3] Excluding 'comment' comment. <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 146> <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> [4] <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x1 102> [5] <xymatrix 3x1 102> <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x2 314> [6] [7] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 242> <xymatrix 2x2 194> <xymatrix 3x2 242> [8] <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 150> <xymatrix 2x2 194> [9] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 290> [10] <xymatrix 3x2 286> <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> [11] <xymatrix 3x2 334> <xymatrix 3x2 286> [12] <xymatrix 4x2 386> <xymatrix 4x3 482> [13] [14] Excluding 'comment' comment. <xymatrix 3x2 154> <xymatrix 3x3 254> <xymatrix 3x2 290> <xymatrix 3x2 290> [15] [16] <xymatrix 3x2 154> <xymatrix 3x2 154> <xymatrix 3x3 250> [17] <xymatrix 2x2 194> <xymatrix 3x2 202> [18] <xymatrix 3x2 199> [19] (Notes_Week2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -576,17 +576,17 @@ Package rerunfilecheck Info: File `Notes_Week2.out' has not changed.
 (rerunfilecheck)             Checksum: 47117681093AC6F0B966C7E70243D2F6;1963.
  ) 
 Here is how much of TeX's memory you used:
- 16731 strings out of 474486
- 253582 string characters out of 5744227
+ 16739 strings out of 474486
+ 253649 string characters out of 5744227
  1954542 words of memory out of 5000000
  38696 multiletter control sequences out of 15000+600000
  570760 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  94i,17n,107p,3308b,749s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/xypic/xyatip10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/xypic/xybtip10.pfb>
-Output written on Notes_Week2.pdf (17 pages, 341474 bytes).
+Output written on Notes_Week2.pdf (19 pages, 353138 bytes).
 PDF statistics:
- 263 PDF objects out of 1000 (max. 8388607)
- 49 named destinations out of 1000 (max. 500000)
+ 279 PDF objects out of 1000 (max. 8388607)
+ 57 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
