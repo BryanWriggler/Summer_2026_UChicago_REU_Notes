@@ -735,7 +735,9 @@ For operads in spectra (specifically about symmetric and orthogonal spectra), ea
 The first axiom is ``permuting blocks of entries'', while the second one is ``permuting each block of entries'', combining the two it provides about how to permute all finite amount of actions.
 
 \begin{exmp}
-    Back to the endomorphism operad example, each $\mathcal{E}_X (j)$ has an obvious $\Sigma_j$-action, by permuting the $j$ coordinates involved. Which, by definition when combining $\mathcal{E}_X(k)\times \left(\prod_{r=1}^k \mathcal{E}_X (j_r)\right)\rightarrow \mathcal{E}_X (j)$, we first combine the $r$th block $\{j_1+...+j_{r-1}+1,...,j_1+...+j_{r-1}+j_r\}$ into one entry, the $\Sigma_k$-action permutes the blocks of $j_r$; and, the internal 
+    Back to the endomorphism operad example, each $\mathcal{E}_X (j)$ has an obvious $\Sigma_j$-action, by permuting the $j$ coordinates involved. Which, by definition when combining $\mathcal{E}_X(k)\times \left(\prod_{r=1}^k \mathcal{E}_X (j_r)\right)\rightarrow \mathcal{E}_X (j)$, we first combine the $r$th block $\{j_1+...+j_{r-1}+1,...,j_1+...+j_{r-1}+j_r\}$ into one entry, the $\Sigma_k$-action permutes the blocks of $j_r$; and, the internal permutation of $j_r$ also carries over naturally.
 \end{exmp}
+
+This also suggests there is a natural way to let $\Sigma_j$ acts on any object in the monoidal category: More precisely, each $\sigma\in\Sigma_j$ has a shuffle morphism $\text{shuffle}_{\sigma^{-1}}X^{\tensor j}\rightarrow X^{\tensor j}$. By convention, it acts on the left (postcomposing).
 
 \end{document}
