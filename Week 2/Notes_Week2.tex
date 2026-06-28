@@ -738,6 +738,82 @@ The first axiom is ``permuting blocks of entries'', while the second one is ``pe
     Back to the endomorphism operad example, each $\mathcal{E}_X (j)$ has an obvious $\Sigma_j$-action, by permuting the $j$ coordinates involved. Which, by definition when combining $\mathcal{E}_X(k)\times \left(\prod_{r=1}^k \mathcal{E}_X (j_r)\right)\rightarrow \mathcal{E}_X (j)$, we first combine the $r$th block $\{j_1+...+j_{r-1}+1,...,j_1+...+j_{r-1}+j_r\}$ into one entry, the $\Sigma_k$-action permutes the blocks of $j_r$; and, the internal permutation of $j_r$ also carries over naturally.
 \end{exmp}
 
+\hfil
+
 This also suggests there is a natural way to let $\Sigma_j$ acts on any object in the monoidal category: More precisely, each $\sigma\in\Sigma_j$ has a shuffle morphism $\text{shuffle}_{\sigma^{-1}}X^{\tensor j}\rightarrow X^{\tensor j}$. By convention, it acts on the left (postcomposing).
+
+\begin{defn}
+    Let be $\mathcal{C}$ an operad on $\mathcal{V}$. An object $A\in\mathcal{V}$ is a \emph{$\mathcal{C}$-algebra} if it's equipped with a collection of morphisms $\theta: C(j)\tensor A^{\tensor j}\rightarrow A$ for $j\geq 0$, such that the following holds:
+    \begin{itemize}
+        \item \emph{Associativity Axiom:} Given $j = \sum_{i=1}^k j_i$, the following diagram commutes:
+        \[\xymatrix{
+            \left[C(k)\tensor \left(\bigtensor_{i=1}^k C(j_i)\right)\right] \tensor A^{\tensor j} \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\gamma\tensor \id_{A^{\tensor j}}} && C(j)\tensor A^{\tensor j} \ar[dr]^-{\theta_j}\\
+            & & & A\\
+            C(k)\tensor \left[\bigtensor_{i=1}^k \left(C(j_i)\tensor A^{\tensor j_i}\right)\right] \ar[rr]_-{\id_{C(k)}\tensor \left(\bigtensor_i \theta_{j_i}\right)} && C(k)\tensor A^{\tensor k} \ar[ur]_-{\theta_k}
+        }\]
+        (Note: This part uses the isomorphism $A^{\tensor j}\cong\bigtensor_{i=1}^k A^{\tensor j_i})$.
+        \item \emph{Unit Axiom:} The following diagram commutes:
+        \[\xymatrix{
+            \kappa \tensor A \ar[dr]_-{\eta\tensor \id_A} \ar[rr]^-{\sim} && A\\
+            & C(1)\tensor A \ar[ur]_-{\theta_1}
+        }\]
+        \item \emph{Eauivariance Axiom:} Given any permutation $\sigma\in\Sigma_j$, the following diagram commutes:
+        \[\xymatrix{
+            C(j)\tensor A^{\tensor j} \ar[dr]_-{\theta_j} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma^{-1}}} && C(j)\tensor A^{\tensor j} \ar[dl]^-{\theta_j}\\
+            & A
+        }\]
+    \end{itemize}
+\end{defn}
+
+\begin{exmp}
+    Notice the classical example in $\mathcal{T}$ the category of based spaces, the endomorphism operad $\mathcal{E}_X$ naturally acts on $X\in\mathcal{T}$, by defining $\theta_j:\mathcal{E}_X (j)\times X^j\rightarrow X$ as evaluation: $\theta_j (f; x_1,...,x_n):= f(x_1,...,x_n)$ (let's handwave the continuity part here :P). 
+
+    The multilinearity of breaking up entries is compatible as long as the shuffle of $X^j$ to $A^{j_i}$ preserves order, the unit axiom is immediate when we define the ``unit''in $\mathcal{E}_X (1)$ as $\id_X$, and the equivariance axiom is satisfied because ``shuffling the input'' in $\mathcal{E}_X (j)$ and ``shuffling the entries'' in $X^j$ have inverse meanings, so shuffling entries of $X^j$ according to the inverse of $\sigma\in \Sigma_j$ will cancel the action on $\mathcal{E}_X (j)$, causing it to be identity.
+
+    More explicitly, the actions of $\sigma$ are as follow, with the left on $\mathcal{E}_X (j)$ (precomposing the shuffle), the right on $X^j$ (shuffle using the inverse):
+    \[f(x_1,...,x_j)\mapsto f(x_{\sigma(1)},...,x_{\sigma(j)}),\quad\quad (x_1,...,x_j)\mapsto (x_{\sigma^{-1}(1)},...,x_{\sigma^{-1}(j)})\]
+\end{exmp}
+
+Here, there is a more distinct reason than monad about why it's called ``algebra'', because we can let $A$ act on other objects again:
+\begin{defn}
+    Given $\mathcal{C}$ an operad on $\mathcal{V}$, $A\in\mathcal{V}$ a $\mathcal{C}$-algebra. An object $M\in\mathcal{V}$ is an \emph{$A$-module}, if it's equipped with morphisms $\lambda_j:C(j)\tensor A^{\tensor (j-1)}\tensor M\rightarrow M$ for $j\geq 1$, that satisfies the following axioms:
+    \begin{itemize}
+        \item \emph{Associativity:} Given $j=\sum_{i=1}^k j_i$, the following diagram commutes:
+        \[\xymatrix{
+            \left[C(k)\tensor \left(\bigtensor_{i=1}^k C(j_i)\right)\right]\tensor A^{j-1}\tensor M \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\gamma\tensor \id_{A^{j-1}}\tensor M} && C(j) \tensor A^{j-1}\tensor M \ar[dr]^-{\lambda_j}\\
+            &&& M\\
+            C(k)\tensor \left[\bigtensor_{i=1}^{k-1}\left(C(j_i)\tensor A^{j_i}\right)\right] \tensor \left(C(j_k)\tensor A^{j_k-1}\tensor M\right) \ar[rr]_-{\id_{C(k)}\tensor (\bigtensor_i \theta_{j_i}) \tensor \lambda} && C(k)\tensor A^{k-1} \tensor M \ar[ur]_-{\lambda_k}
+        }\]
+
+        \item \emph{Unit:} Special case when $j=1$ (so contains $A^0=\kappa$), the following diagram commutes:
+        \[\xymatrix{
+            \kappa \tensor M \ar[dr]_-{\eta\tensor \id_M}\ar[rr]^-{\sim} && M\\
+            & C(1)\tensor M \ar[ur]_-{\lambda}
+        }\]
+        \item \emph{Equivariance:} Given $\sigma\in \Sigma_{j-1}\hookrightarrow \Sigma_j$ (in the canonical way $\{1,...,j-1\}\hookrightarrow \{1,...,j-1,j\}$), the following diagram commutes:
+        \[\xymatrix{
+            C(j) \tensor A^{j-1}\tensor M \ar[dr]_-{\lambda_j} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma^{-1}}\tensor \id_M} && C(j)\tensor A^{j-1}\tensor M \ar[dl]^-{\lambda_j}\\
+            & M
+        }\]
+    \end{itemize}
+\end{defn}
+
+Right now I can only think of a trivial example...where every $\mathcal{C}$-algebra $A$ has itself being an $A$-module. 
+
+However, I did see that if the symmetric monoidal category $\mathcal{V}$ has an \emph{internal hom functor} (that is, a bifunctor $\mathcal{H}:\mathcal{V}^\Op\times \mathcal{V}\rightarrow\mathcal{V}$, such that a natural isomorphism $\Hom(A\tensor B,C)\cong \Hom(A,\mathcal{H}(B,C))$ exists). In this case, $(\_\tensor A\dashv \mathcal{H}(A,\_))$ is an adjoint pair, and $\mathcal{V}$ is called \emph{closed symmetric monoidal category}. Using this $\mathcal{H}$ to define the endomorphism operad, then all the properties carry over.
+
+\hfil
+
+\hfil
+
+Some of the variants of operads include:
+\begin{enumerate}
+    \item \emph{Planar Operads}, this often happens when we want to omit the commutativity structure of certain algebra. Professor May also defined this to be \emph{non-$\Sigma$ operad}.
+    \item \emph{Unital Operads}, these are the special case where $C(0)=\kappa$, insisting the ``0-ary operation'' (or the operation of ``doing nothing'') agrees with the traditional sense. However, if the algebra we want to work on doesn't have units (for instance, Lie algebras as analogy in traditional algebra), then $C(0):=0$ (the initial object of the category) would be more sensible.
+    \item \emph{Augmentation Operads}, these are unital operads with \emph{augmentation morphisms} $\epsilon:= \gamma:C(j)\tensor C(0)^j\rightarrow C(0)=\kappa$, and also the \emph{degeneracy maps} as follow:
+    \[\sigma_{ji}:C(j)\cong C(j)\tensor C(0)^j \xrightarrow{\id_{C(j)}\tensor \eta^{i-1} \tensor \id_{C(0)}\tensor \eta^{j-1}} \left[C(j)\tensor C(1)^{i-1}\tensor C(0)\tensor C(1)^{j-i}\right]\xrightarrow{\gamma} C(j-1)\]
+    where $1\leq i\leq j$.
+\end{enumerate}
+The third case can be seen in the category of finite sets: Take $C(j):=\{1,...,j\}$ and $C(0)=\bzero$ as the ``word of nothing'', the operation 
 
 \end{document}
