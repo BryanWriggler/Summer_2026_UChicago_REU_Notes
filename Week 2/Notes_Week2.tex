@@ -814,6 +814,38 @@ Some of the variants of operads include:
     \[\sigma_{ji}:C(j)\cong C(j)\tensor C(0)^j \xrightarrow{\id_{C(j)}\tensor \eta^{i-1} \tensor \id_{C(0)}\tensor \eta^{j-1}} \left[C(j)\tensor C(1)^{i-1}\tensor C(0)\tensor C(1)^{j-i}\right]\xrightarrow{\gamma} C(j-1)\]
     where $1\leq i\leq j$.
 \end{enumerate}
-The third case can be seen in the category of finite sets: Take $C(j):=\{1,...,j\}$ and $C(0)=\bzero$ as the ``word of nothing'', the operation 
+
+
+\hfil
+
+Some other examples:
+
+\begin{exmp}
+    There is a trivial operad, defined by $\mathcal{N}(j):=\kappa$, with each $\gamma:\mathcal{N}(k)\tensor \mathcal{N}(j_1)\tensor...\tensor\mathcal{N}(j_k)\rightarrow\mathcal{N}(j)$ being the canonical isomorphism of products of $\kappa$. Notice the isomorphism by definition respects permutation (i.e. all permutation yields the same isomorphism).
+
+    An object $A\in\mathcal{V}$ that's an $\mathcal{N}$-a;gebra (with morphisms $\theta_j:\mathcal{N}(j)\tensor A^{j}\rightarrow A$) can be regarded as a monoid, because we have a unit morphism $\theta_1:\mathcal{N}(1)\tensor A\cong \kappa\tensor A\xrightarrow{\sim}A$ by definition, and together with associativity diagram as follow:
+    \[\xymatrix{
+        \mathcal{N}(2)\tensor \mathcal{N}(1)\tensor\mathcal{N}(2)\tensor A^3\ar[dd]_-{\text{shuffle}}\ar[rr]^-{\gamma\tensor \id_{A^3}} && \mathcal{N}(3)\tensor A^3 \ar[dr]^-{\theta_3}\\
+        &&& A\\
+        \mathcal{N}(2)\tensor \left(\mathcal{N}(1)\tensor A\right)\tensor \left(\mathcal{N}(2)\tensor A^2\right) \ar[rr]_-{\id_{\mathcal{N}(2)}\tensor \theta_1\tensor\theta_2} && \mathcal{N}(2)\tensor A^2 \ar[ur]_-{\theta_2}
+    }\]
+    If switch the order of $\mathcal{N}(1)$ and $\mathcal{N}(2)$, this demonstrates the agreement with the other way of composition, hence the ``action'' $\mathcal{N}(j)\tensor A^j\rightarrow A$ disregards the order of ``composition'', which is associative. Finally, with the permuation action being trivial, this states the multiplication action is commutative, hence $A$ can be regarded as a commutative monoid.
+
+    (If disregard the permutation action, $A$ becomes just a monoid).
+
+    Similarly, $M\in\mathcal{V}$ is an $A$-module, if it's the classical $A$-module by chasing through similar monoidal actions.
+\end{exmp}
+
+\hfil
+
+\begin{exmp}
+    A nontrivial example, we can consider $\mathcal{M}(j)=\kappa[\Sigma_j]:=\coprod_{\sigma\in\Sigma_j}\kappa$, coproduct of $\#\Sigma_j$ copies of unit $\kappa$ (so $\mathcal{M}(0)=\mathcal{M}(1)=\kappa$). There is a natural $\Sigma_j$-action on $\mathcal{M}(j)$, by permuting the index of coproducts according to right multiplication (so, index $\psi$ maps to index $\psi \sigma$, when acted by $\sigma$).
+
+    To define the operad morphisms, notice the following structure: Given any object $A,B\in\mathcal{V}$, 
+\end{exmp}
+
+\newpage
+
+\subsection{Operad: Alternative Definition and Relation to Monad}
 
 \end{document}
