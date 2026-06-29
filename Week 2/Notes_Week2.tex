@@ -722,7 +722,7 @@ For operads in spectra (specifically about symmetric and orthogonal spectra), ea
         Then, the following diagram commutes:
         \[\xymatrix{
             C(k)\tensor \left(\bigtensor_{r=1}^k C(j_r)\right) \ar[d]_-{\gamma} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma^{-1}}} && C(k)\tensor \left(\bigtensor_{r=1}^k C(j_{\sigma(r)})\right) \ar[d]^-{\gamma}\\
-            C(j) \ar[rr]_-{\sigma(j_1,...,j_k)} && C(j)
+            C(j) \ar[rr]_-{\sigma(j_{\sigma(1)},...,j_{\sigma(k)})} && C(j)
         }\]
         \item Given $\tau_r\in \Sigma_{j_r}$, denote $\tau_1\oplus ... \oplus \tau_k\in \Sigma_j$ by letting each $\tau_r$ permuting the $j_r$th block in $j$ (for instance, let $\tau_1$ acts on $1,...,j_1$; let $\tau_2$ acts on $j_1+1,...,j_1+j_2$, etc.). Then, the following diagram commutes:
         \[\xymatrix{
@@ -836,16 +836,37 @@ Some other examples:
     Similarly, $M\in\mathcal{V}$ is an $A$-module, if it's the classical $A$-module by chasing through similar monoidal actions.
 \end{exmp}
 
-\hfil
-
-\begin{exmp}
-    A nontrivial example, we can consider $\mathcal{M}(j)=\kappa[\Sigma_j]:=\coprod_{\sigma\in\Sigma_j}\kappa$, coproduct of $\#\Sigma_j$ copies of unit $\kappa$ (so $\mathcal{M}(0)=\mathcal{M}(1)=\kappa$). There is a natural $\Sigma_j$-action on $\mathcal{M}(j)$, by permuting the index of coproducts according to right multiplication (so, index $\psi$ maps to index $\psi \sigma$, when acted by $\sigma$).
-
-    To define the operad morphisms, notice the following structure: Given any object $A,B\in\mathcal{V}$, 
-\end{exmp}
+This example is also called \emph{associative non-$\Sigma$ operad}, because it's a non-$\Sigma$ operad that produces associative monoids as its algebra.
 
 \newpage
 
-\subsection{Operad: Alternative Definition and Relation to Monad}
+\subsection{Operad: Alternative Definition and Relation to Monad (ND, a bunch of definition problems)}
+
+For the last section, we've seen an associative non-$\Sigma$ operad, to produce the version in operad (equipped with symmetric group actions), we need to consider another version. But for this, I think there are some technicalities in the category theory, so we'll assume the following two facts: 
+\begin{itemize}
+    \item $\mathcal{V}$ has finite coprroduct.
+    \item $\mathcal{V}$ has an \emph{internal hom functor}, which after fixing the input object $X$ is a right adjoint of monoidal product (after fixing the same input object $X$). This guarantees monoidal product to commute with (one-sided) colimit (as it's a left adjoint), in particular commutes with coproduct (so, $(A\coprod B)\tensor C\cong (A\tensor C)\coprod (B\tensor C)$).
+\end{itemize}
+An alternative assumption can be made that monoidal product commutes with (one-sided) coproduct. Out of curisity, are the two equivalent definition? Also, are there any symmetric monoidal category where it doesn't commute with coproduct?
+
+\begin{exmp}
+    We can consider $\mathcal{M}(j)=\kappa[\Sigma_j]:=\coprod_{\sigma\in\Sigma_j}\kappa$, coproduct of $\#\Sigma_j$ copies of unit $\kappa$ (so $\mathcal{M}(0)=\mathcal{M}(1)=\kappa$). There is a natural right $\Sigma_j$-action on $\mathcal{M}(j)$, by permuting the index of coproducts according to right multiplication (so, index $\psi$ maps to index $\psi \sigma$, when acted by $\sigma$).
+
+    To define the operad morphisms, notice each coproduct is equipped with a unique ``trivialization'' $t_j:\kappa[\Sigma_j]\rightarrow\kappa$, induced by having all index $\sigma\in\Sigma_j$ equipped with identity $\id_\kappa:\kappa_\sigma\rightarrow\kappa$. Which, we have the following morphisms, by producting the trivialization, and inclusion:
+    \[\alpha_{j,j_i}:\kappa[\Sigma_{j_1}]\tensor...\tensor\kappa[\Sigma_{j_k}]\xrightarrow{\bigtensor_{l\neq j} t_l} \kappa[\Sigma_{j_i}] \xrightarrow{\iota_{j_i}} \kappa[\Sigma_j] \]
+    where the last portion identifies $\{1,...,j_i\}$ by adding $g_{i-1}:= j_1+...+j_{i-1}$ to each entry, and induces an inclusion $\Sigma_{j_i}\hookrightarrow \Sigma_j$ (which further induces the inclusion of coproduct).
+
+    \hfil
+
+    Now, for each $\sigma\in \Sigma_k$, let $\sigma(j_1,...,j_k)\in \Sigma_j$ be the permutation permuting the blocks, this defines a ``permuted version'' $\alpha_{j,j_i,\sigma}:\kappa_\sigma \tensor \kappa[\Sigma_{j_1}]\tensor...\tensor\kappa[\Sigma_{j_k}]\xrightarrow{\bigtensor_{l\neq j} t_l} \kappa[\Sigma_{j_i}] \xrightarrow{\iota_{j_i}} \kappa[\Sigma_j]$ by identifying $\{1,...,j_i\}$ as the block in $\{1,...,j\}$ after $\sigma(j_1,...,j_k)$-actions. 
+
+    Based on our assumption, since $k[\Sigma_k]\tensor \kappa[\Sigma_{j_1}]\tensor...\tensor\kappa[\Sigma_{j_k}]\cong \coprod_{\sigma\in\Sigma_k}\kappa_\sigma\tensor\kappa[\Sigma_{j_1}]\tensor...\tensor\kappa[\Sigma_{j_k}]$, the collection of $\alpha_{j,j_i,\sigma}$ gathers into a morphism, which we defined as our structure morphism:
+    \[\gamma:\kappa[\Sigma_k]\tensor \kappa[\Sigma_{j_1}]\tensor...\tensor\kappa[\Sigma_{j_k}]\rightarrow\kappa[\Sigma_j]\]
+    This definition for sure satisfy the equivariance diagram (because it's defined to be so!)
+\end{exmp}
+
+This is essential to define an alternative definition.
+
+\hfil
 
 \end{document}

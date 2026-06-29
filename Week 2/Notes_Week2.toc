@@ -7,4 +7,4 @@
 \contentsline {subsection}{\numberline {1.4}Monad Algebra and Monadicity (ND)}{15}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}Review: Monoidal and Symmetric Monoidal Caetgories}{16}{subsection.1.5}%
 \contentsline {subsection}{\numberline {1.6}Operads and Operadic Algebra}{18}{subsection.1.6}%
-\contentsline {subsection}{\numberline {1.7}Operad: Alternative Definition and Relation to Monad}{23}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.7}Operad: Alternative Definition and Relation to Monad (ND, a bunch of definition problems)}{23}{subsection.1.7}%
