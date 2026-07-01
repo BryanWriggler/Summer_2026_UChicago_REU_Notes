@@ -9,7 +9,7 @@
 \maketitle
 \tableofcontents
 
-\section{Review: Symmetric Monoidal Caetgories}
+\section{Review: Symmetric Monoidal Categories}
 
 \begin{defn}
     A category $\mathcal{V}$ is a \emph{monoidal category}, if there is a bifunctor $\tensor:\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ (called \emph{monoidal product}), and an object $\kappa\in\mathcal{V}$ (called \emph{unit/monoidal unit}), together with the following natural isomorphisms:
@@ -50,7 +50,7 @@ This guarantees all monoidal category to be equivalent to a \emph{strict monoida
     }\]
     $\mathcal{V}$ is a \emph{symmetric monoidal category}, if $B_{Y,X}=B_{X,Y}^{-1}$ for all $X,Y\in\mathcal{V}$.
 \end{defn}
-The two hexagons are guaranteeing the ability to perform 3-cycle permutations on three consecutive objects in a product, hence together with $B$ serving as transpositions, it guarantees isomorphism between all permutations of finite products. The symmetric axiom further imposes that there is a single way of doing such permutation (so there's no ``nontrivial braiding'', when $B_{Y,X}\circ B_{X,Y}:X\tensor Y\rightarrow Y\tensor X\rightarrow X\tensor Y$ is not identity). From my naive understanding of coherence theorem, WLOG we can again treat $X\tensor Y=Y\tensor X$.
+The two hexagons are uniqueness of 3-cycle permutations on three consecutive objects in a product, hence together with $B$ serving as transpositions, it guarantees unique isomorphism between all permutations of finite products, i.e., it imposes that there is a single way of doing such permutation (so there's no ``nontrivial braiding'', when $B_{Y,X}\circ B_{X,Y}:X\tensor Y\rightarrow Y\tensor X\rightarrow X\tensor Y$ is not identity). From my naive understanding of coherence theorem, WLOG we can again treat $X\tensor Y=Y\tensor X$.
 
 \begin{exmp}
     Everyone loves unital commutative ring $R$, so I use category of $R$-modules as example :)
@@ -93,9 +93,7 @@ If people knows about Yoneda Lemma, welcome to look into the last section, which
     One reason to assume this, is to make sure some of the construction makes sense: In the literature professor May (implicitly) assumes monoidal product commutes with colimits, and occasionally use internal hom as an example of operad.
 \end{rem}
 
-\newpage
-
-\section{Intro: Operads}
+\hfil
 
 \begin{notn}
 Let $\Sigma_j$ denotes the $j$th symmetric group for all $j\in\NN$. In particular, $\Sigma_0=\Sigma_1=\{1\}$ as trivial group.
@@ -106,6 +104,99 @@ Let $\Sigma$ denote the category of finite numbers, with objects being $\mathbf{
     \Sigma_j &,\quad i=j
 \end{cases}\]
 
+Also, let $\emptyset\in\mathcal{V}$ be the initial object. Since initial object is a colimit, $\emptyset$ exists, moreover $\emptyset \tensor X\cong \emptyset$ for all $X\in\mathcal{V}$ once assume monoidal cocompleteness.
 \end{notn}
+
+\newpage
+
+\section{Intro: Operads}
+
+As an example, we'll start with category of compactly generated based space $\mathcal{T}^*$, with cartesian product $\times$ as monoidal product, singleton $\{*\}$ as monoidal unit.
+
+\begin{exmp}
+Given $X\in\mathcal{T}^*$, define $\mathcal{E}_X (j):= \Hom(X^j,X)$ for each $j\in\NN$. 
+
+Let natural numbers $j=j_1+...+j_k$, each $g_i\in \mathcal{E}_X (j_i)$ defines a map $g_i\circ \pi_i:X^j=\prod_{i=1}^k X^{j_i}\rightarrow X$, hence $g_1,...,g_k$ induces a product map $\Pi g_i:X^j\rightarrow X^k$. Now, given any $f\in\mathcal{E}_X (k)$, $f\circ g:X^j\rightarrow X^k\rightarrow X$ is an element in $\mathcal{E}_X (j)$. This induces the following structure map:
+\[\gamma:\mathcal{E}_X (k)\times \prod_{i=1}^k \mathcal{E}_X (j_i)\rightarrow\mathcal{E}_X (j),\quad \gamma(f;g_1,...,g_k):= f\circ \Pi g_i\]
+There is also a canonical choice of \emph{unit}, namely $\eta:\{*\}\rightarrow \mathcal{E}_X(1)$ by $*\mapsto \id_X$.
+
+\hfil
+
+Unit here represents an \emph{identity operation}, as one can verify the following two diagram commutes:
+\[\xymatrix{
+        \mathcal{E}_X(j)\times \{*\}^{j} \ar[dr]_-{\id_{\mathcal{E}_X(j)}\times \eta^{j}} \ar[rr]^-{\sim} && \mathcal{E}_X(j)\\
+        & \mathcal{E}_X(j)\times \mathcal{E}_X(1)^{j} \ar[ur]_-{\gamma}
+    },\quad\quad \xymatrix{
+        \{*\}\times \mathcal{E}_X(j) \ar[dr]_-{\eta\times \id_{\mathcal{E}_X(j)}} \ar[rr]^-{\sim} && \mathcal{E}_X(j)\\
+        & \mathcal{E}_X(1)\times \mathcal{E}_X(j) \ar[ur]_-{\gamma}
+    }\]
+
+It also satisfies a giant associativity law, for demonstration purpose I'll draw a tree diagram instead. Given $k$, $j = j_1+...+j_k$, each $j_s$ associates with $h_s = i_{s,1}+...+i_{s,j_s}$, and $i:= h_1+...+h_k$. Then, the following combination diagram has no ambiguity, given $f\in\mathcal{E}_X (k)$, $g_s\in \mathcal{E}_X (j_s)$, and $\ell_{s,t}\in \mathcal{E}_X (i_{s,t})$:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=120mm]{IMG_1048.jpg}
+\end{figure}
+
+Finally, there is a natural right $\Sigma_j$-action on $\mathcal{E}_X (j)$, by pre-permuting the input entries. Which, permutation in $\mathcal{E}_X (k)$ is equivalent to ``permuting orders'' of blocks $(j_1,...,j_k)= \{\{1,2,...,j_1\},...,\{j_1+...+j_{k-1}+1,...,j_1+...+j_{k-1}+j_k\}\}$  in $\{1,...,j\}$, and each $\Sigma_{j_s}$-action on $\mathcal{E}_X (j_s)$ is equivalent to a permutation only on each block of $(j_1,...,j_k)$.
+
+\hfil
+
+Intuitively, each $\mathcal{E}_X (j)$ encodes all possible way of operating on $j$ points of $X$ (a $j$-ary operation on $X$), while each $\mathcal{E}_X (k)$ also encodes operation of combining $k$ (possibly distinct) operations into another operation, in an associative way.
+\end{exmp}
+
+\hfil
+
+\begin{defn}
+Given symmetric monoidal category $\mathcal{V}$(use $\kappa$ to denote unit), an \emph{$\Sigma$-operad} $\mathcal{C}$ in $\mathcal{V}$ is a collection of objects $\{\mathcal{C}(j)\in\mathcal{V}\}_{j\in\NN}$, each $\mathcal{C}(j)$ with a right $\Sigma_j$-action (a group homomorphism $\Sigma_j^\Op\rightarrow \Aut_\mathcal{V}(\mathcal{C}(j))$), a \emph{unit map} $\eta:1\rightarrow \mathcal{C}(1)$, together with composition maps
+\[\gamma:\mathcal{C}(k)\tensor \mathcal{C}(j_1)\tensor...\tensor \mathcal{C}(j_k)\rightarrow \mathcal{C}(j_1+...+j_k)\]
+that satisfies the following axioms:
+\begin{itemize}
+    \item \emph{Unit:}
+    \[\xymatrix{
+        \mathcal{C}(j)\tensor \kappa^{\tensor j} \ar[dr]_-{\id_{\mathcal{C}(j)}\tensor \eta^{\tensor j}} \ar[rr]^-{\sim} && \mathcal{C}(j)\\
+        & \mathcal{C}(j)\tensor \mathcal{C}(1)^{\tensor j} \ar[ur]_-{\gamma}
+    },\quad\quad \xymatrix{
+        \kappa\tensor \mathcal{C}(j) \ar[dr]_-{\eta\tensor \id_{\mathcal{C}(j)}} \ar[rr]^-{\sim} && \mathcal{C}(j)\\
+        & \mathcal{C}(1)\tensor \mathcal{C}(j) \ar[ur]_-{\gamma}
+    }\]
+    \item \emph{Associativity:} Fix natural numbers $k$, $j = \sum_{s=1}^k j_s$, define index $g_s:= j_1+...+j_s$ for $1\leq s\leq k$. For each $i_1,...,i_{g_k}=i_j$, with sum $i=\sum_{r=1}^j i_r$, and $h_s:= i_{g_{(s-1)}+1}+...+i_{g_s}$ (so $i=\sum_{s=1}^k h_s$ also), the following diagram commutes:
+    \[\xymatrix{
+        \left[\mathcal{C}(k)\tensor \left(\bigtensor_{s=1}^k \mathcal{C}(j_s)\right)\right]\tensor \left(\bigtensor_{r=1}^j \mathcal{C}(i_r)\right) \ar[dd]_-{\text{shuffle}} \ar[r]^-{\gamma\tensor \id} & \mathcal{C}(j) \tensor \left(\bigtensor_{r=1}^j \mathcal{C}(i_r)\right) \ar[dr]^-{\gamma}\\
+        && \mathcal{C}(i)\\
+        \mathcal{C}(k) \tensor \left[\bigtensor_{s=1}^k \left(\mathcal{C}(j_s)\tensor \left(\bigtensor_{q=1}^{j_s} \mathcal{C}(i_{g_{(s-1)}+q})\right)\right)\right] \ar[r]_-{\id_{\mathcal{C}(k)} \tensor (\bigtensor_s \gamma)} & \mathcal{C}(k)\tensor \left(\bigtensor_{s=1}^k \mathcal{C}(h_s)\right) \ar[ur]_-{\gamma}
+    }\]
+    \item \emph{Equivariance:}
+    \begin{itemize}
+        \item Given $\sigma\in\Sigma_k$, $j_1+...+j_k = \Sigma_j$, let $\sigma(j_1,...,j_k)\in\Sigma_j$ denotes ``permutation of $k$-blocks of letters''.
+        \begin{exmp}
+            Given $j=5=2+3$, the permutation $(1\ 2)\in \Sigma_2$, $\sigma(2,3)$ is the permutation $\langle 1,2;3,4,5 \rangle \mapsto \langle 3,4,5;1,2\rangle$ (namely changing the blocks' order, without changing the order in each block).
+        \end{exmp} 
+        Then, the following diagram commutes:
+        \[\xymatrix{
+            \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right) \ar[d]_-{\gamma} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma^{-1}}} && \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_{\sigma(r)})\right) \ar[d]^-{\gamma}\\
+            \mathcal{C}(j) \ar[rr]_-{\sigma(j_{\sigma(1)},...,j_{\sigma(k)})} && \mathcal{C}(j)
+        }\]
+        \item Given $\tau_r\in \Sigma_{j_r}$, denote $\tau_1\oplus ... \oplus \tau_k\in \Sigma_j$ by letting each $\tau_r$ permuting the $j_r$th block in $j$ (for instance, let $\tau_1$ acts on $1,...,j_1$; let $\tau_2$ acts on $j_1+1,...,j_1+j_2$, etc.). Then, the following diagram commutes:
+        \[\xymatrix{
+            \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right)\ar[d]_-{\gamma} \ar[rr]^-{\id_{\mathcal{C}(k)}\tensor (\bigtensor_r \tau_r)} && \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right) \ar[d]^-{\gamma}\\
+            \mathcal{C}(j) \ar[rr]_{\tau_1\oplus...\oplus\tau_k} && \mathcal{C}(j)
+        }\]
+    \end{itemize}
+\end{itemize}
+
+If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ being $\id_{\mathcal{C}(0)}$), the operad is called \emph{unital operad}.
+\end{defn}
+
+\begin{defn}
+    Let $\mathcal{C},\mathcal{C}'$ be two operads on symmetric monoidal category $\mathcal{V}$, a \emph{morphism of operads} $\psi:\mathcal{C}\rightarrow \mathcal{C}'$, is a sequence of $\Sigma_j$-equivariant morphisms $\psi_j:\mathcal{C}(j)\rightarrow \mathcal{C}'(j)$ in $\mathcal{V}$ (i.e., $\sigma^{-1}\circ \psi_j\circ \sigma = \psi_j$, for all $\sigma\in \Sigma_j$), such that it preserves the operad's structure morphism:
+    \[\xymatrix{
+        \mathcal{C}(k)\tensor \mathcal{C}(j_1)\tensor...\tensor \mathcal{C}(j_k) \ar[d]_-{\psi_k\tensor \psi_{j_1}\tensor...\tensor \psi_{j_k}} \ar[r]^-{\gamma} & \mathcal{C}(j_1+...+j_k) \ar[d]^-{\psi_{j_1+...+j_k}}\\
+        \mathcal{C}'(k)\tensor \mathcal{C}'(j_1)\tensor ..\tensor \mathcal{C}'(j_k) \ar[r]_-{\gamma'} & \mathcal{C}'(j_1+...+j_k)
+    }\]
+\end{defn}
+
+\hfil
+
+\subsection{Categorical Example: Associative Operad}
 
 \end{document}
