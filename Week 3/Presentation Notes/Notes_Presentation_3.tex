@@ -141,7 +141,9 @@ Finally, there is a natural right $\Sigma_j$-action on $\mathcal{E}_X (j)$, by p
 
 \hfil
 
-Intuitively, each $\mathcal{E}_X (j)$ encodes all possible way of operating on $j$ points of $X$ (a $j$-ary operation on $X$), while each $\mathcal{E}_X (k)$ also encodes operation of combining $k$ (possibly distinct) operations into another operation, in an associative way.
+Intuitively, each $\mathcal{E}_X (j)$ encodes all possible way of operating on $j$ points of $X$ (a $j$-ary operation on $X$), while each $\mathcal{E}_X (k)$ also encodes operation of combining $k$ (possibly distinct) operations into another operation, in an associative way. 
+
+This is called the \emph{Endomorphism Operad of $X$}. In general, if $\mathcal{V}$ is monoidally closed, the internal hom functor provides a construction of such endomorphism operad in $\mathcal{V}$.
 \end{exmp}
 
 \hfil
@@ -198,5 +200,28 @@ If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ 
 \hfil
 
 \subsection{Categorical Example: Associative Operad}
+
+Let $\mathcal{M}(j):=\kappa[\Sigma_j]:= \coprod_{\psi\in\Sigma_j}\kappa_\psi$, coproduct of $\#\Sigma_j$ copies of $\kappa$ (each $\kappa_\psi$ is the unit $\kappa$, subscript is for labeling convenience). It has a natural right $\Sigma_j$-action, where for each $\sigma\in\Sigma_j$, the identity $\kappa_{\psi\sigma^{-1}}\xrightarrow{\sim} \kappa_{\psi}$ induces an isomorphism on coproduct $\tilde{\sigma}\in \Aut(\mathcal{M}(j))$:
+\[\xymatrix{
+    \kappa_{\psi} \ar[d]_-{\iota_{\psi}} \ar[r]^-{\sim} & \kappa_{\psi\sigma} \ar[d]^-{\iota_{\psi\sigma}}\\
+    \coprod_{\psi\in\Sigma_j}\kappa_{\psi} \ar@{-->}[r]_-{\exists ! \tilde{\sigma}} & \coprod_{\psi\in\Sigma_j}\kappa_{\psi\sigma} 
+}\]
+This construction enforces $\tilde{(\sigma\sigma')} = \tilde{\sigma'}\circ \tilde{\sigma}$, which is a group homomorphism $\Sigma_j^\Op\rightarrow\Aut_\mathcal{V}(\mathcal{M}(j))$.
+
+There is a natural unit morphism $\eta:\kappa\rightarrow \kappa[\Sigma_1] = \kappa$ via identity.
+
+Also, each identity morphism $\kappa_\psi\rightarrow \kappa$ induces a trivialization $t:\kappa[\Sigma_j]\rightarrow\kappa$. Combining the action $\sigma\in \Sigma_k$ (by identifying conatination of blocks $(j_{\sigma^{-1}(1)},...,j_{\sigma^{-1}(k)})=\{1,...,j\}$ in order, also inducing inclusion $\Sigma_{j_s}\hookrightarrow \Sigma_j$), we get the following morphism:
+\[\kappa_\psi \tensor \left(\bigtensor_{s=1}^k \kappa[\Sigma_{j_s}]\right)\xrightarrow{\sim} \bigtensor_{s=1}^k \kappa[\Sigma_{j_{\psi^{-1}(s)}}] \xrightarrow{t^{k-1}} \kappa[\Sigma_{j_{\psi^{-1}(s)}}] \rightarrow \kappa[\Sigma_j]\]
+Running through all $\psi\in\Sigma_k$, this induces a morphism $\gamma:\coprod_{\psi\in\Sigma_k}\left[\kappa_\psi \tensor \left(\bigtensor_{s=1}^k \kappa[\Sigma_{j_s}]\right)\right] \rightarrow \kappa[\Sigma_j]$, and use the fact $\tensor$ commutes with colimits, this is equivalent to a morphism $\gamma:\kappa[\Sigma_k]\tensor \left(\bigtensor_{s=1}^k \kappa[\Sigma_{j_s}]\right)\rightarrow \kappa[\Sigma_j]$.
+
+Verify $\mathcal{M}$ forms an operad is a long tedious work, unless many people request the proof we'll omit it here :)
+
+\hfil
+
+\subsection{Topological Example: Stasheff Associahedra}
+
+\newpage
+
+\section{Operad Algebra}
 
 \end{document}
