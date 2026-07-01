@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage{../Self_Style}
+
+\title{UChicago REU Notes Week 2}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Review: Symmetric Monoidal Caetgories}
+
+\begin{defn}
+    A category $\mathcal{V}$ is a \emph{monoidal category}, if there is a bifunctor $\tensor:\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ (called \emph{monoidal product}), and an object $\kappa\in\mathcal{V}$ (called \emph{unit/monoidal unit}), together with the following natural isomorphisms:
+    \begin{itemize}
+        \item The \emph{associator} $a:(\_\tensor \_)\tensor \_ \xrightarrow{\sim} \_\tensor(\_\tensor \_)$ of functors $\mathcal{V}\times\mathcal{V}\times\mathcal{V}\xrightarrow{\sim}\mathcal{V}$. (So, $(X\tensor Y)\tensor Z\cong X\tensor(Y\tensor Z)$ in a canoncial way).
+        \item The \emph{left unit} $\lambda:\kappa\tensor\_\xrightarrow{\sim} \Id_{\mathcal{V}}$ ($1\tensor X\cong X$ in a canonical way).
+        \item The \emph{right unit} $\rho:\_\tensor \kappa\xrightarrow{\sim}\Id_\mathcal{V}$ ($X\tensor 1\cong X$ in a canonical way).
+    \end{itemize}
+
+    They also satisfy two extra axioms:
+    \begin{itemize}
+        \item \emph{Triangle Axiom:}
+        \[\xymatrix{
+            (X\tensor 1)\tensor Y \ar[dr]_-{\rho_X \tensor \id_Y} \ar[rr]^-{a_{X,1,Y}} && X\tensor (1\tensor Y) \ar[dl]^-{\id_X\tensor \lambda_Y}\\
+            & X\tensor Y
+        }\]
+        \item \emph{Pentagon Axiom:}
+        \[\xymatrix{
+            ((X\tensor Y)\tensor Z)\tensor W \ar[rr]^-{a_{X\tensor Y,Z,W}} \ar[d]_-{a_{X,Y,Z}\tensor \id_W} && (X\tensor Y)\tensor(Z\tensor W) \ar[d]^-{a_{X,Y,Z\tensor W}}\\
+            (X\tensor (Y\tensor Z))\tensor W \ar[dr]_-{a_{X,Y\tensor Z,W}} && X\tensor (Y\tensor (Z\tensor W)) \\
+            & X\tensor ((Y\tensor Z)\tensor W) \ar[ur]_-{\id_X\tensor a_{Y,Z,W}}
+        }\]
+    \end{itemize}
+\end{defn}
+Based on \emph{Maclane's Coherence Theorem}, the above two axioms guarantees all finite sequences of $a,\lambda,\rho$ and their inverses agree, namely there is a unique isomorphism $P_1\rightarrow P_2$, where $P_i$ are (possibly) different orders of performing product on $X_1,...,X_n\in\mathcal{V}$. For reference, cf. \emph{Category Theory for Working Mathematicians}.
+
+This guarantees all monoidal category to be equivalent to a \emph{strict monoidal category},namely all $a,\lambda,\rho$ above are ``identity transformations'', or $1\tensor X=X,X\tensor 1=X$, and $(X\tensor Y)\tensor Z=X\tensor (Y\tensor Z)$, so WLOG one can assume the product $\tensor$ is associative.
+
+\begin{defn}
+    A monoidal category $\mathcal{V}$ is \emph{braided}, if there is a natural isomorphism $B:\__{1} \tensor \__{2}\xrightarrow{\sim} \__{2}\tensor \__{1}$ (so $B_{X,Y}:X\tensor Y\xrightarrow{\sim}Y\tensor X$ is an isomorphism), together with the \emph{Hexagon axioms} satisfied:
+    \[\xymatrix{
+        (X\tensor Y)\tensor Z \ar[r]^-{a_{X,Y,Z}} \ar[d]_-{B_{X,Y}\tensor \Id_Z} & X\tensor (Y\tensor Z)\ar[r]^-{B_{X,Y\tensor Z}} & (Y\tensor Z)\tensor X \ar[d]^-{a_{Y,Z,X}}\\
+        (Y\tensor X)\tensor Z \ar[r]_-{a_{Y,X,Z}} & Y\tensor (X\tensor Z) \ar[r]_-{\id_Y\tensor B_{X,Z}} & Y\tensor (Z\tensor X)
+    }\]
+    \[\xymatrix{
+        X\tensor (Y\tensor Z) \ar[d]_-{\id_X\tensor B_{Y,Z}} & (X\tensor Y)\tensor Z \ar[l]_-{a_{X,Y,Z}} \ar[r]^-{B_{X\tensor Y,Z}} & Z\tensor (X\tensor Y)\\
+        X\tensor (Z\tensor Y) & (X\tensor Z)\tensor Y \ar[l]^-{a_{X,Z,Y}} \ar[r]_-{B_{X,Z}\tensor \id_Y} & (Z\tensor X)\tensor Y \ar[u]_-{a_{Z,X,Y}}
+    }\]
+    $\mathcal{V}$ is a \emph{symmetric monoidal category}, if $B_{Y,X}=B_{X,Y}^{-1}$ for all $X,Y\in\mathcal{V}$.
+\end{defn}
+The two hexagons are guaranteeing the ability to perform 3-cycle permutations on three consecutive objects in a product, hence together with $B$ serving as transpositions, it guarantees isomorphism between all permutations of finite products. The symmetric axiom further imposes that there is a single way of doing such permutation (so there's no ``nontrivial braiding'', when $B_{Y,X}\circ B_{X,Y}:X\tensor Y\rightarrow Y\tensor X\rightarrow X\tensor Y$ is not identity). From my naive understanding of coherence theorem, WLOG we can again treat $X\tensor Y=Y\tensor X$.
+
+\begin{exmp}
+    Everyone loves unital commutative ring $R$, so I use category of $R$-modules as example :)
+    
+    Equipped with tensor product $\tensor_R$, and $R$ itself as tensor unit (up to isomorphism), we see $\RMod$ forms a symmetric monoidal category due to following natural isomorphisms:
+    \[\begin{cases}
+        (M\tensor_R N)\tensor_R L\cong M\tensor_R (N\tensor_R L) &, \quad(m\tensor n)\tensor \ell\mapsto m\tensor (n\tensor \ell)\\
+        R\tensor_R M\cong M &,\quad  r\tensor m\mapsto rm\\
+        M\tensor_R R\cong M &,\quad  m\tensor r\mapsto rm\\
+        M\tensor_R N\cong N\tensor_R M&,\quad m\tensor n\mapsto n\tensor m
+    \end{cases}\]
+\end{exmp}
+
+\hfil
+
+Now, observe that $\RMod$ is self-enriched, meaning $\Hom_R (\_,\_):\RMod^\Op\times \RMod\rightarrow\RMod$ is a bifunctor (also called an \emph{internal hom functor}). Moreover, there's the tensor-hom adjunction:
+\[\Hom_R (M\tensor_R N,L)\cong \Hom_R (M,\Hom_R (N,L)),\quad f\mapsto (m\mapsto f(m\tensor\_))\]
+This indicates $(\_\tensor_R N\dashv \Hom_R (N,\_))$ is an adjoint pair, guaranteeing $\_\tensor_R N$ commutes with all colimits. For instance, $(M\oplus L)\tensor_R N=(M\tensor_R N)\oplus (L\tensor_R N)$. This gives rise to the following definition:
+\begin{defn}
+    $\mathcal{V}$ is a \emph{symmetric monoidally closed category}, if there exists an \emph{internal hom functor} $\mathcal{V}(\_,\_):\mathcal{V}^\Op\times \mathcal{V}\rightarrow\mathcal{V}$, such that the adjunction $(\_\tensor X\dashv \mathcal{V}(X,\_))$ holds for all $X\in\mathcal{V}$.
+
+    $\mathcal{V}$ is a \emph{symmetric monoidally cocomplete category}, if it's cocomplete, together with $\_\tensor X,X\tensor \_$ preserves colimits for all $X\in\mathcal{V}$.
+\end{defn}
+
+If people knows about Yoneda Lemma, welcome to look into the last section, which stregnthen the isomorphism in monoidal closeness to natural isomorphism $\mathcal{V}(\_\tensor X,\_)\cong \mathcal{V}(\_,\mathcal{V}(X,\_))$ on the bifunctors $\mathcal{V}^\Op\times \mathcal{V}\rightarrow\mathcal{V}$.
+
+\hfil
+
+\begin{exmp}
+    The category of unital commutative rings $\CRing$ with $\tensor_\ZZ$ as monoidal product is in fact not monoidally closed. Suppose the contrary there exists such bifunctor $C:\CRing^\Op\times\CRing\rightarrow\CRing$, such that the adjunction holds, then the following isomorphism holds for any rings $R,S\in\CRing$:
+    \[\Hom_\CRing (R,S)\cong\Hom_\CRing(\ZZ\tensor_\ZZ R,S)\cong \Hom_\CRing (\ZZ,C(R,S)) = \{*\}\]
+    The final implication follows from the fact $\ZZ\in\CRing$ is initial. Yet, here's a counterexample: $\Hom_\CRing (\CC,\CC)$ as at least two maps, including identity $(z\mapsto z)$ and conjugation $(z\mapsto \overline{z})$, so we reach a contradiction.
+
+    Notice this is distinct from $\CRing$ being monoidally cocomplete: Coequalizer exists in $\CRing$ (by quotienting out the ideal generated by difference of outputs), and $\tensor_\ZZ$ is the coproduct in $\CRing$, hence all colimits exist (cf. \emph{Limit Existence Theorem}). Moreover, colimits commutes with all colimit, in particular so does $\tensor_\ZZ$.
+\end{exmp}
+
+\begin{rem}
+    From now on, we assume either $\mathcal{V}$ is monoidally cocomplete. If suitable, also assume internal hom functor exists.
+
+    One reason to assume this, is to make sure some of the construction makes sense: In the literature professor May (implicitly) assumes monoidal product commutes with colimits, and occasionally use internal hom as an example of operad.
+\end{rem}
+
+\newpage
+
+\section{Intro: Operads}
+
+\begin{notn}
+Let $\Sigma_j$ denotes the $j$th symmetric group for all $j\in\NN$. In particular, $\Sigma_0=\Sigma_1=\{1\}$ as trivial group.
+
+Let $\Sigma$ denote the category of finite numbers, with objects being $\mathbf{j}:=\{1,...,j\}$, and homset 
+\[\Hom_\Sigma(\mathbf{i},\mathbf{j})=\begin{cases}
+    \emptyset &,\quad i\neq j\\
+    \Sigma_j &,\quad i=j
+\end{cases}\]
+
+\end{notn}
+
+\end{document}
