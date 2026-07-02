@@ -15,15 +15,15 @@
     A category $\mathcal{V}$ is a \emph{monoidal category}, if there is a bifunctor $\tensor:\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ (called \emph{monoidal product}), and an object $\kappa\in\mathcal{V}$ (called \emph{unit/monoidal unit}), together with the following natural isomorphisms:
     \begin{itemize}
         \item The \emph{associator} $a:(\_\tensor \_)\tensor \_ \xrightarrow{\sim} \_\tensor(\_\tensor \_)$ of functors $\mathcal{V}\times\mathcal{V}\times\mathcal{V}\xrightarrow{\sim}\mathcal{V}$. (So, $(X\tensor Y)\tensor Z\cong X\tensor(Y\tensor Z)$ in a canoncial way).
-        \item The \emph{left unit} $\lambda:\kappa\tensor\_\xrightarrow{\sim} \Id_{\mathcal{V}}$ ($1\tensor X\cong X$ in a canonical way).
-        \item The \emph{right unit} $\rho:\_\tensor \kappa\xrightarrow{\sim}\Id_\mathcal{V}$ ($X\tensor 1\cong X$ in a canonical way).
-    \end{itemize}
+        \item The \emph{left unit} $\lambda:\kappa\tensor\_\xrightarrow{\sim} \Id_{\mathcal{V}}$ ($\kappa\tensor X\cong X$ in a canonical way).
+        \item The \emph{right unit} $\rho:\_\tensor \kappa\xrightarrow{\sim}\Id_\mathcal{V}$ ($X\tensor \kappa\cong X$ in a canonical way).
+    \end{itemize} 
 
     They also satisfy two extra axioms:
     \begin{itemize}
         \item \emph{Triangle Axiom:}
         \[\xymatrix{
-            (X\tensor 1)\tensor Y \ar[dr]_-{\rho_X \tensor \id_Y} \ar[rr]^-{a_{X,1,Y}} && X\tensor (1\tensor Y) \ar[dl]^-{\id_X\tensor \lambda_Y}\\
+            (X\tensor \kappa)\tensor Y \ar[dr]_-{\rho_X \tensor \id_Y} \ar[rr]^-{a_{X,\kappa,Y}} && X\tensor (\kappa\tensor Y) \ar[dl]^-{\id_X\tensor \lambda_Y}\\
             & X\tensor Y
         }\]
         \item \emph{Pentagon Axiom:}
@@ -88,9 +88,9 @@ If people knows about Yoneda Lemma, welcome to look into the last section, which
 \end{exmp}
 
 \begin{rem}
-    From now on, we assume either $\mathcal{V}$ is monoidally cocomplete. If suitable, also assume internal hom functor exists.
+    For some more abstract examples, we assume $\mathcal{V}$ is monoidally cocomplete. If suitable, also assume internal hom functor exists.
 
-    One reason to assume this, is to make sure some of the construction makes sense: In the literature professor May (implicitly) assumes monoidal product commutes with colimits, and occasionally use internal hom as an example of operad.
+    One reason to assume this, is to make sure some of the construction makes sense: In some literature professor May (implicitly) assumes existence of colimits, monoidal product commutes with colimits, and occasionally use internal hom as an example.
 \end{rem}
 
 \hfil
@@ -137,7 +137,7 @@ It also satisfies a giant associativity law, for demonstration purpose I'll draw
     \includegraphics[width=120mm]{IMG_1048.jpg}
 \end{figure}
 
-Finally, there is a natural right $\Sigma_j$-action on $\mathcal{E}_X (j)$, by pre-permuting the input entries. Which, permutation in $\mathcal{E}_X (k)$ is equivalent to ``permuting orders'' of blocks $(j_1,...,j_k)= \{\{1,2,...,j_1\},...,\{j_1+...+j_{k-1}+1,...,j_1+...+j_{k-1}+j_k\}\}$  in $\{1,...,j\}$, and each $\Sigma_{j_s}$-action on $\mathcal{E}_X (j_s)$ is equivalent to a permutation only on each block of $(j_1,...,j_k)$.
+Finally, there is a natural right $\Sigma_j$-action on $\mathcal{E}_X (j)$ by pre-permuting the input entries, $f\circ \sigma(x_1,...,x_j):= f(x_{\sigma^{-1}(1)},...,x_{\sigma^{-1}(j)})$. Which, permutation in $\mathcal{E}_X (k)$ in $\gamma$ is equivalent to ``permuting orders'' of blocks $(j_1,...,j_k)= \{\{1,2,...,j_1\},...,\{j_1+...+j_{k-1}+1,...,j_1+...+j_{k-1}+j_k\}\}$  in $\{1,...,j\}$, and each $\Sigma_{j_s}$-action on $\mathcal{E}_X (j_s)$ is equivalent to a permutation only on each block in $(j_1,...,j_k)$.
 
 \hfil
 
@@ -149,7 +149,7 @@ This is called the \emph{Endomorphism Operad of $X$}. In general, if $\mathcal{V
 \hfil
 
 \begin{defn}
-Given symmetric monoidal category $\mathcal{V}$(use $\kappa$ to denote unit), an \emph{$\Sigma$-operad} $\mathcal{C}$ in $\mathcal{V}$ is a collection of objects $\{\mathcal{C}(j)\in\mathcal{V}\}_{j\in\NN}$, each $\mathcal{C}(j)$ with a right $\Sigma_j$-action (a group homomorphism $\Sigma_j^\Op\rightarrow \Aut_\mathcal{V}(\mathcal{C}(j))$), a \emph{unit map} $\eta:1\rightarrow \mathcal{C}(1)$, together with composition maps
+Given symmetric monoidal category $\mathcal{V}$, a \emph{$\Sigma$ operad} $\mathcal{C}$ in $\mathcal{V}$ is a collection of objects $\{\mathcal{C}(j)\in\mathcal{V}\}_{j\in\NN}$, each $\mathcal{C}(j)$ with a right $\Sigma_j$-action (a group homomorphism $\Sigma_j^\Op\rightarrow \Aut_\mathcal{V}(\mathcal{C}(j))$), a \emph{unit map} $\eta:1\rightarrow \mathcal{C}(1)$, together with composition maps
 \[\gamma:\mathcal{C}(k)\tensor \mathcal{C}(j_1)\tensor...\tensor \mathcal{C}(j_k)\rightarrow \mathcal{C}(j_1+...+j_k)\]
 that satisfies the following axioms:
 \begin{itemize}
@@ -169,7 +169,7 @@ that satisfies the following axioms:
     }\]
     \item \emph{Equivariance:}
     \begin{itemize}
-        \item Given $\sigma\in\Sigma_k$, $j_1+...+j_k = \Sigma_j$, let $\sigma(j_1,...,j_k)\in\Sigma_j$ denotes ``permutation of $k$-blocks of letters''.
+        \item Given $\sigma\in\Sigma_k$, $j_1+...+j_k = \Sigma_j$, let $\sigma(j_1,...,j_k)\in\Sigma_j$ denotes ``permutation of $k$-blocks of letters'', by $(j_1,...,j_k)\mapsto (j_{\sigma^{-1}(1)},...,j_{\sigma^{-1}(k)})$.
         \begin{exmp}
             Given $j=5=2+3$, the permutation $(1\ 2)\in \Sigma_2$, $\sigma(2,3)$ is the permutation $\langle 1,2;3,4,5 \rangle \mapsto \langle 3,4,5;1,2\rangle$ (namely changing the blocks' order, without changing the order in each block).
         \end{exmp} 
@@ -186,7 +186,7 @@ that satisfies the following axioms:
     \end{itemize}
 \end{itemize}
 
-If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ being $\id_{\mathcal{C}(0)}$), the operad is called \emph{unital operad}.
+If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ being $\id_{\mathcal{C}(0)}$), the operad is called \emph{unital operad}. If omit the $\Sigma_j$-action, it's called \emph{non-$\Sigma$ operad}.
 \end{defn}
 
 \begin{defn}
@@ -196,6 +196,12 @@ If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ 
         \mathcal{C}'(k)\tensor \mathcal{C}'(j_1)\tensor ..\tensor \mathcal{C}'(j_k) \ar[r]_-{\gamma'} & \mathcal{C}'(j_1+...+j_k)
     }\]
 \end{defn}
+
+\hfil
+
+\subsection{Categorical Example: Commutative Operad}
+
+Let $\mathcal{N}(j):=\kappa$, endows with trivial $\Sigma_j$-action. Define $\gamma:\mathcal{N}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{N}(j_r)\right)\rightarrow \mathcal{N}(j)$ to be the canonical isomorphism of unit. This is a simple (yet important definition wise) for defining $E_\infty$-operad.
 
 \hfil
 
@@ -210,18 +216,83 @@ This construction enforces $\tilde{(\sigma\sigma')} = \tilde{\sigma'}\circ \tild
 
 There is a natural unit morphism $\eta:\kappa\rightarrow \kappa[\Sigma_1] = \kappa$ via identity.
 
-Also, each identity morphism $\kappa_\psi\rightarrow \kappa$ induces a trivialization $t:\kappa[\Sigma_j]\rightarrow\kappa$. Combining the action $\sigma\in \Sigma_k$ (by identifying conatination of blocks $(j_{\sigma^{-1}(1)},...,j_{\sigma^{-1}(k)})=\{1,...,j\}$ in order, also inducing inclusion $\Sigma_{j_s}\hookrightarrow \Sigma_j$), we get the following morphism:
+Also, each identity morphism $\kappa_\psi\rightarrow \kappa$ induces a trivialization $t:\kappa[\Sigma_j]\rightarrow\kappa$. Combining the action $\psi\in \Sigma_k$ (by identifying concatination of blocks $(j_{\psi^{-1}(1)},...,j_{\psi^{-1}(k)})=\{1,...,j\}$ in order, also inducing inclusion $\Sigma_{j_s}\hookrightarrow \Sigma_j$), we get the following morphism:
 \[\kappa_\psi \tensor \left(\bigtensor_{s=1}^k \kappa[\Sigma_{j_s}]\right)\xrightarrow{\sim} \bigtensor_{s=1}^k \kappa[\Sigma_{j_{\psi^{-1}(s)}}] \xrightarrow{t^{k-1}} \kappa[\Sigma_{j_{\psi^{-1}(s)}}] \rightarrow \kappa[\Sigma_j]\]
 Running through all $\psi\in\Sigma_k$, this induces a morphism $\gamma:\coprod_{\psi\in\Sigma_k}\left[\kappa_\psi \tensor \left(\bigtensor_{s=1}^k \kappa[\Sigma_{j_s}]\right)\right] \rightarrow \kappa[\Sigma_j]$, and use the fact $\tensor$ commutes with colimits, this is equivalent to a morphism $\gamma:\kappa[\Sigma_k]\tensor \left(\bigtensor_{s=1}^k \kappa[\Sigma_{j_s}]\right)\rightarrow \kappa[\Sigma_j]$.
 
 Verify $\mathcal{M}$ forms an operad is a long tedious work, unless many people request the proof we'll omit it here :)
 
+As a side note, this is also crucial for defining $A_\infty$-operad.
+
 \hfil
 
-\subsection{Topological Example: Stasheff Associahedra}
+\subsection{Topological Example: Stasheff Associahedra (To do)}
+
+Given a based space $X$, its loop space $Y=\Omega X := F(S^1, X)$ has a product via concatination: $Y^2\rightarrow Y$ by $(g,f)\mapsto g\cdot f$, where 
+\[(g\cdot f)(t)=\begin{cases}
+    f(2t) & 0\leq t\leq \frac{1}{2}\\
+    g(2t-1) & \frac{1}{2}<t\leq 1
+\end{cases}\]
+when viewing $S^1 = I/\partial I$.
 
 \newpage
 
 \section{Operad Algebra}
+
+As a motivating example, let's start with the endomorphism operad:
+\begin{exmp}
+    Take $X\in\mathcal{T}^*$ and its endomorphism operad, there is a collection of canonical maps $\theta:\mathcal{E}_X (j)\times X^j\rightarrow X$, given by $\theta(f;x_1,...,x_j):= f(x_1,...,x_j)$.
+
+    It inherits the associativity, because the resulting action on $X^j$ disregards if we plugin the entries first then combine the multimorphisms, or combine the multimorphisms then plugin the entries.
+
+    The identity action reflects its name, as $\{*\}\times X\rightarrow\mathcal{E}_X (1)\times X\rightarrow X$ by $(*;x)\mapsto (id_X;x)\mapsto \id_X (x)=x$ is an isomorphism.
+
+    Also, notice each $X^j$ has a canonical left $\Sigma_j$-action by permutation, $\sigma\dot (x_1,...,x_j)= (x_{\sigma(1)},...,x_{\sigma(j)})$, and notice that the $\Sigma_j$-action on $\mathcal{E}_X (j)\times X^j$ by $(f \sigma; (x_1,...,x_j)) = (f; \sigma^{-1}(x_1,...,x_j))$, so the $\Sigma_j$-action can be communicated between the product's entries.
+\end{exmp}
+
+\begin{defn}
+    Given an operad $\mathcal{C}$ over a symmetric monoidal category $\mathcal{V}$, a \emph{$\mathcal{C}$-algebra} is an object $X\in\mathcal{V}$, with collections of morphisms $\theta:\mathcal{C}(j)\tensor X^j\rightarrow X$, that satisfies the following axioms:
+    \begin{itemize}
+        \item \emph{Associativity:} Given $j = \sum_{i=1}^k j_i$, the following diagram commutes:
+        \[\xymatrix{
+            \left[C(k)\tensor \left(\bigtensor_{i=1}^k C(j_i)\right)\right] \tensor A^{\tensor j} \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\gamma\tensor \id_{A^{\tensor j}}} && C(j)\tensor A^{\tensor j} \ar[dr]^-{\theta}\\
+            & & & A\\
+            C(k)\tensor \left[\bigtensor_{i=1}^k \left(C(j_i)\tensor A^{\tensor j_i}\right)\right] \ar[rr]_-{\id_{C(k)}\tensor \theta^k} && C(k)\tensor A^{\tensor k} \ar[ur]_-{\theta}
+        }\]
+        (Note: This part uses the isomorphism $A^{\tensor j}\cong\bigtensor_{i=1}^k A^{\tensor j_i})$.
+        \item \emph{Unit:} The following diagram commutes:
+        \[\xymatrix{
+            \kappa \tensor A \ar[dr]_-{\eta\tensor \id_A} \ar[rr]^-{\sim} && A\\
+            & C(1)\tensor A \ar[ur]_-{\theta}
+        }\]
+        \item \emph{Eauivariance:} Given any permutation $\sigma\in\Sigma_j$, the following diagram commutes:
+        \[\xymatrix{
+            C(j)\tensor A^{\tensor j} \ar[dr]_-{\theta} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma}} && C(j)\tensor A^{\tensor j} \ar[dl]^-{\theta}\\
+            & A
+        }\]
+    \end{itemize}
+\end{defn}
+
+\hfil
+
+For instance, any loop space is automatically a $\mathcal{K}$-space, acted by the Stasheff Associahedras.
+
+\begin{exmp}
+    A $\mathcal{N}$-algebra $A\in\mathcal{V}$ is a \emph{commutative monoid} in the symmetric monoidal category: It has a product morphism $\theta:\mathcal{N}(2)\tensor A^2\cong A\tensor A\rightarrow A$, and a unit morphism $\theta\circ \eta:A\cong \kappa\tensor A\xrightarrow{\sim}\mathcal{N}(1)\tensor A\xrightarrow{\sim} A$.
+    \begin{itemize}
+        \item It's associative based on the following diagram and something analogous:
+        \[\xymatrix{
+            \mathcal{N}(2)\tensor \mathcal{N}(1)\tensor\mathcal{N}(2)\tensor A^3\ar[dd]_-{\text{shuffle}}\ar[rr]^-{\gamma\tensor \id_{A^3}} && \mathcal{N}(3)\tensor A^3 \ar[dr]^-{\theta}\\
+            &&& A\\
+            \mathcal{N}(2)\tensor \left(\mathcal{N}(1)\tensor A\right)\tensor \left(\mathcal{N}(2)\tensor A^2\right) \ar[rr]_-{\id_{\mathcal{N}(2)}\tensor \theta^2} && \mathcal{N}(2)\tensor A^2 \ar[ur]_-{\theta}
+        }\]
+        This diagram is formally saying the 3-ary multiplication is equivalent to ``multiply'' the last two entries, then multiply with the first entry. Interchange the $1$ and $2$, we get the other order of multiplication.
+        \item It's commutative because taking transposition $\tau\in\Sigma_2$ (with trivial action on $\mathcal{N}(2)$), the equivariance diagram provides:
+        \[\xymatrix{
+            \mathcal{N}(2)\tensor (A_{(1)}\tensor A_{(2)}) \ar[dr]_-{\theta} \ar[rr]^-{\tau\tensor \text{ shuffle}_{\tau}} && \mathcal{N}(2)\tensor (A_{(2)}\tensor A_{(1)}) \ar[dl]^-{\theta}\\
+            & A
+        }\]
+    \end{itemize}
+\end{exmp}
 
 \end{document}

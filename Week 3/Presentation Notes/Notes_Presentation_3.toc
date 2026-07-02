@@ -1,5 +1,6 @@
 \contentsline {section}{\numberline {1}Review: Symmetric Monoidal Categories}{1}{section.1}%
 \contentsline {section}{\numberline {2}Intro: Operads}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Categorical Example: Associative Operad}{6}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Topological Example: Stasheff Associahedra}{6}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Operad Algebra}{7}{section.3}%
+\contentsline {subsection}{\numberline {2.1}Categorical Example: Commutative Operad}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Categorical Example: Associative Operad}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Topological Example: Stasheff Associahedra (To do)}{7}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Operad Algebra}{8}{section.3}%
