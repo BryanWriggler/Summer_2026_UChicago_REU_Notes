@@ -251,7 +251,7 @@ As a motivating example, let's start with the endomorphism operad:
 \end{exmp}
 
 \begin{defn}
-    Given an operad $\mathcal{C}$ over a symmetric monoidal category $\mathcal{V}$, a \emph{$\mathcal{C}$-algebra} is an object $X\in\mathcal{V}$, with collections of morphisms $\theta:\mathcal{C}(j)\tensor X^j\rightarrow X$, that satisfies the following axioms:
+    Given an operad $\mathcal{C}$ over a symmetric monoidal category $\mathcal{V}$, a \emph{$\mathcal{C}$-algebra} is an object $A\in\mathcal{V}$, with collections of morphisms $\theta:\mathcal{C}(j)\tensor A^j\rightarrow A$, that satisfies the following axioms:
     \begin{itemize}
         \item \emph{Associativity:} Given $j = \sum_{i=1}^k j_i$, the following diagram commutes:
         \[\xymatrix{
@@ -278,7 +278,7 @@ As a motivating example, let's start with the endomorphism operad:
 For instance, any loop space is automatically a $\mathcal{K}$-space, acted by the Stasheff Associahedras.
 
 \begin{exmp}
-    A $\mathcal{N}$-algebra $A\in\mathcal{V}$ is a \emph{commutative monoid} in the symmetric monoidal category: It has a product morphism $\theta:\mathcal{N}(2)\tensor A^2\cong A\tensor A\rightarrow A$, and a unit morphism $\theta\circ \eta:A\cong \kappa\tensor A\xrightarrow{\sim}\mathcal{N}(1)\tensor A\xrightarrow{\sim} A$.
+    A $\mathcal{N}$-algebra $A\in\mathcal{V}$ is a \emph{commutative monoid} in the symmetric monoidal category: It has a product morphism $\theta:\mathcal{N}(2)\tensor A^2\cong A\tensor A\rightarrow A$, and a unit morphism $\theta:\kappa=\mathcal{N}(0)\rightarrow A$.
     \begin{itemize}
         \item It's associative based on the following diagram and something analogous:
         \[\xymatrix{
@@ -292,7 +292,16 @@ For instance, any loop space is automatically a $\mathcal{K}$-space, acted by th
             \mathcal{N}(2)\tensor (A_{(1)}\tensor A_{(2)}) \ar[dr]_-{\theta} \ar[rr]^-{\tau\tensor \text{ shuffle}_{\tau}} && \mathcal{N}(2)\tensor (A_{(2)}\tensor A_{(1)}) \ar[dl]^-{\theta}\\
             & A
         }\]
+        \item Unit morphism by definition satisfies the following:
+        \[\xymatrix{
+            A\cong \mathcal{N}(0) \tensor A \ar[dr]_-{} \ar[r]^-{\theta\tensor \id_A} & A\tensor A \cong \mathcal{N}(2)\tensor A^2 \ar[d]^-{\theta} & A\cong A\tensor \mathcal{N}(0) \ar[l]_-{\id_A\tensor \theta} \ar[dl]^-{}\\
+            & A
+        }\]
     \end{itemize}
+\end{exmp}
+
+\begin{exmp}
+A $\mathcal{M}$-algebra $A\in\mathcal{V}$ is a \emph{monoid} in the symmetric monoidal category. Unit morphism follows as $\theta:\mathcal{M}(0)=\kappa\rightarrow A$, and multiplication morphism is $\mu:\kappa_1\tensor A^2\rightarrow \kappa[\Sigma_2]\tensor A^2\xrightarrow{\theta}A$. Associativity and unity are similar to above, while this is no longer commutative in general, because there is a nontrivial action of $\Sigma_2$ on $\kappa[\Sigma_2]$.
 \end{exmp}
 
 \end{document}
