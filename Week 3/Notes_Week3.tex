@@ -9,7 +9,7 @@
 \maketitle
 \tableofcontents
 
-\section{Operad: Alternative Definition and Relation to Monad (ND, a bunch of definition problems)}
+\section{Operad: Alternative Definition and Relation to Monad (ND, look at algebras)}
 
 For the last section, we've seen an associative non-$\Sigma$ operad, to produce the version in operad (equipped with symmetric group actions), we need to consider another version. But for this, I think there are some technicalities in the category theory, so we'll assume $\mathcal{V}$ is monoidally cocomplete.
 
@@ -80,5 +80,82 @@ As including $\mathcal{C}(j)\tensor \kappa_\sigma\tensor X^j$, the top right rou
 Combining the two squares, do some diagram chasing, we realize the original square is commuting (with a pinch of coproduct property on $\kappa[\Sigma_j]$). 
 
 Finally, these induce the morphism between coproducts, and they of course commute with the group action by construction (as permuting $\psi^j$ is equivalent to pre-permuting with $\psi^j$, or compose $\psi^j$ with post-permuting). So, composing with the coequalizing morphism of $Y$, the desired diagram factors through coequalizing morphism of $X$, inducing a morphism $C(X)\rightarrow C(Y)$. Such induced morphism is functorial, hence $C$ is indeed a functor.
+
+\hfil
+
+To show $C$ is a monad, we need to construct two natural transformations:
+
+First, define $\eta':\Id_\mathcal{V}\rightarrow C$ by taking the natural unit morphism $\eta:\kappa\rightarrow\mathcal{C}(1)$, and consider the sequence $\eta'_X:X\cong \kappa\tensor X\rightarrow\mathcal{C}(1)\tensor X\rightarrow\coprod_{j\geq 0}\mathcal{C}(j)\tensor X^j\rightarrow C(X)$. This ``transformation'' is natural, because the morphism after applying $C$ is induced in the same manner.
+
+To define the multiplication transforamtion, there are some slight work to do: Consider applying the construction to the first one, we get the following (quite chaotic) isomorphism:
+\[\coprod_{k\geq 0}\mathcal{C}(k)\tensor \left(\coprod_{j\geq 0}\mathcal{C}(j)\tensor X^j\right)^k\cong \coprod_{k\geq 0}\coprod_{j_1+...+j_k=j}\mathcal{C}(k)\tensor\mathcal{C}(j_1)\tensor...\tensor\mathcal{C}(j_k)\tensor X^j\]
+This is because the $k$-fold monoidal product of the gigantic coproduct records all possible $k$-combinations of $\mathcal{C}(j_i)$, and the product on the copies of $X$ precisely is $X^{j_1+...+j_k}$. Apply the operadic structure morphism $\gamma$ on each entry of the coproduct, we get the following morphism:
+\[\overline{\mu'}_X:\coprod_{k\geq 0}\mathcal{C}(k)\tensor \left(\coprod_{j\geq 0}\mathcal{C}(j)\tensor X^j\right)^k\cong  \coprod_{k\geq 0}\coprod_{j_1+...+j_k=j}\mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right)\tensor X^j \xrightarrow{\sqcup \gamma \tensor \id} \coprod_{j\geq 0}C(j)\tensor X^j \rightarrow C(X) \]
+Which, there are some truely loooong diagram chase to check this factors through $C^2(X)$ (by checking it factors through $\mathcal{C}(k)\tensor (C(X))^2$ on each summand $\mathcal{C}(k)\tensor \left(\coprod_{j\geq 0}\mathcal{C}(j)\tensor X^j\right)^k$, then check again it satisfies the equivariance diagram; there are a lot of nuqnces about when to use the fact $\tensor$ commutes with colimits). This defines $\mu:C^2\rightarrow C$.
+
+\hfil
+
+By skipping some details, let's conclude that $\mu'$ is associative (intuitively, it's deduced from the associativity of tensor product; if the morphism before the factorization satisfies certain property, then passing through coequalizer it shoudl still satisfy it). Also, by definition $\eta'$ does serve as a unit (by the fact $\kappa\tensor C(X)\rightarrow \mathcal{C}(1)\tensor C(X)\rightarrow C^2(X)\rightarrow C(X)$ has passed through the collapsing map $\mathcal{C}(1)\tensor C(X)\rightarrow C(X)$, which cancels the unit, and reform identity).
+
+\hfil
+
+Now, to say the correspondance between the operad and the monad, we compare their categories of algebras:
+\begin{thm}
+Given an operad $\mathcal{C}$ and its corresponding monad $C$, their categories of algebras are equivalent.
+\end{thm}
+
+\begin{proof}
+    To do.
+\end{proof}
+
+
+\newpage
+
+\section{Review: 2-Categories}
+
+This section follows Emily Riehls' \emph{Categorical Homotopy Theory}.
+
+To properly define notions needed afterward, we need a concrete way of viewing categories enriched over small categories. This more generally follows categories enriched over symmetric monoidal categories, which are categories whose hom functor (or some similarly-behaved functor) are endowed with extra structures relevent to a monoidal category.
+
+\begin{notn}
+We'll use $(\mathcal{V},\times,*)$ to denote a symmetric monoidal category here. If monoidally closed, we'll use $\mathcal{V}(\_,\_)$ to denote the internal hom functor. 
+\end{notn}
+
+\begin{defn}
+    A category $\mathcal{D}$ is \emph{enriched over $\mathcal{V}$}, or called a \emph{$\mathcal{V}$-category}, if it consists of the following data:
+    \begin{itemize}
+        \item For each pair $x,y\in\mathcal{D}$, there is a \emph{Hom-object} $\mathcal{D}(x,y)\in\mathcal{V}$.
+        \item For each $x\in\mathcal{D}$, a \emph{unit morphism} $\id_x:*\rightarrow\mathcal{D}(x,x)$ in $\mathcal{V}$.
+        \item For each triple $x,y,z\in\mathcal{D}$, a \emph{composition morphism} $\circ:\mathcal{D}(y,z)\times \mathcal{D}(x,y)\rightarrow \mathcal{D}(x,z)$ in $\mathcal{V}$.
+    \end{itemize}
+    such that the following diagram commutes when given all $x,y,z,w\in\mathcal{D}$:
+    \begin{itemize}
+        \item \emph{Associativity of composition}:
+        \[\xymatrix{
+            \mathcal{D}(z,w)\times\mathcal{D}(y,z)\times\mathcal{D}(x,y) \ar[d]_-{\circ\times 1}\ar[r]^-{1}\times \circ & \mathcal{D}(z,w)\times \mathcal{D}(x,z)\ar[d]^-{\circ}\\
+            \mathcal{D}(y,w)\times \mathcal{D}(x,y)\ar[r]_-{\circ} & \mathcal{D}(x,w)
+        }\]
+        \item \emph{Existence of Two-sided Units:}
+        \[\xymatrix{
+            \mathcal{D}(x,y)\times \text{*} \ar@{=}[dr] \ar[r]^-{1\times \id_x} & \mathcal{D}(x,y)\times \mathcal{D}(x,x) \ar[d]^-{\circ}\\
+            & \mathcal{D}(x,y)
+        },\quad\quad \xymatrix{
+            \mathcal{D}(y,y)\times \mathcal{D}(x,y)\ar[d]_-{\circ} & \text{*} \times \mathcal{D}(x,y) \ar[l]_-{\id_y\times 1} \ar@{=}[dl]\\
+            \mathcal{D}(x,y)
+        }\]
+    \end{itemize}
+\end{defn}
+
+These conditions are mimicing the idea of homsets in a given category. For instance, with this definition by choosing $\mathcal{D}(\_,\_):= \Hom_\mathcal{D}(\_,\_)$, we immediately realize all categories are enriched over $\Sets$. Since more general categories don't have concrete descriptions of objects using sets, we instead need a generalization so that the analogy of ``hom functors'' can land in more general categories.
+
+\newpage
+
+\section{Permutative Operads, $\mathcal{F}$-spaces}
+
+Need to know:
+\begin{itemize}
+    \item 2-categories
+    \item work out details for $\mathcal{M}$ and the permutative operad $\mathcal{P}=\mathcal{EM}$ (right now there is some basic idea about how it works).
+\end{itemize}
 
 \end{document}
