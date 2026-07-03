@@ -600,7 +600,7 @@ More general result need more definition:
     \end{itemize}
 \end{defn}
 
-\subsection{Review: Monoidal and Symmetric Monoidal Caetgories}
+\subsection{Review: Monoidal and Symmetric Monoidal Categories}
  
 This part follows \emph{Operads, Algebras, and Modules} by May. Let's first review on monoidal/symmetric monoidal category:
 \begin{defn}
@@ -836,37 +836,80 @@ Some other examples:
     Similarly, $M\in\mathcal{V}$ is an $A$-module, if it's the classical $A$-module by chasing through similar monoidal actions.
 \end{exmp}
 
-This example is also called \emph{associative non-$\Sigma$ operad}, because it's a non-$\Sigma$ operad that produces associative monoids as its algebra.
+This example is also called \emph{associative non-$\Sigma$ operad}, because it's a non-$\Sigma$ operad that produces associative monoids as its algebra. For further details check the presentation notes this week :)
 
 \newpage
 
 \subsection{Operad: Alternative Definition and Relation to Monad (ND, a bunch of definition problems)}
 
-For the last section, we've seen an associative non-$\Sigma$ operad, to produce the version in operad (equipped with symmetric group actions), we need to consider another version. But for this, I think there are some technicalities in the category theory, so we'll assume the following two facts: 
-\begin{itemize}
-    \item $\mathcal{V}$ has finite coprroduct.
-    \item $\mathcal{V}$ has an \emph{internal hom functor}, which after fixing the input object $X$ is a right adjoint of monoidal product (after fixing the same input object $X$). This guarantees monoidal product to commute with (one-sided) colimit (as it's a left adjoint), in particular commutes with coproduct (so, $(A\coprod B)\tensor C\cong (A\tensor C)\coprod (B\tensor C)$).
-\end{itemize}
-An alternative assumption can be made that monoidal product commutes with (one-sided) coproduct. Out of curisity, are the two equivalent definition? Also, are there any symmetric monoidal category where it doesn't commute with coproduct?
+For the last section, we've seen an associative non-$\Sigma$ operad, to produce the version in operad (equipped with symmetric group actions), we need to consider another version. But for this, I think there are some technicalities in the category theory, so we'll assume $\mathcal{V}$ is monoidally cocomplete.
+
+An alternative assumption can be made that internal hom functor exists. Out of curiosity, are the two equivalent definition? Also, are there any symmetric monoidal category where it doesn't commute with coproduct?
 
 \begin{exmp}
-    We can consider $\mathcal{M}(j)=\kappa[\Sigma_j]:=\coprod_{\sigma\in\Sigma_j}\kappa$, coproduct of $\#\Sigma_j$ copies of unit $\kappa$ (so $\mathcal{M}(0)=\mathcal{M}(1)=\kappa$). There is a natural right $\Sigma_j$-action on $\mathcal{M}(j)$, by permuting the index of coproducts according to right multiplication (so, index $\psi$ maps to index $\psi \sigma$, when acted by $\sigma$).
+    Let $\mathcal{M}(j):=\kappa[\Sigma_j]:= \coprod_{\psi\in\Sigma_j}\kappa_\psi$, coproduct of $\#\Sigma_j$ copies of $\kappa$ (each $\kappa_\psi$ is the unit $\kappa$, subscript is for labeling convenience). It has a natural right $\Sigma_j$-action, where for each $\sigma\in\Sigma_j$, the identity $\kappa_{\psi\sigma^{-1}}\xrightarrow{\sim} \kappa_{\psi}$ induces an isomorphism on coproduct $\tilde{\sigma}\in \Aut(\mathcal{M}(j))$:
+\[\xymatrix{
+    \kappa_{\psi} \ar[d]_-{\iota_{\psi}} \ar[r]^-{\sim} & \kappa_{\psi\sigma} \ar[d]^-{\iota_{\psi\sigma}}\\
+    \coprod_{\psi\in\Sigma_j}\kappa_{\psi} \ar@{-->}[r]_-{\exists ! \tilde{\sigma}} & \coprod_{\psi\in\Sigma_j}\kappa_{\psi\sigma} 
+}\]
+This construction enforces $\tilde{(\sigma\sigma')} = \tilde{\sigma'}\circ \tilde{\sigma}$, which is a group homomorphism $\Sigma_j^\Op\rightarrow\Aut_\mathcal{V}(\mathcal{M}(j))$.
 
-    To define the operad morphisms, notice each coproduct is equipped with a unique ``trivialization'' $t_j:\kappa[\Sigma_j]\rightarrow\kappa$, induced by having all index $\sigma\in\Sigma_j$ equipped with identity $\id_\kappa:\kappa_\sigma\rightarrow\kappa$. Which, we have the following morphisms, by producting the trivialization, and inclusion:
-    \[\alpha_{j,j_i}:\kappa[\Sigma_{j_1}]\tensor...\tensor\kappa[\Sigma_{j_k}]\xrightarrow{\bigtensor_{l\neq j} t_l} \kappa[\Sigma_{j_i}] \xrightarrow{\iota_{j_i}} \kappa[\Sigma_j] \]
-    where the last portion identifies $\{1,...,j_i\}$ by adding $g_{i-1}:= j_1+...+j_{i-1}$ to each entry, and induces an inclusion $\Sigma_{j_i}\hookrightarrow \Sigma_j$ (which further induces the inclusion of coproduct).
+There is a natural unit morphism $\eta:\kappa\rightarrow \kappa[\Sigma_1] = \kappa$ via identity.
 
-    \hfil
-
-    Now, for each $\sigma\in \Sigma_k$, let $\sigma(j_1,...,j_k)\in \Sigma_j$ be the permutation permuting the blocks, this defines a ``permuted version'' $\alpha_{j,j_i,\sigma}:\kappa_\sigma \tensor \kappa[\Sigma_{j_1}]\tensor...\tensor\kappa[\Sigma_{j_k}]\xrightarrow{\bigtensor_{l\neq j} t_l} \kappa[\Sigma_{j_i}] \xrightarrow{\iota_{j_i}} \kappa[\Sigma_j]$ by identifying $\{1,...,j_i\}$ as the block in $\{1,...,j\}$ after $\sigma(j_1,...,j_k)$-actions. 
-
-    Based on our assumption, since $k[\Sigma_k]\tensor \kappa[\Sigma_{j_1}]\tensor...\tensor\kappa[\Sigma_{j_k}]\cong \coprod_{\sigma\in\Sigma_k}\kappa_\sigma\tensor\kappa[\Sigma_{j_1}]\tensor...\tensor\kappa[\Sigma_{j_k}]$, the collection of $\alpha_{j,j_i,\sigma}$ gathers into a morphism, which we defined as our structure morphism:
-    \[\gamma:\kappa[\Sigma_k]\tensor \kappa[\Sigma_{j_1}]\tensor...\tensor\kappa[\Sigma_{j_k}]\rightarrow\kappa[\Sigma_j]\]
-    This definition for sure satisfy the equivariance diagram (because it's defined to be so!)
+Also, each identity morphism $\kappa_\psi\rightarrow \kappa$ induces a trivialization $t:\kappa[\Sigma_j]\rightarrow\kappa$. Combining the action $\psi\in \Sigma_k$ (by identifying concatination of blocks $(j_{\psi^{-1}(1)},...,j_{\psi^{-1}(k)})=\{1,...,j\}$ in order, also inducing inclusion $\Sigma_{j_s}\hookrightarrow \Sigma_j$), we get the following morphism:
+\[\kappa_\psi \tensor \left(\bigtensor_{s=1}^k \kappa[\Sigma_{j_s}]\right)\xrightarrow{\sim} \bigtensor_{s=1}^k \kappa[\Sigma_{j_{\psi^{-1}(s)}}] \xrightarrow{t^{k-1}} \kappa[\Sigma_{j_{\psi^{-1}(s)}}] \rightarrow \kappa[\Sigma_j]\]
+Running through all $\psi\in\Sigma_k$, this induces a morphism $\gamma:\coprod_{\psi\in\Sigma_k}\left[\kappa_\psi \tensor \left(\bigtensor_{s=1}^k \kappa[\Sigma_{j_s}]\right)\right] \rightarrow \kappa[\Sigma_j]$, and use the fact $\tensor$ commutes with colimits, this is equivalent to a morphism $\gamma:\kappa[\Sigma_k]\tensor \left(\bigtensor_{s=1}^k \kappa[\Sigma_{j_s}]\right)\rightarrow \kappa[\Sigma_j]$.
 \end{exmp}
 
-This is essential to define an alternative definition.
+This is helpful when defining an alternative definition.
+
+Use $\Sigma$ to denotes the category of finite sets, each $n\in\NN$ has $\mathbf{n}:=\{1,...,n\}$ (and $\bzero$ denotes the emptyset), with homsets being all possible isomorphisms (so $n\neq m$ there's no morphism between them, while the endomorphism is consists of permutations). Each object $\mathbf{n}$ has a canonical $\Sigma_n$-action. This is called a \emph{permutation category}.
 
 \hfil
+
+\begin{defn}
+    We define a \emph{$\Sigma$-object} in the monoidal category $\mathcal{V}$ to be a functor $F:\Sigma^\Op\rightarrow \mathcal{V}$, which each $F(n)$ is equipped with a natural right $\Sigma_n$-action.
+
+    A morphism between $\Sigma$-objects will be natural transformations, which by definition each morphism at $\mathbf{n}$ is a $\Sigma_n$-equivariant morphism, as all $\sigma\in\Sigma_n$ (as a right action, equivalently an isomorphism) satisfies the following condition:
+    \[\xymatrix{
+        F(\mathbf{n}) \ar[d]_-{\mu_n} \ar[r]^-{\sigma} & F(\mathbf{n}) \ar[d]^-{\mu_n}\\
+        G(\mathbf{n}) \ar[r]_-{\sigma} & G(\mathbf{n})
+    }\]
+    this forms a \emph{category of $\Sigma$-objects} for $\mathcal{V}$.
+\end{defn}
+Now, consider the following operation:
+\begin{defn}
+    Given $F,G$ two $\Sigma$-objects of $\mathcal{V}$, define the \emph{substitution product} $G\circ F:\Sigma^\Op\rightarrow\mathcal{V}$ as follow:
+    \[G\circ F(\mathbf{j}):=\coprod_{j_1+...+j_k=j}G(\mathbf{k})\tensor_{\kappa[\Sigma_k]}\left[\left(\bigtensor_{r=1}^k F(\mathbf{j}_r)\right)\tensor_{\kappa[\Sigma_{j_1\times...\times j_k}]}\kappa[\Sigma_j]\right]\]
+    Let's assume we know these are associative due to the coequalizer property :)
+\end{defn}
+But roughly speaking, an operad is a $\Sigma$-object, that is also a monoid under the above product. (There are more details to work out...)
+
+\hfil
+
+Talking about monads relevant to an operad $\mathcal{C}$ over $\mathcal{V}$, we define it as follow:
+\begin{defn}
+    Define a functor $C:\mathcal{V}\rightarrow\mathcal{V}$ as follow:
+    \[\coprod_{j\geq 0} \mathcal{C}(j)\tensor\kappa[\Sigma_j]\tensor X^j \rightrightarrows\coprod_{j\geq 0}\mathcal{C}(j)\tensor X^j \xrightarrow{\text{coeq}}C(X)\]
+\end{defn}
+Where given any $\psi\in \Sigma_j$, define the top morphism using $\mathcal{C}(j)\tensor \kappa_\psi\tensor X^j\xrightarrow{\sigma\tensor \id}\mathcal{C}(j)\tensor X^j$ (action on $\mathcal{C}(j)$), which inducesleft action morphism $\mathcal{C}(j)\tensor\kappa[\Sigma_j]\tensor X^j\xrightarrow{\ell}\mathcal{C}(j)\tensor X^j$, then using coproduct universality to induce the morphism.
+
+The bottom morphism is defined using $\mathcal{C}(j)\tensor X^j\xrightarrow{\id\tensor \sigma^{-1}}\mathcal{C}(j)\tensor X^j$ (by sending the $i$th index $X$ to the $\sigma^{-1}(i)$th index $X$), then induce the coproduct morphism using similar logic (and label it as $\mathcal{C}(j)\tensor \kappa[\Sigma_j]\tensor X^j\xrightarrow{r}\mathcal{C}(j)\tensor X^j$). This is formally saying: A right action on $\mathcal{C}(j)$ transfers to an inverse left action on $X^j$.
+
+\hfil
+
+Given a morphism $\psi:X\rightarrow Y$, the morphism $\id\tensor \id \tensor \psi^j:\mathcal{C}(j)\tensor \kappa[\Sigma_j]\tensor X^j\rightarrow \mathcal{C}(j)\tensor \kappa[\Sigma_j]\tensor Y^j$, and $\id \tensor \psi^j:\mathcal{C}(j)\tensor X^j\rightarrow\mathcal{C}(j)\tensor Y^j$ bot satisfies the following:
+\[\xymatrix{
+    \mathcal{C}(j)\tensor \kappa[\Sigma_j]\tensor X^j \ar[d]_-{\id\tensor\id\tensor \psi^j}\ar[r]^-{\ell,r} & \mathcal{C}(j)\tensor X^j \ar[d]^-{\id\tensor \psi^j}\\
+    \mathcal{C}(j)\tensor \kappa[\Sigma_j]\tensor Y^j\ar[r]_-{\ell,r} & \mathcal{C}(j)\tensor Y^j
+}\]
+As including $\mathcal{C}(j)\tensor \kappa_\sigma\tensor X^j$, the top right route provides the morphism $\mathcal{C}(j)\tensor\kappa_\sigma\tensor X^j\xrightarrow{\sigma\tensor \id\tensor\id}\mathcal{C}(j)\tensor X^j \xrightarrow{\id\tensor \psi^j} \mathcal{C}(j)\tensor Y^j$, equivalent to $\mathcal{C}(j)\tensor X^j\xrightarrow{\sigma\tensor \psi^j}\mathcal{C}(j)\tensor Y^j$, and by chasing through the coproduct property, we realize the following diagram commutes:
+\[\xymatrix{
+    \mathcal{C}(j)\tensor \kappa_\sigma\tensor X^j \ar[d]_-{\id\tensor\id\tensor\psi^j} \ar[r] & \mathcal{C}(j)\tensor \kappa[\Sigma_j]\tensor X^j\ar[d]^-{\id\tensor\id\tensor\psi^j}\\
+    \mathcal{C}(j)\tensor \kappa_\sigma\tensor Y^j \ar[r] & \mathcal{C}(j)\tensor \kappa[\Sigma_j]\tensor Y^j
+}\]
+Combining the two squares, do some diagram chasing, we realize the original square is commuting (with a pinch of coproduct property on $\kappa[\Sigma_j]$). 
+
+Finally, these induce the morphism between coproducts, and they of course commute with the group action by construction (as permuting $\psi^j$ is equivalent to pre-permuting with $\psi^j$, or compose $\psi^j$ with post-permuting). So, composing with the coequalizing morphism of $Y$, the desired diagram factors through coequalizing morphism of $X$, inducing a morphism $C(X)\rightarrow C(Y)$. Such induced morphism is functorial, hence $C$ is indeed a functor.
 
 \end{document}
