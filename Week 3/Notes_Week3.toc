@@ -1,0 +1,1 @@
+\contentsline {section}{\numberline {1}Operad: Alternative Definition and Relation to Monad (ND, a bunch of definition problems)}{1}{section.1}%

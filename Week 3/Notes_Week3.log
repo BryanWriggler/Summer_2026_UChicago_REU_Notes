@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  3 JUL 2026 15:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  3 JUL 2026 15:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/hsieh/Desktop/Summer_2026_UChicago_REU_Notes/Week 2/Notes_Week2"
-(/Users/hsieh/Desktop/Summer_2026_UChicago_REU_Notes/Week 2/Notes_Week2.tex
+**"/Users/hsieh/Desktop/Summer_2026_UChicago_REU_Notes/Week 3/Notes_Week3"
+(/Users/hsieh/Desktop/Summer_2026_UChicago_REU_Notes/Week 3/Notes_Week3.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
@@ -451,8 +451,9 @@ Package hyperref Info: Option `pdfnewwindow' set `true' on input line 47.
 \c@sch=\count327
 \c@obs=\count328
 \c@conv=\count329
-) (./Notes_Week2.aux)
-\openout1 = `Notes_Week2.aux'.
+)
+No file Notes_Week3.aux.
+\openout1 = `Notes_Week3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
@@ -472,7 +473,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -530,9 +530,8 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Link coloring ON on input line 8.
- (./Notes_Week2.out) (./Notes_Week2.out)
 \@outlinefile=\write5
-\openout5 = `Notes_Week2.out'.
+\openout5 = `Notes_Week3.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -547,56 +546,41 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 8.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 Package xypdf Info: Line width: 0.39998pt on input line 8.
- (./Notes_Week2.toc)
+
+No file Notes_Week3.toc.
 \tf@toc=\write6
-\openout6 = `Notes_Week2.toc'.
+\openout6 = `Notes_Week3.toc'.
 
- [1
+<xymatrix 2x2 194> [1
 
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 52.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Omega' on input line 52.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 52.
-
-<xymatrix 2x2 194> [2{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [3] Excluding 'comment' comment. <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 146> <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> [4] <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x1 102> [5] <xymatrix 3x1 102> <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x2 314> [6] [7] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 242> <xymatrix 2x2 194> <xymatrix 3x2 242> [8] <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 150> <xymatrix 2x2 194> [9] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 290> [10] <xymatrix 3x2 286> <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> [11] <xymatrix 3x2 334> <xymatrix 3x2 286> [12] <xymatrix 4x2 386> <xymatrix 4x3 482> [13] [14] <xymatrix 3x1 160> <xymatrix 3x1 296> <xymatrix 3x2 260> <xymatrix 3x1 296> [15] <xymatrix 3x1 296> <xymatrix 3x2 154> <xymatrix 3x3 254> [16] <xymatrix 3x2 290> <xymatrix 3x2 290> [17] <xymatrix 3x2 154> <xymatrix 3x2 154> <xymatrix 3x3 250> [18] <xymatrix 2x2 194> <xymatrix 3x2 202> [19] <xymatrix 3x2 199> <xymatrix 4x3 262> <xymatrix 3x2 154> <xymatrix 3x2 154> [20] <xymatrix 4x3 262> <xymatrix 3x2 154> <xymatrix 3x2 154> [21] <xymatrix 4x3 262> [22] (./Notes_Week2.aux)
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 174> [2] [3] (./Notes_Week3.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 
 
-Package rerunfilecheck Warning: File `Notes_Week2.out' has changed.
+Package rerunfilecheck Warning: File `Notes_Week3.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
-Package rerunfilecheck Info: Checksums for `Notes_Week2.out':
-(rerunfilecheck)             Before: C6B14CEEFECD5FF325EB4382A2924372;2794
-(rerunfilecheck)             After:  B1A6E78A9B5262920D8EAD1BBF7389BD;2226.
+Package rerunfilecheck Info: Checksums for `Notes_Week3.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  B7C53B5D0D76EB6C7BD9B6DE36E1566C;543.
  ) 
 Here is how much of TeX's memory you used:
- 16713 strings out of 474116
- 250121 string characters out of 5743681
- 1955187 words of memory out of 5000000
- 38735 multiletter control sequences out of 15000+600000
- 570760 words of font info for 90 fonts, out of 8000000 for 9000
+ 16581 strings out of 474116
+ 248521 string characters out of 5743681
+ 1946187 words of memory out of 5000000
+ 38676 multiletter control sequences out of 15000+600000
+ 569134 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,17n,107p,3295b,994s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{subsection.1.7} has been referenced but does not exist, replaced by a fixed one
-
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xyatip10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xybtip10.pfb>
-Output written on Notes_Week2.pdf (22 pages, 354182 bytes).
+ 94i,13n,107p,3295b,545s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xyatip10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xybtip10.pfb>
+Output written on Notes_Week3.pdf (3 pages, 199423 bytes).
 PDF statistics:
- 318 PDF objects out of 1000 (max. 8388607)
- 247 compressed objects within 3 object streams
- 72 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 124 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
+ 10 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
