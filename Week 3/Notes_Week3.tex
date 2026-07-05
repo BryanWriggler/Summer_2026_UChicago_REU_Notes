@@ -146,7 +146,27 @@ We'll use $(\mathcal{V},\times,*)$ to denote a symmetric monoidal category here.
     \end{itemize}
 \end{defn}
 
-These conditions are mimicing the idea of homsets in a given category. For instance, with this definition by choosing $\mathcal{D}(\_,\_):= \Hom_\mathcal{D}(\_,\_)$, we immediately realize all categories are enriched over $\Sets$. Since more general categories don't have concrete descriptions of objects using sets, we instead need a generalization so that the analogy of ``hom functors'' can land in more general categories.
+These conditions are mimicing the idea of homsets in a given category. For instance, with this definition by choosing $\mathcal{D}(\_,\_):= \Hom_\mathcal{D}(\_,\_)$, we immediately realize all categories are enriched over $\Sets$. Since more general categories don't have concrete descriptions of objects using sets, we instead need a generalization so that the analogy of ``hom functors'' can land in more general categories. 
+
+One thing that sorts of questions me, is the existence of $\mathcal{D}$ as only an assignment of objects, not defined directly as a functor. I think in general a functor works just fine.
+
+\hfil
+
+\begin{exmp}
+    Given a one-object category $\mu$ enriched over $(\Ab,\tensor_\ZZ,\ZZ)$, the unique object $*$ has a unit homomorphism $\id_*:\ZZ\rightarrow m(*,*)$, a multiplication homomorphism $\cdot:m(*,*)\tensor_\ZZ m(*,*)\rightarrow m(*,*)$. 
+
+    Denote $1_m:=\id_* (1)$, then we precisely have: $x\dot 1_m=x$, $1_m\dot x=x$, and $(x+y)\cdot (z+w)=x\cdot z+x\cdot w+y\cdot z+y\cdot w$, using unit and $\ZZ$-bilinearity of the morphism. So, one-object category enriched over $\Ab$ with tensor product as monoidal product, is a unital ring.
+\end{exmp}
+
+\begin{exmp}
+    Given category of topological space $\Top$, the homset $\Hom_\Top (X,Y)$ is in fact enriched over groupoids: Define morphisms between maps $f,g:X\rightarrow Y$ to be homotopy classes of homotopies, then $\Hom_\Top (X,Y)$ forms a groupoid; the unit is $*\mapsto \id_X\in\Hom_\Top (X,X)$ (with the identity morphism on $*$ maps to the class of null homotopy of $\id_X$), and composition is really the traditional composition.
+\end{exmp}
+
+\begin{exmp}
+    If $\mathcal{V}$ is monoidally closed + cocomplete, then its internal hom functor $\mathcal{V}(\_,\_)$ induces a structure where $\mathcal{V}$ is self-enriched.
+
+    The unit morphism is identified by the adjunction $\Hom_\mathcal{V}(*\times v,v)\cong \Hom_\mathcal{V}(*,\mathcal{V}(v,v))$, identified as the image of the natural isomorphism 
+\end{exmp}
 
 \newpage
 
