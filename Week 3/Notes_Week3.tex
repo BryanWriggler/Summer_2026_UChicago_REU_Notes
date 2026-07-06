@@ -111,7 +111,7 @@ Given an operad $\mathcal{C}$ and its corresponding monad $C$, their categories 
 
 \newpage
 
-\section{Review: 2-Categories}
+\section{Review: 2-Categories (ND, not all details)}
 
 This section follows Emily Riehls' \emph{Categorical Homotopy Theory}.
 
@@ -132,7 +132,7 @@ We'll use $(\mathcal{V},\times,*)$ to denote a symmetric monoidal category here.
     \begin{itemize}
         \item \emph{Associativity of composition}:
         \[\xymatrix{
-            \mathcal{D}(z,w)\times\mathcal{D}(y,z)\times\mathcal{D}(x,y) \ar[d]_-{\circ\times 1}\ar[r]^-{1}\times \circ & \mathcal{D}(z,w)\times \mathcal{D}(x,z)\ar[d]^-{\circ}\\
+            \mathcal{D}(z,w)\times\mathcal{D}(y,z)\times\mathcal{D}(x,y) \ar[d]_-{\circ\times 1}\ar[r]^-{1\times \circ} & \mathcal{D}(z,w)\times \mathcal{D}(x,z)\ar[d]^-{\circ}\\
             \mathcal{D}(y,w)\times \mathcal{D}(x,y)\ar[r]_-{\circ} & \mathcal{D}(x,w)
         }\]
         \item \emph{Existence of Two-sided Units:}
@@ -163,10 +163,46 @@ One thing that sorts of questions me, is the existence of $\mathcal{D}$ as only 
 \end{exmp}
 
 \begin{exmp}
+    If consider the category of compactly generaetd spaces $\mathcal{U}$, then the product (i.e. the $k$-ification for original cartesian product) satisfies the following adjunction:
+    \[\Hom_\mathcal{U}(X\times K,Y)\cong \Hom_\mathcal{U}(X,Y^K)\]
+    where $Y^K:=\Hom_\mathcal{U}(K,Y)$
+    Which, it's actually cartesian closed and cocomplete.
+\end{exmp}
+
+I remembered in the book it's mentioned that for general topological space it's not cartesian closed, but do need to think about why.
+
+\begin{exmp}
     If $\mathcal{V}$ is monoidally closed + cocomplete, then its internal hom functor $\mathcal{V}(\_,\_)$ induces a structure where $\mathcal{V}$ is self-enriched.
 
-    The unit morphism is identified by the adjunction $\Hom_\mathcal{V}(*\times v,v)\cong \Hom_\mathcal{V}(*,\mathcal{V}(v,v))$, identified as the image of the natural isomorphism 
+    The unit morphism is identified by the adjunction $\Hom_\mathcal{V}(*\times v,v)\cong \Hom_\mathcal{V}(*,\mathcal{V}(v,v))$, identified as the image of the natural isomorphism $\gamma_v:*\times v\xrightarrow{\sim}v$, denoted as $\gamma_v^\sharp:*\rightarrow\mathcal{V}(v,v)$. 
+
+    Before building up the composition morphism, we need to consider an \emph{evaluation morphism} $\epsilon:\mathcal{V}(u,v)\times u\rightarrow v$. This is constructed using the same adjunction, together with the pullback of identity $1:\mathcal{V}(u,v)\xrightarrow{\sim}\mathcal{V}(u,v)$, or $\epsilon := 1^\flat$. Then, we define the pushforward of the following morphism:
+    \[\phi:\mathcal{V}(v,w)\times \mathcal{V}(u,v)\times u\xrightarrow{\id\times \epsilon}\mathcal{V}(v,w)\times v\xrightarrow{\epsilon}w,\quad \circ := \phi^\sharp:\mathcal{V}(v,w)\times\mathcal{V}(u,v)\rightarrow \mathcal{V}(u,w)\]
+    Let's temporarily believe this works out :)
+
+    (to do: figure out the details for this one)
 \end{exmp}
+
+\hfil
+
+Let $\mathcal{V}$ be a cartesian closed monoidal category that's also bicomplete (so, categorical product $\times$ is our monoidal product, final object $*\in\mathcal{V}$ serves as unit due to the fact $*\times X\cong X$ by checking universality; it has an internal hom functor $\mathcal{V}(\_,\_):\mathcal{V}^\Op\times \mathcal{V}\rightarrow\mathcal{V}$ generating the adjoint to $\times$ when fixing one variable, while all desired limits / colimits exist).
+
+The goal is to generated something similar to the \emph{category of based objects} analogous to the category of based sets / based spaces over $\Sets$ / $\Top$ respectively, with \emph{smash product} as our monoidal product. Let's first check these two categories for an understanding:
+\begin{exmp}
+    Given $\Sets$ or $\Top$, the category of based spaces is equivalent to the slice category of the final object $*\in\Top$ (the image of $*$ becomes the basepoint). We have each space $(X,x_0),(Y,y_0)$ satisfies wedge product $X\vee Y:= X\sqcup Y\/x_0\sim y_0$, and smash product $X\wedge Y:= X\times Y\/X\vee Y$ using the identification with basepoint. 
+    
+    Consider the inclusion $X \rightarrow X\times Y$ by $x\mapsto (x,y_0)$, and $Y\rightarrow X\times Y$ by $y\mapsto (x_0,y)$, this generaets a map $X\sqcup Y \rightarrow X\times Y$. Which, we claim the following fibre coproduct diagram is satisfied:
+    \[\xymatrix{
+        X\sqcup Y \ar[d] \ar[r] & X\times Y \ar[d] \ar@(r,u)[ddr]\\
+        \text{*} \ar@(d,l)[drr] \ar[r] & X\wedge Y \ar@{-->}[dr]\\
+        && Z
+    }\]
+    By sending $*$ to the class of $X\vee Y$ in $X\wedge Y$, since the image of $X\sqcup Y$ in $X\times Y$ is precisely $X\vee Y$, the above diagram commutes. Moreover, if maps into $Z$ makes the above diagram commutes, we must have the image of $X\vee Y\subseteq X\times Y$ be the point specified by $*$, hence must uniquely factor through $X\wedge Y$ using the quotient space / set property.
+\end{exmp} 
+
+\begin{con}
+d
+\end{con}
 
 \newpage
 
