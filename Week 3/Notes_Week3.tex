@@ -201,7 +201,22 @@ The goal is to generated something similar to the \emph{category of based object
 \end{exmp} 
 
 \begin{con}
-d
+    Consider the slice category of the final object $\mathcal{V}_*$, then for any $X,Y\in\mathcal{V}_*$, the product is naturally in the slice category also:
+    \[\xymatrix{
+        & \text{*} \ar[dl] \ar[dr] \ar@{-->}[d]\\
+        X & X\times Y \ar[l] \ar[r] & Y
+    }\]
+    To mimic the morphism $X\sqcup Y\rightarrow X\times Y$, we consider morphisms $X\rightarrow X\times Y$ (and respectively, for $Y\rightarrow X\times Y$) defined as follow (for $Y$, switch up the $X$ and $Y$):
+    \[\xymatrix{
+        & X \ar[r] \ar[dl]_-{1_X} \ar@{-->}[d]^-{\exists !} & \text{*} \ar[d]\\
+        X & X\times Y \ar[l]\ar[r] & Y
+    }\]
+    So, after generating these two morphsisms, one naturally induces $X\sqcup Y \rightarrow X\times Y$. So, we can define the \emph{smash product} $X\wedge Y$ as the fibre coproduct as follow:
+    \[\xymatrix{
+        X\sqcup Y \ar[r] \ar[d] & X\times Y \ar[d]\\
+        \text{*} \ar[r] & X\wedge Y
+    }\]
+    Which, this construction (using the universality) should be associative up to isomorphism.
 \end{con}
 
 \newpage
