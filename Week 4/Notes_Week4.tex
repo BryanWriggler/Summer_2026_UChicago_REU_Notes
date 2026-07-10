@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{Self_Style}
+
+\title{UChicago REU Notes Week 4}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\begin{rem}
+Assume everything is compactly generated, so we have a natural homeomorphism $\mathcal{U}(X\times Y,Z)\cong \mathcal{U}(X,\mathcal{T}(Y,Z))$, and $\mathcal{T}(X\wedge Y,Z)\cong \mathcal{T}(X,\mathcal{T}(Y,Z))$. Here, $\mathcal{U}$ are compactly generated spaces, $\mathcal{T}$ are based spaces.
+
+For basic reviews of $G$-spaces, I'll type up the notes later.
+\end{rem}
+
+\section{Basics of Equivariant Homotopy}
+
+
+\section{Motivation of Categorical Aspect}
+
+\textbf{Goal:} Understand to construct genuine $G$-spectra. A naive $G$-spectra is a spectra with a $G$-action (suposedly the structure maps are all $G$-equivariant + homotopy equivalence, or homeomorphism).Seems like we require extra structures on the spectra. One of the distinction seems to be: naive $G$-spectra represents $\ZZ$-graded cohomology theories, genuine $G$-spectra are used to represents cohomology theories for real representations (so it's also encoded using representations). I particular, understanding what is the equivariant infinite loop space machine (construct from $G$-space / category, forming a $G$-spectra).
+
+\hfil
+
+\begin{defn}
+Given a category $\mathcal{V}$, $X\in\mathcal{V}$ is a $G$-object if it has a group homomorphism $G\rightarrow \Aut(X)$. 
+
+$\mathcal{V}_G$ denotes the category of $G$-objects, with morphisms being in $\mathcal{V}$.Each $\mathcal{V}(X,Y)$ has a natural $G$-action by conjugation, where $g\in G$ acts as $f\mapsto g\circ f\circ g^{-1}$.
+
+$G\mathcal{V} \subseteq \mathcal{V}_G$ denotes the subcategory where homsets are limited to $G$-maps (so $G\mathcal{V}(X,Y):= \mathcal{V}(X,Y)^G$, fixed points of the homsets). Another notation is $G\mathcal{V}:= (\mathcal{V}_G)^G$.
+\end{defn}
+
+\hfil
+
+\begin{defn}
+Given $X\in G\mathcal{T}$ (based $G$-space), assume inclusion of basepoint $*\rightarrow X$ is nondegenerated in the $G$-case, meaning it's a $G$-cofibration (satisfying $G$-homotopy extension property for $G$-equivariant maps, abbreviated as $G$-maps). In particular, all the homotopies in the extension property is required to be a $G$-map at all time $t$ (another way of phrasing, interval $I$ has trivial action, so action at slice $X\times t$ is equivalent to action on $X\times I$).
+
+By chasing through the homotoopy extension diagram (by restricting all homotopies to be $G$-homotopy), then inclusion of basepoint $*\rightarrow X^H$ becomes a cofibration with respect to $G$-maps (Note: Not necessarily a $G$-cofibration, because in general $X^H$ is not closed under $G$-action). However, since all $G$-space is naturally an $H$-space (so is homotopy), then we can understand this as ``$H$-cofibration'', as $H$ acts trivially on $X^H$ :0
+\end{defn}
+
+\hfil
+
+\begin{defn}
+A $G$-map $f:X\rightarrow Y$ is a weak equivalence of $G$-spaces (or $G$-equivalence), if the fixed point maps $f^H:X^H\rightarrow Y^H$ are weak homotopy equivalences for all subgroups $H\leq G$.
+
+Similar $G$-whiteheads theorem states if $X,Y$ are $G$-CW complexes, then $f$ is also a $G$-homotopy equivalence.
+\end{defn}
+
+\begin{defn}
+    A small category $\mathcal{C}$ is a \emph{topological category}, if the set of objects $\Ob$ and set of all morphisms $\Mor$ are topological spaces, such that the following four maps are continuous:
+    \begin{itemize}
+        \item Identity map $i:\Ob\rightarrow\Mor$ by $i(x):=\id_x$ is a continuous map.
+        \item Source map $s:\Mor\rightarrow\Ob$ by $s(f:X\rightarrow Y):= X$ is continuous.
+        \item Target map $t:\Mor\rightarrow\Ob$ by $t(f:X\rightarrow Y):=Y$ is continuous.
+        \item Composition $\circ:\Mor\times_{t,s}\Mor\rightarrow\Mor$ is continuous.
+    \end{itemize}
+    Which, the last one is collecting all pair $(X,Y)$ with morphism $f:X\rightarrow Y$ between them.
+\end{defn}
+
+In particular, $s,t$ are retracts of $i$, showing $i$ is an embedding. (check https://mathoverflow.net/questions/85717/segals-original-definition-of-a-topological-category)
+
+There is another notion enriched over $\mathcal{T}$.
+
+\begin{notn}
+    Let $\Cat$ denotes the category of small topological categories, which $\Cat_G$ denotes the topological $G$-categories (meaning $G$ acts on both $\Ob,\Mor$ such that $i,s,t,\circ$ are all $G$-maps), an equivalent formulation is a group homomorphism $G\rightarrow \Aut_\Cat(\mathcal{C},\mathcal{C})$, by checking the definition.
+\end{notn}
+
+Part of the reason we endow this definition, is so that for subgroup $H\leq G$, the \emph{$H$-fixed category} $\mathcal{C}^H$ will make sense, namely we need the action on $\Ob,\Mor$ to be compatible.
+
+\begin{rem}
+    Given the classifying space functor $B$, it realizes any topological category $\mathcal{C}$ into $B\mathcal{C}$, 
+\end{rem}
+
+\end{document}
