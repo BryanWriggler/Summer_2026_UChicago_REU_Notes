@@ -103,4 +103,46 @@ Which, for some reason it's product preserving, and it sends objects in $\Cat$ t
 
 This is obvious a $\Sigma$-operad (as we defined it to be function composition). There is a correspondance of this definition to configuration space: Let $F(V,j)\subset V^j$ be the ordered configuration space of $j$-tuples of distinct points of $V$, with $G$ acts on $V^j$ diagonally (which restricts to an action on $F(V,j)$).
 
+\begin{thm}
+There is a $(G\times \Sigma_j)$-homotopy equivalence $\mathcal{D}_V (j)\simeq F(V,j)$ for all $j\geq 0$. 
+
+More explicitly, rescaling $V$ to $D(V)$ (by a map $[0,\infty)\rightarrow[0,1)$) so that $F(V,j)\cong F(D(V),j)$, then send $(d_1,...,d_j)$ to the centers $(v_1,...,v_j)$, and conversely given $(v_1,...,v_j)$, choose $r$ to be half the smallest distance between these points, then send to the corresponding $(d_1,...,d_j)$ (each $d_i$ with radius $r$ and center $d_i$.
+\end{thm}
+
+Which, since there is a free $(G\times \Sigma_j)$-action (the space is not contractible or a local equivalence), so this is called an $E_V$-operad.
+
+\begin{defn}
+    $\mathcal{C}_G$ an \emph{operad of $G$-spaces} is an \emph{$E_V$-operad} if there is a morphism of operads $\mathcal{C}_G\rightarrow \mathcal{D}_V$, such that each level $\mathcal{C}_G(j)\rightarrow \mathcal{D}_V (j)$ is a weak equivalence.
+\end{defn}
+
+Which, given $V\subset W$ two $G$-orthogonal representations, in general there's no morphism of operad $\mathcal{D}_V\rightarrow\mathcal{D}_W$ that's compatible with suspension. (For details, the non-equivariant version has a suspension map between little $n$-cube operad to $(n+1)$-cube operad, which is compatible with suspension; hence, taking the colimit results in an $E_\infty$-operad. In this case it doesn't work).
+
+\hfil
+
+\begin{defn}
+    Let $E_V$ be the space of embeddings $V\rightarrow V$ (not necessarily $G$-embeddings), together with $G$ acting on $E_V$ with conjugation.
+
+    Define $\text{Emb}_V (j)\subset E_V^j$be the $G$-subspace with ordered$j$-tuples of embeddings $(\gamma_1,...,\gamma_j)$,such that each $i\neq j$ has disjoint image. The collection $\text{Emb}_V$ naturally forms an operad in $G\mathcal{U}$, by the existence of identity embedding, and similar notion of ``composite embedding'' as little $V$-disk operad.
+\end{defn}
+
+\begin{defn}
+    Define $R_V\subset E_V = \text{Emb}_V (1)$ to be all distance-reducing embeddings, i.e. $f:V\hookrightarrow V$ such that $\|f(v)-f(w)\|\leq \|v-w\|$ for all $v,w\in V$. (Which, composition is closed).
+
+    Define a \emph{Steiner path} $h:I\rightarrow R_V$ so that $h(1)=\id_V$. Let $P_V$ denotes the path space of Steiner paths, define $\pi:T_V\rightarrow R_V$ by $\pi(h)=h(0)$.
+
+    \hfil
+
+    Define $\mathcal{K}_V (j)$ to be $G$-space of ordered $j$-tuples of Steiner paths $(h_1,...,h_j)$, such that each $\pi(h_i)$ has disjoint image, with unit in $\mathcal{K}_V (1)$ being the constant Steiner path. Define structure map $\gamma:\mathcal{K}_V (k)\times \mathcal{K}_V (j_1)\times...\times \mathcal{K}_V (j_k)\rightarrow\mathcal{K}_V (j)$ as follow: given $(h'_1,...,h'_k)\in\mathcal{K}_V (k)$, and $(h_{i1},...,h_{ij_i})$, we define $h_{il}\cdot h'_i:I\rightarrow R_V$ by sending $t$ to $h_{il}(t)\circ h'_i (t)$, which it's still a Steiner path. And, composition of such embedding preserves disjoint images, so this defines a map of operad by writing similar structure map.
+\end{defn}
+
+\hfil
+
+There is a natural map of operad $\pi:\mathcal{K}_V\rightarrow\text{Emb}_V$ (by evaluating each Steiner path at $0$). There is another map of ``evaluation'' at $\bzero\in V$, providing a $(G\times \Sigma_j)$-map $c:\text{Emb}_V (j)\rightarrow F(V,j)$.
+
+\begin{thm}
+There is an equivalence of operad $\iota:\mathcal{D}_V\rightarrow\mathcal{K}_V$.
+\end{thm}
+
+Intuitively, this can be thought of as: Embedding of disks is equivalent to embedding of $V$ (by rescaling $D(V)$ back to the original space).
+
 \end{document}
