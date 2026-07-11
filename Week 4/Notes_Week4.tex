@@ -13,6 +13,8 @@
 Assume everything is compactly generated, so we have a natural homeomorphism $\mathcal{U}(X\times Y,Z)\cong \mathcal{U}(X,\mathcal{T}(Y,Z))$, and $\mathcal{T}(X\wedge Y,Z)\cong \mathcal{T}(X,\mathcal{T}(Y,Z))$. Here, $\mathcal{U}$ are compactly generated spaces, $\mathcal{T}$ are based spaces.
 
 For basic reviews of $G$-spaces, I'll type up the notes later.
+
+Here, we also assume $V$ is a finite dimensional $\RR$-inner product space with a $G$-representation.
 \end{rem}
 
 \section{Basics of Equivariant Homotopy}
@@ -75,6 +77,30 @@ Part of the reason we endow this definition, is so that for subgroup $H\leq G$, 
     Question: Whatare the comparison between the two spaces?
 \end{rem}
 
-Which, for some reason it's product preserving, and it sends objects in $\Cat$ to $\mathcal{U}$, $G\Cat$ to $G\mathcal{U}$. In particular, it preserves the operad action (as preserving product also preserves the action)
+Which, for some reason it's product preserving, and it sends objects in $\Cat$ to $\mathcal{U}$, $G\Cat$ to $G\mathcal{U}$. In particular, it preserves the operad action (as preserving product also preserves the action).
+
+\newpage
+
+\section{$E_V$ Operads, $V$-fold Loop $G$-Spaces}
+
+\subsection{Little Disks / Steiner Operad}
+
+\begin{defn}
+    Given $D(V)\subset V$ the open unit disk (all $v\in V$ with $\|v\|<1$), a \emph{little $V$-disk} is an affine map $d:D(V)\rightarrow D(V)$, meaning all $d(v)=r v+v_0$, where $r\in [0,1)$ and $v_0\in D(V)$ represents the radius and the center.
+
+    Define group action $g\in G$ on collection $(g d)(v):= r v+g v_0$, which forms an evident $G$-action with restriction of action $G\rightarrow O(V)$ (the real unitary group of $V$).
+
+    \hfil
+
+    Define the \emph{little disk operad} by definig $\mathcal{D}_V (j):= \{(d_1,...,d_j)\ |\ d_i \text{ shares empty image intersection}\}$. Geometrically, it's all the possible arrangment of $j$ non-overlapping disks in $D(V)$. Define the evident structure map $\gamma:\mathcal{D}_V (k)\times \mathcal{D}_V (j_1)\times...\times \mathcal{D}_V (j_k)\rightarrow \mathcal{D}_V (j)$ as follow:
+    \[\gamma((d'_1,...,d'_k); (d_{1,1},...,d_{1,j_1}),...,(d_{j_k,1},...,d_{j_k,j_k})) = ((d'_1\circ d_{1,1},...,d'_1\circ d_{1,j_1});...;(d'_k\circ d_{j_k,1},...,d'_k\circ d_{j_k,j_k}))\]
+    Geometrically, it's as follow (for an example):
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=100mm]{little disk.jpg}
+    \end{figure}
+\end{defn}
+
+This is obvious a $\Sigma$-operad (as we defined it to be function composition). There is a correspondance of this definition to configuration space: Let $F(V,j)\subset V^j$ be the ordered configuration space of $j$-tuples of distinct points of $V$, with $G$ acts on $V^j$ diagonally (which restricts to an action on $F(V,j)$).
 
 \end{document}
