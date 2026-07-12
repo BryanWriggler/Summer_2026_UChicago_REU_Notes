@@ -9,6 +9,8 @@
 \maketitle
 \tableofcontents
 
+This note is mainly based on B. Guillou and J.P. May's \emph{Equivariant iterated loop space heory and permutative $G$-categories}, trying to understand some machineries intuitively (may omit some details). The goal is understanding the categorical aspect and its relation to the more topological aspect.
+
 \begin{rem}
 Assume everything is compactly generated, so we have a natural homeomorphism $\mathcal{U}(X\times Y,Z)\cong \mathcal{U}(X,\mathcal{T}(Y,Z))$, and $\mathcal{T}(X\wedge Y,Z)\cong \mathcal{T}(X,\mathcal{T}(Y,Z))$. Here, $\mathcal{U}$ are compactly generated spaces, $\mathcal{T}$ are based spaces.
 
@@ -19,8 +21,10 @@ Here, we also assume $V$ is a finite dimensional $\RR$-inner product space with 
 
 \section{Basics of Equivariant Homotopy}
 
+This part cf. J.P. May's \emph{Equivariant Homotopy and Cohomology Theory}.
 
-\section{Motivation of Categorical Aspect}
+
+\section{Notations}
 
 \textbf{Goal:} Understand to construct genuine $G$-spectra. A naive $G$-spectra is a spectra with a $G$-action (suposedly the structure maps are all $G$-equivariant + homotopy equivalence, or homeomorphism).Seems like we require extra structures on the spectra. One of the distinction seems to be: naive $G$-spectra represents $\ZZ$-graded cohomology theories, genuine $G$-spectra are used to represents cohomology theories for real representations (so it's also encoded using representations). I particular, understanding what is the equivariant infinite loop space machine (construct from $G$-space / category, forming a $G$-spectra).
 
@@ -140,9 +144,78 @@ Which, given $V\subset W$ two $G$-orthogonal representations, in general there's
 There is a natural map of operad $\pi:\mathcal{K}_V\rightarrow\text{Emb}_V$ (by evaluating each Steiner path at $0$). There is another map of ``evaluation'' at $\bzero\in V$, providing a $(G\times \Sigma_j)$-map $c:\text{Emb}_V (j)\rightarrow F(V,j)$.
 
 \begin{thm}
-There is an equivalence of operad $\iota:\mathcal{D}_V\rightarrow\mathcal{K}_V$.
+There is a weak equivalence of operad $\iota:\mathcal{D}_V\rightarrow\mathcal{K}_V$.
+
+(By showing $c\circ \pi:\mathcal{K}_V (j)\rightarrow\text{Emb}_V (j)\rightarrow F(V,j)$ is a homotopy equivalence, then use the lemma beforehand).
 \end{thm}
 
 Intuitively, this can be thought of as: Embedding of disks is equivalent to embedding of $V$ (by rescaling $D(V)$ back to the original space).
+
+\hfil
+
+Part of the reason why $\mathcal{K}_V$ is invented, is because for inclusion $V\subset W$ of $G$-inner product spaces, the inclusion $\mathcal{K}_V\hookrightarrow \mathcal{K}_W$ (by $f:V\rightarrow V$ inclues into $f\oplus \id:W\rightarrow W$, where $W-V:= V^\perp$ in $W$) of $G$-operads induce a map:
+\[\Omega^V X \rightarrow \Omega^V\left(\Omega^{W-V}\Sigma^{W-V}X\right)\cong \Omega^W\Sigma^{W-V}X\]
+And, this map preserves $\mathcal{K}_V$-action, when given $X$ a $G$-space.
+
+\hfil
+
+\hfil
+
+\subsection{Approximation Theorem}
+
+First, let $\mathbf{K}_V$ denotes the monad of the Steiner operad $\mathcal{K}_V$, which $\mathbf{K}_V (X):= \coprod \mathcal{K}_V (j)\times_{\Sigma_j}X^j\/(\sim)$ (quotient by commuting $G$-actions also?)
+
+For the non-equivariant case, we have the following definition:
+\begin{defn}
+    $X$ is a \emph{Hopf Space} if it has a continuous product $\mu:X^2\rightarrow X$, toether with a two-sided unit up to homotopy (meaning the ``identity'' $e\in X$ have $\mu(e,\_),mu(\_,e)$ both homotopic to identity, or inducing a homotopy equivalence of $X$ on itself). Which, $\pi_0 (X)$ is a monoid.
+
+    $X$ a Hopf Space is called \emph{grouplike} if $\pi_0 (X)$ is a group (meaning $\mu$ is associative up to homotopy, and all $\mu(x,\_),\mu(\_,x)$ are homotopy equivalence, which is only dependent on the path components).
+
+    \hfil
+
+    Let $X,Y$ be homotopy associative / commutative Hopf Spaces, with $Y$ being grouplike, and $f:X\rightarrow Y$ be a Hopf Map (meaning the product map commutes with $f$ up to homotopy), then $f$ is a \emph{group completion}, if $f_*:\pi_0(X)\rightarrow\pi_0(Y)$ is the group completion of commutative monoid $\pi_0 (X)$, together with an isomorphism of homology algebra:
+    \[H_*(X)[\pi_0(X)^{-1}]\rightarrow H_* (Y)\]
+\end{defn}
+In some sense, this can be thought of as $Y$ completes $X$ as a generalization of topological monoid.
+
+\hfil
+
+Another definition of group completion relies on $A_\infty$-spaces, which is a space $X$ over the Steiner operad $\mathcal{K}_\RR$. An $A_\infty$-map is a map homotopic to a $\mathcal{K}_\RR$-space map, or the homotopy inverse of a map of $\mathcal{K}_\RR$-spaces (maybe because it's not enough? Maybe like weak homotopy equivalences we require zigzag pattern to define an equivalence relation).
+
+\begin{thm}
+    An $A_\infty$-map $f:X\rightarrow Y$ of $\mathbf{K}_\RR$-spaces is a weak group completion, if it's equivalent under a chain of $A_\infty$-maps to the map $\eta:M\rightarrow \Omega BM$ of some topological monoid $M$.
+\end{thm} 
+
+\begin{defn}
+    A Hopf $G$-space $Y$ is grouplike, if each $\pi_0 (Y^H)$ is a group. 
+    
+    For $G$-equivariant version, let $X$,$Y$ be hootopy associative / commutative Hopf $G$-space, with $Y$ being grouplike, and with $f:X\rightarrow Y$ be a Hopf $G$-map. Then, $f^H:X^H\rightarrow Y^H$ is a group completion for all subgroups $H$ of $G$.
+\end{defn}
+
+If $X$ is a $\mathbf{K}_\RR$-$G$-space, and $H\leq G$ is a subgroup, then $X^H$ inherits a $\mathbf{K}_\RR$-action. (Q: Can we think of this as $X^H$ maps back to itself under the Hopf space structure?)
+
+\begin{defn}
+    A map $f:X\rightarrow Y$ of $\mathbf{K}_\RR-G$-spaces is a weak group completion, if $f^H$ is a weak group completion for all $H$. (For instance, if $f$ is a group completion).
+\end{defn}
+
+\hfil
+
+Here, we also consider the adjunction $(\Sigma^V\dashv \Omega^V)$ (where $S^V:=$ the one-point compactification of $V$ into a sphere, endowed with a $G$-action that fixes $\infty$ point).
+
+\begin{thm}{(The Equivariant Approximation Theorem)}
+    Let $V$ be a representation of $G$. If $X$ is $G$-connected (meaning each subgroup $H\leq G$ has $X^H$ being path-connected), then the map
+    \[\alpha_V:\mathbf{K}_V X \xrightarrow{\mathbf{K}_V \eta}\mathbf{K}_V \Omega^V\Sigma^V X \xrightarrow{\theta}\Omega^V\Sigma^V X \]
+    is an equivalence (as $G$-weak equivalence).
+
+    If $V$ contains a trivial representation ($\cong\RR$), then it's a weak group completion. If $V$ contains a copy of $\RR^2$, then $\alpha_V$ is a group completion.
+\end{thm}
+
+This I think is a way of realizing how to calculate homotopy / homology using the weak equivalence. Similar definitions can be given for compact lie groups, and when extending $V$ to contain $\RR^\infty$-representation some machineries can be extended to that.
+
+\hfil
+
+\hfil
+
+\subsection{Recognition Principle for $V$-fold Loop Spaces}
 
 \end{document}
