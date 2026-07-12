@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.6.12)  12 JUL 2026 09:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.6.12)  12 JUL 2026 12:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/User/OneDrive/桌面/Summer_2026_UChicago_REU_Notes/Week 2/Notes_Week2.tex"
-(c:/Users/User/OneDrive/桌面/Summer_2026_UChicago_REU_Notes/Week 2/Notes_Week2.tex
+**"c:/Users/User/OneDrive/桌面/Summer_2026_UChicago_REU_Notes/Week 5/Presentation Notes/Monad_Monadicity.tex"
+(c:/Users/User/OneDrive/桌面/Summer_2026_UChicago_REU_Notes/Week 5/Presentation Notes/Monad_Monadicity.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -23,7 +23,7 @@ File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
-) (Self_Style.sty (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+) (../Self_Style.sty (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
@@ -452,8 +452,8 @@ Package hyperref Info: Option `pdfnewwindow' set `true' on input line 47.
 \c@sch=\count326
 \c@obs=\count327
 \c@conv=\count328
-) (Notes_Week2.aux)
-\openout1 = `Notes_Week2.aux'.
+) (Monad_Monadicity.aux)
+\openout1 = `Monad_Monadicity.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
@@ -531,9 +531,9 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Link coloring ON on input line 8.
- (Notes_Week2.out) (Notes_Week2.out)
+ (Monad_Monadicity.out) (Monad_Monadicity.out)
 \@outlinefile=\write5
-\openout5 = `Notes_Week2.out'.
+\openout5 = `Monad_Monadicity.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
  (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -548,45 +548,32 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 8.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 Package xypdf Info: Line width: 0.39998pt on input line 8.
- (Notes_Week2.toc)
+ (Monad_Monadicity.toc)
 \tf@toc=\write6
-\openout6 = `Notes_Week2.toc'.
+\openout6 = `Monad_Monadicity.toc'.
 
- [1
+ <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 146> <xymatrix 2x2 150> [1
 
-{C:/Users/User/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 52.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Omega' on input line 52.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 52.
-
-<xymatrix 2x2 194> [2] [3] Excluding 'comment' comment. <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 146> <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> [4] <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x1 102> [5] <xymatrix 3x1 102> <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x2 314> [6] [7] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 242> <xymatrix 2x2 194> <xymatrix 3x2 242> [8] <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 150> <xymatrix 2x2 194> [9] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 290> [10] <xymatrix 3x2 286> <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> [11] <xymatrix 3x2 334> <xymatrix 3x2 286> [12] <xymatrix 4x2 386> <xymatrix 4x3 482> [13] [14] <xymatrix 3x1 160> <xymatrix 3x1 296> <xymatrix 3x2 260> <xymatrix 3x1 296> [15] <xymatrix 3x1 296> <xymatrix 3x2 154> <xymatrix 3x3 254> [16] <xymatrix 3x2 290> <xymatrix 3x2 290> [17] <xymatrix 3x2 154> <xymatrix 3x2 154> <xymatrix 3x3 250> [18] <xymatrix 2x2 194> <xymatrix 3x2 202> [19] <xymatrix 3x2 199> <xymatrix 4x3 262> <xymatrix 3x2 154> <xymatrix 3x2 154> [20] <xymatrix 4x3 262> <xymatrix 3x2 154> <xymatrix 3x2 154> [21] <xymatrix 4x3 262> [22] (Notes_Week2.aux)
+{C:/Users/User/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 202> <xymatrix 2x2 194> <xymatrix 3x2 202> [2] <xymatrix 2x2 150> <xymatrix 2x2 150> <xymatrix 3x1 102> <xymatrix 3x1 102> <xymatrix 2x2 150> <xymatrix 2x2 150> [3] <xymatrix 3x2 314> [4] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 242> <xymatrix 2x2 194> <xymatrix 3x2 242> [5] <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 150> <xymatrix 2x2 194> [6] <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 2x2 194> <xymatrix 3x2 290> [7] <xymatrix 3x2 286> <xymatrix 2x2 150> <xymatrix 2x2 194> <xymatrix 2x2 194> [8] <xymatrix 3x2 334> <xymatrix 3x2 286> [9] <xymatrix 4x2 386> <xymatrix 4x3 482> [10] <xymatrix 3x2 258> <xymatrix 2x2 150> <xymatrix 2x2 194> [11] [12] <xymatrix 3x1 160> <xymatrix 3x1 296> <xymatrix 3x2 260> <xymatrix 3x1 296> [13] <xymatrix 3x1 296> [14] (Monad_Monadicity.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-Package rerunfilecheck Info: File `Notes_Week2.out' has not changed.
-(rerunfilecheck)             Checksum: B1A6E78A9B5262920D8EAD1BBF7389BD;2226.
+Package rerunfilecheck Info: File `Monad_Monadicity.out' has not changed.
+(rerunfilecheck)             Checksum: 11E9F384CF5E198183FEE3C3C24FF86C;692.
  ) 
 Here is how much of TeX's memory you used:
- 16756 strings out of 474486
- 253842 string characters out of 5744227
- 1954542 words of memory out of 5000000
- 38699 multiletter control sequences out of 15000+600000
- 570760 words of font info for 90 fonts, out of 8000000 for 9000
+ 16715 strings out of 474486
+ 253688 string characters out of 5744227
+ 1955542 words of memory out of 5000000
+ 38689 multiletter control sequences out of 15000+600000
+ 570453 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,17n,107p,3308b,994s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/xypic/xyatip10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/xypic/xybtip10.pfb>
-Output written on Notes_Week2.pdf (22 pages, 382697 bytes).
+ 94i,13n,107p,3332b,994s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/xypic/xyatip10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/xypic/xybtip10.pfb>
+Output written on Monad_Monadicity.pdf (14 pages, 289359 bytes).
 PDF statistics:
- 308 PDF objects out of 1000 (max. 8388607)
- 71 named destinations out of 1000 (max. 500000)
- 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 206 PDF objects out of 1000 (max. 8388607)
+ 38 named destinations out of 1000 (max. 500000)
+ 25 words of extra memory for PDF output out of 10000 (max. 10000000)
 

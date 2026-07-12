@@ -1,7 +1,7 @@
 \documentclass{article}
-\usepackage{Self_Style}
+\usepackage{../Self_Style}
 
-\title{UChicago REU Notes Week 2}
+\title{UChicago REU Notes: Monads and Monadicity}
 \author{Zih-Yu Hsieh}
 \date{\today}
 
@@ -9,110 +9,7 @@
 \maketitle
 \tableofcontents
 
-\section{Week 2}
-
-\subsection{Intro}
-For this portion, I want to start with some basic definitions covered by professor May in his office, about the definition of spectra / prespectra / generalized cohomology theory. I'll probably skip some of the details in the intro to make sure I can keep on track. (Also, I probably involve quite a lot of errors in between...I'll try to fix them)
-\subsubsection{Brown Representability Theorem, and Generalized Cohomology}
-Let $h\mathcal{C}$ denotes the homotopy category of based spaces (that admits a CW structure, as on them weak equivalences and homotopy equivalence are the same), then a functor $F:h\mathcal{C}^\Op\rightarrow \Ab$ is \emph{representable}, if there exists a based space $Y\in h\mathcal{C}$, such that $F\cong [\_,Y]$.
-\begin{exmp}
-    The \emph{reduced cohomology functor} $\tilde{H}^n(\_;A)$ is one, for all $n\geq 0$ and a fixed abelian group $A$ (as coefficient). Let $K(A,n)$ be the \emph{Eilenberg-Maclane Space} of abelian group $A$ and index $n\geq 0$ (i.e. the $n$th homotopy group $\pi_n (K(A,n))=A$), then the following group isomorphism holds:
-    \[\tilde{H}^n(X;A) \cong [X, K(A,n)]\]
-    Using more adjunction property, since $\pi_n (A,n) = A = \pi_{n+1}(K(A,n+1)) = [S^{n+1}, K(A,n+1)] = [S^n \wedge S^1, K(A,n+1)] \cong [S^n, \Omega K(A,n+1)]= \pi_n (\Omega K(A,n+1))$, there is a homotopy equivalence $K(A,n)\xrightarrow{\simeq} \Omega K(A,n+1)$.
-\end{exmp} 
-
-(Yeah, need to understand more about the details)
-
-So, the regular cohomology we see on spaces, are one type of representable functors.
-
-The classification of all such functors is given by \emph{Brown Representability Theorem}:
-\begin{thm}
-Suppose the functor $F:h\mathcal{C}^\Op\rightarrow \Sets$ satisfies:
-\begin{itemize}
-    \item $F(\bigvee_\alpha X_\alpha)\cong \prod_\alpha F(X_\alpha)$ (i.e. maps coproduct to product).
-    \item $F$ maps \emph{homotopy pushouts} (I believe this is the reduced mapping cylinder?) to \emph{weak pullbacks} (omit the uniqueness of maps). This condition is equivalent to \emph{Mayer-Vietoris axiom} (which seems like a weaker form of the gluing axiom in sheaf theory, and restrict to CW subcomplexes instead of open sets).
-\end{itemize}
-Then, $F$ is representable by some $CW$ complex $C$, or $F\cong [\_,C]$.
-\end{thm}
-The converse for the theorem also holds, as $[\_,C]$ also satisfies the above axioms (need more details here). 
-
-\hfil
-
-Here is a definition of generalized cohomology:
-
-\begin{defn}
-A \emph{generalized cohomology}, is a sequence of spaces $\{E_n\}_{n\geq 0}$, with homotopy equivalences $\{\epsilon_n:E_n \xrightarrow{\simeq} \Omega E_{n+1}\}_{n\geq 0}$. 
-
-In a more explicit form, $E^n(X) := [X,E_n]$ has all $n\geq 0$ satisfies $E^n(X) = [X,E_n]\cong [X,\Omega E_{n+1}]$, which is naturally a group (and an abelian group for $n\geq 2$, due to the abelian group structure on $[X,\Omega^m Y]$ for $m\geq 2$).
-\end{defn}
-I remembered the motivation is that, by Brown Representability Theorem, if a sequence of representable functors $E^*:h\mathcal{C}^\Op\rightarrow \Sets$ satisfy similar properties to ordinary cohomology (for instance, the connecting morphism $E^n\rightarrow E^{n+1}$, and excision axiom?), then Brown Representability Theorem guarantees it must be the above form. So, they're precisely all the generalized cohomology.
-
-\hfil
-
-\subsubsection{$\Omega$-Prespectra, Prespectra, and Spectra}
-When talking about generalized cohomology, we have a sequence of based spaces $\{E_n\}_{n\geq 0}$, together with homotopy equivalences $\epsilon_n:E_n \xrightarrow{\simeq}\Omega E_{n+1}$, which is a prototype of what's called \emph{$\Omega$-Prespectra}.
-
-In general, fixing a based space $X\in h\mathcal{C}$, the sequence $\{\Sigma^n X\}_{n\geq 0}$ has a collection of natural maps $\{\id_n:\Sigma (\Sigma^n X)\rightarrow \Sigma^{n+1}X\}_{n\geq 0}$, which the adjunction $(\Sigma, \Omega)$ guarantees a collection of maps $\{\eta_n:\Sigma^n X\rightarrow \Omega (\Sigma^{n+1}X)\}_{n\geq 0}$. In general these maps are not homotopy equivalence, so these type of sequences are a type of \emph{Prespectra}, called \emph{suspension prespectra}. More generally, \emph{Prespectra} is a sequence of spaces $\{X_n\}_{n\geq 0}$, with morphisms $\{\mu_n:X_n\rightarrow \Omega X_{n+1}\}_{n\geq 0}$.
-
-For the strongest form possible, if such map $\epsilon_n:E_n\rightarrow \Omega E_{n+1}$ is a homeomorphism, then these are called \emph{Spectra}.
-
-\hfil
-
-Professor May restricts to three specific categories: 
-\begin{itemize}
-    \item Let $\mathcal{P}$ denotes the \emph{category of prespectra}.
-    \item Let $\mathcal{Q}$ denotes the \emph{category of inclusion prespectra}, meaningeach defining morphism $\mu_n:X_n\rightarrow \Omega X_{n+1}$ is an inclusion.
-    \item Let $\mathcal{S}$ denotes the \emph{category of spectra}.
-\end{itemize}
-For each category, we require the morphism $\phi:X_\cdot\rightarrow T_\cdot$ to be a sequence of based maps $\phi_n:X_n\rightarrow T_n$, such that the following diagram commutes:
-\[\xymatrix{
-    \Sigma X_n \ar[d]_-{\mu'_{X_n}} \ar[r]^-{\Sigma\phi_n} & \Sigma T_n \ar[d]^-{\mu'_{T_n}}\\
-    X_{n+1} \ar[r]_-{\phi_{n+1}} & T_{n+1}
-}\]
-where the map $\Sigma X_n\rightarrow X_{n+1}$ is based on the adjoint property $[\Sigma X_n,X_{n+1}]\cong [X_n,\Omega X_{n+1}]$. Here professor May had talked about how the prototype of the morphism only requires it to commute up to homotopy, but turns out it's too weak as a condition.
-
-\hfil
-
-With these morphisms, there is an obvious forgetful functor $\mathcal{S}\rightarrow \mathcal{Q}\rightarrow \mathcal{P}$. It seems to satisfy all the conditions for Freyd's Adjoint Functor Theorem to hold, both of the forgetful functors have a left adjoint.
-
-Here, the left adjoint of $\mathcal{Q} \rightarrow \mathcal{P}$ is hard to construct, yet there is a clear construction for the left adjoint of $\mathcal{S}\rightarrow \mathcal{Q}$, denoted as $L:\mathcal{Q}\rightarrow\mathcal{S}$, by $T_\cdot \mapsto (LT)_\cdot$, where $(LT)_n := \colim_{q}\Omega^{n+q}T_q$ (due to the inclusion $T_q\rightarrow \Omega T_{q+1}$, it induces $\Omega^{n+q}T_q\rightarrow \Omega^{n+(q+1)}T_{q+1}$, hence having a sequence of direct system).
-
-Professor May had claimed the homeoomorphism $(LT)_n \cong \Omega (LT)_{n+1}$ due to the fact that $\Omega$ commutes with colimit (I do need to work out the detail, as normally $\Omega$ as a right adjoint of $\Sigma$ would be thought of preserving limits instead of colimits).
-
-\newpage
-
-\begin{comment}
-
-\subsection{Spectra, Infinite Loop Spaces, and Stabilization Functor}
-Most part of the following notesare from professor May's \emph{Infinite Loop Space Theory} paper 
-
-(https://www.math.uchicago.edu/~may/PAPERS/18.pdf).
-
-If require spectra to be a sequence of spaces $E=\{E_n\}_{n\geq 0}$ with homeomorphism $E_n\cong \Omega E_{n+1}$, we have the following definition:
-\begin{defn}
-    A space $X$ that has a homotopy type of $E_0$ for some spectra $E$ is called an \emph{infinite loop space}.
-
-    If $X,Y$ are infinite loop spaces of spectra $E,F$ respectively, then a map $f:X\rightarrow Y$ is caled an \emph{infinite loop map}, if it's induced by some morphism of spectra $\tilde{f}:E\rightarrow F$.
-\end{defn}
-
-Also, we have the notion of stable homotopy groups:
-\begin{defn}
-    Given a space $X$, its\emph{$n$th stable homotopy group} $\pi_n^s (X) := \colim_j \pi_{n+j}(\Sigma^j X)$. 
-    
-    Here, the colimit is due to the natural map $\Sigma(\Sigma^{j}X)\rightarrow \Sigma^{j+1}X$, inducing $\Sigma^j X\rightarrow \Omega (\Sigma^{j+1}X)$. Hence, the following isomorphism holds:
-    \[\pi_k (\Sigma^j X)\rightarrow \pi_k (\Omega(\Sigma^{j+1}X)) =[\Sigma^k S^0, \Omega (\Sigma^{j+1}X)]\cong [\Sigma^{k+1}S^0, \Sigma^{j+1}X] = \pi_{k+1}(\Sigma^{j+1}X)\]
-    Hence, fixing $k:= n+j$, this induces a map $\pi_{n+j}(\Sigma^j X)\rightarrow \pi_{n+(j+1)}(\Sigma^{j+1}X)$.
-\end{defn}
-I remembered part of the reason this is called stable homotopy group, is because for large enough $j$ this direct system in fact stabilizes.
-
-\hfil
-
-For stabilization, it's a functor $Q X := \colim_q \Omega^q \Sigma^q X$. Which, it has the following isomorphism on homotopy groups:
-\[\pi_n (Q X)\cong \pi^s_n (X)\]
-
-\end{comment}
-
-\subsection{Review: Adjoint Functors}
+\section{Review: Adjoint Functors}
 
 This part is converging to the preparation of the theory of monads :) (as professor May had mentioned it quite often as an essential tool to understand operad, so I decided to do related review). The main reference is Riehl's \emph{Category Theory in Context}.
 
@@ -266,7 +163,7 @@ This will be an important result when classifying monads. We also want to say th
 
 \newpage
 
-\subsection{Monads and Relations to Adjoint Functors}
+\section{Monads and Relations to Adjoint Functors}
 
 Let's first observe the case when we have an adjoint pair $F\dashv G$ from above, inducing an endofunctor $GF:\mathcal{C}\rightarrow\mathcal{C}$, with unit transformation $\eta:\Id_\mathcal{C}\rightarrow GF$, together with \emph{multiplication transformation} $\mu:=G\epsilon_F:GFGF\rightarrow GF$ (as we have $\epsilon:FG\rightarrow\Id_\mathcal{D}$). Notice they provide the following identities:
 \begin{itemize}
@@ -536,8 +433,38 @@ The two functors are adjoint pairs $(F_T\dashv G_T)$, and the induced monad is $
 
 Finally, the universality of these two categories are given as follow:
 \begin{thm}
-    In the \emph{adjoint category} $\text{Adg}_T$ (categories of all category with adjoint functors between $\mathcal{C}$, inducing monad $T$; the morphisms are functors that commutes with the left/right adjoints for each category), the Kleisli category $(\mathcal{C}_T, F_T\dashv G_T)$ is initial, while Eilenberg-Moore category $(\mathcal{C}^T,F^T\dashv G^T)$ is final.
+    In the \emph{adjoint category} $\text{Adj}_T$ (categories of all category with adjoint functors between $\mathcal{C}$, inducing monad $T$; the morphisms are functors that commutes with the left/right adjoints for each category), the Kleisli category $(\mathcal{C}_T, F_T\dashv G_T)$ is initial, while Eilenberg-Moore category $(\mathcal{C}^T,F^T\dashv G^T)$ is final.
 \end{thm}
+\begin{proof}
+    I think for monadicity purpose, we'll only show the terminal property of Eilenberg-Moore category.
+
+    Given a category $\mathcal{D}$, together with adjoint pairs $(F\dashv G)$ (where $F:\mathcal{C}\leftrightarrows\mathcal{D}:G$) that generates monad $(T,\eta,\mu)$. We ought to show the existence / uniqueness of a functor $L:\mathcal{D}\rightarrow\mathcal{C}^T$, such that the following diagram commutes:
+    \[\xymatrix{
+        \mathcal{D} \ar@/_{.5pc}/[dr]_{G} \ar@{-->}[rr]^-{\exists ! L} && \mathcal{C}^T \ar@/_{.5pc}/[dl]_{G^T}\\
+        & \mathcal{C} \ar@/_{.5pc}/[ul]_{F} \ar@/_{.5pc}/[ur]_{F^T}
+    }\]
+    For the $G$-diagram to commute, $L$ realizes a $T$-algebra structure on $G(Y)$ for each $Y\in\mathcal{D}$. Which, the counit $\epsilon:FG\rightarrow \Id_{\mathcal{D}}$ induces a natural transformation $\theta=G\epsilon:(GF)G\rightarrow G$, so each $Y\in\mathcal{D}$ is associated with a morphism $\theta_Y:T(G(Y))\rightarrow G(Y)$.
+
+    Notice $(G(Y),\theta_Y)$ forms a $T$-algebra due to one of the Triangle Identity, and the ``reduced'' associativity diagram for adjunction (by swapping the last $F(X)$ with $Y$):
+    \[\xymatrix{
+        G \ar[r]^-{\eta_G} \ar[dr]_-{\id_G} & GFG \ar[d]^-{G\epsilon}\\
+        & F
+    },\quad\quad \xymatrix{
+        GFGFG(Y) \ar[d]_-{G\epsilon_{FG(Y)}} \ar[r]^-{GFG\epsilon_{Y}} & GFG(Y) \ar[d]^-{G\epsilon_{Y}}\\
+        GFG(Y) \ar[r]_-{G\epsilon_{F(X)}} & G(Y)
+    }\]
+    Also, by naturality of $\epsilon$, given any morphism $f:Y\rightarrow Y'$ in $\mathcal{D}$, $Gf:G(Y)\rightarrow G(Y')$ in $\mathcal{C}$ forms a morphism of $T$-algebra. Hence, define $L:\mathcal{D}\rightarrow \mathcal{C}^T$ by $L(Y):= (G(Y), G\epsilon_Y)$, and $Lf:= Gf:G(Y)\rightarrow G(Y')$ is a functor.
+
+    This functor satisfies $G(Y) = G^T L(Y)$, and $Gf = G^T Lf$, because $L(Y) = (G(Y),G\epsilon_Y)$ (also $Lf = Gf$), while forgetful functor $G^T(G(Y),G\epsilon_Y) = G(Y)$ (and morphism $L(Gf)= Gf$). 
+    
+    Also, given $X\in\mathcal{C}$ and morphism $g:X\rightarrow X'$ in $\mathcal{C}$, we have $L(F(X)) = (GF(X), G\epsilon_{F(X)}) = (T(X),\mu_X) = F^T(X)$ (by checking the definition of multiplication transformation, and the fact $GF = T$); also, $L(Ff) = G(Ff):GF(X)\rightarrow GF(X')$ by definition, which equals to $F^T f:T(X)\rightarrow T(X')$, this shows $LF = F^T$ as functor. This shows the existence of $L$.
+
+    \hfil
+
+    The uniqueness of $L$ on the morphism is clear, as $L(Y)\in\mathcal{C}^T$ must have the underlying object being $G(Y)\in\mathcal{C}$ (for $G^TL = G$ to be true), so $f:Y\rightarrow Y'$ must be mapped to $Gf:G(Y)\rightarrow G(Y')$. Theuniqueness of $L$ on the object is by the monadic requirement, where the $T$-algebra structure on $G(Y)$ is restricted by the monad requirement.
+\end{proof}
+
+\hfil
 
 \begin{lem}
     The canonical functor $\mathcal{C}_T\rightarrow\mathcal{C}^T$ is fully faithful, with essential image being all the free $T$-algebra (all pairs $(T(A),\mu_A)$).
@@ -545,7 +472,7 @@ Finally, the universality of these two categories are given as follow:
 
 \newpage
 
-\subsection{Monad Algebra and Monadicity (ND)}
+\section{Monad Algebra and Monadicity (ND)}
 
 Fix a monad $(T,\eta,\mu)$ on category $\mathcal{C}$, we're mainly concerned with the Eilenber-Moore category $\mathcal{C}^T$ (or the category of $T$-algebras). In particular, we wish to study the free algebras, namely the pair $(T(A),\mu_A)\in \mathcal{C}^T$, and see under what situation this covers all the possible $T$-algebras.
 
@@ -598,244 +525,7 @@ More general result need more definition:
         \item $U$ \emph{creates coequalizers of $U$-split pairs}, if any $U$-split coequalizer admits a coequalizer $h':Y\rightarrow Z'$ in $\mathcal{D}$, such that its image $Uh':U(Y)\rightarrow U(Z')$ is isomorphic to $h:U(Y)\rightarrow Z$ in $\mathcal{C}$.
         \item $U$ \emph{strictly creates coequalizers of $U$-split pairs}, if it creates coequalizer of $U$-split pairs, while such lift $h'$ in $\mathcal{D}$ is unique (up to isomorphism in $\mathcal{D}$).
     \end{itemize}
-\end{defn}d
-
-\subsection{Review: Monoidal and Symmetric Monoidal Categories}
- 
-This part follows \emph{Operads, Algebras, and Modules} by May. Let's first review on monoidal/symmetric monoidal category:
-\begin{defn}
-    A category $\mathcal{V}$ is a \emph{monoidal caetgory}, if there is a bifunctor $\tensor:\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ (called \emph{monoidal product}), and an object $1\in\mathcal{V}$ (called \emph{unit/monoidal unit}), together with the following natural isomorphisms:
-    \begin{itemize}
-        \item The \emph{associator} $a:(\_\tensor \_)\tensor \_ \xrightarrow{\sim} \_\tensor(\_\tensor \_)$ of functors $\mathcal{V}\times\mathcal{V}\times\mathcal{V}\xrightarrow{\sim}\mathcal{V}$. (So, $(X\tensor Y)\tensor Z\cong X\tensor(Y\tensor Z)$ in a canoncial way).
-        \item The \emph{left unit} $\lambda:1\tensor\_\xrightarrow{\sim} \Id_{\mathcal{V}}$ ($1\tensor X\cong X$ in a canonical way).
-        \item The \emph{right unit} $\rho:\_\tensor 1\xrightarrow{\sim}\Id_\mathcal{V}$ ($X\tensor 1\cong X$ in a canonical way).
-    \end{itemize}
-
-    They also satisfy two extra axioms:
-    \begin{itemize}
-        \item \emph{Triangle Axiom:}
-        \[\xymatrix{
-            (X\tensor 1)\tensor Y \ar[dr]_-{\rho_X \tensor \id_Y} \ar[rr]^-{a_{X,1,Y}} && X\tensor (1\tensor Y) \ar[dl]^-{\id_X\tensor \lambda_Y}\\
-            & X\tensor Y
-        }\]
-        \item \emph{Pentagon Axiom:}
-        \[\xymatrix{
-            ((X\tensor Y)\tensor Z)\tensor W \ar[rr]^-{a_{X\tensor Y,Z,W}} \ar[d]_-{a_{X,Y,Z}\tensor \id_W} && (X\tensor Y)\tensor(Z\tensor W) \ar[d]^-{a_{X,Y,Z\tensor W}}\\
-            (X\tensor (Y\tensor Z))\tensor W \ar[dr]_-{a_{X,Y\tensor Z,W}} && X\tensor (Y\tensor (Z\tensor W)) \\
-            & X\tensor ((Y\tensor Z)\tensor W) \ar[ur]_-{\id_X\tensor a_{Y,Z,W}}
-        }\]
-    \end{itemize}
-\end{defn}
-Based on \emph{Maclane's Coherence Theorem}, the above two axioms guarantees all finite sequences of ``associators'' (the morphisms involving $a,\lambda,\rho$ and their inverses only) between finite products agree, namely there is a unique isomorphism $P_1\rightarrow P_2$, where $P_i$ are (possibly) different orders of performing product on $X_1,...,X_n\in\mathcal{V}$.
-
-This guarantees all monoidal category to be equivalent to a \emph{strict monoidal category},namely all $a,\lambda,\rho$ above are ``identity transformations'', or $1\tensor X=X,X\tensor 1=X$, and $(X\tensor Y)\tensor Z=X\tensor (Y\tensor Z)$, so WLOG one can assume the product $\tensor$ is associative.
-
-\begin{defn}
-    A monoidal category $\mathcal{V}$ is \emph{braided}, if there is a natural isomorphism $B:\__{1} \tensor \__{2}\xrightarrow{\sim} \__{2}\tensor \__{1}$ (so $B_{X,Y}:X\tensor Y\xrightarrow{\sim}Y\tensor X$ is an isomorphism), together with the \emph{Hexagon axioms} satisfied:
-    \[\xymatrix{
-        (X\tensor Y)\tensor Z \ar[r]^-{a_{X,Y,Z}} \ar[d]_-{B_{X,Y}\tensor \Id_Z} & X\tensor (Y\tensor Z)\ar[r]^-{B_{X,Y\tensor Z}} & (Y\tensor Z)\tensor X \ar[d]^-{a_{Y,Z,X}}\\
-        (Y\tensor X)\tensor Z \ar[r]_-{a_{Y,X,Z}} & Y\tensor (X\tensor Z) \ar[r]_-{\id_Y\tensor B_{X,Z}} & Y\tensor (Z\tensor X)
-    }\]
-    \[\xymatrix{
-        X\tensor (Y\tensor Z) \ar[d]_-{\id_X\tensor B_{Y,Z}} & (X\tensor Y)\tensor Z \ar[l]_-{a_{X,Y,Z}} \ar[r]^-{B_{X\tensor Y,Z}} & Z\tensor (X\tensor Y)\\
-        X\tensor (Z\tensor Y) & (X\tensor Z)\tensor Y \ar[l]^-{a_{X,Z,Y}} \ar[r]_-{B_{X,Z}\tensor \id_Y} & (Z\tensor X)\tensor Y \ar[u]_-{a_{Z,X,Y}}
-    }\]
-    $\mathcal{V}$ is a \emph{symmetric monoidal category}, if $B_{Y,X}=B_{X,Y}^{-1}$ for all $X,Y\in\mathcal{V}$.
-\end{defn}
-The two hexagons are guaranteeing the ability to perform 3-cycle permutations on three consecutive objects in a product, hence together with $B$ serving as transpositions, it guarantees isomorphism between all permutations of finite products. The symmetric axiom further imposes that there is a single way of doing such permutation (so we don't have ``nontrivial braiding'', namely $B_{Y,X}\circ B_{X,Y}:X\tensor Y\rightarrow Y\tensor X\rightarrow X\tensor Y$ is not identity).
-
-From my naive understanding, the coherence theorem guarantees a treatment $X\tensor Y=Y\tensor X$ without loss of generality.
-
-\newpage
-
-\subsection{Operads and Operadic Algebra}
-When searching up extra sources, there is another approach using multicategories (having multimorphisms $\Hom(a_1,...,a_n; b)$, diagramatically like a ``fork'', and different ways of compiling the forks. I think this understanding is more intuitive than traditional definition). 
-
-However for understanding in the literature of homotopy theory, I think I'll focus on the original definition. This part cf. May's \emph{Operads, Algebras, and Modules}, \emph{Geometry of Iterated Loop Spaces}, with supplemnts through an arxiv document (https://arxiv.org/pdf/2508.01886) by Felicia Ferraioli, and Maclane's \emph{Category Theory for Working Mathematicians}.
-
-\begin{defn}
-Given symmetric monoidal category $\mathcal{V}$(use $\kappa$ to denote unit), a \emph{planar operad} $\mathcal{C}$ in $\mathcal{V}$ is a collection of objects $\{C(j)\in\mathcal{V}\}_{j\in\NN}$, a \emph{unit map} $\eta:1\rightarrow C(1)$, together with composition maps
-\[\gamma:C(k)\tensor C(j_1)\tensor...\tensor C(j_k)\rightarrow C(j_1+...+j_k)\]
-that satisfies the following axioms:
-\begin{itemize}
-    \item \emph{Unital Axiom:}
-    \[\xymatrix{
-        C(j)\tensor \kappa^{\tensor j} \ar[dr]_-{\id_{C(j)}\tensor \eta^{\tensor j}} \ar[rr]^-{\sim} && C(j)\\
-        & C(j)\tensor C(1)^{\tensor j} \ar[ur]_-{\gamma}
-    },\quad\quad \xymatrix{
-        \kappa\tensor C(j) \ar[dr]_-{\eta\tensor \id_{C(j)}} \ar[rr]^-{\sim} && C(j)\\
-        & C(1)\tensor C(j) \ar[ur]_-{\gamma}
-    }\]
-    These also guarantee the $n$-fold unit map $\eta^{\tensor j}$ is a monomorphism, and $\gamma$ for involving only index $j$ and $1$ are epimorphisms.
-    \item \emph{Associativity Axiom:} Fix natural numbers $k$, $j = \sum_{s=1}^k j_s$, define index $g_s:= j_1+...+j_s$ for $1\leq s\leq k$. For each $i_1,...,i_{g_k}=i_j$, with sum $i=\sum_{r=1}^j i_r$, and $h_s:= i_{g_{(s-1)}+1}+...+i_{g_s}$ (so $i=\sum_{s=1}^k h_s$ also), the following diagram commutes:
-    \[\xymatrix{
-        \left[C(k)\tensor \left(\bigtensor_{s=1}^k C(j_s)\right)\right]\tensor \left(\bigtensor_{r=1}^j C(i_r)\right) \ar[dd]_-{\text{shuffle}} \ar[r]^-{\gamma\tensor \id} & C(j) \tensor \left(\bigtensor_{r=1}^j C(i_r)\right) \ar[dr]^-{\gamma}\\
-        && C(i)\\
-        C(k) \tensor \left[\bigtensor_{s=1}^k \left(C(j_s)\tensor \left(\bigtensor_{q=1}^{j_s} C(i_{g_{(s-1)}+q})\right)\right)\right] \ar[r]_-{\id_{C(k)} \tensor (\bigtensor_s \gamma)} & C(k)\tensor \left(\bigtensor_{s=1}^k C(h_s)\right) \ar[ur]_-{\gamma}
-    }\]
-\end{itemize}
-\end{defn}
-From my intuitive understanding, unital axiom is saying ``action with unit $\eta:\kappa\rightarrow C(1)$'' is doing nothing on any other objects $C(j)$, regardless of the order it's composed. 
-
-On the other hand, associativity axiom is accounting for associativity when ``joining different actions'': For instance, given $k=3$, $j_1=2,j_2=2,j_3=3$ (so $j=7$), and $i_\ell=\ell$ (so $h_1 = 3, h_2=7, h_3 = 18$, and $i=28$). ne can first perform the action $C(3) \tensor (C(j_1=2)\tensor C(j_2=2)\tensor C(j_3=3))\rightarrow C(j=7)$, then perform the action $C(7)\tensor \left(\bigtensor_{\ell=1}^7 C(i_\ell)\right)\rightarrow C(i=28)$. 
-
-Alternatively, one can let each $C(j_s)$ act on $\bigtensor_{q=1}^{j_s}C(i_r{g_{(s-1)}+q})$ (for instance, $C(j_1=2)$ action $C(j_1=2)\tensor C(i_1=1)\tensor C(i_2=2)\rightarrow C(3)$), which collects to a morphsim to $C(3)\tensor C(7)\tensor C(18)$; finally, consider the action of $C(k=3)$ on these three.
-
-The associativity is requiring any such pair of actions must commute, reducing the ambiguity of the action.
-
-\begin{rem}
-    Most of the time, there is an extra requirement on the unit, namely $C(0):= \kappa$, and the action morphism $\gamma:C(0)\rightarrow C(0)$ (namely the action of nothing) is $\id_{C(0)}$.
-\end{rem}
-
-\begin{defn}
-    Let $\mathcal{C},\mathcal{C}'$ be two operads on symmetric monoidal category $\mathcal{V}$, a \emph{morphism of operads} $\psi:\mathcal{C}\rightarrow \mathcal{C}'$, is a sequence of morphisms $\psi_j:C(j)\rightarrow C'(j)$ in $\mathcal{V}$, such that it preserves the operad's structure morphism:
-    \[\xymatrix{
-        C(k)\tensor C(j_1)\tensor...\tensor C(j_k) \ar[d]_-{\psi_k\tensor \psi_{j_1}\tensor...\tensor \psi_{j_k}} \ar[r]^-{\gamma} & C(j_1+...+j_k) \ar[d]^-{\psi_{j_1+...+j_k}}\\
-        C'(k)\tensor C'(j_1)\tensor ..\tensor C'(j_k) \ar[r]_-{\gamma'} & C'(j_1+...+j_k)
-    }\]
 \end{defn}
 
-\hfil
-
-\begin{exmp}
-    (Endomorphism Operad on Based Spaces) First, recall that the category of based spaces $\mathcal{T}$ is a symmetric monoidal category under regular cartesian product $\times$, and it's self enriched (as all homset has induced topology from regular function space, and has a basepoint called constant basepoint map).
-    
-    For each based space $X\in\mathcal{T}$ (with $*$ denotes the basepoint), consider the collection $\mathcal{E}_X (j):= F(X^j,X)$ (all based map from $j$th cartesian product $X^j\rightarrow X$). Notice that give $j=j_1+...+j_k$, given based maps $g_i\in \mathcal{E}_X (j_i)$, the universality of product guarantees $k$ maps $g_i\circ \pi_i: \prod_{i=1}^k X^{j_i} = X^j \rightarrow X^{j_i}\rightarrow X$, hence induces a based map $\prod g_i:X^j\rightarrow X^k$. Define the action morphism as follow:
-    \[\gamma:\mathcal{E}_X (k)\times \prod_{i=1}^k \mathcal{E}_X (j_i)\rightarrow \mathcal{E}_X (j),\quad \gamma(f; g_1,...,g_k):= f\circ (\prod g_i):X^j\rightarrow X^k\rightarrow X\]
-    Which, $\mathcal{E}_X (0) = F(*,X)$ is a one-point set (as one can only include the basepoint to the basepoint of $X$), and the unit map $\eta:*\rightarrow \mathcal{E}_X (1)$ is $*\mapsto \id_X$. This forms an operad, after the routine check using the universality of product extensively...
-\end{exmp}
-This example of operad is encoding how ``product of morphisms'' can be communicated in a multi-entry sense (also talks about how such communication acts on $X$, in the most elementary way).
-
-\hfil
-
-For operads in spectra (specifically about symmetric and orthogonal spectra), each space (1-pt compactification of some $n$-dimensional real inner product space) is associated with a $n$th symmetric group $\Sigma_n$ action (once we fix a coordinate for instance).
-
-\begin{defn}
-    An \emph{operad} $\mathcal{C}$ in $\mathcal{V}$, is a planar operad, such tha each $C(j)$ is equipped with a right $\Sigma_j$-action. More formally, each $C(j)$ equips with a group homomorphism $\phi_j:\Sigma_j\rightarrow \Aut_\mathcal{V}(C(j))$, recognizing each permutation as a morphism, and act on $C(j)$ by precomposition.
-
-    Additionally, the symmetric group action satisfies the following axiom:
-    \begin{itemize}
-        \item Given $\sigma\in\Sigma_k$, $j_1+...+j_k = \Sigma_j$, let $\sigma(j_1,...,j_k)\in\Sigma_j$ denotes ``permutation of $k$-blocks of letters''.
-        \begin{exmp}
-            Given $j=5=2+3$, the permutation $(1\ 2)\in \Sigma_2$, $\sigma(2,3)$ is the permutation $\langle 1,2;3,4,5 \rangle \mapsto \langle 3,4,5;1,2\rangle$ (namely changing the blocks' order, without changing the order in each block).
-        \end{exmp} 
-        Then, the following diagram commutes:
-        \[\xymatrix{
-            C(k)\tensor \left(\bigtensor_{r=1}^k C(j_r)\right) \ar[d]_-{\gamma} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma^{-1}}} && C(k)\tensor \left(\bigtensor_{r=1}^k C(j_{\sigma(r)})\right) \ar[d]^-{\gamma}\\
-            C(j) \ar[rr]_-{\sigma(j_{\sigma(1)},...,j_{\sigma(k)})} && C(j)
-        }\]
-        \item Given $\tau_r\in \Sigma_{j_r}$, denote $\tau_1\oplus ... \oplus \tau_k\in \Sigma_j$ by letting each $\tau_r$ permuting the $j_r$th block in $j$ (for instance, let $\tau_1$ acts on $1,...,j_1$; let $\tau_2$ acts on $j_1+1,...,j_1+j_2$, etc.). Then, the following diagram commutes:
-        \[\xymatrix{
-            C(k)\tensor \left(\bigtensor_{r=1}^k C(j_r)\right)\ar[d]_-{\gamma} \ar[rr]^-{\id_{C(k)}\tensor (\bigtensor_r \tau_r)} && C(k)\tensor \left(\bigtensor_{r=1}^k C(j_r)\right) \ar[d]^-{\gamma}\\
-            C(j) \ar[rr]_{\tau_1\oplus...\oplus\tau_k} && C(j)
-        }\]
-    \end{itemize}
-\end{defn}
-
-The first axiom is ``permuting blocks of entries'', while the second one is ``permuting each block of entries'', combining the two it provides about how to permute all finite amount of actions.
-
-\begin{exmp}
-    Back to the endomorphism operad example, each $\mathcal{E}_X (j)$ has an obvious $\Sigma_j$-action, by permuting the $j$ coordinates involved. Which, by definition when combining $\mathcal{E}_X(k)\times \left(\prod_{r=1}^k \mathcal{E}_X (j_r)\right)\rightarrow \mathcal{E}_X (j)$, we first combine the $r$th block $\{j_1+...+j_{r-1}+1,...,j_1+...+j_{r-1}+j_r\}$ into one entry, the $\Sigma_k$-action permutes the blocks of $j_r$; and, the internal permutation of $j_r$ also carries over naturally.
-\end{exmp}
-
-\hfil
-
-This also suggests there is a natural way to let $\Sigma_j$ acts on any object in the monoidal category: More precisely, each $\sigma\in\Sigma_j$ has a shuffle morphism $\text{shuffle}_{\sigma^{-1}}X^{\tensor j}\rightarrow X^{\tensor j}$. By convention, it acts on the left (postcomposing).
-
-\begin{defn}
-    Let be $\mathcal{C}$ an operad on $\mathcal{V}$. An object $A\in\mathcal{V}$ is a \emph{$\mathcal{C}$-algebra} if it's equipped with a collection of morphisms $\theta: C(j)\tensor A^{\tensor j}\rightarrow A$ for $j\geq 0$, such that the following holds:
-    \begin{itemize}
-        \item \emph{Associativity Axiom:} Given $j = \sum_{i=1}^k j_i$, the following diagram commutes:
-        \[\xymatrix{
-            \left[C(k)\tensor \left(\bigtensor_{i=1}^k C(j_i)\right)\right] \tensor A^{\tensor j} \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\gamma\tensor \id_{A^{\tensor j}}} && C(j)\tensor A^{\tensor j} \ar[dr]^-{\theta_j}\\
-            & & & A\\
-            C(k)\tensor \left[\bigtensor_{i=1}^k \left(C(j_i)\tensor A^{\tensor j_i}\right)\right] \ar[rr]_-{\id_{C(k)}\tensor \left(\bigtensor_i \theta_{j_i}\right)} && C(k)\tensor A^{\tensor k} \ar[ur]_-{\theta_k}
-        }\]
-        (Note: This part uses the isomorphism $A^{\tensor j}\cong\bigtensor_{i=1}^k A^{\tensor j_i})$.
-        \item \emph{Unit Axiom:} The following diagram commutes:
-        \[\xymatrix{
-            \kappa \tensor A \ar[dr]_-{\eta\tensor \id_A} \ar[rr]^-{\sim} && A\\
-            & C(1)\tensor A \ar[ur]_-{\theta_1}
-        }\]
-        \item \emph{Eauivariance Axiom:} Given any permutation $\sigma\in\Sigma_j$, the following diagram commutes:
-        \[\xymatrix{
-            C(j)\tensor A^{\tensor j} \ar[dr]_-{\theta_j} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma^{-1}}} && C(j)\tensor A^{\tensor j} \ar[dl]^-{\theta_j}\\
-            & A
-        }\]
-    \end{itemize}
-\end{defn}
-
-\begin{exmp}
-    Notice the classical example in $\mathcal{T}$ the category of based spaces, the endomorphism operad $\mathcal{E}_X$ naturally acts on $X\in\mathcal{T}$, by defining $\theta_j:\mathcal{E}_X (j)\times X^j\rightarrow X$ as evaluation: $\theta_j (f; x_1,...,x_n):= f(x_1,...,x_n)$ (let's handwave the continuity part here :P). 
-
-    The multilinearity of breaking up entries is compatible as long as the shuffle of $X^j$ to $A^{j_i}$ preserves order, the unit axiom is immediate when we define the ``unit''in $\mathcal{E}_X (1)$ as $\id_X$, and the equivariance axiom is satisfied because ``shuffling the input'' in $\mathcal{E}_X (j)$ and ``shuffling the entries'' in $X^j$ have inverse meanings, so shuffling entries of $X^j$ according to the inverse of $\sigma\in \Sigma_j$ will cancel the action on $\mathcal{E}_X (j)$, causing it to be identity.
-
-    More explicitly, the actions of $\sigma$ are as follow, with the left on $\mathcal{E}_X (j)$ (precomposing the shuffle), the right on $X^j$ (shuffle using the inverse):
-    \[f(x_1,...,x_j)\mapsto f(x_{\sigma(1)},...,x_{\sigma(j)}),\quad\quad (x_1,...,x_j)\mapsto (x_{\sigma^{-1}(1)},...,x_{\sigma^{-1}(j)})\]
-\end{exmp}
-
-Here, there is a more distinct reason than monad about why it's called ``algebra'', because we can let $A$ act on other objects again:
-\begin{defn}
-    Given $\mathcal{C}$ an operad on $\mathcal{V}$, $A\in\mathcal{V}$ a $\mathcal{C}$-algebra. An object $M\in\mathcal{V}$ is an \emph{$A$-module}, if it's equipped with morphisms $\lambda_j:C(j)\tensor A^{\tensor (j-1)}\tensor M\rightarrow M$ for $j\geq 1$, that satisfies the following axioms:
-    \begin{itemize}
-        \item \emph{Associativity:} Given $j=\sum_{i=1}^k j_i$, the following diagram commutes:
-        \[\xymatrix{
-            \left[C(k)\tensor \left(\bigtensor_{i=1}^k C(j_i)\right)\right]\tensor A^{j-1}\tensor M \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\gamma\tensor \id_{A^{j-1}}\tensor M} && C(j) \tensor A^{j-1}\tensor M \ar[dr]^-{\lambda_j}\\
-            &&& M\\
-            C(k)\tensor \left[\bigtensor_{i=1}^{k-1}\left(C(j_i)\tensor A^{j_i}\right)\right] \tensor \left(C(j_k)\tensor A^{j_k-1}\tensor M\right) \ar[rr]_-{\id_{C(k)}\tensor (\bigtensor_i \theta_{j_i}) \tensor \lambda} && C(k)\tensor A^{k-1} \tensor M \ar[ur]_-{\lambda_k}
-        }\]
-
-        \item \emph{Unit:} Special case when $j=1$ (so contains $A^0=\kappa$), the following diagram commutes:
-        \[\xymatrix{
-            \kappa \tensor M \ar[dr]_-{\eta\tensor \id_M}\ar[rr]^-{\sim} && M\\
-            & C(1)\tensor M \ar[ur]_-{\lambda}
-        }\]
-        \item \emph{Equivariance:} Given $\sigma\in \Sigma_{j-1}\hookrightarrow \Sigma_j$ (in the canonical way $\{1,...,j-1\}\hookrightarrow \{1,...,j-1,j\}$), the following diagram commutes:
-        \[\xymatrix{
-            C(j) \tensor A^{j-1}\tensor M \ar[dr]_-{\lambda_j} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma^{-1}}\tensor \id_M} && C(j)\tensor A^{j-1}\tensor M \ar[dl]^-{\lambda_j}\\
-            & M
-        }\]
-    \end{itemize}
-\end{defn}
-
-Right now I can only think of a trivial example...where every $\mathcal{C}$-algebra $A$ has itself being an $A$-module. 
-
-However, I did see that if the symmetric monoidal category $\mathcal{V}$ has an \emph{internal hom functor} (that is, a bifunctor $\mathcal{H}:\mathcal{V}^\Op\times \mathcal{V}\rightarrow\mathcal{V}$, such that a natural isomorphism $\Hom(A\tensor B,C)\cong \Hom(A,\mathcal{H}(B,C))$ exists). In this case, $(\_\tensor A\dashv \mathcal{H}(A,\_))$ is an adjoint pair, and $\mathcal{V}$ is called \emph{closed symmetric monoidal category}. Using this $\mathcal{H}$ to define the endomorphism operad, then all the properties carry over.
-
-\hfil
-
-\hfil
-
-Some of the variants of operads include:
-\begin{enumerate}
-    \item \emph{Planar Operads}, this often happens when we want to omit the commutativity structure of certain algebra. Professor May also defined this to be \emph{non-$\Sigma$ operad}.
-    \item \emph{Unital Operads}, these are the special case where $C(0)=\kappa$, insisting the ``0-ary operation'' (or the operation of ``doing nothing'') agrees with the traditional sense. However, if the algebra we want to work on doesn't have units (for instance, Lie algebras as analogy in traditional algebra), then $C(0):=0$ (the initial object of the category) would be more sensible.
-    \item \emph{Augmentation Operads}, these are unital operads with \emph{augmentation morphisms} $\epsilon:= \gamma:C(j)\tensor C(0)^j\rightarrow C(0)=\kappa$, and also the \emph{degeneracy maps} as follow:
-    \[\sigma_{ji}:C(j)\cong C(j)\tensor C(0)^j \xrightarrow{\id_{C(j)}\tensor \eta^{i-1} \tensor \id_{C(0)}\tensor \eta^{j-1}} \left[C(j)\tensor C(1)^{i-1}\tensor C(0)\tensor C(1)^{j-i}\right]\xrightarrow{\gamma} C(j-1)\]
-    where $1\leq i\leq j$.
-\end{enumerate}
-
-
-\hfil
-
-Some other examples:
-
-\begin{exmp}
-    There is a trivial operad, defined by $\mathcal{N}(j):=\kappa$, with each $\gamma:\mathcal{N}(k)\tensor \mathcal{N}(j_1)\tensor...\tensor\mathcal{N}(j_k)\rightarrow\mathcal{N}(j)$ being the canonical isomorphism of products of $\kappa$. Notice the isomorphism by definition respects permutation (i.e. all permutation yields the same isomorphism).
-
-    An object $A\in\mathcal{V}$ that's an $\mathcal{N}$-a;gebra (with morphisms $\theta_j:\mathcal{N}(j)\tensor A^{j}\rightarrow A$) can be regarded as a monoid, because we have a unit morphism $\theta_1:\mathcal{N}(1)\tensor A\cong \kappa\tensor A\xrightarrow{\sim}A$ by definition, and together with associativity diagram as follow:
-    \[\xymatrix{
-        \mathcal{N}(2)\tensor \mathcal{N}(1)\tensor\mathcal{N}(2)\tensor A^3\ar[dd]_-{\text{shuffle}}\ar[rr]^-{\gamma\tensor \id_{A^3}} && \mathcal{N}(3)\tensor A^3 \ar[dr]^-{\theta_3}\\
-        &&& A\\
-        \mathcal{N}(2)\tensor \left(\mathcal{N}(1)\tensor A\right)\tensor \left(\mathcal{N}(2)\tensor A^2\right) \ar[rr]_-{\id_{\mathcal{N}(2)}\tensor \theta_1\tensor\theta_2} && \mathcal{N}(2)\tensor A^2 \ar[ur]_-{\theta_2}
-    }\]
-    If switch the order of $\mathcal{N}(1)$ and $\mathcal{N}(2)$, this demonstrates the agreement with the other way of composition, hence the ``action'' $\mathcal{N}(j)\tensor A^j\rightarrow A$ disregards the order of ``composition'', which is associative. Finally, with the permuation action being trivial, this states the multiplication action is commutative, hence $A$ can be regarded as a commutative monoid.
-
-    (If disregard the permutation action, $A$ becomes just a monoid).
-
-    Similarly, $M\in\mathcal{V}$ is an $A$-module, if it's the classical $A$-module by chasing through similar monoidal actions.
-\end{exmp}
-
-This example is also called \emph{associative non-$\Sigma$ operad}, because it's a non-$\Sigma$ operad that produces associative monoids as its algebra. For further details check the presentation notes this week :)
 
 \end{document}

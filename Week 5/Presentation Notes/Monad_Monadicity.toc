@@ -1,0 +1,3 @@
+\contentsline {section}{\numberline {1}Review: Adjoint Functors}{1}{section.1}%
+\contentsline {section}{\numberline {2}Monads and Relations to Adjoint Functors}{5}{section.2}%
+\contentsline {section}{\numberline {3}Monad Algebra and Monadicity (ND)}{13}{section.3}%
