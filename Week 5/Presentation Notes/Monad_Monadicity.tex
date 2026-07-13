@@ -527,5 +527,33 @@ More general result need more definition:
     \end{itemize}
 \end{defn}
 
+With these definitions, let's consider the case for Eilenberg-Moore category, the functor $G^T:\mathcal{C}^T\rightarrow\mathcal{C}$:
+\begin{prop}
+    The forgetful functor $G^T$ for Eilenberg-Moore category strictly creates $G^T$-split coequalizers.
+\end{prop}
+\begin{proof}
+    Given two $T$-algebras $(A,\alpha),(B,\beta)$ with two morphisms $f,g:(A,\alpha)\rightrightarrows(B,\beta)$ in $\mathcal{C}^T$ that admits a $G^T$-splitting:
+    \[\xymatrix{
+            A \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & B \ar@(d,d)[l]^-{t} \ar[r]^-{h} & C \ar@(d,d)[l]^-{s}
+        }\]
+    Recall that $h\circ f=h\circ g$, together with $h\circ s=\id_C$, $g\circ t=\id_B$, and $f\circ t=s\circ h$ as endomorphism of $B$. Here, the goal is to show, $C$ has a unique $T$-algebra structure $\gamma:T(C)\rightarrow C$, such that $h$ is the unique morphism forming $(C,\gamma)$ as a qoequalizer of $f,g$ in $\mathcal{C}^T$.
+    
+    Using the fact that $C$ (with morphism $h$) is a coequalizer in $\mathcal{C}$, together with the fact $T$ preserves split coequalizer (in fact, all functor preserves split coequalizer), we see $Th:T(B)\rightarrow T(C)$ is the coequalizer of $Tf,Tg:T(A)\rightarrow T(B)$. Also, since $f,g$ are algebra morphisms, we get the following diagram:
+    \[\xymatrix{
+        T(A) \ar[d]_-{\alpha} \ar@/_{-.5pc}/[r]^-{Tf} \ar@/_{.5pc}/[r]_-{Tg} & T(B) \ar[d]_-{\beta} \ar[r]^-{Th} & T(C) \ar@{-->}[d]^-{\exists ! \gamma} \\
+        A \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & B \ar[r]^-{h} & C 
+        }\]
+        Existence and uniqueness of $\gamma$ is based on the fact $h\circ \beta$ coequalizes $Tf,Tg$, and $T(C)$ with $Th$ forms a coequalizer.
+
+        \hfil
+
+        So, the goal is to prove $(C,\gamma)$ forms a $T$-algebra and is a coequalizer of $f,g$ in $\mathcal{C}^T$, as existence/uniqueness (up to isomorphism) of the lift follows from the universality of coequalizer.
+
+        To check $(C,\gamma)$ is a $T$-algebra, we use the fact $(B,\beta)$ is a $T$-algebra, together with the fact $h$ is an epimorphism (as a coequalizer), with the ``algebra morphism structure'' above (Remark: Here $h$ is not an algebra morphism yet, it's just a morphism that satisfies the same diagram for algebra morphism at this point). Which, the following diagrams commute:
+        \[\xymatrix{
+            d
+        }\]
+\end{proof}
+
 
 \end{document}
