@@ -43,7 +43,7 @@ If use the inverse transformation $(\_)^\flat$, the above can also be phrased as
 
 \hfil
 
-A property of adjoint functor is it connects the commutativity of certain diagrams between the two categories:
+Adjoint functor also connects the commutativity of certain diagrams between the two categories:
 
 \begin{lem}
 Fix arbitrary $f:X\rightarrow X'$ in $\mathcal{C}$, $g:Y\rightarrow Y'$ in $\mathcal{D}$, and two morphsisms $h:F(X)\rightarrow Y$, $h':F(X')\rightarrow Y'$ in $\mathcal{D}$. The commutativity of following two diagrams are equivalent:
@@ -99,6 +99,8 @@ These natural transformations are named as follow:
     Given the adjoint pairs $F\dashv G$, the natural transformation $\eta:\Id_\mathcal{C}\rightarrow GF$ is called the \emph{unit transformation}, while $\epsilon:FG\rightarrow \Id_\mathcal{D}$ is called the \emph{counit transformation}.
 \end{defn}
 
+\hfil
+
 They satisfy what's called the \emph{Triangle Identity} as follow:
 \begin{prop}
     The following two diagrams of natural transformation holds:
@@ -132,7 +134,11 @@ Here, $\mathcal{D}^\mathcal{C}$ denotes the \emph{functor categories} of all fun
     The second equality relies on the fact $(\id_{F(X)})^\sharp = \eta_X$. Which, since $(\_)^\flat$ is again a bijection, and $\epsilon_Y := (\id_G(Y))^\flat$, we see $G\epsilon_Y\circ \eta_{G(Y)}=\id_{G(Y)}$, showing $G\epsilon\circ \eta_{G} = \id_G$ as natural transformations.
 \end{proof}
 
-This will be an important result when classifying monads. We also want to say the converse of Triangle Identity holds, that it generates an adjoint pair:
+This will be an important result when classifying monads. 
+
+\hfil
+
+We also want to say the converse of Triangle Identity holds, that it generates an adjoint pair:
 \begin{lem}
     Suppose $F:\mathcal{C}\rightarrow \mathcal{D}$ and $\mathcal{C}\leftarrow \mathcal{D}:G$ are two opposite functors, together with natural transformations $\eta:\Id_\mathcal{C}\rightarrow GF$ and $\epsilon:FG\rightarrow \Id_\mathcal{D}$ such that Triangle Identity holds:
     \[\xymatrix{
@@ -163,11 +169,15 @@ This will be an important result when classifying monads. We also want to say th
 
 \newpage
 
+\section{Example: Free-Forgetful Adjunction Monad}
+
+\newpage
+
 \section{Monads and Relations to Adjoint Functors}
 
 Let's first observe the case when we have an adjoint pair $F\dashv G$ from above, inducing an endofunctor $GF:\mathcal{C}\rightarrow\mathcal{C}$, with unit transformation $\eta:\Id_\mathcal{C}\rightarrow GF$, together with \emph{multiplication transformation} $\mu:=G\epsilon_F:GFGF\rightarrow GF$ (as we have $\epsilon:FG\rightarrow\Id_\mathcal{D}$). Notice they provide the following identities:
 \begin{itemize}
-    \item This can be viewed as \emph{Associativity of Multiplication}:
+    \item \emph{Associativity of Multiplication}:
     \[\xymatrix{
         (GF)^3 \ar[d]_-{\mu_{GF}} \ar[r]^-{GF\mu} & (GF)^2\ar[d]^-{\mu}\\
         (GF)^2 \ar[r]_-{\mu} & GF
@@ -179,7 +189,7 @@ Let's first observe the case when we have an adjoint pair $F\dashv G$ from above
     }\]
     Disregard the left most $G$, the above diagram commutes because $\epsilon:FG\rightarrow\Id_\mathcal{D}$ is a natural transformation.
 
-    \item This can be viewed as \emph{Unit Property}:
+    \item \emph{Unit Property}:
     \[\xymatrix{
         GF \ar[dr]_-{\id_{GF}} \ar[r]^-{\eta_{GF}} & (GF)^2 \ar[d]^-{\mu} & GF \ar[l]_-{GF\eta} \ar[dl]^-{\id_{GF}}\\
         & GF
@@ -211,6 +221,8 @@ This reflects the structure of \emph{Monad}:
 
 Which, starting portion shows that any adjoint pair $(F\dashv G)$ generates a monad on category $\mathcal{C}$ (the source category of the left adjoint $F$).
 
+\begin{comment}
+
 \begin{exmp}
     As a more relevant example, let $\mathcal{T}^*$ denotes the category of based spaces, $\mathcal{T}$ denotes the category of topological spaces, there is a natural forgetful functor $F:\mathcal{T}^*\rightarrow \mathcal{T}$ that forgets the based spaces.
 
@@ -224,6 +236,8 @@ Which, starting portion shows that any adjoint pair $(F\dashv G)$ generates a mo
 
     Since collapsing of three added points to one doesn't care about the collapse order, this explicitly forms a monad (or using the adjunction property this directly follows :)
 \end{exmp}
+
+\end{comment}
 
 \hfil
 
@@ -248,7 +262,7 @@ Another question to ask: Is every monad of a category induced by adjoint pairs o
     \end{itemize}
 \end{defn}
 
-I think intuitively $T(A)$ consists of data about ``pairs of actions'', while $a$ encodes how this action appears on $A$. The square provides the ``associativity'' of action (for instance, $(ab)\dot v = a\dot (b\dot v)$ as action on modules). I do need to agree with professory May, that this system is more like a module instead of algebra in the traditional sense.
+Intuitively $T(A)$ consists of data about ``pairs of actions'', while $a$ encodes how this action appears on $A$. The square provides the ``associativity'' of action (for instance, $(ab)\cdot v = a\cdot (b\cdot v)$ as action on modules). I do need to agree with professory May, that this system is more like a module instead of algebra in the traditional sense.
 
 \hfil
 
@@ -272,7 +286,126 @@ showing $Tf:(T(A),\mu_A)\rightarrow (T(B),\mu_B)$ is a morphism.
 Here comes an important result regarding this category:
 \begin{thm}
     The two functors are adjoint pairs $(F^T\dashv G^T)$, and the induced monad is $(T,\eta,\mu)$.
+\end{thm}%reference
+
+
+This demonstrates each monad is induced by some adjoint pairs.
+
+\begin{comment}
+
+\begin{exmp}
+    For the basepoint monad demonstrated in \textbf{Example 1.11}, the Eilenberg-Moore category $\mathcal{T}^{(\_)_*}$ consists of pairs $(X,a)$ where $a:X_*\rightarrow X$ is a map that satisfies the following:
+    \[\xymatrix{
+        X \ar[dr]_-{\id_X} \ar[r]^-{\eta_X} & X_* \ar[d]^-{a}\\
+        & X
+    },\quad\quad \xymatrix{
+        (X_*)_* \ar[r]^-{Ta} \ar[d]_-{\mu_X} & X_* \ar[d]^-{a}\\
+        X_* \ar[r]_-{a} & X
+    }\]
+    The first diagram enforces $a|_X = \id_X$ (as $\eta_X:X\rightarrow X_*$ is the canonical inclusion $X\hookrightarrow X\sqcup\{*\}$). Given this data, the second diagram automatically commutes (by checking where the added points are sent to), so we see $a$ is purely determined by $a(*)\in X$, in other words, it's specified by $(X,x_0)$ for $x_0\in X$.
+
+    Then, given a morphism $f:(X,a)\rightarrow (Y,b)$, the following diagram commutes:
+    \[\xymatrix{
+        X_* \ar[d]_-{a} \ar[r]^-{\tilde{f}} & Y_* \ar[d]^-{b}\\
+        X \ar[r]_-{f} & Y
+    }\]
+    Which, $f(a(*))= b(\tilde(f)(*))=b(*)$ is enforced, showing $f$ must map the chosen point in $X$ to the chosen point in $Y$.
+
+    Hence, the functor $\mathcal{T}^{(\_)_*}\rightarrow \mathcal{T}^*$ by $(X,a)\mapsto (X,a(x))$, and $f\mapsto f$ is in fact an equivalence of category. So, the Eilenberg-Moore category of the basepoint functor is the category of based space.
+\end{exmp}
+\end{comment}
+
+\hfil
+
+Afterward, there's more question to ask: Given a monad on $\mathcal{C}$, how many ways are there to create adjoint pairs which induce the provided monad? Can we find such universal adjoint pair? 
+\begin{thm}
+    In the \emph{adjoint category} $\text{Adj}_T$ (categories of all category with adjoint functors between $\mathcal{C}$, inducing monad $T$; the morphisms are functors that commutes with the left/right adjoints for each category), the Eilenberg-Moore category $(\mathcal{C}^T,F^T\dashv G^T)$ is final.
 \end{thm}
+
+\newpage
+
+\section{Monad Algebra and Monadicity}
+
+Fix a monad $(T,\eta,\mu)$ on category $\mathcal{C}$, we're mainly concerned with the Eilenber-Moore category $\mathcal{C}^T$ (or the category of $T$-algebras). In particular, we wish to study the free algebras, namely the pair $(T(A),\mu_A)\in \mathcal{C}^T$, and see under what situation this covers all the possible $T$-algebras.
+
+The first goal is to show in $\mathcal{C}^T$, any $T$-algebra $(A,a)$ satisfies the following coequalizer diagram:
+\[\xymatrix{
+    (T^2(A),\mu_{T(A)}) \ar@/_{-.5pc}/[r]^-{Ta} \ar@/_{.5pc}/[r]_-{\mu_A} & (T(A),\mu_A) \ar[r]^-{a} & A
+}\]
+
+For this, let's do some definition:
+\begin{defn}
+    A \emph{split coequalizer diagram} consists of the following morphisms:
+    \[\xymatrix{
+        X \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & Y \ar@(d,d)[l]^-{t} \ar[r]^-{h} & Z \ar@(d,d)[l]^-{s}
+    }\]
+    with the requirement $h\circ f=h\circ g$, $h\circ s=\id_Z$, $g\circ t = \id_Y$, and $f\circ t=s\circ h$ as endomorphism on $Y$.
+\end{defn}
+
+\begin{lem}
+    Given a split coequalizer diagram as above, then $h:Y\rightarrow Z$ serves as a categorical coequalizer of $f,g:X\rightarrow Y$. Also, it's an \emph{absolute colimit}, meaning all functor preserves this coequalizer.
+\end{lem}
+\begin{proof}
+    It is evident why all functor preserves this, simply because functor preserves identity, hence split coequalizer diagram is preserved under any functor. Hence, it suffices to show a split coequalizer diagram is a coequalizer.
+
+    Let $h':Y\rightarrow Z'$ satisfies $h'\circ f=h'\circ g$, consider the morphism $h'\circ s:Z\rightarrow Y\rightarrow Z'$. Notice its composition with $h$ provides the following:
+    \[(h'\circ s)\circ h = h'\circ (f\circ t) = (h'\circ g)\circ t = h'\circ \id_{Y} = h'\]
+    Hence, the following factorization holds:
+    \[\xymatrix{
+        X \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & Y\ar[r]^-{h} \ar[dr]_-{h'} & Z \ar[d]^-{h'\circ s}\\
+        && Z'
+    }\]
+    Then, the uniqueness of $h'\circ s$ is due to the fact $h$ is an epimorphism: Recall that $h\circ s=\id_Z$, with $\id_Z$ being epimorphism, so is $h$. Then, if $\psi:Z\rightarrow Z'$ also satisfies $(h'\circ s)\circ h=h' = \psi\circ h$, right cancellative property guarantees $\psi=h'\circ s$. This shows $h:Y\rightarrow Z$ is a coequalizer of $f,g$.
+\end{proof}
+
+For instance, given $(A,a)\in \mathcal{C}^T$ a $T$-algebra, the following diagram is a split coequalizerin $\mathcal{C}$ (\textbf{Remark:} NOT in $\mathcal{C}^T$):
+\[\xymatrix{
+    T^2(A) \ar@/_{-.5pc}/[r]^-{Ta} \ar@/_{.5pc}/[r]_-{\mu_A} & T(A) \ar@(d,d)[l]^-{\eta_{T(A)}} \ar[r]^-{a} & A \ar@(d,d)[l]^-{\eta_A}
+}\]
+Since $a\circ Ta = a\circ \mu_A$ using associativity diagram while $a\circ \eta_A = \id_A$ by unit diagram of monad algebra, $\mu_A\circ \eta_{T(A)}=\id_{T(A)}$ by triangle identity of monad, and finally $Ta \circ \eta_{T(A)}=\eta_A\circ a$ due to the fact $\eta:\Id_\mathcal{C}\rightarrow T$ is a natural transformation.
+
+\hfil
+
+More general result need more definition:
+\begin{defn}
+    Given a functor $U:\mathcal{D}\rightarrow\mathcal{C}$.
+    \begin{itemize}
+        \item a \emph{$U$-split coequalizer} of $f,g:X\rightarrow Y$ in $\mathcal{D}$, is an object $Z\in\mathcal{C}$, together with morphism $h:U(Y)\rightarrow Z$, $s:Z\rightarrow U(Y)$, and $t:U(Y)\rightarrow U(X)$, such that the following diagram is a split coequalizer in $\mathcal{C}$:
+        \[\xymatrix{
+            U(X) \ar@/_{-.5pc}/[r]^-{Uf} \ar@/_{.5pc}/[r]_-{Ug} & U(Y) \ar@(d,d)[l]^-{t} \ar[r]^-{h} & Z \ar@(d,d)[l]^-{s}
+        }\]
+        \item $U$ \emph{creates coequalizers of $U$-split pairs}, if any $U$-split coequalizer admits a coequalizer $h':Y\rightarrow Z'$ in $\mathcal{D}$, such that its image $Uh':U(Y)\rightarrow U(Z')$ is isomorphic to $h:U(Y)\rightarrow Z$ in $\mathcal{C}$.
+        \item $U$ \emph{strictly creates coequalizers of $U$-split pairs}, if it creates coequalizer of $U$-split pairs, while such lift $h'$ in $\mathcal{D}$ is unique (up to isomorphism in $\mathcal{D}$).
+    \end{itemize}
+\end{defn}
+
+With these definitions, let's consider the property possessed by forgetful functor $G^T:\mathcal{C}^T\rightarrow\mathcal{C}$ for Eilenberg-Moore category:
+\begin{prop}
+    $G^T$ strictly creates $G^T$-split coequalizers.
+\end{prop}
+
+\hfil
+
+Finally, given adjoint pair $F:\mathcal{C}\leftrightarrows\mathcal{D}:G$ (where $(F\dashv G)$) that induces monad $T$ on $\mathcal{C}$. Recall, there exists a canonical functor $K:\mathcal{D}\rightarrow \mathcal{C}^T$, such that the adjoint pairs commute:
+\[\xymatrix{
+    \mathcal{D} \ar@/_{-.5pc}/[dr]^-{G} \ar@{-->}[rr]^-{K} && \mathcal{C}^T \ar@/_{-.5pc}/[dl]^-{G^T}\\
+    & \mathcal{C} \ar@/_{-.5pc}/[ul]^-{F} \ar@/_{-.5pc}/[ur]^-{F^T}
+}\]
+
+Here comes the famous \emph{Beck's Monadicity Theorem}, classifying when $\mathcal{D}$ is isomorphic to $\mathcal{C}^T$:
+\begin{thm}
+    $K$ is an isomorphism of categories $\iff$ $G$ strictly creates $G$-split coequalizers.
+\end{thm}
+
+\newpage
+
+\section{Monad associated to an Operad}
+
+\newpage
+
+\section{Appendix 1: Categorical Proofs}
+
+\subsection{Proof of Theorem 3.3}
 \begin{proof}
     Given arbitrary $A\in\mathcal{C}$ and $(B,b)\in\mathcal{C}^T$, we shall show a natural isomorphism between the two:
     \[\Phi:\Hom_{\mathcal{C}^T}((T(A),\mu_A), (B,b))\rightleftarrows \Hom_\mathcal{C}(A,B):\Psi\]
@@ -324,32 +457,85 @@ Here comes an important result regarding this category:
     Hence, $(F^T\dashv G^T)$ induces monad $(T,\eta,\mu)$.
 \end{proof}
 
-This demonstrates each monad is induced by some adjoint pairs.
+\hfil
 
-\begin{exmp}
-    For the basepoint monad demonstrated in \textbf{Example 1.11}, the Eilenber-Moore category $\mathcal{T}^{(\_)_*}$ consists of pairs $(X,a)$ where $a:X_*\rightarrow X$ is a map that satisfies the following:
+\subsection{Proof of Theorem 3.4}
+\begin{proof}
+    Given a category $\mathcal{D}$, together with adjoint pairs $(F\dashv G)$ (where $F:\mathcal{C}\leftrightarrows\mathcal{D}:G$) that generates monad $(T,\eta,\mu)$. We ought to show the existence / uniqueness of a functor $L:\mathcal{D}\rightarrow\mathcal{C}^T$, such that the following diagram commutes:
     \[\xymatrix{
-        X \ar[dr]_-{\id_X} \ar[r]^-{\eta_X} & X_* \ar[d]^-{a}\\
-        & X
+        \mathcal{D} \ar@/_{.5pc}/[dr]_{G} \ar@{-->}[rr]^-{\exists ! L} && \mathcal{C}^T \ar@/_{.5pc}/[dl]_{G^T}\\
+        & \mathcal{C} \ar@/_{.5pc}/[ul]_{F} \ar@/_{.5pc}/[ur]_{F^T}
+    }\]
+    For the $G$-diagram to commute, $L$ realizes a $T$-algebra structure on $G(Y)$ for each $Y\in\mathcal{D}$. Which, the counit $\epsilon:FG\rightarrow \Id_{\mathcal{D}}$ induces a natural transformation $\theta=G\epsilon:(GF)G\rightarrow G$, so each $Y\in\mathcal{D}$ is associated with a morphism $\theta_Y:T(G(Y))\rightarrow G(Y)$.
+
+    Notice $(G(Y),\theta_Y)$ forms a $T$-algebra due to one of the Triangle Identity, and the ``reduced'' associativity diagram for adjunction (by swapping the last $F(X)$ with $Y$):
+    \[\xymatrix{
+        G \ar[r]^-{\eta_G} \ar[dr]_-{\id_G} & GFG \ar[d]^-{G\epsilon}\\
+        & F
     },\quad\quad \xymatrix{
-        (X_*)_* \ar[r]^-{Ta} \ar[d]_-{\mu_X} & X_* \ar[d]^-{a}\\
-        X_* \ar[r]_-{a} & X
+        GFGFG(Y) \ar[d]_-{G\epsilon_{FG(Y)}} \ar[r]^-{GFG\epsilon_{Y}} & GFG(Y) \ar[d]^-{G\epsilon_{Y}}\\
+        GFG(Y) \ar[r]_-{G\epsilon_{F(X)}} & G(Y)
     }\]
-    The first diagram enforces $a|_X = \id_X$ (as $\eta_X:X\rightarrow X_*$ is the canonical inclusion $X\hookrightarrow X\sqcup\{*\}$). Given this data, the second diagram automatically commutes (by checking where the added points are sent to), so we see $a$ is purely determined by $a(*)\in X$, in other words, it's specified by $(X,x_0)$ for $x_0\in X$.
+    Also, by naturality of $\epsilon$, given any morphism $f:Y\rightarrow Y'$ in $\mathcal{D}$, $Gf:G(Y)\rightarrow G(Y')$ in $\mathcal{C}$ forms a morphism of $T$-algebra. Hence, define $L:\mathcal{D}\rightarrow \mathcal{C}^T$ by $L(Y):= (G(Y), G\epsilon_Y)$, and $Lf:= Gf:G(Y)\rightarrow G(Y')$ is a functor.
 
-    Then, given a morphism $f:(X,a)\rightarrow (Y,b)$, the following diagram commutes:
-    \[\xymatrix{
-        X_* \ar[d]_-{a} \ar[r]^-{\tilde{f}} & Y_* \ar[d]^-{b}\\
-        X \ar[r]_-{f} & Y
-    }\]
-    Which, $f(a(*))= b(\tilde(f)(*))=b(*)$ is enforced, showing $f$ must map the chosen point in $X$ to the chosen point in $Y$.
+    This functor satisfies $G(Y) = G^T L(Y)$, and $Gf = G^T Lf$, because $L(Y) = (G(Y),G\epsilon_Y)$ (also $Lf = Gf$), while forgetful functor $G^T(G(Y),G\epsilon_Y) = G(Y)$ (and morphism $L(Gf)= Gf$). 
+    
+    Also, given $X\in\mathcal{C}$ and morphism $g:X\rightarrow X'$ in $\mathcal{C}$, we have $L(F(X)) = (GF(X), G\epsilon_{F(X)}) = (T(X),\mu_X) = F^T(X)$ (by checking the definition of multiplication transformation, and the fact $GF = T$); also, $L(Ff) = G(Ff):GF(X)\rightarrow GF(X')$ by definition, which equals to $F^T f:T(X)\rightarrow T(X')$, this shows $LF = F^T$ as functor. This shows the existence of $L$.
 
-    Hence, the functor $\mathcal{T}^{(\_)_*}\rightarrow \mathcal{T}^*$ by $(X,a)\mapsto (X,a(x))$, and $f\mapsto f$ is in fact an equivalence of category. So, the Eilenberg-Moore category of the basepoint functor is the category of based space.
-\end{exmp}
+    \hfil
+
+    The uniqueness of $L$ on the morphism is clear, as $L(Y)\in\mathcal{C}^T$ must have the underlying object being $G(Y)\in\mathcal{C}$ (for $G^TL = G$ to be true), so $f:Y\rightarrow Y'$ must be mapped to $Gf:G(Y)\rightarrow G(Y')$. Theuniqueness of $L$ on the object is by the monadic requirement, where the $T$-algebra structure on $G(Y)$ is restricted by the monad requirement.
+\end{proof}
 
 \hfil
 
-Afterward, there's more question to ask: Given a monad on $\mathcal{C}$, how many ways are there to create adjoint pairs which induce the provided monad? Can we find such universal adjoint pair? For this, there are more definitions to make:
+\subsection{Proof of Proposition 4.4}
+\begin{proof}
+    Given two $T$-algebras $(A,\alpha),(B,\beta)$ with two morphisms $f,g:(A,\alpha)\rightrightarrows(B,\beta)$ in $\mathcal{C}^T$ that admits a $G^T$-splitting:
+    \[\xymatrix{
+            A \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & B \ar@(d,d)[l]^-{t} \ar[r]^-{h} & C \ar@(d,d)[l]^-{s}
+        }\]
+    Recall that $h\circ f=h\circ g$, together with $h\circ s=\id_C$, $g\circ t=\id_B$, and $f\circ t=s\circ h$ as endomorphism of $B$. Here, the goal is to show, $C$ has a unique $T$-algebra structure $\gamma:T(C)\rightarrow C$, such that $h$ is the unique morphism forming $(C,\gamma)$ as a qoequalizer of $f,g$ in $\mathcal{C}^T$.
+    
+    Using the fact that $C$ (with morphism $h$) is a coequalizer in $\mathcal{C}$, together with the fact $T$ preserves split coequalizer (in fact, all functor preserves split coequalizer), we see $Th:T(B)\rightarrow T(C)$ is the coequalizer of $Tf,Tg:T(A)\rightarrow T(B)$. Also, since $f,g$ are algebra morphisms, we get the following diagram:
+    \[\xymatrix{
+        T(A) \ar[d]_-{\alpha} \ar@/_{-.5pc}/[r]^-{Tf} \ar@/_{.5pc}/[r]_-{Tg} & T(B) \ar[d]_-{\beta} \ar[r]^-{Th} & T(C) \ar@{-->}[d]^-{\exists ! \gamma} \\
+        A \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & B \ar[r]^-{h} & C 
+        }\]
+        Existence and uniqueness of $\gamma$ is based on the fact $h\circ \beta$ coequalizes $Tf,Tg$, and $T(C)$ with $Th$ forms a coequalizer.
+
+        \hfil
+
+        So, the goal is to prove $(C,\gamma)$ forms a $T$-algebra and is a coequalizer of $f,g$ in $\mathcal{C}^T$, as existence/uniqueness (up to isomorphism) of the lift follows from the universality of coequalizer.
+
+        To check $(C,\gamma)$ is a $T$-algebra, we use the fact $(B,\beta)$ is a $T$-algebra, together with the fact $h$ is an epimorphism (as a coequalizer), with the ``algebra morphism structure'' above (Remark: Here $h$ is not an algebra morphism yet, it's just a morphism that satisfies the same diagram for algebra morphism at this point). Which, the following diagrams commute:
+        \[\xymatrix{
+            & B \ar[rr]^-{h} \ar[dl]_-{\eta_B} \ar[dd]_-{\id_B} && C \ar[dl]_-{\eta_C} \ar[dd]^-{\id_C}\\
+            T(B) \ar[rr]^-{Th} \ar[dr]_-{\beta} && T(C) \ar[dr]_-{\gamma}\\
+            & B \ar[rr]_-{h} && C
+        },\quad\quad \xymatrix{
+            & T^2(B) \ar[rrr]^-{T^2h} \ar[dl]_-{T\beta} \ar[ddr]_-{\mu_B} &&& T^2(C) \ar[dl]_-{T\gamma} \ar[ddr]^-{\mu_C}\\
+            T(B) \ar[rrr]^-{Th} \ar[ddr]_-{\beta} &&& T(C) \ar[ddr]_{\gamma}\\
+            && T(B) \ar[dl]_-{\beta} \ar[rrr]^-{Th} &&& T(C) \ar[dl]^-{\gamma}\\
+            & B \ar[rrr]_-{h} &&& C
+        }\]
+        Where, for both diagram, the right side are the axioms for $T$-algebra, while the other sides of the diagrams commute by checking the naturality / algebra. 
+
+        Using the fact $T$ preserves split coequalizer (and $h$ is a split coequalizer), we deduce $T^2h$ is also a split coequalizer. So, by chasing the diagram we get:
+        \[\id_C\circ h=h\circ \id_B = h\circ \beta\circ \eta_B = \gamma\circ Th\circ \eta_B = \gamma\circ \eta_C\circ h\]
+        \[\gamma\circ \mu_C\circ T^2h = \gamma\circ Th\circ \mu_B=h\circ \beta\circ \mu_B=h\circ \beta\circ T\beta=\gamma\circ Th\circ T\beta = \gamma\circ T\gamma \circ T^2h\]
+        Using the fact $h,T^2h$ are coequalizers (hence epimorphisms), we get $\gamma\circ \eta_C = \id_C$, and $\gamma\circ \mu_C = \gamma\circ T\gamma$, hence $(C,\gamma)$ is a $T$-algebra, further implying $h:B\rightarrow C$ is also a $T$-algebra morphism $(B,\beta)\rightarrow (C,\gamma)$.
+
+        \hfil
+
+        Finally, $h$ is again a coequalizer in $\mathcal{C}^T$, because any coequalizing diagram in $\mathcal{C}^T$ forgets to be a coequalizing diagram in $\mathcal{C}$, hence using the fact $h$ is a coequalizer in $\mathcal{C}$, the factorization follows (and the remaining part is to check it's a morphism of $T$-algebra, which follows from the fact that $T$ preserves split coequalizer).
+\end{proof}
+
+\newpage
+
+\section{Appendix 2: Kleisli Category}
+
+Given a monad $T$ on $\mathcal{C}$, there is another special category with adjoint pairs that induces the monad $T$:
 \begin{defn}
     Given a monad $(T,\eta,\mu)$ on category $\mathcal{C}$. The \emph{Kleisli category} $\mathcal{C}_T$ consists of:
     \begin{itemize}
@@ -413,7 +599,7 @@ The two functors are adjoint pairs $(F_T\dashv G_T)$, and the induced monad is $
     \[\Phi:\Hom_{\mathcal{C}_T}(A,B)\rightleftarrows \Hom_\mathcal{C}(A,T(B)):\Psi\]
     In fact, by definition these two sets are equal, as a morphism $f:A\rightsquigarrow B$ in $\mathcal{C}_T$, is precisely a morphism $f:A\rightarrow T(B)$, so the ``identity map'' between the two sets provide an obvious bijection.
 
-    About functoriality, this is established by the properties of morphisms that're established beforehand, here we can comfortably omit it :)
+    About functoriality, this is provided by the properties of morphisms that're established beforehand, here we can comfortably omit it :)
 
     \hfil
 
@@ -428,132 +614,22 @@ The two functors are adjoint pairs $(F_T\dashv G_T)$, and the induced monad is $
     So, the given adjunction does induce the monad $(T,\eta,\mu)$, finishing the proof.
 \end{proof}
 
-
 \hfil
 
-Finally, the universality of these two categories are given as follow:
+This category is also special in the following sense:
 \begin{thm}
-    In the \emph{adjoint category} $\text{Adj}_T$ (categories of all category with adjoint functors between $\mathcal{C}$, inducing monad $T$; the morphisms are functors that commutes with the left/right adjoints for each category), the Kleisli category $(\mathcal{C}_T, F_T\dashv G_T)$ is initial, while Eilenberg-Moore category $(\mathcal{C}^T,F^T\dashv G^T)$ is final.
+    The Kleisli Category $\mathcal{C}_T$ with adjoint pair $(F_T\dashv G_T)$ is initial in $\text{Adj}_T$, the category of adjoint pairs inducing $T$.
 \end{thm}
-\begin{proof}
-    I think for monadicity purpose, we'll only show the terminal property of Eilenberg-Moore category.
 
-    Given a category $\mathcal{D}$, together with adjoint pairs $(F\dashv G)$ (where $F:\mathcal{C}\leftrightarrows\mathcal{D}:G$) that generates monad $(T,\eta,\mu)$. We ought to show the existence / uniqueness of a functor $L:\mathcal{D}\rightarrow\mathcal{C}^T$, such that the following diagram commutes:
-    \[\xymatrix{
-        \mathcal{D} \ar@/_{.5pc}/[dr]_{G} \ar@{-->}[rr]^-{\exists ! L} && \mathcal{C}^T \ar@/_{.5pc}/[dl]_{G^T}\\
-        & \mathcal{C} \ar@/_{.5pc}/[ul]_{F} \ar@/_{.5pc}/[ur]_{F^T}
-    }\]
-    For the $G$-diagram to commute, $L$ realizes a $T$-algebra structure on $G(Y)$ for each $Y\in\mathcal{D}$. Which, the counit $\epsilon:FG\rightarrow \Id_{\mathcal{D}}$ induces a natural transformation $\theta=G\epsilon:(GF)G\rightarrow G$, so each $Y\in\mathcal{D}$ is associated with a morphism $\theta_Y:T(G(Y))\rightarrow G(Y)$.
-
-    Notice $(G(Y),\theta_Y)$ forms a $T$-algebra due to one of the Triangle Identity, and the ``reduced'' associativity diagram for adjunction (by swapping the last $F(X)$ with $Y$):
-    \[\xymatrix{
-        G \ar[r]^-{\eta_G} \ar[dr]_-{\id_G} & GFG \ar[d]^-{G\epsilon}\\
-        & F
-    },\quad\quad \xymatrix{
-        GFGFG(Y) \ar[d]_-{G\epsilon_{FG(Y)}} \ar[r]^-{GFG\epsilon_{Y}} & GFG(Y) \ar[d]^-{G\epsilon_{Y}}\\
-        GFG(Y) \ar[r]_-{G\epsilon_{F(X)}} & G(Y)
-    }\]
-    Also, by naturality of $\epsilon$, given any morphism $f:Y\rightarrow Y'$ in $\mathcal{D}$, $Gf:G(Y)\rightarrow G(Y')$ in $\mathcal{C}$ forms a morphism of $T$-algebra. Hence, define $L:\mathcal{D}\rightarrow \mathcal{C}^T$ by $L(Y):= (G(Y), G\epsilon_Y)$, and $Lf:= Gf:G(Y)\rightarrow G(Y')$ is a functor.
-
-    This functor satisfies $G(Y) = G^T L(Y)$, and $Gf = G^T Lf$, because $L(Y) = (G(Y),G\epsilon_Y)$ (also $Lf = Gf$), while forgetful functor $G^T(G(Y),G\epsilon_Y) = G(Y)$ (and morphism $L(Gf)= Gf$). 
-    
-    Also, given $X\in\mathcal{C}$ and morphism $g:X\rightarrow X'$ in $\mathcal{C}$, we have $L(F(X)) = (GF(X), G\epsilon_{F(X)}) = (T(X),\mu_X) = F^T(X)$ (by checking the definition of multiplication transformation, and the fact $GF = T$); also, $L(Ff) = G(Ff):GF(X)\rightarrow GF(X')$ by definition, which equals to $F^T f:T(X)\rightarrow T(X')$, this shows $LF = F^T$ as functor. This shows the existence of $L$.
-
-    \hfil
-
-    The uniqueness of $L$ on the morphism is clear, as $L(Y)\in\mathcal{C}^T$ must have the underlying object being $G(Y)\in\mathcal{C}$ (for $G^TL = G$ to be true), so $f:Y\rightarrow Y'$ must be mapped to $Gf:G(Y)\rightarrow G(Y')$. Theuniqueness of $L$ on the object is by the monadic requirement, where the $T$-algebra structure on $G(Y)$ is restricted by the monad requirement.
-\end{proof}
-
-\hfil
+Another characterization of Kleisli Category, can be done as a full subcategory of the Eilenberg-Moore category:
 
 \begin{lem}
     The canonical functor $\mathcal{C}_T\rightarrow\mathcal{C}^T$ is fully faithful, with essential image being all the free $T$-algebra (all pairs $(T(A),\mu_A)$).
 \end{lem}
 
-\newpage
+Unfortunately for my stamina purpose, I'll omit the proof here :/
 
-\section{Monad Algebra and Monadicity (ND)}
-
-Fix a monad $(T,\eta,\mu)$ on category $\mathcal{C}$, we're mainly concerned with the Eilenber-Moore category $\mathcal{C}^T$ (or the category of $T$-algebras). In particular, we wish to study the free algebras, namely the pair $(T(A),\mu_A)\in \mathcal{C}^T$, and see under what situation this covers all the possible $T$-algebras.
-
-The first goal is to show in $\mathcal{C}^T$, any $T$-algebra $(A,a)$ satisfies the following coequalizer diagram:
-\[\xymatrix{
-    (T^2(A),\mu_{T(A)}) \ar@/_{-.5pc}/[r]^-{Ta} \ar@/_{.5pc}/[r]_-{\mu_A} & (T(A),\mu_A) \ar[r]^-{a} & A
-}\]
-
-For this, let's do some definition:
-\begin{defn}
-    A \emph{split coequalizer diagram} consists of the following morphisms:
-    \[\xymatrix{
-        X \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & Y \ar@(d,d)[l]^-{t} \ar[r]^-{h} & Z \ar@(d,d)[l]^-{s}
-    }\]
-    with the requirement $h\circ f=h\circ g$, $h\circ s=\id_Z$, $g\circ t = \id_Y$, and $f\circ t=s\circ h$ as endomorphism on $Y$.
-\end{defn}
-
-\begin{lem}
-    Given a split coequalizer diagram as above, then $h:Y\rightarrow Z$ serves as a categorical coequalizer of $f,g:X\rightarrow Y$. Also, it's an \emph{absolute colimit}, meaning all functor preserves this coequalizer.
-\end{lem}
-\begin{proof}
-    It is evident why all functor preserves this, simply because functor preserves identity, hence split coequalizer diagram is preserved under any functor. Hence, it suffices to show a split coequalizer diagram is a coequalizer.
-
-    Let $h':Y\rightarrow Z'$ satisfies $h'\circ f=h'\circ g$, consider the morphism $h'\circ s:Z\rightarrow Y\rightarrow Z'$. Notice its composition with $h$ provides the following:
-    \[(h'\circ s)\circ h = h'\circ (f\circ t) = (h'\circ g)\circ t = h'\circ \id_{Y} = h'\]
-    Hence, the following factorization holds:
-    \[\xymatrix{
-        X \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & Y\ar[r]^-{h} \ar[dr]_-{h'} & Z \ar[d]^-{h'\circ s}\\
-        && Z'
-    }\]
-    Then, the uniqueness of $h'\circ s$ is due to the fact $h$ is an epimorphism: Recall that $h\circ s=\id_Z$, with $\id_Z$ being epimorphism, so is $h$. Then, if $\psi:Z\rightarrow Z'$ also satisfies $(h'\circ s)\circ h=h' = \psi\circ h$, right cancellative property guarantees $\psi=h'\circ s$. This shows $h:Y\rightarrow Z$ is a coequalizer of $f,g$.
-\end{proof}
-
-For instance, given $(A,a)\in \mathcal{C}^T$ a $T$-algebra, the following diagram is a split coequalizerin $\mathcal{C}$ (\textbf{Remark:} NOT in $\mathcal{C}^T$):
-\[\xymatrix{
-    T^2(A) \ar@/_{-.5pc}/[r]^-{Ta} \ar@/_{.5pc}/[r]_-{\mu_A} & T(A) \ar@(d,d)[l]^-{\eta_{T(A)}} \ar[r]^-{a} & A \ar@(d,d)[l]^-{\eta_A}
-}\]
-Since $a\circ Ta = a\circ \mu_A$ using associativity diagram while $a\circ \eta_A = \id_A$ by unit diagram of monad algebra, $\mu_A\circ \eta_{T(A)}=\id_{T(A)}$ by triangle identity of monad, and finally $Ta \circ \eta_{T(A)}=\eta_A\circ a$ due to the fact $\eta:\Id_\mathcal{C}\rightarrow T$ is a natural transformation.
-
-\hfil
-
-More general result need more definition:
-\begin{defn}
-    Given a functor $U:\mathcal{D}\rightarrow\mathcal{C}$.
-    \begin{itemize}
-        \item a \emph{$U$-split coequalizer} of $f,g:X\rightarrow Y$ in $\mathcal{D}$, is an object $Z\in\mathcal{C}$, together with morphism $h:U(Y)\rightarrow Z$, $s:Z\rightarrow U(Y)$, and $t:U(Y)\rightarrow U(X)$, such that the following diagram is a split coequalizer in $\mathcal{C}$:
-        \[\xymatrix{
-            U(X) \ar@/_{-.5pc}/[r]^-{Uf} \ar@/_{.5pc}/[r]_-{Ug} & U(Y) \ar@(d,d)[l]^-{t} \ar[r]^-{h} & Z \ar@(d,d)[l]^-{s}
-        }\]
-        \item $U$ \emph{creates coequalizers of $U$-split pairs}, if any $U$-split coequalizer admits a coequalizer $h':Y\rightarrow Z'$ in $\mathcal{D}$, such that its image $Uh':U(Y)\rightarrow U(Z')$ is isomorphic to $h:U(Y)\rightarrow Z$ in $\mathcal{C}$.
-        \item $U$ \emph{strictly creates coequalizers of $U$-split pairs}, if it creates coequalizer of $U$-split pairs, while such lift $h'$ in $\mathcal{D}$ is unique (up to isomorphism in $\mathcal{D}$).
-    \end{itemize}
-\end{defn}
-
-With these definitions, let's consider the case for Eilenberg-Moore category, the functor $G^T:\mathcal{C}^T\rightarrow\mathcal{C}$:
-\begin{prop}
-    The forgetful functor $G^T$ for Eilenberg-Moore category strictly creates $G^T$-split coequalizers.
-\end{prop}
-\begin{proof}
-    Given two $T$-algebras $(A,\alpha),(B,\beta)$ with two morphisms $f,g:(A,\alpha)\rightrightarrows(B,\beta)$ in $\mathcal{C}^T$ that admits a $G^T$-splitting:
-    \[\xymatrix{
-            A \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & B \ar@(d,d)[l]^-{t} \ar[r]^-{h} & C \ar@(d,d)[l]^-{s}
-        }\]
-    Recall that $h\circ f=h\circ g$, together with $h\circ s=\id_C$, $g\circ t=\id_B$, and $f\circ t=s\circ h$ as endomorphism of $B$. Here, the goal is to show, $C$ has a unique $T$-algebra structure $\gamma:T(C)\rightarrow C$, such that $h$ is the unique morphism forming $(C,\gamma)$ as a qoequalizer of $f,g$ in $\mathcal{C}^T$.
-    
-    Using the fact that $C$ (with morphism $h$) is a coequalizer in $\mathcal{C}$, together with the fact $T$ preserves split coequalizer (in fact, all functor preserves split coequalizer), we see $Th:T(B)\rightarrow T(C)$ is the coequalizer of $Tf,Tg:T(A)\rightarrow T(B)$. Also, since $f,g$ are algebra morphisms, we get the following diagram:
-    \[\xymatrix{
-        T(A) \ar[d]_-{\alpha} \ar@/_{-.5pc}/[r]^-{Tf} \ar@/_{.5pc}/[r]_-{Tg} & T(B) \ar[d]_-{\beta} \ar[r]^-{Th} & T(C) \ar@{-->}[d]^-{\exists ! \gamma} \\
-        A \ar@/_{-.5pc}/[r]^-{f} \ar@/_{.5pc}/[r]_-{g} & B \ar[r]^-{h} & C 
-        }\]
-        Existence and uniqueness of $\gamma$ is based on the fact $h\circ \beta$ coequalizes $Tf,Tg$, and $T(C)$ with $Th$ forms a coequalizer.
-
-        \hfil
-
-        So, the goal is to prove $(C,\gamma)$ forms a $T$-algebra and is a coequalizer of $f,g$ in $\mathcal{C}^T$, as existence/uniqueness (up to isomorphism) of the lift follows from the universality of coequalizer.
-
-        To check $(C,\gamma)$ is a $T$-algebra, we use the fact $(B,\beta)$ is a $T$-algebra, together with the fact $h$ is an epimorphism (as a coequalizer), with the ``algebra morphism structure'' above (Remark: Here $h$ is not an algebra morphism yet, it's just a morphism that satisfies the same diagram for algebra morphism at this point). Which, the following diagrams commute:
-        \[\xymatrix{
-            d
-        }\]
-\end{proof}
+This category can also be viewed as the category of all free $T$-algebra. An intuition behind this can be thought of as: Any adjoint pair inducing monad $T$, must contain information of free $T$-algebra (the Kleisli Category), while be contained in the category of all $T$-algebra. Hence, knowing the $T$-algebras also provides all adjunction associated to $T$.
 
 
 \end{document}
