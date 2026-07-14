@@ -381,15 +381,6 @@ Afterward, there's more question to ask: Given a monad on $\mathcal{C}$, how man
 
 Fix a monad $(T,\eta,\mu)$ on category $\mathcal{C}$, we're mainly concerned with the Eilenber-Moore category $\mathcal{C}^T$ (or the category of $T$-algebras). In particular, we wish to study its characterization, to tell when a category is isomorphic / equivalent to it.
 
-\begin{comment} think this part is not the goal...
-The first goal is to show in $\mathcal{C}^T$, any $T$-algebra $(A,a)$ satisfies the following coequalizer diagram:
-\[\xymatrix{
-    (T^2(A),\mu_{T(A)}) \ar@/_{-.5pc}/[r]^-{Ta} \ar@/_{.5pc}/[r]_-{\mu_A} & (T(A),\mu_A) \ar[r]^-{a} & A
-}\]
-
-For this, let's do some definition:
-\end{comment}
-
 \begin{defn}
     A \emph{split coequalizer diagram} consists of the following morphisms:
     \[\xymatrix{
@@ -453,6 +444,12 @@ Here comes the famous \emph{Beck's Monadicity Theorem}, classifying when $\mathc
     $K$ is an isomorphism of categories $\iff$ $G$ strictly creates $G$-split coequalizers. 
     %(cf. \ref{thm4_5})
 \end{thm}
+
+This theorem uses the fact that the following is the canonical $G^T$-split coequalizer:
+\[\xymatrix{
+    (T^2(A),\mu_{T(A)}) \ar@/_{-.5pc}/[r]^-{Ta} \ar@/_{.5pc}/[r]_-{\mu_A} & (T(A),\mu_A)\ar@(d,d)[l]^-{T\eta_A} \ar[r]^-{a} & (A,\alpha) \ar@(d,d)[l]^-{\eta_A}
+}\]
+Then, the intuition is to use such functoriality to define everything (and make sure it's well-defined!)
 
 \newpage
 
