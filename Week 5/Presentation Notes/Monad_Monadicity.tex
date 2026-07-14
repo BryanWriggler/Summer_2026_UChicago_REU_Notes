@@ -360,6 +360,10 @@ This demonstrates each monad is induced by some adjoint pairs.
 
     \hfil
 
+    If given $M\in\RMod$, and consider the structure map $\alpha:R^{\oplus M}\twoheadrightarrow M$ by $r\cdot m\mapsto rm$ (former is the formal linear combination, latter is the $R$-action on $M$), then the above diagram relation precisely recovers the $R$-module structure of $M$.
+
+    \hfil
+
     If $(M,\alpha)$, $(N,\beta)$ are two $T$-algebras, with set map $f:M\rightarrow N$ serving as an algebra map, we see the following:
     \[f(m+_M m') = f\circ \alpha(m+m') = \beta\circ Tf(m+m') = \beta(f(m)+f(m')) = f(m)+_N f(m')\]
     \[f(r\cdot_M m) = f\circ \alpha(r m)=\beta\circ Tf(rm) = \beta(r f(m)) = r\cdot_ f(m)\]
@@ -450,6 +454,10 @@ This theorem uses the fact that the following is the canonical $G^T$-split coequ
     (T^2(A),\mu_{T(A)}) \ar@/_{-.5pc}/[r]^-{Ta} \ar@/_{.5pc}/[r]_-{\mu_A} & (T(A),\mu_A)\ar@(d,d)[l]^-{T\eta_A} \ar[r]^-{a} & (A,\alpha) \ar@(d,d)[l]^-{\eta_A}
 }\]
 Then, the intuition is to use such functoriality to define everything (and make sure it's well-defined!)
+
+\hfil
+
+If one checks the $\RMod$ case, it does satisfy the requirement, that's another verification where the $T$-algebra over free-forgetful adjunction recovers all $R$-modules.
 
 \newpage
 

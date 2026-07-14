@@ -4,3 +4,4 @@
 \contentsline {subsection}{\numberline {3.1}Little Disks / Steiner Operad}{3}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Approximation Theorem}{4}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Recognition Principle for $V$-fold Loop Spaces}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}$E_\infty $ $G$-Operad}{6}{subsection.3.4}%
