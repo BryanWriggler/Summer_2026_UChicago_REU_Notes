@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{../Self_Style}
+\usepackage{hyperref}
 
 \title{UChicago REU Notes: Monads and Monadicity}
 \author{Zih-Yu Hsieh}
@@ -171,6 +172,32 @@ We also want to say the converse of Triangle Identity holds, that it generates a
 
 \section{Example: Free-Forgetful Adjunction Monad}
 
+Since we all love commutative rings, let's use category of $R$-modules as example :)
+
+Let $G:\RMod\rightarrow\Sets$ be the forgetful functor, it has a left adjoint being the \emph{free $R$-module functor} $\RMod\leftarrow \Sets:F$, where any set $S$ has $F(S):= R^{\oplus S}$ (with each set element defines a basis). Given any set $S$ and $R$-module $M$, the natural isomorphism $\Hom_R(F(S),M)\cong \Hom_\Sets(S,G(M))$, is given by $f^\flat:R^{\oplus S}\rightarrow M$, where $f^\flat(r\cdot s):= r \cdot f(s)$ for all $r\in R$, $s\in S$ (as basis of $R^{\oplus S}$). Here, $f:S\rightarrow M$ is arbitrary set map.
+
+\hfil
+
+Define an endofunctor on $\Sets$ by $T:= GF:\Sets\rightarrow \RMod\rightarrow \Sets$, which any set $S$ has $T(S) = R^{\oplus S}$ (as set). It has two natural transformation associates to it:
+\begin{itemize}
+    \item Given any set $S$, we have identity $R$-linear map $\id_{F(S)}:F(S)\xrightarrow{\sim}F(S)$. Using the adjunction, we get a set map $\eta_S := (\id_{F(S)})^\sharp:S\rightarrow GF(S)= T(S)$, given by $\eta_S (s)= s$ (as the standard basis of $T(S) = R^{\oplus S}$). This collects to a natural transformation $\eta:\Id_\Sets \rightarrow T$, called \emph{unit}. (Here, the meaning is ``formally multiply by unit'').
+    \item Given any $R$-module $M$, by forgetting its module structure, we have the identity set map $\id_M:G(M)\xrightarrow{\sim} G(M)$. Using the adjunction again, we get an $R$-module homomorphism $\epsilon_M := (\id_M)^\flat:FG(M)\rightarrow M$, where $FG(M):= R^{\oplus M}$ (all element in $M$ serves as a basis), with $\epsilon_M (r\cdot m) = rm$ (former term $r\cdot m$ is a formal scalar multiplication in $R^{\oplus M}$, while $rm$ is the scalar multiplication in $M$).
+    
+    For any set $S$, $F(S)$ is an $R$-module, which has the homomorphism $\epsilon_{F(S)}:FG(F(S))\rightarrow F(S)$, given by $\epsilon_{F(S)}\left(r \cdot x\right) = r x$ for all $r\in R$ and $x\in F(S)$. And, applying $G$, we forget the $R$-linear structure of the map, and get a set map $\mu_S:=G\epsilon_{F(S)}:G(FG(F(S)))\rightarrow GF(S)$, which is a map $\mu_S:T^2(S)\rightarrow T(S)$. This collects to a natural transformation $\mu:T^2\rightarrow T$, called \emph{multiplication}. (Here, the meaning is ``multiply the adjoined scalars'' in $R^{\oplus F(S)}$).
+\end{itemize}
+
+By checking the underlying set map, we see the following two identities:
+\[\xymatrix{
+        T^3 \ar[d]_-{\mu_{T}} \ar[r]^-{T\mu} & T^2\ar[d]^-{\mu}\\
+        T^2 \ar[r]_-{\mu} & T
+    },\quad\quad \xymatrix{
+        T \ar[dr]_-{\id_{T}} \ar[r]^-{\eta_{T}} & T^2 \ar[d]^-{\mu} & T \ar[l]_-{T\eta} \ar[dl]^-{\id_{T}}\\
+        & T
+    }\]
+Intuitively, the second diagram insists how ``identity scalar'' is a trivial action, and the first diaram encodes the ``associativity'' of scalar action for free $R$-modules.
+
+Here, the slogan is: Free-forgetful adjunction monad encodes how to generate modules out of sets. In general, a monad is also generating some ``algebraic structure'' over its category.
+
 \newpage
 
 \section{Monads and Relations to Adjoint Functors}
@@ -285,7 +312,7 @@ showing $Tf:(T(A),\mu_A)\rightarrow (T(B),\mu_B)$ is a morphism.
 
 Here comes an important result regarding this category:
 \begin{thm}
-    The two functors are adjoint pairs $(F^T\dashv G^T)$, and the induced monad is $(T,\eta,\mu)$.
+    The two functors are adjoint pairs $(F^T\dashv G^T)$, and the induced monad is $(T,\eta,\mu)$. (cf. \ref{thm3_3})
 \end{thm}%reference
 
 
@@ -317,23 +344,52 @@ This demonstrates each monad is induced by some adjoint pairs.
 
 \hfil
 
+\begin{exmp}
+    For the free-forgetful adjunction over $\RMod$, it's a set $M$, together with a map $\alpha:R^{\oplus M}\rightarrow M$ such that $\alpha\circ \eta_M = \id_M$, and $\alpha\circ T\alpha = \alpha\circ \mu_M:T^2(M)\rightarrow T(M)\rightarrow M$. In particular, $\alpha(m)=m$ for all standard basis $m\in R^{\oplus M}$. Which, we claim $M$ is in fact an $R$-module under the following addition / scalar multiplication law:
+
+    \begin{itemize}
+        \item Define $m+_M m':= \alpha(m+m')$ (here $m,m'\in R^{\oplus M}$ are the basis element). It's commutative.
+        \item Define $r\cdot_M m := \alpha(r m)$.
+    \end{itemize}
+
+    We'll explicitly verify the existence of additive identity here. In particular, $\alpha(0)\in M$ serves as zero under addition: 
+        \[\alpha(0)+_M m := \alpha(\alpha(0)+m) = \alpha\circ T\alpha(1\cdot 0+1\cdot m) = \alpha\circ \mu_M(1\cdot 0+1\cdot m) = \alpha(0+m) = \alpha(m)=m\]
+    Here we need to ensure which addition / scalar multiplication we're using, as it either belongs to $R^{\oplus M}$ or $R^{\oplus R^{\oplus M}}$.
+    
+    After verifying all other axioms, we indeed verify $M$ is an $R$-module. (cf. \ref{exmp3_4})
+
+    \hfil
+
+    If $(M,\alpha)$, $(N,\beta)$ are two $T$-algebras, with set map $f:M\rightarrow N$ serving as an algebra map, we see the following:
+    \[f(m+_M m') = f\circ \alpha(m+m') = \beta\circ Tf(m+m') = \beta(f(m)+f(m')) = f(m)+_N f(m')\]
+    \[f(r\cdot_M m) = f\circ \alpha(r m)=\beta\circ Tf(rm) = \beta(r f(m)) = r\cdot_ f(m)\]
+    So, $f$ is an $R$-linear map.
+    
+    This shows the category of $T$-algebra is precisely $R$-module.
+\end{exmp}
+
+\hfil
+
 Afterward, there's more question to ask: Given a monad on $\mathcal{C}$, how many ways are there to create adjoint pairs which induce the provided monad? Can we find such universal adjoint pair? 
 \begin{thm}
-    In the \emph{adjoint category} $\text{Adj}_T$ (categories of all category with adjoint functors between $\mathcal{C}$, inducing monad $T$; the morphisms are functors that commutes with the left/right adjoints for each category), the Eilenberg-Moore category $(\mathcal{C}^T,F^T\dashv G^T)$ is final.
+    In the \emph{adjoint category} $\text{Adj}_T$ (categories of all category with adjoint functors between $\mathcal{C}$, inducing monad $T$; the morphisms are functors that commutes with the left/right adjoints for each category), the Eilenberg-Moore category $(\mathcal{C}^T,F^T\dashv G^T)$ is final. (cf. \ref{thm3_5})
 \end{thm}
 
 \newpage
 
 \section{Monad Algebra and Monadicity}
 
-Fix a monad $(T,\eta,\mu)$ on category $\mathcal{C}$, we're mainly concerned with the Eilenber-Moore category $\mathcal{C}^T$ (or the category of $T$-algebras). In particular, we wish to study the free algebras, namely the pair $(T(A),\mu_A)\in \mathcal{C}^T$, and see under what situation this covers all the possible $T$-algebras.
+Fix a monad $(T,\eta,\mu)$ on category $\mathcal{C}$, we're mainly concerned with the Eilenber-Moore category $\mathcal{C}^T$ (or the category of $T$-algebras). In particular, we wish to study its characterization, to tell when a category is isomorphic / equivalent to it.
 
+\begin{comment} think this part is not the goal...
 The first goal is to show in $\mathcal{C}^T$, any $T$-algebra $(A,a)$ satisfies the following coequalizer diagram:
 \[\xymatrix{
     (T^2(A),\mu_{T(A)}) \ar@/_{-.5pc}/[r]^-{Ta} \ar@/_{.5pc}/[r]_-{\mu_A} & (T(A),\mu_A) \ar[r]^-{a} & A
 }\]
 
 For this, let's do some definition:
+\end{comment}
+
 \begin{defn}
     A \emph{split coequalizer diagram} consists of the following morphisms:
     \[\xymatrix{
@@ -381,7 +437,7 @@ More general result need more definition:
 
 With these definitions, let's consider the property possessed by forgetful functor $G^T:\mathcal{C}^T\rightarrow\mathcal{C}$ for Eilenberg-Moore category:
 \begin{prop}
-    $G^T$ strictly creates $G^T$-split coequalizers.
+    $G^T$ strictly creates $G^T$-split coequalizers. (cf. \ref{prop4_4})
 \end{prop}
 
 \hfil
@@ -394,18 +450,15 @@ Finally, given adjoint pair $F:\mathcal{C}\leftrightarrows\mathcal{D}:G$ (where 
 
 Here comes the famous \emph{Beck's Monadicity Theorem}, classifying when $\mathcal{D}$ is isomorphic to $\mathcal{C}^T$:
 \begin{thm}
-    $K$ is an isomorphism of categories $\iff$ $G$ strictly creates $G$-split coequalizers.
+    $K$ is an isomorphism of categories $\iff$ $G$ strictly creates $G$-split coequalizers. 
+    %(cf. \ref{thm4_5})
 \end{thm}
-
-\newpage
-
-\section{Monad associated to an Operad}
 
 \newpage
 
 \section{Appendix 1: Categorical Proofs}
 
-\subsection{Proof of Theorem 3.3}
+\subsection{Proof of Theorem 3.3}\label{thm3_3}
 \begin{proof}
     Given arbitrary $A\in\mathcal{C}$ and $(B,b)\in\mathcal{C}^T$, we shall show a natural isomorphism between the two:
     \[\Phi:\Hom_{\mathcal{C}^T}((T(A),\mu_A), (B,b))\rightleftarrows \Hom_\mathcal{C}(A,B):\Psi\]
@@ -459,7 +512,37 @@ Here comes the famous \emph{Beck's Monadicity Theorem}, classifying when $\mathc
 
 \hfil
 
-\subsection{Proof of Theorem 3.4}
+\subsection{Proof of Example 3.4}\label{exmp3_4}
+\begin{proof}
+    The remaining axioms of $M$ being $R$-module:
+    \begin{itemize}
+        \item[1.] Additive identity is proven already.
+        \item[2.] Addition is associative:
+        \[(m+_M m')+_M m'' = \alpha(\alpha(m+m')+m'') = \alpha\circ T\alpha(1\cdot (m+m')+1\cdot m'')\]
+        \[= \alpha\circ \mu_M(1\cdot (m+m')+1\cdot m'')= \alpha(m+m'+m'')\]
+        Using similar manner, one can also prove $m+_M (m'+_M m'')=\alpha(m+m'+m'')$, showing associativity.
+        \item[3.] $\alpha(-m)$ serves as additive inverse of $m$:
+        \[\alpha(-m)+_M m= \alpha(\alpha(-m)+m) = \alpha\circ T\alpha(1\cdot (-m)+1\cdot m) = \alpha\circ \mu_M(1\cdot (-m)+1\cdot m) = \alpha(-m+m)=\alpha(0)\]
+
+        \item[4.] $1\in R$ serves as identity action, given any $m\in M$ satisfies:
+        \[1\cdot_M \alpha(1 m) = \alpha(m)=m\]
+        \item[5.] Scalar multiplication is associative:
+        \[r\cdot_M (r'\cdot_M m) = \alpha(r \alpha(r'm)) = \alpha\circ T\alpha (r\cdot (r' m)) = \alpha\circ \mu_M (r\cdot (r'm)) = \alpha((r r')m) = (r r')\cdot_M m\]
+        \item[6.] Scalar multiplication is distributive:
+        \[(r\cdot_M m)+_M (r'\cdot_M m) = \alpha(\alpha(rm)+\alpha(r'm))=\alpha\circ T\alpha(1\cdot (rm)+1\cdot (r'm))\]
+        \[= \alpha\circ \mu_M(1\cdot (rm)+1\cdot (r'm)) = \alpha(rm+r'm) = \alpha((r+r')m) = (r+r')\cdot_M m\]
+
+        \hfil
+
+        \[(r\cdot_M m)+_M (r\cdot_M m') =\alpha(\alpha(rm)+\alpha(rm')) = \alpha\circ T\alpha(1\cdot(rm)+1\cdot (rm'))\]
+        \[= \alpha\circ\mu_M(1\cdot(rm)+1\cdot(rm'))=\alpha(rm+rm') =\alpha(r(m+m'))= \alpha\circ \mu_M (r\cdot (m+m')) \]
+        \[= \alpha\circ T\alpha(r\cdot (m+m')) = \alpha(r\alpha(m+m')) = r\cdot_M (m+_M m')\]
+    \end{itemize}
+\end{proof}
+
+\hfil
+
+\subsection{Proof of Theorem 3.5}\label{thm3_5}
 \begin{proof}
     Given a category $\mathcal{D}$, together with adjoint pairs $(F\dashv G)$ (where $F:\mathcal{C}\leftrightarrows\mathcal{D}:G$) that generates monad $(T,\eta,\mu)$. We ought to show the existence / uniqueness of a functor $L:\mathcal{D}\rightarrow\mathcal{C}^T$, such that the following diagram commutes:
     \[\xymatrix{
@@ -489,7 +572,7 @@ Here comes the famous \emph{Beck's Monadicity Theorem}, classifying when $\mathc
 
 \hfil
 
-\subsection{Proof of Proposition 4.4}
+\subsection{Proof of Proposition 4.4}\label{prop4_4}
 \begin{proof}
     Given two $T$-algebras $(A,\alpha),(B,\beta)$ with two morphisms $f,g:(A,\alpha)\rightrightarrows(B,\beta)$ in $\mathcal{C}^T$ that admits a $G^T$-splitting:
     \[\xymatrix{
@@ -530,6 +613,15 @@ Here comes the famous \emph{Beck's Monadicity Theorem}, classifying when $\mathc
 
         Finally, $h$ is again a coequalizer in $\mathcal{C}^T$, because any coequalizing diagram in $\mathcal{C}^T$ forgets to be a coequalizing diagram in $\mathcal{C}$, hence using the fact $h$ is a coequalizer in $\mathcal{C}$, the factorization follows (and the remaining part is to check it's a morphism of $T$-algebra, which follows from the fact that $T$ preserves split coequalizer).
 \end{proof}
+
+\hfil
+
+\begin{comment}fill in the proof when needed...
+\subsection{Proof of Theorem 4.5}\label{thm4_5}
+\begin{proof}
+    
+\end{proof}
+\end{comment}
 
 \newpage
 
