@@ -72,7 +72,85 @@ There is a $G$-equivarant isomorphism when giving $\mathcal{A},\mathcal{B},\math
     \[(\overline{\mu'\circ\mu}_X)_Y = (\mu'\circ\mu)_{(X,Y)} = \mu'_{(X,Y)}\circ \mu_{(X,Y)} = (\overline{\mu'}_X)_Y\circ (\overline{\mu}_X)_Y\]
     This shows as natural transformations, $\overline{\mu}_X:N_X\rightarrow N'_X$ and $\overline{\mu'}_X:N'_X\rightarrow N''_X$ satisfies $(\overline{\mu'\circ\mu})_X=\overline{\mu'}_X\circ \overline{\mu}_X$, so $\overline{\mu'\circ\mu} = \overline{\mu'}\circ \overline{\mu}$ as natural transformations $\overline{\mu}:N\rightarrow N'$, $\overline{\mu'}:N'\rightarrow N''$.
 
-    So, define $\Phi(F:\mathcal{A}\times\mathcal{B}\rightarrow\mathcal{C}):= N:\mathcal{A}\rightarrow \Cat(\mathcal{B},\mathcal{C})$, and $\Phi(\mu:F\rightarrow F'):= \overline{\mu}:N\rightarrow N'$ as above.
+    So, define $\Phi(F:\mathcal{A}\times\mathcal{B}\rightarrow\mathcal{C}):= N:\mathcal{A}\rightarrow \Cat(\mathcal{B},\mathcal{C})$, and $\Phi(\mu:F\rightarrow F'):= \overline{\mu}:N\rightarrow N'$ as above, it's a legitimate functor.
+
+    \hfil
+
+    \textbf{II. Isomorphism on Objects:}
+
+    Suppose $\Phi(F)=\Phi(F')$, then it's clear $F,F'$ have the same action on the objects (as all $X\in\mathcal{A}$ satisfies $F_X = F'_X$, so all $Y\in\mathcal{B}$ satisfies $F(X,Y)=F_X(Y)=F'_X(Y)=F'(X,Y)$). Now, given $f:X\rightarrow X'$ in $\mathcal{A}$ and $g:Y\rightarrow Y'$ in $B$, we also see that:
+    \[F(f,g)=F(f,\id_{Y'})\circ F(\id_X,g) = Nf_{Y'}\circ F_{X}g = F'f_{Y'}\circ F'_Xg = F'(f,\id_{Y'})\circ F'(\id_X,g) = F'(f,g)\]
+    ($Nf=N'f$ is by $\Phi(F)=\Phi(F')$, then $F_X=F'_X$ also the same logic).
+
+    This shows $F=F'$, as its map on morphisms are also the same.
+
+    \hfil
+
+    Conversely, given 
+
+    \hfil
+
+    \textbf{III. Naturality:}
+
+    If fix $\mathcal{B}$ and varies $\mathcal{A},\mathcal{C}$, since everything is constructed functorially, let's skip this part :)
+
+    \hfil
+
+    \textbf{IV. Equivariance Version:}
+
+    Assuming the first three statements, the remaining statement is to show: $\Phi$ as a functor commutes with $G$-action.
+\end{proof}
+
+God the proof is actually long as hell\dots
+
+\hfil
+
+\begin{defn}
+    Given a space $X$, the chaotic topological category $\mathcal{E}X$ has object space $X$, morphism space $X\times X$, such that:
+    \begin{itemize}
+        \item Identity map $i:X\rightarrow X\times X$ by $x\mapsto (x,x)$ is continuous (also the same as diagonal morphism).
+        \item The source map $s:X\times X\rightarrow X$ by $s(x,y):= x$ is continuous (also the same as first projection).
+        \item The target map $t:X\times X\rightarrow X$ by $t(x,y):= y$ is continuous (also the same as second projection).
+        \item Composition $\circ:(X\times X)\times_{s,t}(X\times X)\rightarrow X\times X$ by $\circ((x,y),(y,z)):= (x,z)$ is continuous.
+    \end{itemize}
+\end{defn}
+Since there is only one morphism between any two objects, a morphism is equivalent to specify its source and target.
+
+In particular, for any $x\in X$, the maps $\eta_x,\mu_x:X\rightarrow X\times X$ by $\eta_x (y):= (x,y)$, and $\mu_x(y) := (y,x)$ are continuous (as they're fixing one coordinate, while doing inclusion on the right). These also form natural isomorphisms $\eta:x\rightarrow X$, and $\mu:X\rightarrow x$ as follow:
+\[\xymatrix{
+    x \ar[d]_-{\eta_x (y) = (x,y)} \ar[r]^-{(x,x)} & x \ar[d]^-{\eta_x (z)=(x,z)}\\
+    y \ar[r]_-{(y,z)} & z
+},\quad\quad\xymatrix{
+    y \ar[d]_-{\mu_x(y)=(y,x)} \ar[r]^-{(y,z)} & z\ar[d]^-{\mu_x(z)=(z,x)}\\
+    x \ar[r]_-{(x,x)} & x
+}\]
+This shows as a category, $\mathcal{E}X$ is equivalent to the terminal category $*$ (which only has one unique topological category structure).
+
+Also, if $X=G$ is a topological group (including discrete ones!) then $\mathcal{E}G$ is isomorphic to the translation category of $G$ (as all morphisms can be interpreted as a translation from one group element to the other).
+
+\hfil
+
+Let $\Pi$ be a topological group (intepreted as the category of single object $*$, with morphism space $\Pi$), then there is a group homomotphism $\Pi^\Op\rightarrow \Aut_{\mathcal{T}\Cat}(\mathcal{E}\Pi)$, by right multiplication. So, all $g\in \Pi$ satisfies $g:\mathcal{E}\Pi\rightarrow\mathcal{E}\Pi$ by $\sigma\mapsto \sigma g$ (which is a homeomorphism on $\Pi$ by definition of topological group), and morphism $(\sigma,\tau)\mapsto (\sigma g,\tau g)$ (again, this is the continuous diagonal action on $\Pi\times\Pi = \Mor(\mathcal{E}\Pi)$).
+
+\begin{prop}
+    The orbit category $\mathcal{E}\Pi/\Pi$ is isomorphic to $\Pi$ as topological category.
+\end{prop}
+\begin{proof}
+    It's clear on the object space, as $\Ob(\mathcal{E}\Pi)=\Pi$ as set, so $\Ob(\mathcal{E}\Pi)\/\Pi = *$.
+
+    The map on the morphism space is $(\sigma,\tau)\sim (\sigma',\tau')$ iff there exists $g\in \Pi$, such that $(\sigma,\tau)=(\sigma'g,\tau'g)$. Which, this is equivalent to say $\sigma\tau^{-1} = \sigma'g g^{-1}\tau'^{-1}= \sigma'\tau'^{-1}$. So, we see all $(\sigma,\tau)\sim (e,\tau\sigma^{-1})$, and all $g,g'\in\Pi$ satisfies $(e,g)\sim(e,g')$ iff $g^{-1}=g'^{-1}$, or $g=g'$. So, we see each $(e,g)$ establishes a distinct equivalent class, hence providing a bijection between $(\Pi\times \Pi)/\Pi\cong\Pi$, by $(e,g)\mapsto g$.
+
+    Finally, to show this is an isomorphism as topological category, we see such identification of morphism is topologically isomorphic (because $\Pi\rightarrow \Pi\times\Pi \rightarrow \Pi$ by $g\mapsto (e,g)\mapsto g$ is a homeomorphism). Then, given $(e,g)$ and $(e,g')$ in the quotient, since the second one is equivalent to $(g,g'g)$, then we see the composition is $\circ((e,g),(g,g'g)) = (e,g'g)$, which has quotient $g'g$, which is equivalent to the composition of the image of $(e,g')$ and $(e,g)$, showing it's preserving the composition map. Hence, it's an isomorphism of categories.
+\end{proof}
+
+\hfil
+
+\begin{thm}
+Given a $G$-space $X$, a topological group $\Pi$ (regarded as a trivial $G$-space, by $G\rightarrow e\rightarrow \Aut(\Pi)$), the quotient functor $p:\mathcal{E}\Pi\rightarrow\Pi$ induces an isomorphism if topological $G$-categories 
+\[\Cat(\mathcal{E}X,\mathcal{E}\Pi)\/\Pi\xrightarrow{\sim}\Cat_G(\mathcal{E}X,\Pi)\]
+\end{thm}
+\begin{proof}
+    
 \end{proof}
 
 \end{document}
