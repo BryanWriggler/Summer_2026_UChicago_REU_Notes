@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{Self_Style}
+
+\title{UChicago REU Notes Week 5}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+To be honest, last week's note isn't as successful, so we'll mainly focus on the category theory from now on. Here, we assume that $G$ is a finite group, and the categories (mentioned as objects of $\Cat$ or similar objects) are small.
+
+\section{Categorical Preliminaries}
+
+This part is devoted to understand some basics. I'll fill in the details for preliminaries on $G$-categories later, together with adjunction $(\Ob\dashv \mathcal{E})$ between $\Cat$ and $\Sets$.
+
+Given a category $\mathcal{A}$, the functor category $\Cat(\mathcal{\mathcal{E}(G)},\mathcal{A})$ is automatically a $G$-category, as each element $g\in G$ can be realized as an automorphism functor on the indiscrete category $\mathcal{E}G$, so it admits both a left/right action by precomposing either $g^{-1}$ or $g$ as automorphism of $\mathcal{E}G$.
+
+Similarly, if $\mathcal{A}$ itself already has a left/right $G$-action, then it defines a left/right $G$-action on $\Cat(\mathcal{B},\mathcal{A})$ by postcomposition; similarly if $\mathcal{B}$ is a $G$-category, then precomposition also defines one. Combining the two, it admits a conjugation action on $\Cat(\mathcal{B},\mathcal{A})$ if both $\mathcal{B},\mathcal{A}$ admits a left action.
+
+Given $G$-categories $\mathcal{A},\mathcal{B}$, denote $\Cat_G(\mathcal{B},\mathcal{A}):= \Cat(\mathcal{B},\mathcal{A})$, and $G\Cat(\mathcal{B},\mathcal{A}):=\Cat(\mathcal{B},\mathcal{A})^G$ as the $G$-fixpoint (i.e. all functors commuting with $G$-actions).
+
+\hfil
+
+\begin{prop}
+There is a $G$-equivarant isomorphism when giving $\mathcal{A},\mathcal{B},\mathcal{C}$ three $G$-categories:
+\[\Phi:\Cat_G(\mathcal{A}\times\mathcal{B},\mathcal{C})\cong \Cat_G(\mathcal{A},\Cat(\mathcal{B},\mathcal{C}))\]
+\end{prop}
+\begin{proof}
+    We recognize this as a non-equivariant statement first, then show if all three are $G$-categories (with $G$ acts diagonally on $\mathcal{A}\times\mathcal{B}$), such isomorphism is $G$-equivariant.
+
+    \hfil
+
+    \textbf{I. Construction of Functor:}
+
+    Given a functor $F:\mathcal{A}\times\mathcal{B}\rightarrow\mathcal{C}$, for any object $X\in\mathcal{A}$ (together with identity $\id_X:X\rightarrow X$), define a functor $F_X:\mathcal{B}\rightarrow \mathcal{C}$ by $F_X(Y):= F(X,Y)$, and given any morphism $g:Y\rightarrow Y'$ in $\mathcal{B}$, define the morphism $F_Xg:F_X(Y)\rightarrow F_X(Y')$ as the morphism $F(\id_X,g):F(X,Y)\rightarrow F(X,Y')$. The routine check that this is functorial, using the product category definition:
+    \begin{itemize}
+        \item Given $\id_Y:Y\rightarrow Y$, we have $F_X\id_Y = F(\id_X,\id_Y) = \id_{F(X,Y)} = \id_{F_X(Y)}$.
+        \item Given $g:Y\rightarrow Y'$, $g':Y'\rightarrow Y''$, we have
+        \[F_X(g'\circ g) = F(\id_X,g'\circ g) = F(\id_X,g')\circ F(\id_X,g) = F_Xg'\circ F_Xg\]
+    \end{itemize}
+    Now, given a morphism $f:X\rightarrow X'$ in $\mathcal{A}$, we shall define a natural transformation $Nf:F_X\rightarrow F_{X'}$. Realistically, for any $Y\in\mathcal{B}$, the only choice is by $Nf_Y:=F(f,\id_Y):F(X,Y)\rightarrow F(X',Y)$. Which, given $g:Y\rightarrow Y'$ in $\mathcal{B}$, the following diagram commutes using product category property:
+    \[\xymatrix{
+        F(X,Y) \ar[d]_-{F(f,\id_Y)} \ar[r]^-{F(\id_X,g)} & F(X,Y') \ar[d]^-{F(f,\id_{Y'})}\\
+        F(X',Y)\ar[r]_-{F(\id_{X'},g)} & F(X',Y')
+    }\ \equiv\ \xymatrix{
+        F_X(Y) \ar[d]_-{Nf_Y} \ar[r]^-{F_Xg} & F_X(Y') \ar[d]^-{Nf_{Y'}}\\
+        F_{X'}(Y)\ar[r]_-{F_{X'}g} & F_{X'}(Y')
+    }\]
+    Hence, $Nf:F_X\rightarrow F_{X'}$ is a natural transformation.
+
+    Then, we claim that $N:\mathcal{A}\rightarrow \Cat(\mathcal{B},\mathcal{C})$ by $N(X):= F_X$, $Nf:F_X\rightarrow F_{X'}$ as above is a functor:
+    \begin{itemize}
+        \item $(N\id_X)_Y = F(\id_X,\id_Y) = \id_{F(X,Y)}=\id_{F_X(Y)}$, so $N\id_X=\id_{F_X}$.
+        \item Given $f:X\rightarrow X'$, $f':X'\rightarrow X''$, then
+        \[N(f'\circ f)_Y = F(f'\circ f,\id_Y) = F(f',\id_Y)\circ F(f,\id_Y) = Nf'_Y\circ Nf_Y\]
+        So, $N(f'\circ f)=Nf'\circ Nf$.
+    \end{itemize}
+
+    \hfil
+
+    Now, suppose two such functors $F,F':\mathcal{A}\times\mathcal{B}\rightarrow\mathcal{C}$ has a natural transformation $\mu:F\rightarrow F'$, we want to construct a natural transformation $\overline{\mu}:N\rightarrow N'$, where $N,N':\mathcal{A}\rightarrow \Cat(\mathcal{B},\mathcal{C})$ are functors associated to $F,F'$. Which, given any $X\in\mathcal{A}$, we see the collection $(\overline{\mu}_X)_Y:= \mu_{(X,Y)}$ is a natural transformation $F_X\rightarrow F'_X$, due to the following diagram for all $g:Y\rightarrow Y'$ in $\mathcal{B}$:
+    \[\xymatrix{
+        F(X,Y) \ar[d]_-{\mu_{(X,Y)}} \ar[r]^-{F(\id_X,g)} & F(X,Y') \ar[d]^-{\mu_{(X,Y')}}\\
+        F'(X,Y)\ar[r]_-{F'(\id_X,g)} & F'(X,Y')
+    }\ \equiv\ \xymatrix{
+        F_X(Y) \ar[d]_-{(\overline{\mu}_X)_Y} \ar[r]^-{F_Xg} & F(X,Y') \ar[d]^-{(\overline{\mu}_X)_{Y'}}\\
+        F'_X(Y)\ar[r]_-{F'_Xg} & F'_X(Y')
+    }\]
+    This shows $\overline{\mu}_X:F_X\rightarrow F'_X$ is a natural transformation, or morphism within $\Cat(\mathcal{B},\mathcal{C})$. Then, notice that if $\mu:F\rightarrow F'$, $\mu':F'\rightarrow F''$ are two natural transformations between functors $F,F',F'':\mathcal{A}\times\mathcal{B}\rightarrow\mathcal{C}$, the following holds:
+    \[(\overline{\mu'\circ\mu}_X)_Y = (\mu'\circ\mu)_{(X,Y)} = \mu'_{(X,Y)}\circ \mu_{(X,Y)} = (\overline{\mu'}_X)_Y\circ (\overline{\mu}_X)_Y\]
+    This shows as natural transformations, $\overline{\mu}_X:N_X\rightarrow N'_X$ and $\overline{\mu'}_X:N'_X\rightarrow N''_X$ satisfies $(\overline{\mu'\circ\mu})_X=\overline{\mu'}_X\circ \overline{\mu}_X$, so $\overline{\mu'\circ\mu} = \overline{\mu'}\circ \overline{\mu}$ as natural transformations $\overline{\mu}:N\rightarrow N'$, $\overline{\mu'}:N'\rightarrow N''$.
+
+    So, define $\Phi(F:\mathcal{A}\times\mathcal{B}\rightarrow\mathcal{C}):= N:\mathcal{A}\rightarrow \Cat(\mathcal{B},\mathcal{C})$, and $\Phi(\mu:F\rightarrow F'):= \overline{\mu}:N\rightarrow N'$ as above.
+\end{proof}
+
+\end{document}
