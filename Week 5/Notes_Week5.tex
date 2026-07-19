@@ -11,7 +11,7 @@
 
 To be honest, last week's note isn't as successful, so we'll mainly focus on the category theory from now on. Here, we assume that $G$ is a finite group, and the categories (mentioned as objects of $\Cat$ or similar objects) are small.
 
-\section{Categorical Preliminaries}
+\section{Statements on $G$-categories}
 
 This part is devoted to understand some basics. I'll fill in the details for preliminaries on $G$-categories later, together with adjunction $(\Ob\dashv \mathcal{E})$ between $\Cat$ and $\Sets$.
 
@@ -86,19 +86,52 @@ There is a $G$-equivarant isomorphism when giving $\mathcal{A},\mathcal{B},\math
 
     \hfil
 
-    Conversely, given 
+    Conversely, given a functor $G:\mathcal{A}\rightarrow\Cat(\mathcal{B},\mathcal{C})$, we'd like to construct a functor $\tilde{G}:\mathcal{A}\times \mathcal{B}\rightarrow\mathcal{C}$. Object wise, define $G(X,Y):= [G(X)](Y)$ (here, $G(X):\mathcal{B}\rightarrow\mathcal{C}$ is a functor), and given morphisms $f:X\rightarrow X'$ in $\mathcal{A}$, $g:Y\rightarrow Y'$ in $\mathcal{B}$, define morphism $G(f,g):G(X,Y)\rightarrow G(X',Y')$ as the following morphism in the commutative diagram:
+    \[\xymatrix{
+        G(X,Y):=[G(X)](Y) \ar[d]_-{Gf_Y} \ar[r]^-{G(X)g} & [G(X)](Y') \ar[d]^-{Gf_{Y'}}\\
+        [G(X')](Y) \ar[r]_-{G(X')g} & [G(X')](Y')=: G(X',Y')
+    }\]
+    Here, recall that for each $f:X\rightarrow X'$, $Gf:G(X)\rightarrow G(X')$ is a morphism in $\Cat(\mathcal{B},\mathcal{C})$ (i.e. a natural transformation), so the above diagram holds. 
+
+    Now, to verify functoriality, consider the following:
+    \begin{itemize}
+        \item Given $\id_X$ in $\mathcal{A}$, $\id_Y$ in $\mathcal{B}$, we get $G(\id_X) = \id_{G(X)}$, so each natural transformation $G(\id_X)_Y = \id_{[G(X)](Y)}$. Similarly, since $G(X)$ is a functor, we get $G(X)\id_Y = \id_{[G(X)](Y)}$. So, the diagram becomes:
+        \[\xymatrix{
+        \tilde{G}(X,Y):=[G(X)](Y) \ar[d]_-{\id_{[G(X)](Y)}} \ar[r]^-{\id_{[G(X)](Y)}} & [G(X)](Y) \ar[d]^-{\id_{[G(X)](Y)}}\\
+        [G(X)](Y) \ar[r]_-{\id_{[G(X)](Y)}} & [G(X)](Y)=: \tilde{G}(X,Y)
+    }\]
+    Hence, $G(\id_X,\id_Y)$ results in the identity of $G(X,Y)$.
+
+        \item Given $f:X\rightarrow X', f':X'\rightarrow X''$ in $\mathcal{A}$, and $g:Y\rightarrow Y', g':Y'\rightarrow Y''$ in $\mathcal{B}$, the following gigantic diagram holds, due to the functoriality $G(f'\circ f)=Gf'\circ Gf$, and each $G(X)(g'\circ g)=G(X)g'\circ G(X)g$:
+        \[\xymatrix{
+            \tilde{G}(X,Y):= [G(X)](Y) \ar[r]^-{G(X)g} \ar[d]_-{Gf_Y} & [G(X)](Y') \ar[r]^-{G(X)g'} \ar[d]_-{Gf_{Y'}} & [G(X)](Y'') \ar[d]^-{Gf_{Y''}}\\
+            [G(X')](Y) \ar[d]_-{Gf'_Y} \ar[r]^-{G(X')g} & \tilde{G}(X',Y'):= [G(X')](Y') \ar[d]_-{Gf'_{Y'}} \ar[r]^-{G(X')g'} & [G(X')](Y'') \ar[d]^-{Gf'_{Y''}}\\
+            [G(X'')](Y) \ar[r]_-{G(X'')g} & [G(X'')](Y') \ar[r]_-{G(X'')g'} & \tilde{G}(X'',Y''):=[G(X'')](Y'')
+        }\]
+        Here, adjoining diagonal squares provide the composition $\tilde{G}(f',g')\circ \tilde{G}(f,g)$, while the edges of the largest square provides $\tilde{G}(f'\circ f, g'\circ g)$, the commutation shows the functoriality.
+    \end{itemize}
+    So, by routine check on the definition, we have $\Phi(\tilde{G})=G$, showing surjectivity on the objects.
 
     \hfil
 
     \textbf{III. Naturality:}
 
-    If fix $\mathcal{B}$ and varies $\mathcal{A},\mathcal{C}$, since everything is constructed functorially, let's skip this part :)
+    Let's skip this...
+    
 
     \hfil
 
     \textbf{IV. Equivariance Version:}
 
-    Assuming the first three statements, the remaining statement is to show: $\Phi$ as a functor commutes with $G$-action.
+    Assuming the first three statements, the remaining statement is to show: $\Phi$ as a functor commutes with $G$-action. Let $g\in G$, which given any $F\in\Cat(\mathcal{A}\times\mathcal{B},\mathcal{C})$, we have $g\cdot F:=g\circ F\circ g^{-1}$ being the conjugation action of $G$ on this functor category (where the left $g$ is the functor on $\mathcal{C}$, and the right $g^{-1}$ is the diagonal $g^{-1}$ functor on $\mathcal{A}\times\mathcal{B}$). Let $N := \Phi(F)$, and $N':=\Phi(g\cdot F)$. Then, notice $g\cdot F$ satisfies the following, for all $f:X\rightarrow X'$ in $\mathcal{A}$, and $g:Y\rightarrow Y'$ in $\mathcal{B}$:
+    \[N'_X (Y) = g\circ F\circ g^{-1}(X,Y),\quad (g\cdot N)_X (Y) = (g\circ N\circ g^{-1})_X(Y) = (g\circ N_{g^{-1}(X)})(Y)\]
+    \[ = g\circ N_{g^{-1}(X)}(g^{-1}(Y)) = g\circ F(g^{-1}(X),g^{-1}(Y))) = g\circ F\circ g^{-1}(X,Y)\]
+
+    (Yeah, we also need to verify that they're identical on the morphisms of $\mathcal{B}$, but let's skip it here...)
+
+    Here, we do need to be careful on if $g$ is a functor on the categories, or the functor on the functor categories (as the second $g\circ N$ is really $g$ acting on the pointwise functor $N_{g^{-1(X)}}$ using conjugation).
+    
+    This shows $N', g\cdot N$ are identical on the objects. Tp
 \end{proof}
 
 God the proof is actually long as hell\dots
@@ -147,10 +180,10 @@ Let $\Pi$ be a topological group (intepreted as the category of single object $*
 
 \begin{thm}
 Given a $G$-space $X$, a topological group $\Pi$ (regarded as a trivial $G$-space, by $G\rightarrow e\rightarrow \Aut(\Pi)$), the quotient functor $p:\mathcal{E}\Pi\rightarrow\Pi$ induces an isomorphism if topological $G$-categories 
-\[\Cat(\mathcal{E}X,\mathcal{E}\Pi)\/\Pi\xrightarrow{\sim}\Cat_G(\mathcal{E}X,\Pi)\]
+\[\Cat(\mathcal{E}X,\mathcal{E}\Pi)/\Pi\xrightarrow{\sim}\Cat_G(\mathcal{E}X,\Pi)\]
 \end{thm}
 \begin{proof}
-    
+    In terms of objects, we have $\Cat(\mathcal{E}X,\mathcal{E}\Pi)\cong \Sets(X,\Pi)$
 \end{proof}
 
 \end{document}
