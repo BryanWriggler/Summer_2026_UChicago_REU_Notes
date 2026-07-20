@@ -184,6 +184,42 @@ Given a $G$-space $X$, a topological group $\Pi$ (regarded as a trivial $G$-spac
 \end{thm}
 \begin{proof}
     In terms of objects, we have $\Cat(\mathcal{E}X,\mathcal{E}\Pi)\cong \Sets(X,\Pi)$
+
+    (To do).
 \end{proof}
+
+\newpage
+
+\section{Bicategories \& 2-Categories}
+
+Here, we use $1$ to denote
+
+\begin{defn}
+    A \emph{bicategory} is a tuple $(\mathcal{B},1,c,a,\ell,r)$, such that:
+    \begin{itemize}
+        \item The objects $\Ob(\mathcal{B})$ is a class, called \emph{$0$-cells} (also denoted $\mathcal{B}_0$).
+        \item The \emph{morphism/hom categories}: For each $X,Y\in\mathcal{B}$, there exists a category $\mathcal{B}(X,Y)$, with the objects called \emph{1-cells} (denoted $\mathcal{B}_1$), and the morphisms are called \emph{2-cells} (denoted $\mathcal{B}_2$).
+    \end{itemize}
+
+    \hfil
+
+    \textbf{I. Terminologies for 2-cells:} The composition in each $\mathcal{B}(X,Y)$ is called \emph{vertical compositions} (here, denote use $\odot$ to denote it), the identity morphisms in $\mathcal{B}(X,Y)$ are called \emph{identity 2-cells}, while an isomorphism is called \emph{invertible 2-cells}, with inverse called \emph{vertical inverse}.
+
+    \hfil
+
+    \textbf{II. Horizontal Composition:} For each 0-cells $X,Y,Z\in\mathcal{B}_0$, here exists a \emph{horizontal composition functor}
+    \[c_{XYZ}:\mathcal{B}(Y,Z)\times \mathcal{B}(X,Y)\rightarrow \mathcal{B}(X,Z)\]
+    Where given $1$-cells $f\in\mathcal{B}(X,Y)$, $g\in\mathcal{B}(Y,Z)$, and $2$-cells $\alpha\in\mathcal{B}(X,Y)$, $\beta\in\mathcal{B}(Y,Z)$, we denote
+    \[c_{XYZ}(g,f)= g\circ f,\quad c_{XYZ}(\beta,\alpha) = \beta*\alpha\]
+
+    \hfil
+
+    \textbf{III. Associator:} Given $W,X,Y,Z\in\mathcal{B}_0$, there exists \emph{associator isomorphism}
+    \[a_{WXYZ}:c_{WXZ}\circ (c_{XYZ}\times \Id_{\mathcal{B}(W,X)})\xrightarrow{\sim}c_{WYZ}\circ (\Id_{\mathcal{B}(Y,Z)}\times c_{WYX})\]
+    between the functors $\mathcal{B}(Y,Z)\times \mathcal{B}(X,Y)\times\mathcal{B}(W,X)\rightarrow \mathcal{B}(W,Z)$ (this is saying, composition of 1-cells are only up to isomorphism, and may be different from the hom class of $\mathcal{B}_0$).
+
+
+
+\end{defn}
 
 \end{document}
