@@ -1,0 +1,131 @@
+\documentclass[10pt]{beamer}
+\usetheme[numbering=fraction, background=light]{metropolis}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+%\usepackage{../Self_Style}
+\usepackage{amsmath, amsthm, amssymb}
+
+\usepackage[normalem]{ulem} %for strike through
+
+% No fontspec, stick with default font
+
+\title{Intro to Peano Systems}
+\subtitle{Y'all love Set Theory, don't you?}
+\author{Mysterious Category Theory Enthusiast}
+%\institute{UCSB, CCS Mathematics}
+\date{\today}
+
+\setbeamertemplate{theorems}[ams style]
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{corollary}[Theorem]{Corollary}
+%\newtheorem{definition}[Theorem]{Definition}
+% \newtheorem{example}[Theorem]{Example}
+% \newtheorem{lemma}[Theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}{Question}
+\newtheorem{property}{Property}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{What is Inductive Set?}
+    \begin{definition}
+        Given a set $x$, its \emph{Successor} $x^+:= x\cup \{x\}$. 
+    \end{definition}
+
+    \hfil
+
+    \begin{definition}
+        A set $I$ is an \emph{Inductive Set}, if:
+        \begin{itemize}
+            \item[1.] $\emptyset\in I$.
+            \item[2.] For any $x\in I$, $x^+\in I$.
+        \end{itemize}
+    \end{definition}
+
+    \hfil
+
+    \begin{example}
+        Define $0:= \emptyset$, and $(n+1):= n^+ = n\cup \{n\}$. This realizes $\mathbb{N}$ as an inductive set.
+    \end{example}
+\end{frame}
+
+%\begin{frame}{Morphisms of Inductive Sets}
+%    Let $I,J$ be two inductive sets.
+
+%    \begin{definition}
+%        A \emph{morphism of inductive sets} $f:I\rightarrow J$, is a set function, such that 
+%        \[f(x)^+ = f(x^+)\]
+%        for any set $x\in I$.
+%    \end{definition}
+%\end{frame}
+
+\begin{frame}{Properties of Inductive Sets}
+    \begin{proposition}
+        Unions / Intersections of inductive sets is inductive set.
+    \end{proposition}
+
+    \hfil
+
+    \begin{proof}
+        Fill in the details on the blackboard :)
+    \end{proof}
+\end{frame}
+
+\begin{frame}{Is there a SMALLEST Inductive Set?}
+    Surely there is one, right? Like natural numbers $\mathbb{N}$.
+
+    \hfil
+
+    \sout{\textbf{Answer 1:} Yes, take intersection of all inductive sets.}
+
+    \hfil \sout{Yep, this answer is screwed up by ZFC axioms.}
+
+    \hfil
+
+    \textbf{Answer 1':} Kind of: Take $S$ as a set of (arbitrary) inductive sets, define $\omega:= \bigcap_{I\in S}I$, this is clearly inductive. Question is, is it the smallest?
+\end{frame}
+
+\begin{frame}{$\omega$ is the SMALLEST Inductive Set}
+    Fix any inductive set $T$, define $S_T:=$ all inductive subsets of $T$. Defin $\omega$ with respect to $S:= S_T$.
+
+    \hfil
+
+    \begin{theorem}
+        For each inductive set $I$, $\omega\subseteq I$.
+    \end{theorem}
+
+    \hfil
+
+    In particular, $\omega\cong \mathbb{N}$, surprise, surprise...
+\end{frame}
+
+\begin{frame}{Proof}
+    For any inductive set $B$, consider $\omega\cap B\subseteq \omega\subseteq T$.
+
+    Since $\omega\cap B$ is also inductive, $\omega\cap B\in S_T$, so $\omega\subseteq \omega\cap B$, implying $\omega=\omega\cap B$. 
+
+    Hence, $\omega\subseteq B$. $\square$
+\end{frame}
+
+\begin{frame}{Peano System}
+    \begin{definition}
+        A \emph{Peano System} is a set $N$, an element $e\in N$, and a function $s:N\rightarrow N$, such that:
+        \begin{itemize}
+            \item $e\notin s(N)$.
+            \item If $A\subseteq N$, $e\in A$, and $s(A)\subseteq A$, then $A=N$.
+        \end{itemize}
+    \end{definition}
+
+    \hfil
+
+    \begin{example}
+        The set $\omega$ of all finite successors of $\emptyset$, with successing function $(\_)^+:\omega\rightarrow\omega$ is a Peano System. In particular, $\omega\cong \mathbb{N}$ as Inductive Sets / Peano Systems.
+
+        Moreover, $\omega$ is the \emph{initial} Peano System, surprise, surprise...
+    \end{example}
+\end{frame}
+
+\end{document}
