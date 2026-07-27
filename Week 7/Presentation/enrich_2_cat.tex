@@ -1,0 +1,192 @@
+\documentclass{article}
+\usepackage{../Self_Style}
+
+\usepackage[normalem]{ulem} %for strike through
+
+\title{UChicago REU Notes Week 5}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+The goal for this note is to get a hand of what 2-categories are, both intuitively and some tangible generalization.
+
+\hfil
+
+\section{Motivating Examples}
+
+First, let's consider the most explicit example, the category of small categories, $\Cat$:
+\begin{exmp}
+    Given two small categories $\mathcal{C},\mathcal{D}\in\Cat$, the homset is the \emph{functor category} $[\mathcal{C},\mathcal{D}]$. Which, the morphism in $[\mathcal{C},\mathcal{D}]$ are the natural transformations between functors. 
+\end{exmp}
+
+To keep in mind that we're still doing topology (in most of the cases), let's provide the category of topological spaces $\Top$ as an intuition:
+
+\begin{exmp}
+    For each $X,Y\in\Top$, the homset $\Hom_\Top (X,Y)$ is in fact a groupoid: Define morphisms between maps $f,g:X\rightarrow Y$ to be homotopy classes of homotopies (denoted as $[H]:f\Rightarrow g$), with compositions being concatinations of homotopies: If $[H_1]:f\Rightarrow g$ and $[H_2]:g\Rightarrow h$, then $[H_2]\circ_2 [H_1]:=[H_2\cot H_1]$ as follow:
+    \[H_2\cdot H_1:X\times I\rightarrow Y,\quad (H_2\cdot H_1)(x,t):= \begin{cases}
+        H_1(x,2t) & 0\leq t\leq \frac{1}{2}\\
+        H_2(x,2t-1) & \frac{1}{2}<t\leq 1
+    \end{cases}\]
+    Then, $\Hom_\Top (X,Y)$ forms a groupoid (a category with all morphisms being isomorphisms).
+\end{exmp}
+
+\hfil
+
+If associating each small category as topological space, functors as continuous maps, and natural transformations as homotopies, the first example is analogous to the second one. 
+
+An intuitive picture one can have in mind is: In 2-categories, objects are 0-cells, 1-morphisms are 1-cells, and 2-morphisms are 2-cells (serving as transformations between the 1-cells).
+
+\hfil
+
+
+
+\newpage
+
+\section{Enriched Categories}
+
+This section follows Emily Riehls' \emph{Categorical Homotopy Theory}.
+
+To properly define notions needed afterward, we need a concrete way of viewing categories enriched over small categories. This more generally follows categories enriched over symmetric monoidal categories, which are categories whose hom functor (or some similarly-behaved functor) are endowed with extra structures relevent to a monoidal category.
+
+\begin{notn}
+We'll use $(\mathcal{V},\times,*)$ to denote a symmetric monoidal category here. If monoidally closed, we'll use $\mathcal{V}(\_,\_)$ to denote the internal hom functor. 
+\end{notn}
+
+\begin{defn}
+    A category $\mathcal{D}$ is \emph{enriched over $\mathcal{V}$}, or called a \emph{$\mathcal{V}$-category}, if it consists of the following data:
+    \begin{itemize}
+        \item For each pair $x,y\in\mathcal{D}$, there is a \emph{Hom-object} $\mathcal{D}(x,y)\in\mathcal{V}$.
+        \item For each $x\in\mathcal{D}$, a \emph{unit morphism} $\id_x:*\rightarrow\mathcal{D}(x,x)$ in $\mathcal{V}$.
+        \item For each triple $x,y,z\in\mathcal{D}$, a \emph{composition morphism} $\circ:\mathcal{D}(y,z)\times \mathcal{D}(x,y)\rightarrow \mathcal{D}(x,z)$ in $\mathcal{V}$.
+    \end{itemize}
+    such that the following diagram commutes when given all $x,y,z,w\in\mathcal{D}$:
+    \begin{itemize}
+        \item \emph{Associativity of composition}:
+        \[\xymatrix{
+            \mathcal{D}(z,w)\times\mathcal{D}(y,z)\times\mathcal{D}(x,y) \ar[d]_-{\circ\times 1}\ar[r]^-{1\times \circ} & \mathcal{D}(z,w)\times \mathcal{D}(x,z)\ar[d]^-{\circ}\\
+            \mathcal{D}(y,w)\times \mathcal{D}(x,y)\ar[r]_-{\circ} & \mathcal{D}(x,w)
+        }\]
+        \item \emph{Existence of Two-sided Units:}
+        \[\xymatrix{
+            \mathcal{D}(x,y)\times \text{*} \ar@{=}[dr] \ar[r]^-{1\times \id_x} & \mathcal{D}(x,y)\times \mathcal{D}(x,x) \ar[d]^-{\circ}\\
+            & \mathcal{D}(x,y)
+        },\quad\quad \xymatrix{
+            \mathcal{D}(y,y)\times \mathcal{D}(x,y)\ar[d]_-{\circ} & \text{*} \times \mathcal{D}(x,y) \ar[l]_-{\id_y\times 1} \ar@{=}[dl]\\
+            \mathcal{D}(x,y)
+        }\]
+    \end{itemize}
+\end{defn}
+
+These conditions are mimicing the idea of homsets in a given category. For instance, with this definition by choosing $\mathcal{D}(\_,\_):= \Hom_\mathcal{D}(\_,\_)$, we immediately realize all categories are enriched over $\Sets$. Since more general categories don't have concrete descriptions of objects using sets, we instead need a generalization so that the analogy of ``hom functors'' can land in more general categories. 
+
+%One thing that sorts of questions me, is the existence of $\mathcal{D}$ as only an assignment of objects, not defined directly as a functor. I think in general a functor works just fine. Out of curiosity, does there exist such enrichment example, where $\mathcal{D}$ doesn't form a functor? I think these naturalities should provide a functor structure.  
+
+\hfil
+
+\begin{exmp}
+    Given a one-object category $\mu$ enriched over $(\Ab,\tensor_\ZZ,\ZZ)$, the unique object $*$ has a unit homomorphism $\id_*:\ZZ\rightarrow m(*,*)$, a multiplication homomorphism $\cdot:m(*,*)\tensor_\ZZ m(*,*)\rightarrow m(*,*)$. 
+
+    Denote $1_m:=\id_* (1)$, then we precisely have: $x\dot 1_m=x$, $1_m\dot x=x$, and $(x+y)\cdot (z+w)=x\cdot z+x\cdot w+y\cdot z+y\cdot w$, using unit and $\ZZ$-bilinearity of the morphism. So, one-object category enriched over $\Ab$ with tensor product as monoidal product, is a unital ring.
+\end{exmp}
+
+\begin{exmp}
+    If consider the category of compactly generated spaces $\mathcal{U}$, then the product (i.e. the $k$-ification for original cartesian product) satisfies the following adjunction:
+    \[\Hom_\mathcal{U}(X\times K,Y)\cong \Hom_\mathcal{U}(X,Y^K)\]
+    where $Y^K:=\Hom_\mathcal{U}(K,Y)$
+    Which, it's actually cartesian closed and cocomplete.
+\end{exmp}
+
+%I remembered in the book it's mentioned that for general topological space it's not cartesian closed, but do need to think about why.
+
+\begin{exmp}
+    If $\mathcal{V}$ is monoidally closed + cocomplete, then its internal hom functor $\mathcal{V}(\_,\_)$ induces a structure where $\mathcal{V}$ is self-enriched.
+
+    The unit morphism is identified by the adjunction $\Hom_\mathcal{V}(*\times v,v)\cong \Hom_\mathcal{V}(*,\mathcal{V}(v,v))$, identified as the image of the natural isomorphism $\gamma_v:*\times v\xrightarrow{\sim}v$, denoted as $\gamma_v^\sharp:*\rightarrow\mathcal{V}(v,v)$. 
+
+    Before building up the composition morphism, we need to consider an \emph{evaluation morphism} $\epsilon:\mathcal{V}(u,v)\times u\rightarrow v$. This is constructed using the same adjunction, together with the pullback of identity $1:\mathcal{V}(u,v)\xrightarrow{\sim}\mathcal{V}(u,v)$, or $\epsilon := 1^\flat$. Then, we define the pushforward of the following morphism:
+    \[\phi:\mathcal{V}(v,w)\times \mathcal{V}(u,v)\times u\xrightarrow{\id\times \epsilon}\mathcal{V}(v,w)\times v\xrightarrow{\epsilon}w,\quad \circ := \phi^\sharp:\mathcal{V}(v,w)\times\mathcal{V}(u,v)\rightarrow \mathcal{V}(u,w)\]
+    Let's temporarily believe this works out :)
+    %(to do: figure out the details for this one)
+\end{exmp}
+
+\hfil
+
+\begin{comment}
+Let $\mathcal{V}$ be a cartesian closed monoidal category that's also bicomplete (so, categorical product $\times$ is our monoidal product, final object $*\in\mathcal{V}$ serves as unit due to the fact $*\times X\cong X$ by checking universality; it has an internal hom functor $\mathcal{V}(\_,\_):\mathcal{V}^\Op\times \mathcal{V}\rightarrow\mathcal{V}$ generating the adjoint to $\times$ when fixing one variable, while all desired limits / colimits exist).
+
+The goal is to generated something similar to the \emph{category of based objects} analogous to the category of based sets / based spaces over $\Sets$ / $\Top$ respectively, with \emph{smash product} as our monoidal product. Let's first check these two categories for an understanding:
+\begin{exmp}
+    Given $\Sets$ or $\Top$, the category of based spaces is equivalent to the slice category of the final object $*\in\Top$ (the image of $*$ becomes the basepoint). We have each space $(X,x_0),(Y,y_0)$ satisfies wedge product $X\vee Y:= X\sqcup Y\/x_0\sim y_0$, and smash product $X\wedge Y:= X\times Y\/X\vee Y$ using the identification with basepoint. 
+    
+    Consider the inclusion $X \rightarrow X\times Y$ by $x\mapsto (x,y_0)$, and $Y\rightarrow X\times Y$ by $y\mapsto (x_0,y)$, this generaets a map $X\sqcup Y \rightarrow X\times Y$. Which, we claim the following fibre coproduct diagram is satisfied:
+    \[\xymatrix{
+        X\sqcup Y \ar[d] \ar[r] & X\times Y \ar[d] \ar@(r,u)[ddr]\\
+        \text{*} \ar@(d,l)[drr] \ar[r] & X\wedge Y \ar@{-->}[dr]\\
+        && Z
+    }\]
+    By sending $*$ to the class of $X\vee Y$ in $X\wedge Y$, since the image of $X\sqcup Y$ in $X\times Y$ is precisely $X\vee Y$, the above diagram commutes. Moreover, if maps into $Z$ makes the above diagram commutes, we must have the image of $X\vee Y\subseteq X\times Y$ be the point specified by $*$, hence must uniquely factor through $X\wedge Y$ using the quotient space / set property.
+\end{exmp} 
+
+\begin{con}
+    Consider the slice category of the final object $\mathcal{V}_*$, then for any $X,Y\in\mathcal{V}_*$, the product is naturally in the slice category also:
+    \[\xymatrix{
+        & \text{*} \ar[dl] \ar[dr] \ar@{-->}[d]\\
+        X & X\times Y \ar[l] \ar[r] & Y
+    }\]
+    To mimic the morphism $X\sqcup Y\rightarrow X\times Y$, we consider morphisms $X\rightarrow X\times Y$ (and respectively, for $Y\rightarrow X\times Y$) defined as follow (for $Y$, switch up the $X$ and $Y$):
+    \[\xymatrix{
+        & X \ar[r] \ar[dl]_-{1_X} \ar@{-->}[d]^-{\exists !} & \text{*} \ar[d]\\
+        X & X\times Y \ar[l]\ar[r] & Y
+    }\]
+    So, after generating these two morphsisms, one naturally induces $X\sqcup Y \rightarrow X\times Y$. So, we can define the \emph{smash product} $X\wedge Y$ as the fibre coproduct as follow:
+    \[\xymatrix{
+        X\sqcup Y \ar[r] \ar[d] & X\times Y \ar[d]\\
+        \text{*} \ar[r] & X\wedge Y
+    }\]
+    Which, this construction (using the universality) should be associative up to isomorphism.
+\end{con}
+\end{comment}
+
+\newpage
+
+\section{2-Categories and Bicategories}
+
+Finally, to define a 2-category, there are multiple ways of defining it:
+\begin{defn}
+    \sout{A category $\mathcal{C}$ is a \emph{2-category}, if it's an $\infty$-category, such that all $3$-morphism is an equivalence, and all $n\geq 3$-morphisms that're parallel are equivalent.}
+\end{defn}
+If anyone can think in an $\infty$-category manner then they can take this definition, at least I can't...
+
+\hfil
+
+The first (and most intuitive) definition of a 2-category uses enrichment:
+
+\begin{defn}
+    A category $\mathcal{C}$ is a \emph{2-category}, if the hom-functor provides an enrichment over $\Cat$, the category of small categories.
+\end{defn}
+This means, each $X,Y\in\mathcal{C}$ has $\Hom_\mathcal{C}(X,Y)$ actually forms a small category (called a \emph{hom-category}), and the composition of morphisms $\circ:\Hom_\mathcal{C}(Y,Z)\times \Hom_\mathcal{C}(X,Y)\rightarrow\Hom_\mathcal{C}(X,Z)$ is a functor.
+
+Here, we call the elements in $\Hom_\mathcal{C}(X,Y)$ the \emph{1-cells}, and the morphisms within the hom-category are called the \emph{2-cells}.
+
+\hfil
+
+For instance, recalling back to our initial example of $\Top$, and each $\Hom_\Top(X,Y)$ realized as a groupoid using homotopic classes of homotopies as morphisms between maps, this is a well-defined $2$-category structure on $\Top$. Here, I want to emphasize an aspect about the 2-cells, since they have 2 different ``compositions'':
+
+\begin{exmp}
+    Fixing two spaces $X,Y$, for any three maps $f,g,h\in \Hom_\Top (X,Y)$, pick two classes of homotopies $[H_1]:f\Rightarrow g$ 
+\end{exmp}
+
+\hfil
+
+\hfil
+
+
+
+\newpage
+
+\section{Appendix: Categorical Verifications}
+
+\end{document}

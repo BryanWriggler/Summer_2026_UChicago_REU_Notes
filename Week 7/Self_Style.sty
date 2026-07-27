@@ -1,0 +1,282 @@
+%%Order:
+%1. packages
+%2. basic geometry of the template
+%3. define specific colors used
+%4. define theorem boxes
+%5. combine color boxes with theorem boxes
+%6. Common commands I use
+%% Set geometry of the margin and line spread
+\usepackage[margin = 2.54cm]{geometry} % set margin to traditional doc
+\linespread{1.2} %controlling line spread
+
+%% Collect needed packages for most files
+\usepackage{graphicx} % Required for inserting images
+\usepackage{caption}
+\usepackage{subcaption} %for genrating captions for images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics} %specifically for braket notation
+\usepackage{verbatim} %for special environment (for instance the comment environment)
+\usepackage[unicode]{hyperref} %for creating links to different sections
+
+
+%%%%objects for UChicago REU specifically
+%setup hyperlink within pdf
+\usepackage{mathrsfs,comment}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[normalem]{ulem}
+\usepackage{url}
+\usepackage[all,arc,2cell]{xy}
+\UseAllTwocells
+\usepackage{enumerate}
+%%% hyperref stuff is taken from AGT style file
+\usepackage{hyperref}  
+\hypersetup{%
+  bookmarksnumbered=true,%
+  bookmarks=true,%
+  colorlinks=true,%
+  linkcolor=blue,%
+  citecolor=blue,%
+  filecolor=blue,%
+  menucolor=blue,%
+  pagecolor=blue,%
+  urlcolor=blue,%
+  pdfnewwindow=true,%
+  pdfstartview=FitBH}   
+  
+\let\fullref\autoref
+%
+%  \autoref is very crude.  It uses counters to distinguish environments
+%  so that if say {lemma} uses the {theorem} counter, then autrorefs
+%  which should come out Lemma X.Y in fact come out Theorem X.Y.  To
+%  correct this give each its own counter eg:
+%                 \newtheorem{theorem}{Theorem}[section]
+%                 \newtheorem{lemma}{Lemma}[section]
+%  and then equate the counters by commands like:
+%                 \makeatletter
+%                   \let\c@lemma\c@theorem
+%                  \makeatother
+%
+%  To work correctly the environment name must have a corrresponding 
+%  \XXXautorefname defined.  The following command does the job:
+%
+\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+%
+%  Some standard autorefnames.  If the environment name for an autoref 
+%  you need is not listed below, add a similar line to your TeX file:
+%  
+%\makeautorefname{equation}{Equation}%
+\def\equationautorefname~#1\null{(#1)\null}
+\makeautorefname{footnote}{footnote}%
+\makeautorefname{item}{item}%
+\makeautorefname{figure}{Figure}%
+\makeautorefname{table}{Table}%
+\makeautorefname{part}{Part}%
+\makeautorefname{appendix}{Appendix}%
+\makeautorefname{chapter}{Chapter}%
+\makeautorefname{section}{Section}%
+\makeautorefname{subsection}{Section}%
+\makeautorefname{subsubsection}{Section}%
+\makeautorefname{theorem}{Theorem}%
+\makeautorefname{thm}{Theorem}%
+\makeautorefname{cor}{Corollary}%
+\makeautorefname{lem}{Lemma}%
+\makeautorefname{prop}{Proposition}%
+\makeautorefname{pro}{Property}
+\makeautorefname{conj}{Conjecture}%
+\makeautorefname{defn}{Definition}%
+\makeautorefname{notn}{Notation}
+\makeautorefname{notns}{Notations}
+\makeautorefname{rem}{Remark}%
+\makeautorefname{quest}{Question}%
+\makeautorefname{exmp}{Example}%
+\makeautorefname{ax}{Axiom}%
+\makeautorefname{claim}{Claim}%
+\makeautorefname{ass}{Assumption}%
+\makeautorefname{asss}{Assumptions}%
+\makeautorefname{con}{Construction}%
+\makeautorefname{prob}{Problem}%
+\makeautorefname{warn}{Warning}%
+\makeautorefname{obs}{Observation}%
+\makeautorefname{conv}{Convention}%
+
+
+%
+%                  *** End of hyperref stuff ***
+
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{prob}{Problem}[section]
+\newtheorem{conj}{Conjecture}[section]
+%\newtheorem{ass}{Assumption}[section]
+%\newtheorem{asses}{Assumptions}[section]
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{ass}{Assumption}[section]
+\newtheorem{asss}{Assumptions}[section]
+\newtheorem{ax}{Axiom}[section]
+\newtheorem{con}{Construction}[section]
+\newtheorem{exmp}{Example}[section]
+\newtheorem{notn}{Notation}[section]
+\newtheorem{notns}{Notations}[section]
+\newtheorem{pro}{Property}[section]
+\newtheorem{quest}{Question}[section]
+\newtheorem{rem}{Remark}[section]
+\newtheorem{warn}{Warning}[section]
+\newtheorem{sch}{Scholium}[section]
+\newtheorem{obs}{Observation}[section]
+\newtheorem{conv}{Convention}[section]
+
+%%%% hack to get fullref working correctly
+\makeatletter
+\let\c@obs=\c@thm
+\let\c@cor=\c@thm
+\let\c@prop=\c@thm
+\let\c@lem=\c@thm
+\let\c@prob=\c@thm
+\let\c@con=\c@thm
+\let\c@conj=\c@thm
+\let\c@defn=\c@thm
+\let\c@notn=\c@thm
+\let\c@notns=\c@thm
+\let\c@exmp=\c@thm
+\let\c@ax=\c@thm
+\let\c@pro=\c@thm
+\let\c@ass=\c@thm
+\let\c@warn=\c@thm
+\let\c@rem=\c@thm
+\let\c@sch=\c@thm
+\let\c@equation\c@thm
+\numberwithin{equation}{section}
+\makeatother
+
+\bibliographystyle{plain}
+
+%%common commands (add to template)
+%general
+\newcommand{\FF}{\mathbb{F}} %field F
+\newcommand{\NN}{\mathbb{N}} %natural number
+\newcommand{\ZZ}{\mathbb{Z}} %integer
+\newcommand{\QQ}{\mathbb{Q}} %rational field
+\newcommand{\RR}{\mathbb{R}} %real field
+\newcommand{\CC}{\mathbb{C}} %complex field
+\newcommand{\KK}{\mathbb{K}} %field K
+
+\newcommand{\id}{\mathrm{id}} %identity
+\newcommand{\Id}{\mathrm{Id}} %big identity
+\newcommand{\lcm}{\mathrm{lcm}} %least common multiple
+\newcommand{\tensor}{\otimes} %tensor
+\newcommand{\bigtensor}{\bigotimes} %big tensor
+
+%paired command
+%\DeclarePairedDelimiter{\abs}{\lvert}{\rvert} %absolute value
+%\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+%\DeclarePairedDelimiter{\paran}{(}{)}%paranthesis
+\DeclarePairedDelimiter{\brac}{\langle}{\rangle} %bracket (used for cyclic group, generated group, etc.)
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor} %floor function
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil} %ceiling function
+
+%algebra
+\newcommand{\Gal}{\mathrm{Gal}} %galois extension
+\newcommand{\Aut}{\mathrm{Aut}} %automorphism
+\newcommand{\End}{\mathrm{End}} %endomorphism
+\newcommand{\Hom}{\mathrm{Hom}} %set of morphism
+\newcommand{\Mor}{\mathrm{Mor}} %set of morphisms (in general category, lang)
+\newcommand{\Nil}{\mathrm{Nil}} %nilradical in commutatitive ring
+\newcommand{\Ann}{\mathrm{Ann}} %annihilator (as ideal in commutative ring)
+\newcommand{\Char}{\mathrm{char}} %characteristic
+\newcommand{\coker}{\mathrm{coker}} %coker
+%\let\im\undefined
+\newcommand{\im}{\mathrm{im}} %image
+\newcommand{\Spec}{\mathrm{Spec}} %spectrum (used in either operator theory, or spectrum as Zariski Topology)
+\newcommand{\coim}{\mathrm{coim}} %coimage in homological algebra
+%\newcommand{\span}{\mathrm{span}} %span in linear algebra
+\newcommand{\Orb}{\mathrm{Orb}}%orbit in group theory
+\newcommand{\Ob}{\mathrm{Ob}}%object in cat theory
+
+%category theory
+\newcommand{\cat}[1]{\mathsf{#1}} %general category font command
+\newcommand{\Grp}{\mathsf{Grp}} %cat of group
+\newcommand{\Ab}{\mathsf{Ab}} %cat of abel group
+\newcommand{\Ring}{\mathsf{Ring}} %cat of ring
+\newcommand{\Fld}{\mathsf{Fld}} %cat of field
+\newcommand{\RMod}{\mathsf{R}\text{-}\mathsf{Mod}} %cat of R-Mod
+\newcommand{\RAlg}{\mathsf{R}\text{-}\mathsf{Alg}} %cat of R-Alg
+\newcommand{\Vect}[1]{\mathsf{Vect}_\mathsf{#1}} %cat of vector spaces
+\newcommand{\Top}{\mathsf{Top}} %cat of topological spaces
+\newcommand{\hTop}{\mathsf{hTop}} %cat of topological spaces with homotopic classes of continuous maps
+\newcommand{\Op}{\mathrm{op}}%for opposite category's notation
+\newcommand{\Sets}{\mathsf{Set}} %cat of sets
+\newcommand{\Cat}{\mathsf{Cat}} %cat of small cat
+\newcommand{\Ch}[1]{\mathsf{Ch(#1)}} %cat of chain complex / cochain complex over an abelian category
+\newcommand{\D}[1]{\mathsf{D(#1)}} %derived category
+\newcommand{\Met}{\mathsf{Met}} %cat of metric spaces
+\newcommand{\colim}{\mathrm{colim}}
+
+%Lie Group / Lie Algebra
+\newcommand{\GL}{\mathrm{GL}} %general linear
+\newcommand{\SL}{\mathrm{SL}} %special linear
+\newcommand{\U}{\mathrm{U}} %unitary
+\newcommand{\SO}{\mathrm{SO}} %special orthogonal
+\newcommand{\SU}{\mathrm{SU}} %special unitary
+\newcommand{\gl}{\mathfrak{gl}}
+\let\sl\undefined
+\newcommand{\sl}{\mathfrak{sl}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\su}{\mathfrak{su}}
+
+%analysis
+\newcommand{\Vol}{\mathrm{Vol}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\Supp}{\mathrm{Supp}} %used for support, but can be in a lot of other use, like support in a spectrum of a commutative ring
+
+%complex
+\newcommand{\Real}{\mathrm{Re}} %real part
+\newcommand{\Imag}{\mathrm{Im}} %imaginary part
+%\newcommand{\Res}{\mathrm{Res}} %residue
+\newcommand{\Holo}{\mathcal{O}} %represent holomorphic / analytic function
+\newcommand{\Mero}{\mathcal{M}} %represent meromorphic function
+
+
+%physics
+\newcommand{\bR}{\mathbf{R}} %upper case position...for center of mass
+\newcommand{\br}{\mathbf{r}} %position
+\newcommand{\bv}{\mathbf{v}} %velocity
+\newcommand{\ba}{\mathbf{a}} %acceleration
+\newcommand{\bg}{\mathbf{g}} %gravity acceleration
+\newcommand{\bs}{\mathbf{s}} %sometimes for extra position
+\newcommand{\bF}{\mathbf{F}} %force
+\newcommand{\bP}{\mathbf{P}} %momentum
+\newcommand{\bp}{\mathbf{p}} %momentum operator in QM (or relativistic fourmomentum)
+\newcommand{\bk}{\mathbf{k}} %wavevector
+\newcommand{\bE}{\mathbf{B}} %electric field
+\newcommand{\bB}{\mathbf{B}} %magnetic field
+\newcommand{\bL}{\mathbf{L}} %angular momentum
+\newcommand{\bS}{\mathbf{S}} %spin (QM)
+\newcommand{\bJ}{\mathbf{J}} %total angular momentum
+\newcommand{\bN}{\mathbf{N}} %torque
+\newcommand{\bw}{\boldsymbol{\omega}} %angular velocity
+\newcommand{\bOmega}{\boldsymbol{\Omega}} %big angular velocity
+\newcommand{\bzero}{\mathbf{0}} %zero vector
+\newcommand{\anti}{\mathrm{anti}} %antisymmetric
+\newcommand{\symm}{\mathrm{symm}} %symmetric
+
+%Probability
+\newcommand{\PP}{\mathbb{P}} %probability function
+\newcommand{\EE}{\mathbb{E}} %expectation value
+\newcommand{\Var}{\mathrm{Var}} %use for variance
+\newcommand{\Bin}{\mathrm{Bin}} %binomial distribution
+\newcommand{\Ber}{\mathrm{Ber}} %bernoulli distribution
+\newcommand{\Poi}{\mathrm{Poi}} %poisson distribution
+\newcommand{\Unif}{\mathrm{Unif}} %uniform distribution
+\newcommand{\Exp}{\mathrm{Exp}} %exponential distribution
+\newcommand{\Cov}{\mathrm{Cov}} %covariance
+\newcommand{\Corr}{\mathrm{Corr}} %correlation
+\newcommand{\Beta}{\mathrm{Beta}} %beta distribution
+\newcommand{\GammaD}{\mathrm{Gamma}} %gamma distribution
