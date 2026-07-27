@@ -221,7 +221,17 @@ However, it turns out this definition is too restrictive, partially because when
     Some axioms it satisfies include: 
 
     \begin{itemize}
-        \item \emph{Unit:}
+        \item \emph{Unit:} Given $f\in \mathcal{B}(X,Y)$, $\id_Y\in \mathcal{B}(Y,Y)$, and $g\in\mathcal{B}(Y,Z)$, the following diagram holds:
+        \[\xymatrix{
+            (g\circ \id_Y)\circ f \ar[dr]_-{r_{YZ}\text{*}\id} \ar[rr]^-{a} && g\circ (\id_Y\circ f) \ar[dl]^-{\id\text{*}\ell_{XY}}\\
+            & g\circ f
+        }\]
+        \item \emph{Pentagon Axiom:} Given 1-cells $f,g,h,\ell$ that are composable in order, the following diagram holds:
+        \[\xymatrix{
+            & (\ell\circ h)\circ (g\circ f) \ar[dr]^-{a_{k,h,g\circ f}}\\
+            ((k\circ h)\circ g)\circ f \ar[d]_-{a_{k,j,g}\text{*}\id_f} \ar[ur]^-{a_{k\circ h,g,f}} && k\circ (h\circ (g\circ f))\\
+            (k\circ (h\circ g))\circ f \ar[rr]_-{a_{k,h\circ g,f}} && k\circ ((h\circ g)\circ f) \ar[u]_{\id_k\text{*} a_{h,g,f}}
+        }\]
     \end{itemize}
 \end{defn}
 
@@ -232,7 +242,7 @@ As a canonical example:
 \begin{exmp}
     A one-object bicategory is a monoidal category; now the composition is associative up to natural isomorphism, the unit and pentagon axioms precisely matches the axioms for monoidal category.
 
-    More generally, given a bicategory $\mathcal{B}$, then any object $X\in\mathcal{B}$ has its hom-category $\mathcal{C}(X,X)$ being a monoidal category.
+    More generally, given a bicategory $\mathcal{B}$, then any object $X\in\mathcal{B}$ has its hom-category $\mathcal{B}(X,X)$ being a monoidal category.
 \end{exmp}
 
 \hfil
