@@ -71,10 +71,10 @@ We'll use $(\mathcal{V},\times,*)$ to denote a symmetric monoidal category here.
         }\]
         \item \emph{Existence of Two-sided Units:}
         \[\xymatrix{
-            \mathcal{D}(x,y)\times \text{*} \ar@{=}[dr] \ar[r]^-{1\times \id_x} & \mathcal{D}(x,y)\times \mathcal{D}(x,x) \ar[d]^-{\circ}\\
+            \mathcal{D}(x,y)\times \text{*} \ar[dr]_{\sim} \ar[r]^-{1\times \id_x} & \mathcal{D}(x,y)\times \mathcal{D}(x,x) \ar[d]^-{\circ}\\
             & \mathcal{D}(x,y)
         },\quad\quad \xymatrix{
-            \mathcal{D}(y,y)\times \mathcal{D}(x,y)\ar[d]_-{\circ} & \text{*} \times \mathcal{D}(x,y) \ar[l]_-{\id_y\times 1} \ar@{=}[dl]\\
+            \mathcal{D}(y,y)\times \mathcal{D}(x,y)\ar[d]_-{\circ} & \text{*} \times \mathcal{D}(x,y)\ar[l]_-{\id_y\times 1} \ar[dl]^-{\sim}\\
             \mathcal{D}(x,y)
         }\]
     \end{itemize}
@@ -108,13 +108,151 @@ These conditions are mimicing the idea of homsets in a given category. For insta
 
     Before building up the composition morphism, we need to consider an \emph{evaluation morphism} $\epsilon:\mathcal{V}(u,v)\times u\rightarrow v$. This is constructed using the same adjunction, together with the pullback of identity $1:\mathcal{V}(u,v)\xrightarrow{\sim}\mathcal{V}(u,v)$, or $\epsilon := 1^\flat$. Then, we define the pushforward of the following morphism:
     \[\phi:\mathcal{V}(v,w)\times \mathcal{V}(u,v)\times u\xrightarrow{\id\times \epsilon}\mathcal{V}(v,w)\times v\xrightarrow{\epsilon}w,\quad \circ := \phi^\sharp:\mathcal{V}(v,w)\times\mathcal{V}(u,v)\rightarrow \mathcal{V}(u,w)\]
-    Let's temporarily believe this works out :)
+    %Let's temporarily believe this works out :)
     %(to do: figure out the details for this one)
+\end{exmp}
+
+\newpage
+
+\section{2-Categories and Bicategories}
+
+Finally, to define a 2-category, there are multiple ways of defining it:
+\begin{defn}
+    \sout{A category $\mathcal{C}$ is a \emph{2-category}, if it's an $\infty$-category, such that all $3$-morphism is an equivalence, and all $n\geq 3$-morphisms that're parallel are equivalent.}
+\end{defn}
+If anyone can think in an $\infty$-category manner then they can take this definition, at least I can't...
+
+\hfil
+
+The first (and most intuitive) definition of a 2-category uses enrichment:
+
+\begin{defn}
+    A category $\mathcal{C}$ is a \emph{2-category}, if the hom-functor provides an enrichment over $\Cat$, the category of small categories.
+\end{defn}
+This means, each $X,Y\in\mathcal{C}$ has $\Hom_\mathcal{C}(X,Y)$ actually forms a small category (called a \emph{hom-category}), and the composition of morphisms $\circ:\Hom_\mathcal{C}(Y,Z)\times \Hom_\mathcal{C}(X,Y)\rightarrow\Hom_\mathcal{C}(X,Z)$ is a functor.
+
+Here, we call the elements in $\Hom_\mathcal{C}(X,Y)$ the \emph{1-cells}, and the morphisms within the hom-category are called the \emph{2-cells}.
+
+\begin{exmp}
+    If consider a 2-category under this definition with only 1-object, then the corresponding hom-category $\mathcal{A}:=\Hom(*,*)$ has an associative ``composition'' $\circ:\mathcal{A}\times\mathcal{A}\rightarrow\mathcal{A}$, and the existence of identity morphism serves as an actual unit under this compostion. 
+
+    This realizes $\mathcal{A}$ as a strict monoidal category (meaning the monoidal product is strictly associative, similar for unit). If add an extra requirement that $\Hom(*,*)$ is commutative, then it becomes a strict symmetric monoidal category.
 \end{exmp}
 
 \hfil
 
-\begin{comment}
+For another instance, recalling back to our initial example of $\Top$, and each $\Hom_\Top(X,Y)$ realized as a groupoid using homotopic classes of homotopies as morphisms between maps, this is a well-defined $2$-category structure on $\Top$. Here, I want to emphasize an aspect about the 2-cells, since they have 2 different ``compositions'':
+
+\begin{exmp}
+    Fixing two spaces $X,Y$, for any three maps $f,g,h\in \Hom_\Top (X,Y)$, pick two classes of homotopies $[H_1]:f\Rightarrow g$, $[H_2]:g\Rightarrow h$, then the concatination $[H_2\cdot H_1]:f\Rightarrow h$ is still a morphism within $\Hom_\Top (X,Y)$. This is a composition while fixing a hom-category, called \emph{vertical composition}:
+    \[
+        \xymatrix@C=2pc{
+        X \ar@/^3pc/[rr]^{f}="1"
+            \ar[rr]^-{g}="2" 
+            \ar@/_3pc/[rr]_-{h}="3" 
+        && Y 
+        \ar@{=>} "1";"2"^{[H_1]} \ar@{=>}"2";"3"^{[H_2]}
+        }
+        \]
+    Then, given $f_1,f_2:X\rightarrow Y$, $g_1,g_2:Y\rightarrow Z$, together with $[H]:f_1\Rightarrow f_2$ and $[H']:g_1\Rightarrow g_2$ two homotopies, the composition functor states the existence of the 2-cell $[H']\circ [H]:g_1\circ f_1\Rightarrow g_2\circ f_2$. This is a composition over different hom-categories, called \emph{horizontal composition}:
+    \[\xymatrix@C=2pc{
+        X \ar@/^1.5pc/[rr]^{f_1}="1" \ar@/_1.5pc/[rr]_{f_2}="2"
+        \ar@{=>} "1";"2"^{[H]}
+        && Y \ar@/^1.5pc/[rr]^{g_1}="3" \ar@/_1.5pc/[rr]_{g_2}="4"
+        \ar@{=>} "3";"4"^{[H']}
+        && Z
+    }\]
+    Classically, this can be written as composition of homotopies, restricting to the same time parameter:
+    \[H'* H:X\times I\rightarrow Z,\quad (H'*H)(x,t):= H'(H(x,t),t)\]
+\end{exmp}
+
+Similar vertical / horizontal compositions of natural transformations can also be realized in category of small categories.
+
+\hfil
+
+\begin{defn}
+    Given $\mathcal{C}$ a 2-category, the \emph{vertical composition} of 2-cells is the composition within each hom-category $\Hom_\mathcal{C}(X,Y)$.
+    
+    The \emph{horizontal composition} of 2-cells is the one induced by the composition functor $\circ:\Hom_\mathcal{C}(Y,Z)\times \Hom_\mathcal{C}(X,Y)\rightarrow \Hom_\mathcal{C}(X,Z)$: Given $H:f_1\Rightarrow f_2$ in $\Hom_\mathcal{C}(X,Y)$ and $H':g_1\Rightarrow g_2$ in $\Hom_\mathcal{C}(Y,Z)$, define their horizontal composition as $H'*H:= \circ(H',H):g_1\circ f_1\Rightarrow g_2\circ f_2$.
+\end{defn}
+
+Here, functoriality guarantees the two compositions of 2-cells commute, as horizontal is described by functors from product category (of hom-categories), vertical is described by compositions within each component of product category.
+
+\hfil
+
+However, it turns out this definition is too restrictive, partially because when working on a functor level, requiring the functors to be strictly equal doesn't apply to most applications. So, an alternative definition is defined, where 1 and 2-cells are now allowed to commute up to certain notion of isomorphisms:
+
+\begin{defn}
+    A \emph{bicategory} is a tuple $(\mathcal{B},1,c,a,\ell,r)$, such that:
+    \begin{itemize}
+        \item The objects $\Ob(\mathcal{B})$ is a class, called \emph{$0$-cells} (also denoted $\mathcal{B}_0$).
+        \item The \emph{morphism/hom categories}: For each $X,Y\in\mathcal{B}$, there exists a category $\mathcal{B}(X,Y)$, with the objects called \emph{1-cells} (denoted $\mathcal{B}_1$), and the morphisms are called \emph{2-cells} (denoted $\mathcal{B}_2$).
+    \end{itemize}
+
+    \hfil
+
+    \textbf{I. Terminologies for 2-cells:} The composition in each $\mathcal{B}(X,Y)$ is called \emph{vertical compositions} (here, denote use $\odot$ to denote it), the identity morphisms in $\mathcal{B}(X,Y)$ are called \emph{identity 2-cells}, while an isomorphism is called \emph{invertible 2-cells}, with inverse called \emph{vertical inverse}.
+
+    \hfil
+
+    \textbf{II. Horizontal Composition:} For each 0-cells $X,Y,Z\in\mathcal{B}_0$, here exists a \emph{horizontal composition functor}
+    \[c_{XYZ}:\mathcal{B}(Y,Z)\times \mathcal{B}(X,Y)\rightarrow \mathcal{B}(X,Z)\]
+    Where given $1$-cells $f\in\mathcal{B}(X,Y)$, $g\in\mathcal{B}(Y,Z)$, and $2$-cells $\alpha\in\mathcal{B}(X,Y)$, $\beta\in\mathcal{B}(Y,Z)$, we denote
+    \[c_{XYZ}(g,f)= g\circ f,\quad c_{XYZ}(\beta,\alpha) = \beta*\alpha\]
+
+    \hfil
+
+    \textbf{III. Associator:} Given $W,X,Y,Z\in\mathcal{B}_0$, there exists \emph{associator isomorphism}
+    \[a_{WXYZ}:c_{WXZ}\circ (c_{XYZ}\times \Id_{\mathcal{B}(W,X)})\xrightarrow{\sim}c_{WYZ}\circ (\Id_{\mathcal{B}(Y,Z)}\times c_{WYX})\]
+    between the functors $\mathcal{B}(Y,Z)\times \mathcal{B}(X,Y)\times\mathcal{B}(W,X)\rightarrow \mathcal{B}(W,Z)$ (this is saying, composition of 1-cells are only up to isomorphism, and may be different from the hom class of $\mathcal{B}_0$).
+
+    \hfil
+
+    \textbf{IV. Identity 1-cells:} Given any 0-cell $X\in\mathcal{B}_0$, there exists a functor $\eta_X:*\rightarrow \mathcal{B}(X,X)$, with image denoted as $\id_X$. Which, there is the natural isomorphism between the following pairings:
+    \[\xymatrix{
+        \text{*}\times \mathcal{B}(X,Y) \ar[rr]^-{\eta_Y\times \Id_{\mathcal{B}(X,Y)}} && \mathcal{B}(Y,Y)\mathcal{B}(X,Y)\ar[rr]^-{c_{XYY}} \ar@{}[d]^(.25){}="a"^(.75){}="b" \ar@{=>}"a";"b"^{\ell_{XY}} && \mathcal{B}(X,Y)\\
+        \text{*}\times \mathcal{B}(X,Y) \ar[rrrr]^-{\Id_{\mathcal{B}(X,Y)}} &&&& \mathcal{B}(X,Y)\\
+        \mathcal{B}(X,Y)\times \text{*} \ar[rr]^-{\Id_{\mathcal{B}(X,Y)}\times \eta_X} && \mathcal{B}(Y,X)\mathcal{B}(X,X)\ar[rr]^-{c_{XXY}} \ar@{=>}[u]_-{r_{XY}} && \mathcal{B}(X,Y)
+    }\]
+    Here, $\ell_{XY}$ is called the \emph{left unitor}, conversely $r_{XY}$ is the \emph{right unitor}.
+
+    \hfil
+
+    Some axioms it satisfies include: 
+
+    \begin{itemize}
+        \item \emph{Unit:}
+    \end{itemize}
+\end{defn}
+
+\hfil
+
+As a canonical example:
+
+\begin{exmp}
+    A one-object bicategory is a monoidal category; now the composition is associative up to natural isomorphism, the unit and pentagon axioms precisely matches the axioms for monoidal category.
+
+    More generally, given a bicategory $\mathcal{B}$, then any object $X\in\mathcal{B}$ has its hom-category $\mathcal{C}(X,X)$ being a monoidal category.
+\end{exmp}
+
+\hfil
+
+\begin{exmp}
+    Now, we consider the \emph{category of bimodules}:
+    
+    We let objects be the commutative rings (so the underlying category is $\CRing$), and for two rings $R,S$, the corresponding hom-category be the category of bimodules $\BiMod(R,S)$ (so 1-cells are $(R,S)$-bimodules), with 2-cells being bimodule homomorphisms.
+
+    Then, given $(R,S)$-bimodule $M$ and $(S,T)$-bimodule $N$, we define the composition of 1-cells as \emph{$S$-tensor} $\tensor_S:\BiMod(S,T)\times \BiMod(R,S)\rightarrow\BiMod(R,T)$ by $(N,M)\mapsto N\tensor_S M$, here the functoriality of composition follows from tensor product. 
+
+    The associator between composition follows from the isomorphism of tensor products across different commutative rings: Given $(R,S)$-bimodule $M$, $(S,T)$-bimodule $N$, and $(T,L)$-bimodule $P$, there is an isomorphism as follow (by changing the paranthesis):
+    \[(P\tensor_T N)\tensor_S M \cong P\tensor_T (N\tensor_S M),\quad (p\tensor n)\tensor m\mapsto p\tensor (n\tensor m)\]
+    Such isomorphism is universal, hence form a natural isomorphism between multiple compositions.
+\end{exmp}
+
+\newpage
+
+\section{Appendix: Category of Based Objects}
+
 Let $\mathcal{V}$ be a cartesian closed monoidal category that's also bicomplete (so, categorical product $\times$ is our monoidal product, final object $*\in\mathcal{V}$ serves as unit due to the fact $*\times X\cong X$ by checking universality; it has an internal hom functor $\mathcal{V}(\_,\_):\mathcal{V}^\Op\times \mathcal{V}\rightarrow\mathcal{V}$ generating the adjoint to $\times$ when fixing one variable, while all desired limits / colimits exist).
 
 The goal is to generated something similar to the \emph{category of based objects} analogous to the category of based sets / based spaces over $\Sets$ / $\Top$ respectively, with \emph{smash product} as our monoidal product. Let's first check these two categories for an understanding:
@@ -146,47 +284,12 @@ The goal is to generated something similar to the \emph{category of based object
         X\sqcup Y \ar[r] \ar[d] & X\times Y \ar[d]\\
         \text{*} \ar[r] & X\wedge Y
     }\]
-    Which, this construction (using the universality) should be associative up to isomorphism.
+    %Which, this construction (using the universality) should be associative up to isomorphism.
+    Here, need to emphasize that this construction is not necessarily symmetric monoidal (as there are counterexamples in $\Top$ that violates associativity). But, once this is associative (up to isomorphism), the universal property can help construct an internal hom functor for this category:
 \end{con}
-\end{comment}
-
-\newpage
-
-\section{2-Categories and Bicategories}
-
-Finally, to define a 2-category, there are multiple ways of defining it:
-\begin{defn}
-    \sout{A category $\mathcal{C}$ is a \emph{2-category}, if it's an $\infty$-category, such that all $3$-morphism is an equivalence, and all $n\geq 3$-morphisms that're parallel are equivalent.}
-\end{defn}
-If anyone can think in an $\infty$-category manner then they can take this definition, at least I can't...
 
 \hfil
 
-The first (and most intuitive) definition of a 2-category uses enrichment:
-
-\begin{defn}
-    A category $\mathcal{C}$ is a \emph{2-category}, if the hom-functor provides an enrichment over $\Cat$, the category of small categories.
-\end{defn}
-This means, each $X,Y\in\mathcal{C}$ has $\Hom_\mathcal{C}(X,Y)$ actually forms a small category (called a \emph{hom-category}), and the composition of morphisms $\circ:\Hom_\mathcal{C}(Y,Z)\times \Hom_\mathcal{C}(X,Y)\rightarrow\Hom_\mathcal{C}(X,Z)$ is a functor.
-
-Here, we call the elements in $\Hom_\mathcal{C}(X,Y)$ the \emph{1-cells}, and the morphisms within the hom-category are called the \emph{2-cells}.
-
-\hfil
-
-For instance, recalling back to our initial example of $\Top$, and each $\Hom_\Top(X,Y)$ realized as a groupoid using homotopic classes of homotopies as morphisms between maps, this is a well-defined $2$-category structure on $\Top$. Here, I want to emphasize an aspect about the 2-cells, since they have 2 different ``compositions'':
-
-\begin{exmp}
-    Fixing two spaces $X,Y$, for any three maps $f,g,h\in \Hom_\Top (X,Y)$, pick two classes of homotopies $[H_1]:f\Rightarrow g$ 
-\end{exmp}
-
-\hfil
-
-\hfil
-
-
-
-\newpage
-
-\section{Appendix: Categorical Verifications}
+This is a generalization of category of based spaces to arbitrary cartesian closed symmetric monoidal category. As an application, apply to the category of small categories $\Cat$, it picks out an object as a \emph{basepoint} for each category. Then, the internal hom functor is really the functors preserving the basepoint, which matches our understanding of based spaces.
 
 \end{document}
