@@ -15,7 +15,7 @@ The goal for this note is to get a hand of what 2-categories are, both intuitive
 
 \hfil
 
-\section{Motivating Examples}
+\section{Motivating Examples: Natural Transformations and Homotopies}
 
 First, let's consider the most explicit example, the category of small categories, $\Cat$:
 \begin{exmp}
@@ -276,7 +276,20 @@ The goal is to generated something similar to the \emph{category of based object
         && Z
     }\]
     By sending $*$ to the class of $X\vee Y$ in $X\wedge Y$, since the image of $X\sqcup Y$ in $X\times Y$ is precisely $X\vee Y$, the above diagram commutes. Moreover, if maps into $Z$ makes the above diagram commutes, we must have the image of $X\vee Y\subseteq X\times Y$ be the point specified by $*$, hence must uniquely factor through $X\wedge Y$ using the quotient space / set property.
+
+    \hfil
+
+    Also, if consider the spaces of based maps $F(X,Y)$, notice given $s_X:*\rightarrow X$ and $s_Y:*\rightarrow Y$ two structure maps, it satisfies the following fibre product property:
+    \[\xymatrix{
+        Z \ar@(r,u)[rrd] \ar@(d,l)[ddr] \ar@{-->}[dr]\\
+        & F(X,Y) \ar@{^{(}->}[r]^{\iota} \ar@{->>}[d] & \Hom_\Top(X,Y) \ar[d]^-{\_\circ s_X}\\
+        & \Hom_\Top(\text{*},\text{*}) \ar[r]_-{s_Y\circ \_} & \Hom_\Top(\text{*},Y)
+    }\]
 \end{exmp} 
+
+\hfil
+
+With the examples in mind, we can construct the generalization:
 
 \begin{con}
     Consider the slice category of the final object $\mathcal{V}_*$, then for any $X,Y\in\mathcal{V}_*$, the product is naturally in the slice category also:
@@ -291,11 +304,17 @@ The goal is to generated something similar to the \emph{category of based object
     }\]
     So, after generating these two morphsisms, one naturally induces $X\sqcup Y \rightarrow X\times Y$. So, we can define the \emph{smash product} $X\wedge Y$ as the fibre coproduct as follow:
     \[\xymatrix{
-        X\sqcup Y \ar[r] \ar[d] & X\times Y \ar[d]\\
-        \text{*} \ar[r] & X\wedge Y
+        X\sqcup Y \ar[r] \ar[d] & X\times Y \ar[d] \ar@(r,u)[ddr]\\
+        \text{*} \ar@(d,l)[drr] \ar[r] & X\wedge Y \ar@{-->}[dr]\\
+        && Z
     }\]
     %Which, this construction (using the universality) should be associative up to isomorphism.
-    Here, need to emphasize that this construction is not necessarily symmetric monoidal (as there are counterexamples in $\Top$ that violates associativity). But, once this is associative (up to isomorphism), the universal property can help construct an internal hom functor for this category:
+    Here, need to emphasize that this construction is not necessarily symmetric monoidal (as there are counterexamples in $\Top$ that violates associativity). But, once this is associative (up to isomorphism), the universal property establishes $\_\wedge\_:\mathcal{V}_*\times\mathcal{V}_*\rightarrow\mathcal{V}_*$ as a functor. Moreover, the universal property can be used to establish an internal hom functor $\mathcal{V}_*(\_,\_):\mathcal{V}_*\times\mathcal{V}_*\rightarrow\mathcal{V}_*$ as the fibre product diagram:
+    \[\xymatrix{
+        Z \ar@(r,u)[drr] \ar@{-->}[dr] \ar@(d,l)[ddr]\\
+        & \mathcal{V}_*(v,u) \ar[d] \ar[r] & \mathcal{V}(v,u) \ar[d]\\
+        & \mathcal{V}(\text{*},\text{*}) \ar[r] & \mathcal{V}(\text{*},u)
+    }\]
 \end{con}
 
 \hfil
