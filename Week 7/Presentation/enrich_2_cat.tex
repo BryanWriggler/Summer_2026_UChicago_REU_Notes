@@ -195,7 +195,7 @@ However, it turns out this definition is too restrictive, partially because when
 
     \hfil
 
-    \textbf{II. Horizontal Composition:} For each 0-cells $X,Y,Z\in\mathcal{B}_0$, here exists a \emph{horizontal composition functor}
+    \textbf{II. Horizontal Composition:} For each 0-cells $X,Y,Z\in\mathcal{B}_0$, here exists a \emph{horizontal compositor functor}
     \[c_{XYZ}:\mathcal{B}(Y,Z)\times \mathcal{B}(X,Y)\rightarrow \mathcal{B}(X,Z)\]
     Where given $1$-cells $f\in\mathcal{B}(X,Y)$, $g\in\mathcal{B}(Y,Z)$, and $2$-cells $\alpha\in\mathcal{B}(X,Y)$, $\beta\in\mathcal{B}(Y,Z)$, we denote
     \[c_{XYZ}(g,f)= g\circ f,\quad c_{XYZ}(\beta,\alpha) = \beta*\alpha\]
@@ -210,9 +210,9 @@ However, it turns out this definition is too restrictive, partially because when
 
     \textbf{IV. Identity 1-cells:} Given any 0-cell $X\in\mathcal{B}_0$, there exists a functor $\eta_X:*\rightarrow \mathcal{B}(X,X)$, with image denoted as $\id_X$. Which, there is the natural isomorphism between the following pairings:
     \[\xymatrix{
-        \text{*}\times \mathcal{B}(X,Y) \ar[rr]^-{\eta_Y\times \Id_{\mathcal{B}(X,Y)}} && \mathcal{B}(Y,Y)\mathcal{B}(X,Y)\ar[rr]^-{c_{XYY}} \ar@{}[d]^(.25){}="a"^(.75){}="b" \ar@{=>}"a";"b"^{\ell_{XY}} && \mathcal{B}(X,Y)\\
+        \text{*}\times \mathcal{B}(X,Y) \ar[rr]^-{\eta_Y\times \Id_{\mathcal{B}(X,Y)}} && \mathcal{B}(Y,Y)\times\mathcal{B}(X,Y)\ar[rr]^-{c_{XYY}} \ar@{}[d]^(.25){}="a"^(.75){}="b" \ar@{=>}"a";"b"^{\ell_{XY}} && \mathcal{B}(X,Y)\\
         \text{*}\times \mathcal{B}(X,Y) \ar[rrrr]^-{\Id_{\mathcal{B}(X,Y)}} &&&& \mathcal{B}(X,Y)\\
-        \mathcal{B}(X,Y)\times \text{*} \ar[rr]^-{\Id_{\mathcal{B}(X,Y)}\times \eta_X} && \mathcal{B}(Y,X)\mathcal{B}(X,X)\ar[rr]^-{c_{XXY}} \ar@{=>}[u]_-{r_{XY}} && \mathcal{B}(X,Y)
+        \mathcal{B}(X,Y)\times \text{*} \ar[rr]^-{\Id_{\mathcal{B}(X,Y)}\times \eta_X} && \mathcal{B}(Y,X)\times\mathcal{B}(X,X)\ar[rr]^-{c_{XXY}} \ar@{=>}[u]_-{r_{XY}} && \mathcal{B}(X,Y)
     }\]
     Here, $\ell_{XY}$ is called the \emph{left unitor}, conversely $r_{XY}$ is the \emph{right unitor}.
 
@@ -223,14 +223,14 @@ However, it turns out this definition is too restrictive, partially because when
     \begin{itemize}
         \item \emph{Unit:} Given $f\in \mathcal{B}(X,Y)$, $\id_Y\in \mathcal{B}(Y,Y)$, and $g\in\mathcal{B}(Y,Z)$, the following diagram holds:
         \[\xymatrix{
-            (g\circ \id_Y)\circ f \ar[dr]_-{r_{YZ}\text{*}\id} \ar[rr]^-{a} && g\circ (\id_Y\circ f) \ar[dl]^-{\id\text{*}\ell_{XY}}\\
+            (g\circ \id_Y)\circ f \ar@{=>}[dr]_-{r_{YZ}\text{*}\id} \ar@{=>}[rr]^-{a} && g\circ (\id_Y\circ f) \ar@{=>}[dl]^-{\id\text{*}\ell_{XY}}\\
             & g\circ f
         }\]
         \item \emph{Pentagon Axiom:} Given 1-cells $f,g,h,\ell$ that are composable in order, the following diagram holds:
         \[\xymatrix{
-            & (\ell\circ h)\circ (g\circ f) \ar[dr]^-{a_{k,h,g\circ f}}\\
-            ((k\circ h)\circ g)\circ f \ar[d]_-{a_{k,j,g}\text{*}\id_f} \ar[ur]^-{a_{k\circ h,g,f}} && k\circ (h\circ (g\circ f))\\
-            (k\circ (h\circ g))\circ f \ar[rr]_-{a_{k,h\circ g,f}} && k\circ ((h\circ g)\circ f) \ar[u]_{\id_k\text{*} a_{h,g,f}}
+            & (\ell\circ h)\circ (g\circ f) \ar@{=>}[dr]^-{a_{k,h,g\circ f}}\\
+            ((k\circ h)\circ g)\circ f \ar@{=>}[d]_-{a_{k,j,g}\text{*}\id_f} \ar@{=>}[ur]^-{a_{k\circ h,g,f}} && k\circ (h\circ (g\circ f))\\
+            (k\circ (h\circ g))\circ f \ar@{=>}[rr]_-{a_{k,h\circ g,f}} && k\circ ((h\circ g)\circ f) \ar@{=>}[u]_{\id_k\text{*} a_{h,g,f}}
         }\]
     \end{itemize}
 \end{defn}
