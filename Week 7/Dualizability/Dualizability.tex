@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage{../Self_Style}
+
+\usepackage[normalem]{ulem} %for strike through
+
+\title{Dualizability in Symmetric Monoidal Category}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+%\tableofcontents
+
+This is devoted for the categorical details in 
+
+We'll follow the notations Aditya covered in the talk. Fix $(\mathcal{C},\tensor,I)$ as our symmetric monoidal category.
+
+\begin{defn}
+    Given an object $A\in\mathcal{C}$, an object $B\in\mathcal{C}$ is called $A$'s \emph{weak dual}, if there exists a natural isomorphism $\xi:\mathcal{C}(\_\tensor A,I)\xrightarrow{\sim} \mathcal{C}(\_,B)$ between functors $\mathcal{C}^\Op\rightarrow \Sets$. In this case, $A$ is said to be \emph{weakly dualizable}.
+\end{defn}
+
+\hfil
+
+One important fact one needs to verify is the uniqueness (up to isomorphism), this is indeed true:
+
+\begin{prop}
+    If $A\in\mathcal{C}$ is weakly dualizable, its weak dual is unique up to isomorphism.
+\end{prop}
+\begin{proof}
+    This is a Yoneda Lemma type argument. Let $B,B'\in\mathcal{C}$ be two weak duals of $A$, then there is a natural isomorphism $\xi:\mathcal{C}(\_,B)\xrightarrow{\sim}\mathcal{C}(\_\tensor A,I)\xrightarrow{\sim}\mathcal{C}(\_,B')$ (abuse of notation, still use $\xi$ as natural isomorphism).
+
+    Using the isomorphisms $\xi_B:\mathcal{C}(B,B)\xrightarrow{\sim}\mathcal{C}(B,B')$ and $\xi_{B'}^{-1}:\mathcal{C}(B',B')\xrightarrow{\sim}\mathcal{C}(B',B)$, we get the following two morphisms:
+    \[\eta:= \xi_B(\id_B):B\rightarrow B',\quad \mu:=\xi_{B'}^{-1}(\id_{B'}):B'\rightarrow B\]
+    Then, consider the following two diagrams using the naturality:
+    \[\xymatrix{
+        \mathcal{C}(B,B)\ar[r]^-{\xi_B}_-{\sim} \ar[d]_-{\_\circ\mu} & \mathcal{C}(B,B') \ar[d]^-{\_\circ\mu}\\
+        \mathcal{C}(B',B')\ar[r]^-{\sim}_-{\xi_{B'}} & \mathcal{C}(B',B')
+    },\quad\quad \xymatrix{
+        \id_B \ar@{|->}[r] \ar@{|->}[d] & \eta \ar@{|->}[d]\\
+        \mu \ar@{|->}[r] & \id_{B'}=\eta\circ \mu
+    }\]
+    \[\xymatrix{
+        \mathcal{C}(B',B')\ar[r]^-{\xi_B^{-1}}_-{\sim} \ar[d]_-{\_\circ\eta} & \mathcal{C}(B',B) \ar[d]^-{\_\circ\eta}\\
+        \mathcal{C}(B,B')\ar[r]^-{\sim}_-{\xi_{B'}^{-1}} & \mathcal{C}(B,B)
+    },\quad\quad \xymatrix{
+        \id_{B'} \ar@{|->}[r] \ar@{|->}[d] & \mu \ar@{|->}[d]\\
+        \eta \ar@{|->}[r] & \id_{B}=\mu\circ \eta
+    }\]
+    This shows $\mu,\eta$ are mutual inverses, hence $B\cong B'$.
+\end{proof}
+
+If the weakly dualizable objects are small, then there's no ambiguity choosing a representative of $A$, denote as $DA$.
+
+\newpage
+
+Another notion is how to ``formally evaluate'' weakly dualizable objects:
+\begin{defn}
+    Given $A\in\mathcal{C}$ that's weakly dualizable, consider the isomorphism 
+    \[\xi_{DA}:\mathcal{C}(DA\tensor A,I)\xrightarrow{\sim}\mathcal{C}(DA,DA)\]
+    Define the \emph{evaluation morphism} $\epsilon_A:DA\tensor A\rightarrow I$ as the dual to the following identity map, $\epsilon_A:= \xi_{DA}^{-1}(\id_{DA})$.
+\end{defn}
+
+\hfil
+
+Now, let $\mathcal{C}^*$ denote the full subcategory of all weakly dualizable objects, the aim is to show dualization is functorial, i.e., there is a functor $D:(\mathcal{C}^*)^\Op\rightarrow\Sets$. It's clear that $DA$ is well-defined (up to isomorphism), so the morphism (and preservation of composition) is the actual problem.
+
+\begin{defn}
+    Given a morphism $f:A\rightarrow A'$ in $\mathcal{C}^*$, consider the morphism 
+    \[DA'\tensor A\xrightarrow{\id_{DA'}\tensor f}DA'\tensor A'\xrightarrow{\epsilon_{A'}}I\]
+    Using the isomorphism $\xi_{DA'}:\mathcal{C}(DA'\tensor A,I)\xrightarrow{\sim}\mathcal{C}(DA',DA)$, define 
+    \[Df:= \xi_{DA'}(\epsilon_{A'}\circ (\id_{DA'}\tensor f)):DA'\rightarrow DA\]
+\end{defn}
+
+\hfil
+
+The goal is to show this dualization of morphism is functorial. Before that, fix $f:A\rightarrow A'$ in $\mathcal{C}^*$, and $Df:DA'\rightarrow DA$ in $\mathcal{C}$, consider the following commutative diagram using the natural isomorphism $\xi:\mathcal{C}(\_\tensor A,I)\xrightarrow{\sim}\mathcal{C}(\_,DA)$:
+\[\xymatrix{
+    \mathcal{C}(DA\tensor A,I) \ar[d]_-{\_\circ (Df\tensor \id_A)} \ar[r]^-{\xi_{DA}}_-{\sim} & \mathcal{C}(DA,DA) \ar[d]^-{\_\circ Df}\\
+    \mathcal{C}(DA'\tensor A,I) \ar[r]^-{\sim}_-{\xi_{DA'}} & \mathcal{C}(DA',DA)
+},\quad\quad \xymatrix{
+        \epsilon_A \ar@{|->}[r] \ar@{|->}[d] & \id_{DA} \ar@{|->}[d]\\
+        \epsilon_A\circ (Df\tensor \id_A) \ar@{|->}[r] & Df
+    }\]
+So, we see the equality $\xi_{DA'}(\epsilon_A\circ (Df\tensor \id_A)) = Df$, and don't forget that $Df:= \xi_{DA'}(\epsilon_{A'}\circ(\id_{DA'}\tensor f))$. So, the isomorphism deduces $\epsilon_A\circ (Df\tensor \id_A) = \epsilon_{A'}\circ (\id_{DA'}\tensor f)$. 
+
+Using this, we deduce the funcoriality as morphism $DA''\tensor A\rightarrow I$:
+\begin{lem}
+    $D:(\mathcal{C}^*)^\Op\rightarrow\Sets$ is functorial, namely $D(g\circ f)= Df\circ Dg$.
+\end{lem}
+\begin{proof}
+    Given $f:A\rightarrow A'$ and $g:A'\rightarrow A''$ in $\mathcal{C}^*$, we get the following equality:
+    \[\epsilon_{A''}\circ (\id_{DA''}\tensor (g\circ f)) = \epsilon_{A''}\circ (\id_{DA''}\tensor g)\circ (\id_{DA''}\tensor f)= \epsilon_{A'}\circ (Dg\tensor \id_{A'})\circ (\id_{DA''}\tensor f)\]
+    \[= \epsilon_{A'}\circ (Dg\tensor f) = \epsilon_{A'}\circ (\id_{DA'}\tensor f)\circ (Dg\tensor \id_A) \]
+    \[= \epsilon_A\circ (Df\tensor \id_A)\circ (Dg\tensor \id_A)= \epsilon_A\circ ((Df\circ Dg)\tensor \id_A)\]
+    Hence, apply $\xi_{DA''}$, we get:
+    \[Df\circ Dg = \xi_{DA''}(\epsilon_A\circ (Df\circ Dg)\tensor \id_A) = \xi_{DA''}(\epsilon_{A''}\circ (\id_{DA''}\tensor (g\circ f)))= D(g\circ f)\]
+    If one is interested they can verify the above are all well-defined :)
+\end{proof}
+
+
+\end{document}
