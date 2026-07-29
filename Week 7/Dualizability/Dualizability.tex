@@ -1,19 +1,19 @@
 \documentclass{article}
 \usepackage{../Self_Style}
 
-\usepackage[normalem]{ulem} %for strike through
-
 \title{Dualizability in Symmetric Monoidal Category}
 \author{Zih-Yu Hsieh}
 \date{\today}
 
 \begin{document}
 \maketitle
-%\tableofcontents
+\tableofcontents
 
 This is devoted for the categorical details in 
 
 We'll follow the notations Aditya covered in the talk. Fix $(\mathcal{C},\tensor,I)$ as our symmetric monoidal category.
+
+\section{Weak Dualizability}
 
 \begin{defn}
     Given an object $A\in\mathcal{C}$, an object $B\in\mathcal{C}$ is called $A$'s \emph{weak dual}, if there exists a natural isomorphism $\xi:\mathcal{C}(\_\tensor A,I)\xrightarrow{\sim} \mathcal{C}(\_,B)$ between functors $\mathcal{C}^\Op\rightarrow \Sets$. In this case, $A$ is said to be \emph{weakly dualizable}.
@@ -51,7 +51,7 @@ One important fact one needs to verify is the uniqueness (up to isomorphism), th
 
 If the weakly dualizable objects are small, then there's no ambiguity choosing a representative of $A$, denote as $DA$.
 
-\newpage
+\hfil
 
 Another notion is how to ``formally evaluate'' weakly dualizable objects:
 \begin{defn}
@@ -61,6 +61,8 @@ Another notion is how to ``formally evaluate'' weakly dualizable objects:
 \end{defn}
 
 \hfil
+
+\section{Funcoriality of Dualization}
 
 Now, let $\mathcal{C}^*$ denote the full subcategory of all weakly dualizable objects, the aim is to show dualization is functorial, i.e., there is a functor $D:(\mathcal{C}^*)^\Op\rightarrow\Sets$. It's clear that $DA$ is well-defined (up to isomorphism), so the morphism (and preservation of composition) is the actual problem.
 
@@ -95,6 +97,81 @@ Using this, we deduce the funcoriality as morphism $DA''\tensor A\rightarrow I$:
     Hence, apply $\xi_{DA''}$, we get:
     \[Df\circ Dg = \xi_{DA''}(\epsilon_A\circ (Df\circ Dg)\tensor \id_A) = \xi_{DA''}(\epsilon_{A''}\circ (\id_{DA''}\tensor (g\circ f)))= D(g\circ f)\]
     If one is interested they can verify the above are all well-defined :)
+\end{proof}
+
+\hfil
+
+\section{Reflexivity and Strong Dualizability}
+
+For this part, we'll temporarily assume the chosen object $A\in\mathcal{C}$ is weakly dualizable, and its dual $DA\in\mathcal{C}$ is also weakly dualizable (so $DDA$ exists). Not sure if this assumption is required, but I suspect in a screwed enough symmetric monoidal category, double dual could fail to exist.
+
+\begin{defn}
+    Consider the isomorphism 
+    \[\mathcal{C}(DA,DA)\xrightarrow{\xi_{DA}^{-1}}\mathcal{C}(DA\tensor A,I)\cong \mathcal{C}(A\tensor DA,I)\xrightarrow{\xi_A}\mathcal{C}(A,DDA)\]
+    Define $\delta_A:A\rightarrow DDA$ as the image of $\id_{DA}$ under this map.
+\end{defn}
+
+With this in mind, we have the following definition:
+\begin{defn}
+    An object $A\in\mathcal{C}$ is \emph{reflexive}, if $DDA$ exists, and $\delta_A:A\rightarrow DDA$ is an isomorphism.\(\)
+\end{defn}
+
+\hfil
+
+Now, suppose further that $A,B,A\tensor B$ are all weakly dualizable (again, I don't think $\mathcal{C}^*$ is closed under monoidal product in general, so we need to be careful):
+\begin{defn}
+    Consider the following two (identical) morphisms:
+    \[(DA\tensor A)\tensor (DB\tensor B)\cong(DA\tensor A)\tensor (DB\tensor B)\xrightarrow{\id_{DA\tensor A}\tensor \epsilon_B} (DA\tensor A)\tensor I\xrightarrow{\epsilon_A\tensor \id_I}I\tensor I\cong I\]
+    \[(DA\tensor A)\tensor (DB\tensor B)\cong(DA\tensor A)\tensor (DB\tensor B)\xrightarrow{\epsilon_A\tensor \id_{DB\tensor B}} I\tensor (DB\tensor B)\xrightarrow{\id_I\tensor \epsilon_B}I\tensor I\cong I\]
+    Under the isomorphism
+    \[\mathcal{C}((DA\tensor DB)\tensor (A\tensor B),I)\xrightarrow{\xi_{DA\tensor DB}}\mathcal{C}(DA\tensor DB, D(A\tensor B))\]
+    the proposed morphism maps to a morphism $\mu_{A,B}:DA\tensor DB\rightarrow D(A\tensor B)$.
+\end{defn}
+
+\hfil
+
+\begin{prop}
+    The unit $I$ is self dual: $DI$ exists, and $I\cong DI$.
+\end{prop}
+\begin{proof}
+    Using the isomorphism $\mathcal{C}(\_\tensor I,I)\cong \mathcal{C}(\_,I)$ by the unit axiom of symmetric monoidal category, we see $I\cong DI$ using the uniqueness (up to isomorphism) of weak dual object.
+\end{proof}
+
+\hfil
+
+\begin{defn}
+    Given $A\in\mathcal{C}$ such that $DA,DDA, D(A\tensor DA)$ all exists, then $A$ is \emph{strongly dualizable}, if $A$ is reflexive, and the morphism
+    \[DA\tensor A\xrightarrow{\id_{DA}\tensor \delta_A} DA\tensor DDA \xrightarrow{\mu_{A,DA}} D(A\tensor DA)\]
+    is an isomorphism, equivalently, $A\tensor DA$ is self-dual via $\mu_{A,DA}:DA\tensor DDA\rightarrow D(A\tensor DA)$. Which, $DA$ is also called a \emph{strong dual} of $A$ (and vice versa).
+
+    \hfil
+
+    In this case, the \emph{coevaluation morphism} $\eta_A:I\rightarrow A\tensor DA$ is the composite of the following morphism:
+    \[I\cong DI \xrightarrow{D\epsilon_A} D(A\tensor DA)\xrightarrow{\mu_{A,DA}^{-1}} DA\tensor DDA \xrightarrow{\id_{DA}\tensor \delta_A^{-1}}DA\tensor A\cong A\tensor DA\]
+\end{defn}
+
+\hfil
+
+\begin{thm}
+    Given $A,B\in\mathcal{C}$ and the existence of a morhpism $\epsilon:A\tensor B\rightarrow I$, TFAE:
+    \begin{itemize}
+        \item[(1)] $B$ is a strong dual of $A$, and $\epsilon$ is the evaluation morphism.
+        \item[(2)] There exists a morphism $\eta:I\rightarrow A\tensor B$, such that 
+        \[A\cong I\tensor A\xrightarrow{\eta\tensor \id_{A}}A\tensor B\tensor A\xrightarrow{\id_A\tensor \epsilon} A\tensor I\cong A\]
+        \[B\cong B\tensor I\xrightarrow{\id_B\tensor \eta}B\tensor A\tensor B\xrightarrow{\epsilon\tensor \id_B}I\tensor B\cong B\]
+        are identities.
+        \item[(3)] The set map
+        \[\phi_{XY}:\mathcal{C}(X,Y\tensor B)\rightarrow \mathcal{C}(X\tensor A,Y),\quad (x\xrightarrow{f}Y\tensor B)\mapsto (X\tensor A\xrightarrow{f\tensor \id_A}Y\tensor B\tensor A\xrightarrow{\id_Y\tensor \epsilon}Y\tensor I\cong Y)\]
+        is an isomorphism. (So, $((\_\tensor A)\dashv (\_\tensor B))$ are adjoint pairs).
+    \end{itemize}
+\end{thm}
+\begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[(1)$\implies$ (2):]
+    \end{itemize}
 \end{proof}
 
 
