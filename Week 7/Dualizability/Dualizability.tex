@@ -160,8 +160,8 @@ Now, suppose further that $A,B,A\tensor B$ are all weakly dualizable (again, I d
         \[A\cong I\tensor A\xrightarrow{\eta\tensor \id_{A}}A\tensor B\tensor A\xrightarrow{\id_A\tensor \epsilon} A\tensor I\cong A\]
         \[B\cong B\tensor I\xrightarrow{\id_B\tensor \eta}B\tensor A\tensor B\xrightarrow{\epsilon\tensor \id_B}I\tensor B\cong B\]
         are identities.
-        \item[(3)] The set map
-        \[\phi_{XY}:\mathcal{C}(X,Y\tensor B)\rightarrow \mathcal{C}(X\tensor A,Y),\quad (x\xrightarrow{f}Y\tensor B)\mapsto (X\tensor A\xrightarrow{f\tensor \id_A}Y\tensor B\tensor A\xrightarrow{\id_Y\tensor \epsilon}Y\tensor I\cong Y)\]
+        \item[(3)] Given any $X,Y\in\mathcal{C}$, the set map
+        \[\phi_{XY}:\mathcal{C}(X,Y\tensor B)\rightarrow \mathcal{C}(X\tensor A,Y),\quad (X\xrightarrow{f}Y\tensor B)\mapsto (X\tensor A\xrightarrow{f\tensor \id_A}Y\tensor B\tensor A\xrightarrow{\id_Y\tensor \epsilon}Y\tensor I\cong Y)\]
         is an isomorphism. (So, $((\_\tensor A)\dashv (\_\tensor B))$ are adjoint pairs).
     \end{itemize}
 \end{thm}
@@ -171,8 +171,27 @@ Now, suppose further that $A,B,A\tensor B$ are all weakly dualizable (again, I d
 
     \begin{itemize}
         \item[(1)$\implies$ (2):]
+        
+        \hfil
+
+        \item[(2) $\implies$ (3):] Suppose (2), we ought to construct an inverse of $\phi_{XY}$. Given $X\tensor A\xrightarrow{g}Y$, consider the following morphism
+        \[X\cong X\tensor I \xrightarrow{\id_X\tensor \eta}X\tensor A\tensor B \xrightarrow{g\tensor \id_B}Y\tensor B\]
+        This defines a map $\psi_{XY}:\mathcal{C}(X\tensor A,Y)\rightarrow \mathcal{C}(X,Y\tensor B)$. To show they're inverse equivalence, first consider arbitrary $f:X\rightarrow Y\tensor B$, we get:
+        \[\psi_{XY}\circ \phi_{XY}(f):\quad X\cong X\tensor I \xrightarrow{\id_X\tensor \eta}X\tensor A\tensor B\xrightarrow{f\tensor \id_{A\tensor B}}Y\tensor B\tensor A\tensor B\xrightarrow{\id_Y\tensor \epsilon\tensor \id_B}Y\tensor I\tensor B\cong Y\tensor B\]
+        This is equal to the following:
+        \[X\tensor I\xrightarrow{f\tensor \id_I}Y\tensor B\tensor I\xrightarrow{\id_{Y}\tensor \id_B\tensor \eta}Y\tensor B\tensor A\tensor B\xrightarrow{\id_Y\tensor \epsilon\tensor \id_B}Y\tensor I\tensor B\cong Y\tensor B\]
+        Using the fact $(\eta\tensor \id_B)\circ(\id_B\tensor \eta) \cong \id_B$ (after suitable isomorphism), tensoring with $Y$ the above reduces to 
+        \[X\tensor I\xrightarrow{f\tensor \id_I}Y\tensor B\xrightarrow{\id_Y\tensor \id_B}Y\tensor B \]
+        Apply similar proofs to the dual checks out the isomorphism (yeah I'm tired of tracing through it :)
+
+        \hfil
+
+        \item[(3) $\implies$ (1):] Fix $Y:=I$, this induces a natural isomorphism $\mathcal{C}(X,B)\cong \mathcal{C}(X,I\tensor B)\cong \mathcal{C}(X\tensor A,I)$, so $B$ is a weak dual of $A$; fix $Y$
     \end{itemize}
 \end{proof}
 
+%\hfil
+
+%As an interesting side note, if $\mathcal{C}$ is monoidally closed (meaning there exists an internal hom functor $[\_,\_]:\mathcal{C}^\Op\times \mathcal{C}\rightarrow\mathcal{C}$, such that any $A\in\mathcal{C}$ induces adjunction $((\_\tensor A)\dashv [A,\_])$ as endofunctors on $\mathcal{C}$), then all elements are weakly dualizable based on this theorem, and more precisely the dual of $A$ is given by $[A,I]$ (as if fix $Y:=I$, $\mathcal{C}(\_\tensor A,I)\cong \mathcal{C}(\_,[A,I])$ using adjunction).
 
 \end{document}
