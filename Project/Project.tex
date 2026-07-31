@@ -22,4 +22,297 @@
 
 The first three goals based on intuition and inspection seems to be true.
 
+\section{Introduction (ND)}
+
+\newpage
+
+\section{Categorical Notations (Keep adding, like statements on morphisms)}
+
+(Main references are Peter's papers).
+
+Recall that $\mathscr{F}$ stands for the category of based finite sets, with objects being $\mathbf{n}:= \{0,1,...,n\}$ (with $0$ as basepoint), and homset $\mathscr{F}(\mathbf{n},\mathbf{m})$ as all based maps between them. For generalization to equivariance setting for a fixed finite group $G$, one needs an extra $G$-equivariant structure.
+
+\begin{defn}
+    Let $\mathscr{F}_G$ denotes the $G$-category of based finite $G$-sets, with objects being $\mathbf{n}^\alpha:= \{0,1,...,n\}$ as set, together with a group homomorphism $\alpha:G\rightarrow \Sigma_n$; the homset $\mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)= \mathscr{F}(\mathbf{n},\mathbf{m})$ as based set maps. 
+    
+    Here, we view $\Sigma_n\subseteq \mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{n}^{\alpha'})$ as permutation of the nonzero elements in $\mathbf{n}$. Which, the action on the homset $\mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)$ is given by conjugation 
+    \[g\cdot f := \beta(g)\circ f\circ \alpha(g)^{-1}\]
+
+    We'll use $G\mathscr{F}:= [\mathscr{F}_G]^G$ as the $G$-fixed subcategory, which have the same objects as $\mathscr{F}_G$, while the homset $G\mathscr{F}(\mathbf{n}^\alpha,\mathbf{m}^\beta) = [\mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)]^G$ are all the based $G$-maps between the two.
+\end{defn}
+
+\hfil
+
+For the case $\mathscr{F}$, there are several subcategories, including $\Pi$ (with all compositions of injections and projections), $\Lambda$ (with all injections), $\Lambda^\perp$ (with all projections), $\Sigma$ (with only bijections), and $\mathscr{E}$ (the effective maps). We make similar definition for $\mathscr{F}_G$:
+
+\begin{defn}
+    Let $\Pi_G\subset\mathscr{F}_G$ be the subcategory where each morphism $\phi:\mathbf{n}^\alpha\rightarrow\mathbf{m}^\beta$ has $|\phi^{-1}(j)|=0$ or $1$ for all $0\neq j\in\mathbf{m}$.
+
+    Let $\Lambda_G\subset\Pi_G$ be the subcategory where each $\phi$ is injective (called \emph{injections}); conversely, let $\Lambda_G^\perp\subset\Pi_G$ stands for the subcategory where each $\phi$ is surjective (called \emph{projections}).
+
+    Let $\Sigma_G = \Lambda_G\cap \Lambda_G^\perp$, which is a subcategory with all $\phi$ being bijections.
+
+    Let $\mathscr{E}_G\subset\mathscr{F}_G$ be the subcategory where all morphism satisfies $\phi^{-1}(0)=\{0\}$, which these morphisms are called \emph{effective}.
+
+    \hfil
+
+    Similarly, we use $G\Pi, G\Lambda,G\Lambda^\perp$, and $G\mathscr{E}$ to denote the $G$-fixed subcategory for each (which homsets are limited to $G$-maps).
+\end{defn}
+
+\hfil
+
+Insert some theorems (probably do some brief verification on them), keep increase them if needed.
+
+However, there is an important notation we need:
+\begin{notn}
+    Given a based finite $G$-set $\mathbf{n}^\alpha$, denote the group $\Sigma_{\mathbf{n}^\alpha}:= G\Sigma(\mathbf{n}^\alpha,\mathbf{n}^\alpha)$, all the $G$-automorphisms of $\mathbf{n}^\alpha$.
+\end{notn}
+
+\newpage
+
+\section{Equivariance Preliminaries (Keep adding)}
+
+Given a group $\Pi$ and element $\sigma\in\Pi$, we let $c_\sigma\in\Aut(\Pi)$ denotes the conjugation by $\sigma$, $c_\sigma(\psi):= \sigma\psi\sigma^{-1}$.
+
+\hfil
+
+\begin{defn}
+    Fix a finite group $G$. Given $\Sigma_n$ together with a group homomorphism $\alpha:G\rightarrow\Sigma_n$, the \emph{semidirect product} $\Sigma_n\rtimes_{\alpha_c}G$ is the group with underlying set $\Sigma_n\times G$, together with product defined using $G$'s conjugation action on $\Sigma_n$ using $\alpha$, as follow:
+    \begin{align*}
+        (\sigma,g)\cdot (\sigma',g'):=(\sigma\ \alpha(g)\ \sigma'\ \alpha(g)^{-1},gg')
+    \end{align*}
+\end{defn}
+
+\hfil
+
+Given a based finite $G$-set $\mathbf{n}^\alpha$, we ought to extend it to a semidirect product action:
+\begin{lem}
+    The left $G$-action on $\mathbf{n}^\alpha$ extends to a $(\Sigma_n\rtimes_{\alpha_c}G)$-action, given by 
+    \begin{align*}
+        (\sigma,g)(i):= \sigma\circ \alpha(g)(i)
+    \end{align*}
+\end{lem}
+\begin{proof}
+    Fix $(\sigma,g),(\sigma',g')\in \Sigma_n\rtimes_{\alpha_c}G$, computation shows
+    \begin{align*}
+        (\sigma,g)[(\sigma',g')(i)] = (\sigma,g)[\sigma'\circ\alpha(g')(i)] = \sigma\circ \alpha(g)\circ \sigma'\circ \alpha(g')(i)
+    \end{align*}
+    \begin{align*}
+        [(\sigma,g)\cdot (\sigma',g')](i) &= (\sigma\ \alpha(g)\ \sigma'\ \alpha(g)^{-1},gg')(i)\\ 
+        &= \sigma\circ \alpha(g)\circ \sigma'\circ \alpha(g)^{-1}\circ \alpha(gg')(i)\\
+        &= \sigma\circ \alpha(g)\circ \sigma'\circ \alpha(g)^{-1}\circ \alpha(g)\circ \alpha(g')(i)\\
+        &= \sigma\circ \alpha(g)\circ \sigma'\circ \alpha(g')(i)\\
+        &= (\sigma,g)[(\sigma',g')(i)]
+    \end{align*}
+    Also, it's clear identity acts trivially, verifying it's a group action.
+\end{proof}
+
+\hfil
+
+Another important notion is the twisted $G$-action if the space is given both $G$ and $\Sigma_n$-action. For this, consider the following modification:
+\begin{defn}
+    Given a group homomophism $\alpha:G\rightarrow\Sigma_n$, its \emph{graph subgroup}
+    \begin{align*}
+        \Gamma_\alpha:= \{(g,\alpha(g))\in G\times \Sigma_n\}
+    \end{align*}
+    Using the first projection $\pi_1:G\times\Sigma_n\twoheadrightarrow G$, it restricts to an isomorphism $\Gamma_\alpha\cong G$.
+
+    \hfil
+
+    Given a $(G\times \Sigma_n)$-set $X$, define the \emph{twisted $G$-action} on $X$ by 
+    \begin{align*}
+        g\cdot_\alpha x:= (g,\alpha(g))\cdot x
+    \end{align*}
+    Which, the set with such twisted action is denoted as $X^\alpha$.
+\end{defn}
+\textbf{Generalize the definition to arbitrary categories?}
+
+\hfil
+
+For further purpose, we consider the semidirect product action on each finite symmetric group:
+\begin{defn}
+    Given $\Sigma_n$ and a group homomorphism $\alpha:G\rightarrow \Sigma_n$, define a right $(\Sigma_n\rtimes_{\alpha_c}G)$-action on $\Sigma_n$
+\end{defn}
+
+\newpage
+
+\section{$G$-Operads}
+
+\subsection{Composability of Finite $G$-Sets}
+
+Here, each $\mathbf{j}^\alpha\in\mathscr{F}_G$ is a based finite set $\mathbf{j}=\{0,1,...,j\}$, together with a group homomorphism $\alpha:G\rightarrow\Sigma_n$.
+
+\begin{defn}
+    The tuple $(\mathbf{k}^\beta;\mathbf{j}_1^{\alpha_1},...,\mathbf{j}_k^{\alpha_k})$ is called \emph{composable}, if given any $g\in G$ and $r,s\in \{1,...,k\}$, $\beta(g)(r)=s$ implies $\mathbf{j}_r^{\alpha_r}=\mathbf{j}_1^{\alpha_r}$.
+
+    In this case, denote $j:=\sum_{r=1}^k j_r$, define the function $\gamma:=\gamma(\beta;\vee_r\alpha_r):G\rightarrow \Sigma_j$ by 
+    \[\gamma(g)(i):= \alpha_s(g)(i)\]
+    where $\beta(g)(r)=s$ (permutation of blocks), $i\in \mathbf{j}_r$ (as the $r$th block in $\mathbf{j}$), and $\alpha_s(g)(i)\in\mathbf{j}_s$ (as the $s$th block in $\mathbf{j}$).
+\end{defn}
+
+\hfil
+
+The composability is for composing the group homomorphisms into a larger group homomorphism:
+\begin{prop}
+    If the tuple $(\mathbf{k}^\beta;\mathbf{j}_1^{\alpha_1},...,\mathbf{j}_k^{\alpha_k})$ is composable, then $\gamma(\beta;\vee_r \alpha_r)$ is a group homomorphism.
+\end{prop}
+\begin{proof}
+    Fix $r\in\{1,...,k\}$, $g,h\in G$, let $s:= \beta(g)(r)$, and $t = \beta(h)(s)=\beta(hg)(r)$. Now, the computation shows the following for $i\in \mathbf{j}_r^{\alpha_r}$, where $r,i$ are arbitrary:
+    \begin{align*}
+        \gamma(g)(i) = \alpha_s (g)(i) \in\mathbf{j}_s
+    \end{align*}
+    \begin{align*}
+        \gamma(h)(\alpha_s(g)(i)) = \alpha_t(h)(\alpha_s(g)(i)) = \alpha_t (h)(\alpha_t(g)(i)) = \alpha_t(hg)(i)\in\mathbf{j}_t
+    \end{align*}   
+    here we use the assumption where $\mathbf{j}_r^{\alpha_r}=\mathbf{j}_s^{\alpha_s}=\mathbf{j}_t^{\alpha_t}$. This indicates 
+    \begin{align*}
+        \gamma(h)\circ \gamma(g)(i) = \gamma(h)(\alpha_s(g)(i)) = \alpha_t(hg)(i) = \gamma(hg)(i)
+    \end{align*}
+    concluding $\gamma(h)\circ \gamma(g)=\gamma(hg)$.
+\end{proof}
+
+\hfil
+
+Here, we use $\epsilon_j:G\rightarrow \Sigma_j$ to denote the trivial group homomorphism. It satisfies unit axioms:
+\begin{prop}
+    Given the composable tuples $(\mathbf{j}^\alpha;\mathbf{1}_1^{\epsilon_{1,1}},...,\mathbf{1}_j^{\epsilon_{1,j}})$ (with $j$ copies of $\mathbf{1}$) and $(\mathbf{1}^{\epsilon_1};\mathbf{j}^\alpha)$, then
+    \begin{align*}
+        \gamma(\alpha;\vee_t\epsilon_{1,t}) = \alpha=\gamma(\epsilon_1;\alpha):G\rightarrow\Sigma_j
+    \end{align*}
+\end{prop}
+\begin{proof}
+    For the first equality, for any $r\in \{1,...,j\}$ and $g\in G$, let $s:= \alpha(g)(r)$ (which, $r,s$ can be viewed as the only element in the $r$th and $s$th block respectively, which we denote $1_r\in \mathbf{1}_r$, $1_s\in \mathbf{1}_r$ respectively). Then, the following equality holds:
+    \[\gamma(\alpha;\vee_t\epsilon_{1,t})(g)(1_r) = \epsilon_1(g)(1_s) = 1_s\]
+    Swapping back to normal labels, we get $\gamma(\alpha;\vee_t\epsilon_{1,t})(g)(r)=s$.
+
+    \hfil
+
+    For the second equality, since there's only one block involved, $G$ acts trivially on the block, hence $\gamma(\epsilon;\alpha)(g)(r) = \alpha(g)(r) = s$. The two equalities concluded $\gamma(\alpha;\vee_t\epsilon_{1,t})(g)=\alpha(g)=\gamma(\epsilon_1;\alpha)(g)$.
+\end{proof}
+
+\hfil
+
+Finally, it also satisfies associativity:
+\begin{prop}
+    Given composable tuple $(\mathbf{k}^\delta;\mathbf{j}_1^{\beta_1},...,\mathbf{j}_k^{\beta_k})$, and each $r\in\{1,...,k\}$ is associated with a composable tuple $(\mathbf{j}_r^{\beta_r};\mathbf{i}_{r,1}^{\alpha_{r,1}},...,\mathbf{i}_{r,j_r}^{\alpha_{r,j_r}})$ (with $\delta(g)(r)=t$ implies the tuples are identical), then
+    \begin{align*}
+        \gamma\left(\gamma(\delta;\vee_r\beta_r);\bigvee_r\left(\vee_s \alpha_{r,s}\right)\right) = \gamma\left(\delta;\bigvee_r \gamma(\beta_r;\vee_s\alpha_{r,s})\right):G\rightarrow \Sigma_i
+    \end{align*}
+\end{prop}
+Here, $\bigvee_r\left(\vee_s \alpha_{r,s}\right)$ is wedging the $\mathbf{i}_{r,s}$ blocks in the order
+\begin{align*}
+    \mathbf{i}_{1,1},\mathbf{i}_{1,2},...,\mathbf{i}_{1,j_1};\mathbf{i}_{2,1},\mathbf{i}_{2,2},...,\mathbf{i}_{2,j_2};...;\mathbf{i}_{k,1},\mathbf{i}_{k,2},...,\mathbf{i}_{k,j_k}
+\end{align*}
+Also, observe that if $\delta(g)(r)=t$, then $\gamma(\beta_r;\vee_s\alpha_{r,s})=\gamma(\beta_t;\vee_s\alpha_{t,s})$ (as we assume the tuples for $r,t$ are identical), so the right map makes sense.
+\begin{proof}
+    Denote the left map as $\gamma_1$, the right map as $\gamma_2$. 
+
+    \hfil
+    
+    Given $\ell_{r,s}\in\mathbf{i}_{r,s}$ ($r$ indicates the block for $\mathbf{j}$'s, and $s$ indicates the block for $\mathbf{i}_r$'s), $g\in G$, suppose $\delta(g)(r)=t$ (implying $\mathbf{j}_r^{\beta_r}=\mathbf{j}_t^{\beta_t}$), and $\beta_r(g)(s)=\beta_t(g)(s) = w$, we get 
+    \begin{align*}
+        \gamma(\delta;\vee_r \beta_r)(g)(r,s) = (t, \beta_t(g)(s)) = (t,w)
+    \end{align*}
+    (Here, $r$ indicates the $r$th block in $\mathbf{j}$, $s$ indicates the $s$th element in $\mathbf{j}_r$).
+
+    Hence, $\gamma_1$ yields the following computation:
+    \begin{align*}
+        \gamma_1(g)(\ell_{r,s}) = \alpha_{t,w}(\ell_{t,w})
+    \end{align*}
+    
+    \hfil
+
+    Similarly, if consider $\gamma(\beta_t;\vee_u\alpha_{t,u})(g)(\ell_{t,s}) = \alpha_{t,w}(g)(\ell_{t,w})$, hence 
+    \begin{align*}
+        \gamma_2(g)(\ell_{r,s}) = \gamma(\beta_t;\vee_u\alpha_{t,u})(g)(\ell_{t,s}) = \alpha_{t,w}(\ell_{t,w})
+    \end{align*}
+    due to the assumption $\delta(g)(r)=t$ for permuting the $\mathbf{j}$'s blocks. This indicates $\gamma_1(g)=\gamma_2(g)$ for all $g$.
+\end{proof}
+
+\newpage
+
+\subsection{$G$-Operad's Axioms}
+
+Instead of indexing over finite sets (objects in $\mathscr{F}$), the concept of $G$-operad is instead indexed over finige $G$-sets (objects in $\mathscr{F}_G$). Here, we fix $(\mathscr{V},\tensor,\kappa)$ as our symmetric monoidal category.
+
+\textbf{Here the definitions are based on my personal interpretation, need verification!}
+
+\begin{defn}
+    A \emph{$G$-operad} $\mathscr{C}_G$ in $\mathscr{V}$ consists of objects $\mathscr{C}_G(\mathbf{j}^\alpha)$ with a left $G$-action and a right $\Sigma_j$-action that combines to a right $(\Sigma_j\rtimes_{\alpha_c}G)$-action, unit morphism $\eta:\kappa\rightarrow\mathscr{C}_G(\mathbf{1}^{\epsilon_1})$, and structure morphism 
+    \begin{align*}
+        \gamma_G:\mathscr{C}_G(\mathbf{k}^\beta)\tensor \left[\bigtensor_{r=1}^k\mathscr{C}_G(\mathbf{j}_r^{\alpha_r}) \right] \rightarrow \mathscr{C}_G(\mathbf{j}^{\gamma(\beta;\vee_r\alpha_r)})
+    \end{align*}
+    for each composable tuple $(\mathbf{k}^\beta;\mathbf{j}_1^{\alpha_1},...,\mathbf{j}_k^{\alpha_k})$. They must satisfy associative, unital, and equivariance in the following sense:
+    \begin{itemize}
+        \item[(a)] Given composable tuple $(\mathbf{k}^\delta;\mathbf{j}_1^{\beta_1},...,\mathbf{j}_k^{\beta_k})$, and each $r\in\{1,...,k\}$ provides another composable tuple $(\mathbf{j}_r^{\beta_r};\mathbf{i}_{r,1}^{\alpha_{r,1}},...,\mathbf{i}_{r,j_r}^{\alpha_{r,j_r}})$ (with assumption $\delta(g)(r)=t$ implies the composable tuple for $\mathbf{j}_r^{\beta_r}$ and $\mathbf{j}_t^{\beta_t}$ are identical), let $j:=\sum_r j_r$, $h_r:= \sum_s i_{r,s}$, and $i:= \sum_r h_r$, the following associativity diagram commutes:
+        \begin{align*}
+            \xymatrix{
+                \mathscr{C}_G(\mathbf{k}^\delta)\tensor\left[\bigtensor_{r=1}^k\mathscr{C}_G(\mathbf{j}_r^{\beta_r})\right]\tensor\left[\bigtensor_{s=1}^{j_r}\mathscr{C}_G(\mathbf{i}_{r,s}^{\alpha_{r,s}})\right] \ar[rr]^-{\gamma_G\tensor \id} \ar[dd]_-{\text{shuffle}} && \mathscr{C}_G(\mathbf{j}^{\gamma(\delta;\vee_r\beta_r)})\tensor\left[\bigtensor_{r=1}^k\bigtensor_{s=1}^{j_r}\mathcal{C}_G(\mathbf{i}_{r,s}^{\alpha_{r,s}})\right] \ar[d]^-{\gamma_G}\\
+                && \mathscr{C}_G(\mathbf{i}^{\gamma^2})\\
+                \mathscr{C}_G(\mathbf{k}^\delta)\tensor \left[\bigtensor_{r=1}^k\left[
+                    \mathscr{C}_G(\mathbf{j}_r^{\beta_r})\tensor\left(\bigtensor_{r=1}^{j_r}\mathscr{C}_G(\mathbf{i}_{r,s}^{\alpha_{r,s}})\right)
+                \right]\right] \ar[rr]_-{\id\tensor (\gamma_G)^k} && \mathscr{C}_G(\mathbf{k}^\delta)\tensor \left[\bigtensor_{r=1}^k \mathscr{C}_G(\mathbf{h}_r^{\gamma(\beta_r;\vee_s \alpha_{r,s})})\right] \ar[u]_-{\gamma_G}
+            }
+        \end{align*}
+        Here, $\gamma^2:=\gamma\left(\gamma(\delta;\vee_r\beta_r);\bigvee_r\left(\vee_s \alpha_{r,s}\right)\right) = \gamma\left(\delta;\bigvee_r \gamma(\beta_r;\vee_s\alpha_{r,s})\right)$ based on \textbf{Proposition 3.4}.
+
+        \hfil
+
+        \item[(b)] The following unit diagrams commute:
+        \begin{align*}
+            \xymatrix{
+                \mathscr{C}_G(\mathbf{j}^\alpha)\tensor \kappa^j \ar[r]^-{\cong} \ar[d]_-{\id\tensor \eta^j} & \mathscr{C}_G(\mathbf{j}^\alpha)\\
+                \mathscr{C}_G(\mathbf{j}^\alpha)\tensor \left[\mathscr{C}_G(\mathbf{1}^{\epsilon_1})\right]^j \ar[ur]_-{\gamma_G}
+            }\quad\quad\quad \xymatrix{
+                \kappa\tensor \mathscr{C}_G(\mathbf{j}^\alpha) \ar[d]_-{\eta\tensor \id} \ar[r]^-{\cong} & \mathscr{C}_G(\mathbf{j}^\alpha)\\
+                \mathscr{C}_G(\mathbf{1}^{\epsilon_1})\tensor \mathscr{C}_G(\mathbf{j}^\alpha) \ar[ur]_-{\gamma_G}
+            }
+        \end{align*}
+
+        \hfil
+
+        \item[(c)] Given composable tuple $(\mathbf{k}^\beta;\mathbf{j}_1^{\alpha_1},...,\mathbf{j}_k^{\alpha_k})$, the following $\Sigma_{\mathbf{k}^\beta}$-equivariance diagram commutes:
+        \begin{align*}
+            \xymatrix{
+                \mathscr{C}_G(\mathbf{k}^\beta)\tensor\left[\bigtensor_{r=1}^k \mathscr{C}_G(\mathbf{j}_r^{\alpha_r})\right] \ar[d]_-{\sigma\tensor \id} \ar[rr]^-{\id\tensor \sigma} && \mathscr{C}_G(\mathbf{k}^\beta)\tensor\left[\bigtensor_{r=1}^k \mathscr{C}_G(\mathbf{j}_{\sigma^{-1}(r)}^{\alpha_{\sigma^{-1}(r)}})\right] \ar[d]^-{\gamma_G}\\
+                \mathscr{C}_G(\mathbf{k}^\beta)\tensor\left[\bigtensor_{r=1}^k \mathscr{C}_G(\mathbf{j}_r^{\alpha_r})\right] \ar[rr]_-{\gamma_G} && \mathscr{C}_G(\mathbf{j}^{\gamma(\beta;\vee_r\alpha_r)})
+            }
+        \end{align*}
+
+        \hfil
+
+        \item[(d)] Similar notation, the following $(\Sigma_k\rtimes_{\beta_c}G)$-equivariance diagram commutes:
+        \begin{align*}
+            \xymatrix{
+                \mathscr{C}_G(\mathbf{k}^\beta)\tensor\left[\bigtensor_{r=1}^k \mathscr{C}_G(\mathbf{j}_r^{\alpha_r})\right] \ar[d]_-{\gamma_G} \ar[rr]^-{(\sigma,g)\tensor \id} && \mathscr{C}_G(\mathbf{k}^\beta)\tensor\left[\bigtensor_{r=1}^k \mathscr{C}_G(\mathbf{j}_r^{\alpha_r})\right] \ar[d]^-{\gamma_G}\\
+                \mathscr{C}_G(\mathbf{j}^{\gamma(\beta;\vee_r\alpha_r)}) \ar[rr]_-{(\sigma(j_1,...,j_r),g)} && \mathscr{C}_G(\mathbf{j}^{\gamma(\beta;\vee_r\alpha_r)})
+            }
+        \end{align*}
+
+        \hfil
+
+        \item[(e)] The following $\left(\left(\Sigma_{j_1}\times...\times \Sigma_{j_k}\right)\rtimes_{(\alpha_1,...,\alpha_k)_c}G\right)$-equivariance diagram commutes:
+        \begin{align*}
+            \xymatrix{
+                \mathscr{C}_G(\mathbf{k}^\beta)\tensor\left[\bigtensor_{r=1}^k \mathscr{C}_G(\mathbf{j}_r^{\alpha_r})\right] \ar[d]_-{\gamma_G} \ar[rr]^-{\id\tensor ((\tau_1,...,\tau_k),g)} && \mathscr{C}_G(\mathbf{k}^\beta)\tensor\left[\bigtensor_{r=1}^k \mathscr{C}_G(\mathbf{j}_r^{\alpha_r})\right] \ar[d]^-{\gamma_G}\\
+                \mathscr{C}_G(\mathbf{j}^{\gamma(\beta;\vee_r\alpha_r)}) \ar[rr]_-{(\tau_1\oplus ...\oplus \tau_k,g)} && \mathscr{C}_G(\mathbf{j}^{\gamma(\beta;\vee_r\alpha_r)})
+            }
+        \end{align*}
+    \end{itemize}
+\end{defn}
+
+\newpage
+
+\subsection{Prolongation of Associativity $G$-Operad, and Permutativity $G$-Operad}
+
+\begin{defn}
+    Define the \emph{associativity $G$-operad} $\mathscr{M}_G$ in the category $\mathbf{GSet}$, by $\mathscr{M}_G(\mathbf{n}^\alpha):= (\Sigma_n)^\alpha$, endows with the right action defined in \textbf{Equivariance Preliminaries}. Which, $\mathscr{M}_G = \PP\mathscr{M}$ if consider prolongation.
+\end{defn}
+
+\hfil
+
+\begin{defn}
+    Define the new \emph{permutativity $G$-operad} $\mathscr{P}'_G$ in the category of small $G$-categories $\mathbf{Cat}_G$, as the chaotic prolongation 
+\end{defn}
+
 \end{document}
