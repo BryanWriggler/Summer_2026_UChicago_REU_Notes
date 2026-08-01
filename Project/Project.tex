@@ -20,53 +20,9 @@
     \item[4.] (Not sure if it's true), but if we can show there is an equivalence of $G$-categories between the original $\mathscr{P}_G$ and $\mathscr{E}\PP\mathscr{M}$, then maybe we cn also show the equivalence from the original categories.
 \end{itemize}
 
-The first three goals based on intuition and inspection seems to be true.
+The first three goals based on intuition and inspection seems to be true (However, my guess is this gives multiple restrictions on what the sets could be).
 
 \section{Introduction (ND)}
-
-\newpage
-
-\section{Categorical Notations (Keep adding, like statements on morphisms)}
-
-(Main references are Peter's papers).
-
-Recall that $\mathscr{F}$ stands for the category of based finite sets, with objects being $\mathbf{n}:= \{0,1,...,n\}$ (with $0$ as basepoint), and homset $\mathscr{F}(\mathbf{n},\mathbf{m})$ as all based maps between them. For generalization to equivariance setting for a fixed finite group $G$, one needs an extra $G$-equivariant structure.
-
-\begin{defn}
-    Let $\mathscr{F}_G$ denotes the $G$-category of based finite $G$-sets, with objects being $\mathbf{n}^\alpha:= \{0,1,...,n\}$ as set, together with a group homomorphism $\alpha:G\rightarrow \Sigma_n$; the homset $\mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)= \mathscr{F}(\mathbf{n},\mathbf{m})$ as based set maps. 
-    
-    Here, we view $\Sigma_n\subseteq \mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{n}^{\alpha'})$ as permutation of the nonzero elements in $\mathbf{n}$. Which, the action on the homset $\mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)$ is given by conjugation 
-    \[g\cdot f := \beta(g)\circ f\circ \alpha(g)^{-1}\]
-
-    We'll use $G\mathscr{F}:= [\mathscr{F}_G]^G$ as the $G$-fixed subcategory, which have the same objects as $\mathscr{F}_G$, while the homset $G\mathscr{F}(\mathbf{n}^\alpha,\mathbf{m}^\beta) = [\mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)]^G$ are all the based $G$-maps between the two.
-\end{defn}
-
-\hfil
-
-For the case $\mathscr{F}$, there are several subcategories, including $\Pi$ (with all compositions of injections and projections), $\Lambda$ (with all injections), $\Lambda^\perp$ (with all projections), $\Sigma$ (with only bijections), and $\mathscr{E}$ (the effective maps). We make similar definition for $\mathscr{F}_G$:
-
-\begin{defn}
-    Let $\Pi_G\subset\mathscr{F}_G$ be the subcategory where each morphism $\phi:\mathbf{n}^\alpha\rightarrow\mathbf{m}^\beta$ has $|\phi^{-1}(j)|=0$ or $1$ for all $0\neq j\in\mathbf{m}$.
-
-    Let $\Lambda_G\subset\Pi_G$ be the subcategory where each $\phi$ is injective (called \emph{injections}); conversely, let $\Lambda_G^\perp\subset\Pi_G$ stands for the subcategory where each $\phi$ is surjective (called \emph{projections}).
-
-    Let $\Sigma_G = \Lambda_G\cap \Lambda_G^\perp$, which is a subcategory with all $\phi$ being bijections.
-
-    Let $\mathscr{E}_G\subset\mathscr{F}_G$ be the subcategory where all morphism satisfies $\phi^{-1}(0)=\{0\}$, which these morphisms are called \emph{effective}.
-
-    \hfil
-
-    Similarly, we use $G\Pi, G\Lambda,G\Lambda^\perp$, and $G\mathscr{E}$ to denote the $G$-fixed subcategory for each (which homsets are limited to $G$-maps).
-\end{defn}
-
-\hfil
-
-Insert some theorems (probably do some brief verification on them), keep increase them if needed.
-
-However, there is an important notation we need:
-\begin{notn}
-    Given a based finite $G$-set $\mathbf{n}^\alpha$, denote the group $\Sigma_{\mathbf{n}^\alpha}:= G\Sigma(\mathbf{n}^\alpha,\mathbf{n}^\alpha)$, all the $G$-automorphisms of $\mathbf{n}^\alpha$.
-\end{notn}
 
 \newpage
 
@@ -136,7 +92,52 @@ For further purpose, we consider the semidirect product action on each finite sy
 
 \newpage
 
-\section{$G$-Operads}
+\section{Categorical Notations (Keep adding, like statements on morphisms)}
+
+(Main references are Peter's papers).
+
+Recall that $\mathscr{F}$ stands for the category of based finite sets, with objects being $\mathbf{n}:= \{0,1,...,n\}$ (with $0$ as basepoint), and homset $\mathscr{F}(\mathbf{n},\mathbf{m})$ as all based maps between them. For generalization to equivariance setting for a fixed finite group $G$, one needs an extra $G$-equivariant structure.
+
+\begin{defn}
+    Let $\mathscr{F}_G$ denotes the $G$-category of based finite $G$-sets, with objects being $\mathbf{n}^\alpha:= \{0,1,...,n\}$ as set, together with a group homomorphism $\alpha:G\rightarrow \Sigma_n$; the homset $\mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)= \mathscr{F}(\mathbf{n},\mathbf{m})$ as based set maps. 
+    
+    Here, we view $\Sigma_n\subseteq \mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{n}^{\alpha'})$ as permutation of the nonzero elements in $\mathbf{n}$. Which, the action on the homset $\mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)$ is given by conjugation 
+    \[g\cdot f := \beta(g)\circ f\circ \alpha(g)^{-1}\]
+
+    We'll use $G\mathscr{F}:= [\mathscr{F}_G]^G$ as the $G$-fixed subcategory, which have the same objects as $\mathscr{F}_G$, while the homset $G\mathscr{F}(\mathbf{n}^\alpha,\mathbf{m}^\beta) = [\mathscr{F}_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)]^G$ are all the based $G$-maps between the two.
+\end{defn}
+
+\hfil
+
+For the case $\mathscr{F}$, there are several subcategories, including $\Pi$ (with all compositions of injections and projections), $\Lambda$ (with all injections), $\Lambda^\perp$ (with all projections), $\Sigma$ (with only bijections), and $\mathscr{E}$ (the effective maps). We make similar definition for $\mathscr{F}_G$:
+
+\begin{defn}
+    Let $\Pi_G\subset\mathscr{F}_G$ be the subcategory where each morphism $\phi:\mathbf{n}^\alpha\rightarrow\mathbf{m}^\beta$ has $|\phi^{-1}(j)|=0$ or $1$ for all $0\neq j\in\mathbf{m}$.
+
+    Let $\Lambda_G\subset\Pi_G$ be the subcategory where each $\phi$ is injective (called \emph{injections}); conversely, let $\Lambda_G^\perp\subset\Pi_G$ stands for the subcategory where each $\phi$ is surjective (called \emph{projections}).
+
+    Let $\Sigma_G = \Lambda_G\cap \Lambda_G^\perp$, which is a subcategory with all $\phi$ being bijections.
+
+    Let $\mathscr{E}_G\subset\mathscr{F}_G$ be the subcategory where all morphism satisfies $\phi^{-1}(0)=\{0\}$, which these morphisms are called \emph{effective}.
+
+    \hfil
+
+    Similarly, we use $G\Pi, G\Lambda,G\Lambda^\perp$, and $G\mathscr{E}$ to denote the $G$-fixed subcategory for each (which homsets are limited to $G$-maps).
+\end{defn}
+
+\hfil
+
+Insert some theorems (probably do some brief verification on them), keep increase them if needed.
+
+However, there is an important notation we need:
+\begin{notn}
+    Given a based finite $G$-set $\mathbf{n}^\alpha$, denote the group $\Sigma_{\mathbf{n}^\alpha}:= G\Sigma(\mathbf{n}^\alpha,\mathbf{n}^\alpha)$, all the $G$-automorphisms of $\mathbf{n}^\alpha$.
+\end{notn}
+
+\newpage
+
+
+\section{Finitary $G$-Operads}
 
 \subsection{Composability of Finite $G$-Sets}
 
@@ -312,7 +313,35 @@ Instead of indexing over finite sets (objects in $\mathscr{F}$), the concept of 
 \hfil
 
 \begin{defn}
-    Define the new \emph{permutativity $G$-operad} $\mathscr{P}'_G$ in the category of small $G$-categories $\mathbf{Cat}_G$, as the chaotic prolongation 
+    Define the new \emph{permutativity $G$-operad} $\mathscr{P}'_G$ in the category of small $G$-categories $\mathbf{Cat}_G$, as the chaotic prolongation $\mathscr{E}\PP\mathscr{M}$ in $\textbf{Cat}_G$.
 \end{defn}
+
+Seems like Peter is trying to work on the original model now...
+
+\newpage
+
+\section{Finitely Generated $G$-Suboperads in $\mathscr{P}_G$}
+
+This is based on the paper https://par.nsf.gov/servlets/purl/10298930, where they tried to give a finitely generated model for $\mathscr{P}_G$, and use an equivalent suboperad that is finitely generated.
+
+\begin{defn}
+    Let $T$ be a finite ordered $G$-set (so $T\cong \mathbf{n}^\alpha$ for $n=|T|$ and some $\alpha:G\rightarrow\Sigma_n$, if consider adding a basepoint). Denote the \emph{external norm} $\tensor_T:=\alpha:G\rightarrow\Sigma_n$.
+
+    For specific case $n=0$, denote $e:G\rightarrow \Sigma_0$ (as unit) and $\tensor:G\rightarrow 1\rightarrow\Sigma_2$ as the trivial group homomorphism into $\Sigma_2$.
+\end{defn}
+
+\hfil
+
+For generation, I believe the paper tries to describe using transitive $G$-sets (as non-transitive finite sets, with multiple orbits, can be broken down into transitive ones; for this we need more precise formulation though).
+
+\begin{defn}
+    Let $\mathfrak{D}_G$ denotes the set of (based) ordered transitive $G$-sets, such that each isomorphism classes of transitive $G$-set contains exactly one copy. This is called \emph{complete set of ordered $G$-orbits} in the paper.
+
+    More precisely, can view $\mathbf{D}_G$ as a subcategory of $\mathscr{F}_G$ (if considering not just equivariant maps).
+\end{defn}
+
+\begin{lem}
+    
+\end{lem}
 
 \end{document}
