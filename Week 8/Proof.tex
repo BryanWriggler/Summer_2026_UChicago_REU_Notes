@@ -43,17 +43,150 @@ inducing an isomorphism of (strict) 2-categories. Here, $\_$ is some (yet to be 
 
 \newpage
 
-\section{Preliminaries}
+\section{Preliminaries (ND)}
 \subsection{Symmetric Monoidal Categories}
-\subsection{Operads in Symmetric Monoidal Categories}
-\subsection{Category $\F_G$}
-\subsection{Equivariance Preliminaries}
-\subsection{$G$-Categories}
-\subsection{2-Categories}
+
+\begin{defn}
+    A category $\mathcal{V}$ is a \emph{monoidal category}, if there is a bifunctor $\tensor:\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ (called \emph{monoidal product}), and an object $\kappa\in\mathcal{V}$ (called \emph{unit/monoidal unit}), together with the following natural isomorphisms:
+    \begin{itemize}
+        \item The \emph{associator} $a:(\_\tensor \_)\tensor \_ \xrightarrow{\sim} \_\tensor(\_\tensor \_)$ of functors $\mathcal{V}\times\mathcal{V}\times\mathcal{V}\xrightarrow{\sim}\mathcal{V}$. (So, $(X\tensor Y)\tensor Z\cong X\tensor(Y\tensor Z)$ in a canoncial way).
+        \item The \emph{left unit} $\lambda:\kappa\tensor\_\xrightarrow{\sim} \Id_{\mathcal{V}}$ ($\kappa\tensor X\cong X$ in a canonical way).
+        \item The \emph{right unit} $\rho:\_\tensor \kappa\xrightarrow{\sim}\Id_\mathcal{V}$ ($X\tensor \kappa\cong X$ in a canonical way).
+    \end{itemize} 
+
+    They also satisfy two extra axioms:
+    \begin{itemize}
+        \item \emph{Triangle Axiom:}
+        \[\xymatrix{
+            (X\tensor \kappa)\tensor Y \ar[dr]_-{\rho_X \tensor \id_Y} \ar[rr]^-{a_{X,\kappa,Y}} && X\tensor (\kappa\tensor Y) \ar[dl]^-{\id_X\tensor \lambda_Y}\\
+            & X\tensor Y
+        }\]
+        \item \emph{Pentagon Axiom:}
+        \[\xymatrix{
+            ((X\tensor Y)\tensor Z)\tensor W \ar[rr]^-{a_{X\tensor Y,Z,W}} \ar[d]_-{a_{X,Y,Z}\tensor \id_W} && (X\tensor Y)\tensor(Z\tensor W) \ar[d]^-{a_{X,Y,Z\tensor W}}\\
+            (X\tensor (Y\tensor Z))\tensor W \ar[dr]_-{a_{X,Y\tensor Z,W}} && X\tensor (Y\tensor (Z\tensor W)) \\
+            & X\tensor ((Y\tensor Z)\tensor W) \ar[ur]_-{\id_X\tensor a_{Y,Z,W}}
+        }\]
+    \end{itemize}
+\end{defn}
+Based on \emph{Maclane's Coherence Theorem}, the above two axioms guarantees all finite sequences of $a,\lambda,\rho$ and their inverses agree, namely there is a unique isomorphism $P_1\rightarrow P_2$, where $P_i$ are (possibly) different orders of performing product on $X_1,...,X_n\in\mathcal{V}$. For reference, cf. \emph{Category Theory for Working Mathematicians}.
+
+This guarantees all monoidal category to be equivalent to a \emph{strict monoidal category},namely all $a,\lambda,\rho$ above are ``identity transformations'', or $1\tensor X=X,X\tensor 1=X$, and $(X\tensor Y)\tensor Z=X\tensor (Y\tensor Z)$, so WLOG one can assume the product $\tensor$ is associative.
+
+\begin{defn}
+    A monoidal category $\mathcal{V}$ is \emph{braided}, if there is a natural isomorphism $B:\__{1} \tensor \__{2}\xrightarrow{\sim} \__{2}\tensor \__{1}$ (so $B_{X,Y}:X\tensor Y\xrightarrow{\sim}Y\tensor X$ is an isomorphism), together with the \emph{Hexagon axioms} satisfied:
+    \[\xymatrix{
+        (X\tensor Y)\tensor Z \ar[r]^-{a_{X,Y,Z}} \ar[d]_-{B_{X,Y}\tensor \Id_Z} & X\tensor (Y\tensor Z)\ar[r]^-{B_{X,Y\tensor Z}} & (Y\tensor Z)\tensor X \ar[d]^-{a_{Y,Z,X}}\\
+        (Y\tensor X)\tensor Z \ar[r]_-{a_{Y,X,Z}} & Y\tensor (X\tensor Z) \ar[r]_-{\id_Y\tensor B_{X,Z}} & Y\tensor (Z\tensor X)
+    }\]
+    \[\xymatrix{
+        X\tensor (Y\tensor Z) \ar[d]_-{\id_X\tensor B_{Y,Z}} & (X\tensor Y)\tensor Z \ar[l]_-{a_{X,Y,Z}} \ar[r]^-{B_{X\tensor Y,Z}} & Z\tensor (X\tensor Y)\\
+        X\tensor (Z\tensor Y) & (X\tensor Z)\tensor Y \ar[l]^-{a_{X,Z,Y}} \ar[r]_-{B_{X,Z}\tensor \id_Y} & (Z\tensor X)\tensor Y \ar[u]_-{a_{Z,X,Y}}
+    }\]
+    $\mathcal{V}$ is a \emph{symmetric monoidal category}, if $B_{Y,X}=B_{X,Y}^{-1}$ for all $X,Y\in\mathcal{V}$.
+\end{defn}
+The two hexagons are uniqueness of 3-cycle permutations on three consecutive objects in a product, hence together with $B$ serving as transpositions, it guarantees unique isomorphism between all permutations of finite products, i.e., it imposes that there is a single way of doing such permutation (so there's no ``nontrivial braiding'', when $B_{Y,X}\circ B_{X,Y}:X\tensor Y\rightarrow Y\tensor X\rightarrow X\tensor Y$ is not identity). From my naive understanding of coherence theorem, WLOG we can again treat $X\tensor Y=Y\tensor X$.
+
+\hfil
+
+\subsection{Operads, Operadic Algebras}
+
+\begin{defn}
+Given symmetric monoidal category $\mathcal{V}$, a \emph{$\Sigma$ operad} $\mathcal{C}$ in $\mathcal{V}$ is a collection of objects $\{\mathcal{C}(j)\in\mathcal{V}\}_{j\in\NN}$, each $\mathcal{C}(j)$ with a right $\Sigma_j$-action (a group homomorphism $\Sigma_j^\Op\rightarrow \Aut_\mathcal{V}(\mathcal{C}(j))$), a \emph{unit map} $\eta:1\rightarrow \mathcal{C}(1)$, together with composition maps
+\[\gamma:\mathcal{C}(k)\tensor \mathcal{C}(j_1)\tensor...\tensor \mathcal{C}(j_k)\rightarrow \mathcal{C}(j_1+...+j_k)\]
+that satisfies the following axioms:
+\begin{itemize}
+    \item \emph{Unit:}
+    \[\xymatrix{
+        \mathcal{C}(j)\tensor \kappa^{\tensor j} \ar[dr]_-{\id_{\mathcal{C}(j)}\tensor \eta^{\tensor j}} \ar[rr]^-{\sim} && \mathcal{C}(j)\\
+        & \mathcal{C}(j)\tensor \mathcal{C}(1)^{\tensor j} \ar[ur]_-{\gamma}
+    },\quad\quad \xymatrix{
+        \kappa\tensor \mathcal{C}(j) \ar[dr]_-{\eta\tensor \id_{\mathcal{C}(j)}} \ar[rr]^-{\sim} && \mathcal{C}(j)\\
+        & \mathcal{C}(1)\tensor \mathcal{C}(j) \ar[ur]_-{\gamma}
+    }\]
+    \item \emph{Associativity:} Fix natural numbers $k$, $j = \sum_{s=1}^k j_s$, define index $g_s:= j_1+...+j_s$ for $1\leq s\leq k$. For each $i_1,...,i_{g_k}=i_j$, with sum $i=\sum_{r=1}^j i_r$, and $h_s:= i_{g_{(s-1)}+1}+...+i_{g_s}$ (so $i=\sum_{s=1}^k h_s$ also), the following diagram commutes:
+    \[\xymatrix{
+        \left[\mathcal{C}(k)\tensor \left(\bigtensor_{s=1}^k \mathcal{C}(j_s)\right)\right]\tensor \left(\bigtensor_{r=1}^j \mathcal{C}(i_r)\right) \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\gamma\tensor \id} && \mathcal{C}(j) \tensor \left(\bigtensor_{r=1}^j \mathcal{C}(i_r)\right) \ar[d]^-{\gamma}\\
+        && \mathcal{C}(i)\\
+        \mathcal{C}(k) \tensor \left[\bigtensor_{s=1}^k \left(\mathcal{C}(j_s)\tensor \left(\bigtensor_{q=1}^{j_s} \mathcal{C}(i_{g_{(s-1)}+q})\right)\right)\right] \ar[rr]_-{\id_{\mathcal{C}(k)} \tensor (\bigtensor_s \gamma)} && \mathcal{C}(k)\tensor \left(\bigtensor_{s=1}^k \mathcal{C}(h_s)\right) \ar[u]_-{\gamma}
+    }\]
+    \item \emph{Equivariance:}
+    \begin{itemize}
+        \item Given $\sigma\in\Sigma_k$, $j_1+...+j_k = \Sigma_j$, let $\sigma(j_1,...,j_k)\in\Sigma_j$ denotes ``permutation of $k$-blocks of letters'', by $(j_1,...,j_k)\mapsto (j_{\sigma^{-1}(1)},...,j_{\sigma^{-1}(k)})$.
+        \begin{exmp}
+            Given $j=5=2+3$, the permutation $(1\ 2)\in \Sigma_2$, $\sigma(2,3)$ is the permutation $\langle 1,2;3,4,5 \rangle \mapsto \langle 3,4,5;1,2\rangle$ (namely changing the blocks' order, without changing the order in each block).
+        \end{exmp} 
+        Then, the following diagram commutes:
+        \[\xymatrix{
+            \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right) \ar[d]_-{\gamma} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma^{-1}}} && \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_{\sigma(r)})\right) \ar[d]^-{\gamma}\\
+            \mathcal{C}(j) \ar[rr]_-{\sigma(j_{\sigma(1)},...,j_{\sigma(k)})} && \mathcal{C}(j)
+        }\]
+        \item Given $\tau_r\in \Sigma_{j_r}$, denote $\tau_1\oplus ... \oplus \tau_k\in \Sigma_j$ by letting each $\tau_r$ permuting the $j_r$th block in $j$ (for instance, let $\tau_1$ acts on $1,...,j_1$; let $\tau_2$ acts on $j_1+1,...,j_1+j_2$, etc.). Then, the following diagram commutes:
+        \[\xymatrix{
+            \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right)\ar[d]_-{\gamma} \ar[rr]^-{\id_{\mathcal{C}(k)}\tensor (\bigtensor_r \tau_r)} && \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right) \ar[d]^-{\gamma}\\
+            \mathcal{C}(j) \ar[rr]_{\tau_1\oplus...\oplus\tau_k} && \mathcal{C}(j)
+        }\]
+    \end{itemize}
+\end{itemize}
+
+If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ being $\id_{\mathcal{C}(0)}$), the operad is \emph{reduced}.
+\end{defn}
+
+\begin{defn}
+    Let $\mathcal{C},\mathcal{C}'$ be two operads on symmetric monoidal category $\mathcal{V}$, a \emph{morphism of operads} $\psi:\mathcal{C}\rightarrow \mathcal{C}'$, is a sequence of $\Sigma_j$-equivariant morphisms $\psi_j:\mathcal{C}(j)\rightarrow \mathcal{C}'(j)$ in $\mathcal{V}$ (i.e., $\sigma^{-1}\circ \psi_j\circ \sigma = \psi_j$, for all $\sigma\in \Sigma_j$), such that it preserves the operad's structure morphism:
+    \[\xymatrix{
+        \mathcal{C}(k)\tensor \mathcal{C}(j_1)\tensor...\tensor \mathcal{C}(j_k) \ar[d]_-{\psi_k\tensor \psi_{j_1}\tensor...\tensor \psi_{j_k}} \ar[r]^-{\gamma} & \mathcal{C}(j_1+...+j_k) \ar[d]^-{\psi_{j_1+...+j_k}}\\
+        \mathcal{C}'(k)\tensor \mathcal{C}'(j_1)\tensor ..\tensor \mathcal{C}'(j_k) \ar[r]_-{\gamma'} & \mathcal{C}'(j_1+...+j_k)
+    }\]
+\end{defn}
+
+\hfil
+
+A primary example is the \emph{associativity operad} in $\Sets$ or $\mathscr{U}$ (the category of spaces):
+\begin{exmp}
+    \textbf{Fill in Details}
+\end{exmp}
+
+\hfil
+
+\begin{defn}
+    Given an operad $\mathcal{C}$ over a symmetric monoidal category $\mathcal{V}$, a \emph{$\mathcal{C}$-algebra} is an object $A\in\mathcal{V}$, with collections of morphisms $\theta:\mathcal{C}(j)\tensor A^j\rightarrow A$, that satisfies the following axioms:
+    \begin{itemize}
+        \item \emph{Associativity:} Given $j = \sum_{i=1}^k j_i$, the following diagram commutes:
+        \[\xymatrix{
+            \left[C(k)\tensor \left(\bigtensor_{i=1}^k C(j_i)\right)\right] \tensor A^{\tensor j} \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\gamma\tensor \id_{A^{\tensor j}}} && C(j)\tensor A^{\tensor j} \ar[dr]^-{\theta}\\
+            & & & A\\
+            C(k)\tensor \left[\bigtensor_{i=1}^k \left(C(j_i)\tensor A^{\tensor j_i}\right)\right] \ar[rr]_-{\id_{C(k)}\tensor \theta^k} && C(k)\tensor A^{\tensor k} \ar[ur]_-{\theta}
+        }\]
+        (Note: This part uses the isomorphism $A^{\tensor j}\cong\bigtensor_{i=1}^k A^{\tensor j_i})$.
+        \item \emph{Unit:} The following diagram commutes:
+        \[\xymatrix{
+            \kappa \tensor A \ar[dr]_-{\eta\tensor \id_A} \ar[rr]^-{\sim} && A\\
+            & C(1)\tensor A \ar[ur]_-{\theta}
+        }\]
+        \item \emph{Eauivariance:} Given any permutation $\sigma\in\Sigma_j$, the following diagram commutes:
+        \[\xymatrix{
+            C(j)\tensor A^{\tensor j} \ar[dr]_-{\theta} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma}} && C(j)\tensor A^{\tensor j} \ar[dl]^-{\theta}\\
+            & A
+        }\]
+    \end{itemize}
+\end{defn}
+
+
+\hfil
+
+As an example, the operads over $\M$ mentioned previously is automatically a monoid (which describes the associativity structure).
+
+\hfil
+
+\subsection{2-Categories (ND)}
+
+\subsection{Equivariance Preliminaries (ND)}
+\subsection{$G$-Categories(ND)}
 
 \newpage
 
-\section{Essential Categorical Tools}
+\section{Essential Categorical Tools (ND)}
 Here we introduce some definitions important to this paper.
 
 \subsection{$G$-Operad $\mathscr{Q}_G$ in $\Cat_G$}
@@ -235,6 +368,10 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
 
 \hfil
 
+\subsection{Category $\F_G$ (ND)}
+
+\hfil
+
 \subsection{2-Category $\F_G$-$\PsAlg$, Version 1}
 
 In the category $\F_G$ (all based finite $G$-sets), the homsets $\F_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)$ can also be viewed as a discrete category. We'll use this identification to define some notions.
@@ -282,7 +419,7 @@ Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (n
 
 \newpage
 
-\section{Construction of $\RR_G$}
+\section{Construction of $\RR_G$ (ND)}
 
 \newpage
 
@@ -350,13 +487,19 @@ This shows that the functor $\RR_G:\cP_G$-$\PsAlg\rightarrow \F_G$-$\PsAlg$ is n
 
 \subsection{Extra Axioms Required on $\F_G$-$\PsAlg$}
 
+Possible things to assume: the $1$st-space $\A:=\B(\mathbf{1})$ should have a \emph{chaotic $G$-actions}, meaning any $g\in G$ should describe an isomorphism functor $g:\A\xrightarrow{\sim}\A$, such that $g,\Id_\A$ are naturally isomorphic.
+
+\textbf{Question:} This is necessary, but is it sufficient?
+
 \newpage
 
-\section{Construction of $\QQ_G$ under Extra Axiom}
+\section{Construction of $\QQ_G$ under Extra Axiom (ND)}
 
 \newpage
 
-\section{(If everything works out) $\RR_G$ and $\QQ_G$ are Isomorphisms}
+\section{(If everything works out) $\RR_G$ and $\QQ_G$ are Isomorphisms (ND)}
+
+\newpage
 
 %%references
 
