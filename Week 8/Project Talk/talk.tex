@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{../Self_Style}
+
+\usepackage{tikz-cd} %as a current substitution of xypic...
+
+\usepackage[normalem]{ulem} %for strike through
+
+\title{Equivariance in Category Theory}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Motivation}
+
+To study some ``things'', what's a good way of studying it? One thing to do, is studying some other things that're interconnected to it.
+
+For instance, in topological K-theory, people study vector bundles over a space $X$, and turn them into sequence of spaces called ``spectrum'' associated to $X$. This sequence of spaces and their topologies gives some interesting invariants of the space itself.
+
+Similarly, in algebraic K-theory, people study ``projective modules'' over a ring $R$, we can also construct spectrum over this ring, and the topologies also give some interesting invariants of the ring.
+
+\hfil
+
+However, for both of these cases (vector bundles and projective modules), they're both closed under direct sums and tensor products (whatever that is), so we actually starts with a ``category'' with some nice product structure. These are called symmetric monoidal categories. In general, a K-theory can be done, by turning some symmetric monoidal category into a spectrum. So, classifying them turns out to be extremely important.
+
+Now, analogous constructions can be done if the ``things'' endow some kind of group actions, which is the main study of equivariant K-theory. For this, an important question must be asked: What the heck is a ``Symmetric Monoidal $G$-Category''? Today, we try to get to this, by first introducing equivariance in categories.
+
+\hfil
+
+\hfil
+
+\section{$G$-Categories and 2-Category $\Cat_G$}
+
+Fix a group $G$ (say finite).
+
+\begin{defn}
+A small category $\A$ is a (strict) \emph{$G$-category}, if there exists a map $H:G\rightarrow \Cat(\A,\A)$, such that $H(e)=\id_\A$, and $H(gh)=H(g)\circ H(h)$.
+\end{defn}
+
+So, each group element is a functor, and an automorphism on $\A$, where composition functors are compatible with group structures. Just like how it's defined for $G$-sets.
+
+\begin{defn}
+    The 2-category $\Cat_G$ consists of all small $G$-categories, the 1-morphisms between $G$-categories are functors (not necessarily equivariant), and the 2-morphisms are natural transformations between them.
+\end{defn}
+
+An interesting thing to observe: each $G$-category $\A$ realizes $g\in G$ as an automorphism on $\A$. So, if $F:\A\rightarrow\B$ is a functor, so is $g\circ F\circ g^{-1}$! This realizes the ``functor category'' $\Cat_G(\A,\B)$ as a small $G$-category! 
+
+If consider the subcategory fixed by all functors of $G$, $\Cat_G(\A,\B)^G$ gives all the $G$-equivariant functors from $\A$ to $\B$.
+
+\hfil
+
+\section{Operads for Symmetric Monoidal ($G$) Categories}
+
+We're gonna blackbox whatever an operad is. Yes. (Also, there are many texts by Peter describing this). Anyway, a ``slogan'' for operad, is it encodes how to define $n$-fold products on some ``things'', and how to combine these products.
+
+In $\Cat_G$, there is a ``product operation'' of $G$-categories $\A\times \B$, and $G$ acts diagonally on it, similar to $G$-sets. There are two operads in $\Cat_G$, called $\cP$ and $\cP_G$, both encodes some methods of describing $n$-fold products $\A^n\rightarrow\A$ on some $G$-category $\A$.
+
+What $\cP$ does, is it defines 
+
+\end{document}

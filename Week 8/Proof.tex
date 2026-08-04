@@ -221,7 +221,18 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
         & C
         }
     \end{align}
-    and a natural transformation $\phi=\phi(k;j_1,...,j_k)$ for each diagram 
+    Here, equivariance means the following two diagrams agree:
+    \begin{align}
+        \xymatrix{ 
+        \A\ar[r]^-{g} & \A\ar[r]^{\iota}\ar[dr]_{\Id_\A} & \Q_G(1)\times\A\ar[d]^{\theta_1}\ar@{=>}[dl]+<26pt>^>>>>{\phi_1}\\ 
+        && \A
+        }\quad = \quad
+        \xymatrix{ 
+        \A\ar[r]^{\iota}\ar[dr]_{\Id_\A} & \Q_G(1)\times\A\ar[d]^{\theta_1}\ar@{=>}[dl]+<26pt>^>>>>{\phi_1}\\ 
+        & \A \ar[r]^-{g} & \A
+        }
+    \end{align}
+    A natural transformation $\phi=\phi(k;j_1,...,j_k)$ for each diagram 
     \begin{align}
         \xymatrix{
             \Q_G(k) \times \left(\prod_{r=1}^k \Q_G(j_r)\times \A^{j_r}\right) \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\id\times\prod_r\theta_{j_r}} && \Q_G(k)\times\A^k \ar[d]^-{\theta_k} \ar@{=>}[ddll]^-{\phi}\\
@@ -231,13 +242,14 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
     \end{align}
     such that the following strict equivariance hold for $\theta_j$ and $\phi$:
     \begin{itemize}
-        \item[(i)]\textbf{(Equivariance of $\theta_j$)} The following diagram commutes for $(g,\sigma)\in G\times\Sigma_j$:
+        \item[(i)]\textbf{(Equivariance of $\theta_j$)} The following diagram commutes for $\sigma\in\Sigma_j$:
         \begin{align}
             \xymatrix{
-                \Q_G(j)\times \A^j \ar[dr]_-{\theta_j}  \ar[rr]^-{(g,\sigma)\times (g,\sigma)^{-1}} && \Q_G(j)\times \A^j \ar[dl]^-{\theta_j}\\
+                \Q_G(j)\times \A^j \ar[dr]_-{\theta_j}  \ar[rr]^-{\sigma\times\sigma^{-1}} && \Q_G(j)\times \A^j \ar[dl]^-{\theta_j}\\
                 & \A
             }
         \end{align}
+        \textbf{I think if assuming the commutation for $G$ also, the case $j=1$ implies $\theta_j$ collapses all $G$-action on $\A$ to be trivial}
         \item[(ii)]\textbf{(Equivariance of $\phi$)} The following equalities hold when given $g\in G$, $\sigma\in\Sigma_k$, and $\tau_r\in\Sigma_{j_r}$:
         \begin{align*}
             \phi(k;j_1,...,j_k) = \phi(k;j_{\sigma(1)},...,j_{\sigma_k}) \circ ((g,\sigma)\times (g,\sigma)^{-1})
@@ -307,7 +319,7 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
 \hfil
 
 \begin{defn}[$\Q_G$-pseudomorphism]
-    A $\Q_G$-pseudomorphism $(\FF,\zeta):(\A,\theta,\phi)\rightarrow(\B,\vartheta,\varphi)$ consists of \emph{$G$-functor} $\FF:\A\rightarrow\B$, such that for each $j$ in the follogin diagram commutes up to an invertibal natural transformation $\zeta_j$:
+    A $\Q_G$-pseudomorphism $(\FF,\zeta):(\A,\theta,\phi)\rightarrow(\B,\vartheta,\varphi)$ consists of functor $\FF:\A\rightarrow\B$, such that for each $j$ in the follogin diagram commutes up to an invertible natural transformation $\zeta_j$:
     \begin{align*}
         \xymatrix{
             \Q_G(j)\times \A^j\ar[r]^-{\id\times\FF^j} \ar[d]_-{\theta_j} & \Q_G(j)\times \B^j \ar[d]^-{\vartheta_j} \ar@{=>}[dl]^-{\zeta_j}\\
