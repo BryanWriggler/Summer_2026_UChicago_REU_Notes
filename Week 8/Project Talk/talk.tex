@@ -53,7 +53,7 @@ If consider the subcategory fixed by all functors of $G$, $\Cat_G(\A,\B)^G$ give
 
 \section{Operads for Symmetric Monoidal ($G$) Categories}
 
-First, let's semi-formally introduce symmetric monoidal category is:
+Now we'll switch gear, and talk about three non-equivariant categories:
 
 \begin{defn}
     A category $\A$ is a \emph{symmetric moniodal caetgory}, if there is a binary product $\tensor:\A\times\A\rightarrow\A$, that is unital, associative, and commutative up to natural isomorphism.
@@ -61,15 +61,30 @@ First, let's semi-formally introduce symmetric monoidal category is:
 
 Which, we collect them (and functors preserving the product structure) as $\SymMon$.
 
-Next, we're gonna blackbox whatever an operad is. Yes. (Also, there are many texts by Peter describing this). Anyway, a ``slogan'' for operad, is it encodes how to define $n$-fold products on some ``things'', and how to combine these products.
+Next, we're gonna blackbox whatever an operad is. Yes. (Also, there are many texts by Peter describing this). Anyway, a ``slogan'' for operad is, that each $n\in\NN$ has some ``things'' that encodes how to define $n$-fold products on some ``other things'', and how to combine these products.
 
-In the category of small categories $\Cat$ (with functors as 1-morphisms, natural transformation as 2-morphisms), we have an operad $\cP$, such that a notion of ``pseudoalgebra'' over this $\cP$, precisely describes a category $\A$ and a collection of $n$-fold products on the category. Collect tese pseudoalgebras as $\P$-$\PsAlg$.
+In the category of small categories $\Cat$ (with functors as 1-morphisms, natural transformation as 2-morphisms), we have an operad $\cP$, such that a notion of ``pseudoalgebra'' over this $\cP$, precisely describes a category $\A$ and a collection of $n$-fold products on the category (using a sequence of functors $\cP(n)\times \A^n\rightarrow\A$). Collect tese pseudoalgebras as $\cP$-$\PsAlg$.
 
-Also, if collecting the category of based finite sets $\F$, there are also some ``pseudofunctors'' $\F\rightarrow\Cat$ (whatever that is) which describes a category $\A$ and a collection of $n$-fold products. Collect these pseudofunctors as $\F_\RR$-$\PsAlg$.
+Also, if collecting the category of based finite sets $\F$, there are also some ``pseudofunctors'' $\F\rightarrow\Cat$ (whatever that is) which describes a category $\A$ and a collection of $n$-fold products. Collect these pseudofunctors as $\F_\RR$-$\PsAlg$. 
+
+These are some imputs to various stages of an infinite loop space machine (whatever that is). So an interesting question is: are they the same? I fact, they are!
 
 \begin{thm}
-    The 2-categories $\SymMon$, $\cP$-$\PsAlg$, and $\F$-$\PsAlg$ are equivalent.
+    The 2-categories $\SymMon$, $\cP$-$\PsAlg$, and $\F_\RR$-$\PsAlg$ are equivalent.
 \end{thm}
+
+\begin{proof}(Really Rough Sketch, skip if needed)
+    
+    Given a symmetric monoidal category $\V$, for each $n$, fix a representative of $n$-fold product (as they're all isommorphic), it constructs a functor $\cP(n)\times\V^n\rightarrow\V$, and turns out to satisfy the operadic pseudoalgebra's property (modulo a bunch of details).
+
+    Given a $\cP$-pseudoalgebra $\A$, there is $\cP(2)\times \A^2\rightarrow\A$, which helps us define a binary product. The requirement on permutation and ways of combining it to $n$-fold product $(n\geq 3)$ describes commutativity and associativity (modulo a bunch of details again). Plus, we have $\cP(0)\rightarrow \A$ (with $\cP(0)=*$), this specifies our unit.
+
+    \hfil
+
+    Similarly, given $\A$ a $\cP$-pseudoalgebra, for every based finite set $\mathbf{n}=\{0,1,...,n\}$, associate it to $\A^n$, then every based function $f:\mathbf{n}\rightarrow\mathbf{m}$ can be translated to $\A^n\rightarrow\A^m$ by mapping $\A^{|f^{-1}(i)|}\rightarrow\A$ on the $i$th coordinates, and empty coordinates specified using the unit $*\rightarrow \A$ (given by the pseudoalgebra structure).
+
+    Conversely, any $\F_\RR$-pseudoalgebra consists of the $n$th space as $\A^n$ (where $\A$ is the $1$st space). Then, the canonical $n$-fold product $\phi_n:\mathbf{n}\rightarrow\mathbf{1}$ ($i\mapsto 1,0\mapsto 0$) defines an $n$-fold product $\A^n\rightarrow\A$, and pseudofunctoriality comes into play to define $\cP$-pseudoalgebra structure.
+\end{proof}
 
 \hfil
 
@@ -79,11 +94,11 @@ Now, in $\Cat_G$, there is an operad called $\cP_G$, which is an analous to $\cP
 A \emph{symmetric monoidal $G$-category}, is defined to be $\cP_G$-pseudoalgebra.
 \end{defn}
 
-A problem is: we need to describe all the $n$-fold product and equivariant structure, before even talking about a symmetric monoidal $G$-category, and it's genuinely hard to study its structure. So what the heck is a symmetric monoidal $G$-category? If one can describe it using just binary product, it'll be a lot easier.
+A problem is: we need to describe all the $n$-fold product and equivariant structure, before even studying symmetric monoidal $G$-category, and it's genuinely hard to understand the structure. So what the heck is a symmetric monoidal $G$-category? No one knows in general. If one can describe it using just binary product, it may be a lot easier.
 
 \hfil
 
-As an analogy, we also have the category of based finite $G$-sets, $\F_G$, and also a way of expressing these $\cP_G$-pseudoalgebras as pseudofunctors $\F_G\rightarrow \Cat_G$ (denoted $\F_{G,\RR}$-$\PsAlg$). After having all the correspondance in non-equivariant case, one can also ask: Are these two damn categories equivalent? If so, HOW?
+As an analogy, we also have the category of based finite $G$-sets, $\F_G$, and also a way of expressing these $\cP_G$-pseudoalgebras as pseudofunctors $\F_G\rightarrow \Cat_G$ (denoted $\F_{G,\RR}$-$\PsAlg$). These are again two categories showing up in equivariant $K$-theory (when constructing $G$-spectrum). After having all the correspondance in non-equivariant case, one can also ask: Are these two damn categories equivalent? If so, HOW?
 
 This is what my project is doing currently, and hope this can also answer the previous question in some way, seeing a better structure in symmetric monoidal $G$-categories.
 
