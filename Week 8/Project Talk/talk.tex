@@ -29,29 +29,7 @@ Now, analogous constructions can be done if the ``things'' endow some kind of gr
 
 \hfil
 
-\hfil
-
-\section{$G$-Categories and 2-Category $\Cat_G$}
-
-Fix a group $G$ (say finite).
-
-\begin{defn}
-A small category $\A$ is a (strict) \emph{$G$-category}, if there exists a map $H:G\rightarrow \Cat(\A,\A)$, such that $H(e)=\id_\A$, and $H(gh)=H(g)\circ H(h)$.
-\end{defn}
-
-So, each group element is a functor, and an automorphism on $\A$, where composition functors are compatible with group structures. Just like how it's defined for $G$-sets.
-
-\begin{defn}
-    The 2-category $\Cat_G$ consists of all small $G$-categories, the 1-morphisms between $G$-categories are functors (not necessarily equivariant), and the 2-morphisms are natural transformations between them.
-\end{defn}
-
-An interesting thing to observe: each $G$-category $\A$ realizes $g\in G$ as an automorphism on $\A$. So, if $F:\A\rightarrow\B$ is a functor, so is $g\circ F\circ g^{-1}$! This realizes the ``functor category'' $\Cat_G(\A,\B)$ as a small $G$-category! 
-
-If consider the subcategory fixed by all functors of $G$, $\Cat_G(\A,\B)^G$ gives all the $G$-equivariant functors from $\A$ to $\B$.
-
-\hfil
-
-\section{Operads for Symmetric Monoidal ($G$) Categories}
+\section{What is Symmetric Monoidal Category?}
 
 Now we'll switch gear, and talk about three non-equivariant categories:
 
@@ -85,6 +63,30 @@ These are some imputs to various stages of an infinite loop space machine (whate
 
     Conversely, any $\F_\RR$-pseudoalgebra consists of the $n$th space as $\A^n$ (where $\A$ is the $1$st space). Then, the canonical $n$-fold product $\phi_n:\mathbf{n}\rightarrow\mathbf{1}$ ($i\mapsto 1,0\mapsto 0$) defines an $n$-fold product $\A^n\rightarrow\A$, and pseudofunctoriality comes into play to define $\cP$-pseudoalgebra structure.
 \end{proof}
+
+\hfil
+
+\section{$G$-Categories and 2-Category $\Cat_G$}
+
+Fix a group $G$ (say finite).
+
+\begin{defn}
+A small category $\A$ is a (strict) \emph{$G$-category}, if there exists a map $H:G\rightarrow \Cat(\A,\A)$, such that $H(e)=\id_\A$, and $H(gh)=H(g)\circ H(h)$.
+\end{defn}
+
+So, each group element is a functor, and an automorphism on $\A$, where composition functors are compatible with group structures. Just like how it's defined for $G$-sets.
+
+\begin{defn}
+    The 2-category $\Cat_G$ consists of all small $G$-categories, the 1-morphisms between $G$-categories are functors (not necessarily equivariant), and the 2-morphisms are natural transformations between them.
+\end{defn}
+
+An interesting thing to observe: each $G$-category $\A$ realizes $g\in G$ as an automorphism on $\A$. So, if $F:\A\rightarrow\B$ is a functor, so is $g\circ F\circ g^{-1}$! This realizes the ``functor category'' $\Cat_G(\A,\B)$ as a small $G$-category! 
+
+If consider the subcategory fixed by all functors of $G$, $\Cat_G(\A,\B)^G$ gives all the $G$-equivariant functors from $\A$ to $\B$.
+
+\hfil
+
+\section{What's Symmetric Monoidal $G$-Category?}
 
 \hfil
 
