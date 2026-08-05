@@ -53,10 +53,38 @@ If consider the subcategory fixed by all functors of $G$, $\Cat_G(\A,\B)^G$ give
 
 \section{Operads for Symmetric Monoidal ($G$) Categories}
 
-We're gonna blackbox whatever an operad is. Yes. (Also, there are many texts by Peter describing this). Anyway, a ``slogan'' for operad, is it encodes how to define $n$-fold products on some ``things'', and how to combine these products.
+First, let's semi-formally introduce symmetric monoidal category is:
 
-In $\Cat_G$, there is a ``product operation'' of $G$-categories $\A\times \B$, and $G$ acts diagonally on it, similar to $G$-sets. There are two operads in $\Cat_G$, called $\cP$ and $\cP_G$, both encodes some methods of describing $n$-fold products $\A^n\rightarrow\A$ on some $G$-category $\A$.
+\begin{defn}
+    A category $\A$ is a \emph{symmetric moniodal caetgory}, if there is a binary product $\tensor:\A\times\A\rightarrow\A$, that is unital, associative, and commutative up to natural isomorphism.
+\end{defn}
 
-What $\cP$ does, is it defines 
+Which, we collect them (and functors preserving the product structure) as $\SymMon$.
+
+Next, we're gonna blackbox whatever an operad is. Yes. (Also, there are many texts by Peter describing this). Anyway, a ``slogan'' for operad, is it encodes how to define $n$-fold products on some ``things'', and how to combine these products.
+
+In the category of small categories $\Cat$ (with functors as 1-morphisms, natural transformation as 2-morphisms), we have an operad $\cP$, such that a notion of ``pseudoalgebra'' over this $\cP$, precisely describes a category $\A$ and a collection of $n$-fold products on the category. Collect tese pseudoalgebras as $\P$-$\PsAlg$.
+
+Also, if collecting the category of based finite sets $\F$, there are also some ``pseudofunctors'' $\F\rightarrow\Cat$ (whatever that is) which describes a category $\A$ and a collection of $n$-fold products. Collect these pseudofunctors as $\F_\RR$-$\PsAlg$.
+
+\begin{thm}
+    The 2-categories $\SymMon$, $\cP$-$\PsAlg$, and $\F$-$\PsAlg$ are equivalent.
+\end{thm}
+
+\hfil
+
+Now, in $\Cat_G$, there is an operad called $\cP_G$, which is an analous to $\cP$ in $\Cat$. 
+
+\begin{defn}
+A \emph{symmetric monoidal $G$-category}, is defined to be $\cP_G$-pseudoalgebra.
+\end{defn}
+
+A problem is: we need to describe all the $n$-fold product and equivariant structure, before even talking about a symmetric monoidal $G$-category, and it's genuinely hard to study its structure. So what the heck is a symmetric monoidal $G$-category? If one can describe it using just binary product, it'll be a lot easier.
+
+\hfil
+
+As an analogy, we also have the category of based finite $G$-sets, $\F_G$, and also a way of expressing these $\cP_G$-pseudoalgebras as pseudofunctors $\F_G\rightarrow \Cat_G$ (denoted $\F_{G,\RR}$-$\PsAlg$). After having all the correspondance in non-equivariant case, one can also ask: Are these two damn categories equivalent? If so, HOW?
+
+This is what my project is doing currently, and hope this can also answer the previous question in some way, seeing a better structure in symmetric monoidal $G$-categories.
 
 \end{document}
