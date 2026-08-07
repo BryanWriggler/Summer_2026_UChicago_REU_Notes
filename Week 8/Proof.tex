@@ -221,17 +221,6 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
         & C
         }
     \end{align}
-    Here, equivariance means the following two diagrams agree:
-    \begin{align}
-        \xymatrix{ 
-        \A\ar[r]^-{g} & \A\ar[r]^{\iota}\ar[dr]_{\Id_\A} & \Q_G(1)\times\A\ar[d]^{\theta_1}\ar@{=>}[dl]+<26pt>^>>>>{\phi_1}\\ 
-        && \A
-        }\quad = \quad
-        \xymatrix{ 
-        \A\ar[r]^{\iota}\ar[dr]_{\Id_\A} & \Q_G(1)\times\A\ar[d]^{\theta_1}\ar@{=>}[dl]+<26pt>^>>>>{\phi_1}\\ 
-        & \A \ar[r]^-{g} & \A
-        }
-    \end{align}
     A natural transformation $\phi=\phi(k;j_1,...,j_k)$ for each diagram 
     \begin{align}
         \xymatrix{
@@ -242,11 +231,11 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
     \end{align}
     such that the following strict equivariance hold for $\theta_j$ and $\phi$:
     \begin{itemize}
-        \item[(i)]\textbf{(Equivariance of $\theta_j$)} The following diagram commutes for $\sigma\in\Sigma_j$:
+        \item[(i)]\textbf{(Equivariance of $\theta_j$)} The following diagram commutes for $(g,\sigma)\in G\times\Sigma_j$:
         \begin{align}
             \xymatrix{
-                \Q_G(j)\times \A^j \ar[dr]_-{\theta_j}  \ar[rr]^-{\sigma\times\sigma^{-1}} && \Q_G(j)\times \A^j \ar[dl]^-{\theta_j}\\
-                & \A
+                \Q_G(j)\times \A^j \ar[d]_-{\theta_j}  \ar[rr]^-{(g,\sigma)\times(g,\sigma)^{-1}} && \Q_G(j)\times \A^j \ar[d]^-{\theta_j}\\
+                \A \ar[rr]_-{g^{-1}} && \A
             }
         \end{align}
         \textbf{I think if assuming the commutation for $G$ also, the case $j=1$ implies $\theta_j$ collapses all $G$-action on $\A$ to be trivial}
@@ -255,7 +244,7 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
             \phi(k;j_1,...,j_k) = \phi(k;j_{\sigma(1)},...,j_{\sigma_k}) \circ ((g,\sigma)\times (g,\sigma)^{-1})
         \end{align*}
         \begin{align*}
-            \phi(k;j_1,...,j_k)=\phi(k;j_1,...,j_k)\circ (\id\times \prod_r(\tau_r\times \tau_r^{-1}))
+            \phi(k;j_1,...,j_k)=\phi(k;j_1,...,j_k)\circ (\id\times \prod_r((g,\tau_r)\times (g,\tau_r)^{-1}))
         \end{align*}
     \end{itemize}
     They also need to satisfy the following coherence properties:
@@ -326,6 +315,8 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
             \A \ar[r]_-{\FF} & \B
         }
     \end{align*}
+    \textbf{(Guess: Want to not restrict ourselves to only equivariant 1-cells, if want so restrict to ones commuting with $G$-action)}
+    
     Moreover, they satisfy the following properties:
     \begin{itemize}
         \item[(i)]\textbf{(Equivariance of $\zeta$)} For each $j$,$\zeta_j=\zeta_j\circ ((g,\sigma)\times (g,\sigma)^{-1})$ for all $(g,\sigma)\in G\times\Sigma_j$.
