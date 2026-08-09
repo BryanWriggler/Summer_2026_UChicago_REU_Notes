@@ -5,7 +5,7 @@
 
 \usepackage[normalem]{ulem} %for strike through
 
-\title{Construction of Equivalence}
+\title{(Paper Rough Draft) Tutorial: Comparing Permutativity $G$-Pseudoalgebra and $\mathscr{F}_G$-Spaces}
 \author{Zih-Yu Hsieh}
 \date{\today}
 
@@ -13,11 +13,15 @@
 \maketitle
 \tableofcontents
 
+Here I tried to contain all possible details / definitions. I'll see which ones are supposed to be cut eventually. For some of the stuffs that can be omitted, check the SymMonCat paper for reference.
+
 \newpage
+
+\section{Abstract (ND)}
 
 \section{Introduction (ND)}
 
-Fix $G$ as a finite group. Let $P_G$ be the \emph{associativity $G$-operad} in $\Sets_G$, defined by $P_G(n):= \Sets(G,\Sigma_n)$, with structure maps defined by post composition
+\textbf{Fix $G$ as a finite group.} Let $P_G$ be the \emph{associativity $G$-operad} in $\Sets_G$, defined by $P_G(n):= \Sets(G,\Sigma_n)$, with structure maps defined by post composition
 \begin{align*}
     \gamma:\Sets(G,\Sigma_k)\times \prod_{r=1}^k\Sets(G,\Sigma_{j_r})\cong \Sets\left(G,\Sigma_k\times \prod_{r=1}^k \Sigma_{j_r}\right)\xrightarrow{\ \gamma\circ\_\ }\Sets(G,\Sigma_j),
 \end{align*},
@@ -41,9 +45,235 @@ We'll mimic the statement, define an intermediate operad $Q_{G,\mathfrak{D}}\hoo
 \end{align*}
 inducing an isomorphism of (strict) 2-categories. Here, $\_$ is some (yet to be determined) axiom.
 
+\hfil
+
 \newpage
 
-\section{Preliminaries (ND)}
+\section{Categorical Preliminaries: Category of Small Categories (ND)}
+\subsection{2-Categories (ND)}
+
+\begin{defn}
+    A category $\C$ is a \emph{2-category}, if for each object $X,Y\in\C$ (called \emph{0-cells}), the homset $\C(X,Y)$ is itself a category (called the \emph{hom-category}). Also, for every 0-cells $X,Y,Z\in\C$, the \emph{composition} $\circ:\C(Y,Z)\times\C(X,Y)\rightarrow\C(X,Z)$ is a functor.
+
+    Every morphism $f\in \C(X,Y)$ is called a \emph{1-cell}, while given any 1-cells $f,g\in\C(X,Y)$, a morphism $\alpha:f\Rightarrow g$ in the hom-category $\C(X,Y)$ is called a \emph{2-cell}.
+\end{defn}
+
+Here, using the unitality and associativity of composition in a category, $\circ$ must be strictly unital and associative.
+
+\begin{rem}
+    There is a more general notion of a \emph{bicategory}, which relaxes the composition functors to be associative and unital up to coherent natural isomorphisms, and in some literature this is called 2-categories. Here we'll take the strict associativity and unitality as axioms for 2-categories.
+\end{rem}
+
+\hfil
+
+An important notion is the compositions allowed for the 2-cells. Composition of 2-cells within the same hom-category $\C(X,Y)$ makes sense, as it's a defining feature of a category; on the other hand, since composition $\circ:\C(Y,Z)\times\C(X,Y)\rightarrow\C(X,Z)$ is a functor, any 2-cells $H:f_1\Rightarrow f_2$ in $\C(X,Y)$ and $H':g_1\Rightarrow g_2$ in $\C(Y,Z)$ induces a 2-cell $\circ(H',H):(g_1\circ f_1)\Rightarrow (g_2\circ f_2)$ by inspecting the definition of functors from product category.
+
+\begin{defn}
+    Given $\mathcal{C}$ a 2-category, the \emph{vertical composition} of 2-cells is the composition within each hom-category $\mathcal{C}(X,Y)$: Given 2-cells $H_1:f\Rightarrow g$ and $H_2:g\Rightarrow h$ in the hom-category $\C(X,Y)$, the vertical composition is $H_2H_1:f\Rightarrow h$:
+    \begin{align*}
+        \xymatrix@C=2pc{
+        X \ar@/^3pc/[rr]^{f}="1"
+            \ar[rr]^-{g}="2" 
+            \ar@/_3pc/[rr]_-{h}="3" 
+        && Y 
+        \ar@{=>} "1";"2"^{H_1} \ar@{=>}"2";"3"^{H_2}
+        }
+    \end{align*}
+    
+    The \emph{horizontal composition} of 2-cells is the one induced by the composition functor $\circ:\mathcal{C}(Y,Z)\times \mathcal{C}(X,Y)\rightarrow \mathcal{C}(X,Z)$: Given 2-cells $H:f_1\Rightarrow f_2$ in $\mathcal{C}(X,Y)$ and $H':g_1\Rightarrow g_2$ in $\mathcal{C}(Y,Z)$, define their horizontal composition as $H'*H:= \circ(H',H):(g_1\circ f_1)\Rightarrow (g_2\circ f_2)$:
+    \begin{align*}
+        \xymatrix@C=2pc{
+        X \ar@/^1.5pc/[rr]^{f_1}="1" \ar@/_1.5pc/[rr]_{f_2}="2"
+        \ar@{=>} "1";"2"^{H}
+        && Y \ar@/^1.5pc/[rr]^{g_1}="3" \ar@/_1.5pc/[rr]_{g_2}="4"
+        \ar@{=>} "3";"4"^{H'}
+        && Z
+    }
+    \end{align*}
+\end{defn}
+
+\hfil
+
+By inspecting the properties of composition functor, one realizes that vertical and horizontal composition commutes: Suppose $H_1:f\Rightarrow g$, $H_2:g\Rightarrow h$ are 2-cells in $\C(X,Y)$, while $H'_1:f'\Rightarrow g'$, $H'_2:g'\Rightarrow h'$ are 2-cells in $\C(Y,Z)$, then
+\begin{align}
+    (H'_2H'_1)*(H_2H_1) = (H'_2*H_2)(H'_1*H_1):(f'\circ f)\Rightarrow (h'\circ h)
+\end{align}
+as 2-cells.
+
+\hfil
+
+\begin{exmp}
+    Let $\Cat$ denote the \emph{category of small categories}, where the objects are small categories, the homsets $\Cat(\A,\B)$ are functors between small categories $\A$ and $\B$. Notice the homset also equips with a category structure, by specifying the morphisms in $\Cat(\A,\B)$ to be natural transformations between functors.
+
+    This specifies $\Cat$ to be a 2-category. Also, a precise description of the horizontal composition of 2-cells is as follow: Given functors $F_1,F_2\in\Cat(\A,\B)$ and $G_1,G_2\in\Cat(\B,\C)$, natural transformations $\mu:F_1\Rightarrow F_2$ in $\Cat(\A,\B)$ and $\nu:G_1\Rightarrow G_2$ in $\Cat(\B,\C)$, then $\nu*\mu := \nu \circ F\mu$ defines a horizontal composition.
+\end{exmp}
+
+\textbf{Check the formula by hand!}
+
+\hfil
+
+\subsection{Chaotic-Forgetful Adjunction (ND)}
+
+Given any small category $\A\in\Cat$, its object $\Ob(\A)$ forms a set; moreover, any functor $F:\A\rightarrow\B$ also has an underlying map of objects $F:\Ob(\A)\rightarrow\Ob(\B)$. Conversely, given a set, it has certain category structure:
+
+\begin{defn}
+    Given a set $X$, define $\mathscr{E}X$ to be the \emph{chaotic category} with underlying object set $\Ob(\mathscr{E}X):=X$, by encoding a unique isomorphism $x\xrightarrow{\sim} y$ between any element $x,y\in X$. The composition 
+    \begin{align}
+        (x\xrightarrow{\sim}y \xrightarrow{\sim}z) = (x\xrightarrow{\sim}z)
+    \end{align}
+    using the uniqueness.
+
+    \hfil
+
+    Given a set map $f:X\rightarrow Y$, define the functor $\mathscr{E}f:\mathscr{E}X\rightarrow\mathscr{E}Y$ so that the underlying object map is $f$, and for each morphism $x\xrightarrow{\sim}y$ in $\mathscr{E}X$, $\mathscr{E}f(x\rightarrow y):= f(x)\rightarrow f(y)$ in $\mathscr{E}Y$.
+\end{defn}
+
+Inspecting the definition, we see $\mathscr{E}:\Sets\rightarrow\Cat$ is a well-defined functor, called the \emph{chaotic functor}.
+
+\hfil
+
+These two functors satisfy the folowing nice properties:
+\begin{prop}
+    $(\Ob\dashv \mathscr{E})$ is an adjoint pair.
+\end{prop}
+\begin{proof}
+    Let $\A$ be a small category (and let $A:=\Ob(\A)$ be the underlying set), and $X$ be a set. We ought to show the existence of an isomorphism
+    \begin{align}
+        \Sets(A,X) \cong \Cat(\A,\mathscr{E}X)
+    \end{align}
+\end{proof}
+
+\hfil
+
+\subsection{Pseudofunctor, Pseudotransform, and Modification (ND)}
+
+In some cases, the notion of functor is too restrictive: strictly preserving f
+
+\begin{defn}[Pseudofunctor]
+    Given two 2-categories $\A,\B$, a \emph{pseudofunctor} $F:\A\rightarrow \B$ equips with an 0-cell map, functors between hom-categories $F_{X,Y}:\A(X,Y)\rightarrow \B(F(X),F(Y))$, an invertible 2-cell $\phi_{X,Y,Z}$ between compositions
+    \begin{align*}
+        \xymatrix{
+            \A(Y,Z)\times \A(X,Y) \ar[d]_-{\circ} \ar[rr]^-{F_{Y,Z}\times F_{X,Y}} && \B(F(Y),F(Z))\times\B(F(X),F(Y)) \ar[d]^-{\circ} \ar@{=>}[dll]_-{\phi_{X,Y,Z}}\\
+            \A(X,Z) \ar[rr]_-{F_{X,Z}} && \B(F(X),F(Z))
+        }
+    \end{align*}
+    and another invertible 2-cell $\psi_X$ between identities
+    \begin{align*}
+        \xymatrix{
+            F(X) \ar@/^1.5pc/[rr]^{\id_{F(X)}}="1" \ar@/_1.5pc/[rr]_{F_{X,X}(\id_X)}="2"
+            \ar@{=>} "1";"2"^{\psi_X}
+            && F(X)
+        }
+    \end{align*}
+    such that the following axioms hold:
+    \begin{itemize}
+        \item[(i)] \textbf{(Associativity)} The following two pasting diagrams are equal:
+        \begin{align*}
+            \xymatrix{
+                \A(Z,W)\times\A(Y,Z)\times\A(X,Y) \ar[d]_-{\circ\times\id} \ar[rr]^-{\prod F_{\_,\_}} && \B(F(Z),F(W))\times \B(F(Y),F(Z)) \times \B(F(X),F(Y)) \ar[d]^-{\circ\times \id} \ar@{=>}[dll]_-{\phi_{Y,Z,W}\times\id}\\
+                \A(Y,W)\times\A(X,Y) \ar[d]_-{\circ} \ar[rr]^-{F_{Y,W}\times F_{X,Y}} && \B(F(Y),F(W))\times \B(F(X),F(Y)) \ar[d]^-{\circ} \ar@{=>}[dll]_-{\phi_{X,Y,W}}\\
+                \A(X,W)\ar[rr]_-{F_{X,W}} && \B(F(X),F(W))
+            }
+        \end{align*}
+        equals
+        \begin{align*}
+            \xymatrix{
+                \A(Z,W)\times\A(Y,Z)\times\A(X,Y) \ar[d]_-{\id\times\circ} \ar[rr]^-{\prod F_{\_,\_}} && \B(F(Z),F(W))\times \B(F(Y),F(Z)) \times \B(F(X),F(Y)) \ar[d]^-{\id\times\circ} \ar@{=>}[dll]_-{\id\times\phi_{X,Y,Z}}\\
+                \A(Z,W)\times\A(X,Z) \ar[d]_-{\circ} \ar[rr]^-{F_{Z,W}\times F_{X,Z}} && \B(F(Z),F(W))\times \B(F(X),F(Z)) \ar[d]^-{\circ} \ar@{=>}[dll]_-{\phi_{X,Z,W}}\\
+                \A(X,W)\ar[rr]_-{F_{X,W}} && \B(F(X),F(W))
+            }
+        \end{align*}
+        \item[(ii)] \textbf{(Unitality)} The following two unit diagrams commute:
+        \begin{align*}
+            \xymatrix{
+                \A(X,Y)\times\A(X,X)\ar[rr]^-{F_{X,Y}\times F_{X,X}} && \B(F(X),F(Y))\times \B(F(X),F(X)) \ar[dd]^-{\circ} \ar@{=>}[ddll]_-{\id \mathrm{*}\psi_X}\\
+                \A(X,Y)\times \mathrm{*} \ar[u]^-{\id\times \id_X} \ar[d]_-{F_{X,Y}\times \id_{F(X)}}\\
+                \B(F(X),F(Y))\times \B(F(X),F(X)) \ar[rr]_-{\circ} && \B(F(X),F(Y))
+            }
+        \end{align*}
+        \begin{align*}
+            \xymatrix{
+                \A(Y,Y)\times\A(X,Y)\ar[rr]^-{F_{Y,Y}\times F_{X,Y}} && \B(F(Y),F(Y))\times \B(F(X),F(Y)) \ar[dd]^-{\circ} \ar@{=>}[ddll]_-{\psi_Y\mathrm{*}\id}\\
+                \mathrm{*}\times\A(X,Y) \ar[u]^-{\id_Y\times \id} \ar[d]_-{\id_{F(Y)}\times F_{X,Y}}\\
+                \B(F(Y),F(Y))\times \B(F(X),F(Y)) \ar[rr]_-{\circ} && \B(F(X),F(Y))
+            }
+        \end{align*}
+        where $\id_X:*\rightarrow\A(X,X)$ is the functor indicating identity of $X$.
+    \end{itemize}
+
+    If $\psi_X$ is identity 2-cell for all 0-cell $X$, then the pseudofunctor $F$ is called \emph{normal}.
+\end{defn}
+
+\hfil
+
+\begin{defn}[Pseudotransform]
+    Fix 2-categories $\A,\B$, let $(F,\phi,\psi), (G,\varphi,\vartheta):\A\rightarrow\B$ be two pseudofunctors. A \emph{pseudotransform} $\mu:(F,\phi,\psi)\rightarrow (G,\varphi,\vartheta)$ collects 1-cells $\mu_X:F(X)\rightarrow G(X)$ for each 0-cell $X\in\A$, and for each 1-cell $f:X\rightarrow Y$ in $\A$, associates a 2-cell $\mu f$ such that 
+    \begin{align*}
+        \xymatrix{
+            F(X) \ar[r]^-{\mu_X} \ar[d]_-{Ff} & G(X) \ar[d]^-{Gf} \ar@{=>}[dl]_-{\mu f}\\
+            F(Y) \ar[r]_-{\mu_Y} & G(Y)
+        }
+    \end{align*}
+    commutes. 
+
+    Furthermore, they satisfy the following axioms:
+    \begin{itemize}
+        \item[(i)] (\textbf{Associativity}) Let $f:X\rightarrow Y$, $g:Y\rightarrow Z$ be 1-cells in $\A$, the following two pasting diagrams are equal:
+        \begin{align*}
+            \xymatrix{
+                F(X) \ar[dd]_-{F(g\circ f)} \ar[dr]^-{Ff} \ar[rr]^-{\mu_X} && G(X) \ar@{=>}[dl]_-{\mu f} \ar[dr]^-{Gf}\\
+                & F(Y) \ar[rr]^-{\mu_Y} \ar@{=>}[l]_-{\phi_{g,f}} \ar[dl]^-{Fg} && G(Y) \ar[dl]^-{Gg} \ar@{=>}[dlll]_-{\mu g}\\
+                F(Z) \ar[rr]_-{\mu_Z} && G(Z)
+            } \quad = \quad \xymatrix{
+                F(X) \ar[dd]_-{F(g\circ f)} \ar[rr]^-{\mu_X} && G(X) \ar[dr]^-{Gf} \ar[dd]_-{G(g\circ f)} \ar@{=>}[ddll]_-{\mu(g\circ f)}\\
+                &&& G(Y) \ar[dl]^-{Gg} \ar@{=>}[l]_-{\varphi_{g,f}}\\
+                F(Z) \ar[rr]_-{\mu_Z} && G(Z)
+            }
+        \end{align*}
+        \item[(ii)] (\textbf{Unitality}) The following pasting diagrams are equal:
+        \begin{align*}
+            \xymatrix{
+                F(X) \ar@(dl,ul)[dd]_-{F(\id_X)} \ar@(dr,ur)[dd]^-{\id_{F(X)}} \ar@{=>}[dd]_-{\psi_X} \ar[rr]^-{\mu_X} && G(X) \ar[dd]^-{\id_{G(X)}}\\
+                \\
+                F(X) \ar[rr]_-{\mu_X} && G(X)
+            }\quad = \quad \xymatrix{
+                F(X) \ar[dd]_-{F(\id_X)} \ar[rr]^-{\mu_X} && G(X) \ar@{=>}[ddll]_-{\mu(\id_X)} \ar@(dl,ul)[dd]_-{G(\id_X)} \ar@(dr,ur)[dd]^-{\id_{G(X)}} \ar@{=>}[dd]^-{\vartheta_X}\\
+                \\
+                F(X) \ar[rr]_-{\mu_X} && G(X)
+            }
+        \end{align*}
+    \end{itemize}
+\end{defn}
+
+\hfil
+
+\begin{defn}[Modification]
+    Continue with the same notation as above. Let $\mu,\nu:(F,\phi,\psi)\rightarrow (G,\varphi,\vartheta)$ be two pseudotransforms, a \emph{modification} $\lambda:\mu\Rightarrow\nu$ is a collection of 2-cells $\lambda_X:\mu_X\Rightarrow\nu_X$ for each 0-cell $X\in\A$, such that the following two pasting diagrams are equal, for each 1-cell $f:X\rightarrow Y$ in $\A$:
+    \begin{align*}
+        \xymatrix{
+            F(X) \ar[dd]_-{Ff} \ar@(ur,ul)[rr]^-{\mu_X} \ar@(dr,dl)[rr]_-{\nu_X} \ar@{=>}[rr]^-{\lambda_X} && G(X) \ar@{=>}[ddll]^-{\nu f} \ar[dd]^-{Gf}\\
+            \\
+            F(Y) \ar[rr]_-{\nu_Y} && G(Y)
+        }\quad = \quad \xymatrix{
+            F(X) \ar[dd]_-{Ff} \ar[rr]^-{\mu_X} && G(X) \ar[dd]^-{Gf} \ar@{=>}[ddll]_-{\mu f}\\
+            \\
+            F(Y) \ar@(ur,ul)[rr]^-{\mu_Y} \ar@{=>}[rr]^-{\lambda_Y} \ar@(dr,dl)[rr]_-{\nu_Y} && G(Y)
+        }
+    \end{align*}
+
+\end{defn}
+
+\hfil
+
+There are obvious composition laws between pseudofunctors, the pseudotransforms, and also the modifications. (\textbf{Depending on situation, fill in details, or delete this line})
+
+%\hfil
+
+%If enlarging the notion of functors and natural transformations to pseudofunctors and pseudotransforms, $\Cat$ will be enlarged into another 2-categories. However, the detail of composition and its unitality/associativity is omitted here for space limit.
+
+\newpage
+
+\section{Categorical Preliminaries: Operads (ND)}
 \subsection{Symmetric Monoidal Categories}
 
 \begin{defn}
@@ -166,7 +396,7 @@ A primary example is the \emph{associativity operad} in $\Sets$ or $\mathscr{U}$
         }\]
         \item \emph{Eauivariance:} Given any permutation $\sigma\in\Sigma_j$, the following diagram commutes:
         \[\xymatrix{
-            C(j)\tensor A^{\tensor j} \ar[dr]_-{\theta} \ar[rr]^-{\sigma\tensor \text{ shuffle}_{\sigma}} && C(j)\tensor A^{\tensor j} \ar[dl]^-{\theta}\\
+            C(j)\tensor A^{\tensor j} \ar[dr]_-{\theta} \ar[rr]^-{\sigma\tensor \sigma^{-1}} && C(j)\tensor A^{\tensor j} \ar[dl]^-{\theta}\\
             & A
         }\]
     \end{itemize}
@@ -177,16 +407,16 @@ A primary example is the \emph{associativity operad} in $\Sets$ or $\mathscr{U}$
 
 As an example, the operads over $\M$ mentioned previously is automatically a monoid (which describes the associativity structure).
 
-\hfil
+\newpage
 
-\subsection{2-Categories (ND)}
-
-\subsection{Equivariance Preliminaries (ND)}
-\subsection{$G$-Categories(ND)}
+\section{Equivariance Preliminaries (ND)}
+\subsection{$G$-Categories (ND)}
 
 \newpage
 
 \section{Essential Categorical Tools (ND)}
+
+\textbf{Define $P_G$, its chaotic categorification first}
 Here we introduce some definitions important to this paper.
 
 \subsection{$G$-Operad $\mathscr{Q}_G$ in $\Cat_G$}
@@ -221,7 +451,7 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
         & C
         }
     \end{align}
-    A natural transformation $\phi=\phi(k;j_1,...,j_k)$ for each diagram 
+    An invertible natural transformation $\phi=\phi(k;j_1,...,j_k)$ for each diagram 
     \begin{align}
         \xymatrix{
             \Q_G(k) \times \left(\prod_{r=1}^k \Q_G(j_r)\times \A^{j_r}\right) \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\id\times\prod_r\theta_{j_r}} && \Q_G(k)\times\A^k \ar[d]^-{\theta_k} \ar@{=>}[ddll]^-{\phi}\\
@@ -372,10 +602,13 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
 \hfil
 
 \subsection{Category $\F_G$ (ND)}
+\begin{defn}
+
+\end{defn}
 
 \hfil
 
-\subsection{2-Category $\F_G$-$\PsAlg$, Version 1}
+\subsection{2-Category $\F_G$-$\PsAlg$}
 
 In the category $\F_G$ (all based finite $G$-sets), the homsets $\F_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)$ can also be viewed as a discrete category. We'll use this identification to define some notions.
 
@@ -391,7 +624,7 @@ In the category $\F_G$ (all based finite $G$-sets), the homsets $\F_G(\mathbf{n}
 
 \hfil
 
-Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (namely $i\mapsto 1$, and any $i\neq j\mapsto 0$), since it belongs to $\Pi_G$, it generates a functor $\tilde{\A}\delta_i:\tilde{\A}(\mathbf{n}^\alpha)\rightarrow \tilde{\A}(\mathbf{1})$. Hence, by universality of product, all $\tilde{\A}\delta_i$ ($1\leq i\leq n$) induces a functor $\delta:\tilde{\AA}(\mathbf{n}^\alpha)\rightarrow \tilde{A}(\mathbf{1})^n$.
+Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (namely $i\mapsto 1$, and any $i\neq j\mapsto 0$), since it belongs to $\Pi_G$, it generates a functor $\tilde{\A}\delta_i:\tilde{\A}(\mathbf{n}^\alpha)\rightarrow \tilde{\A}(\mathbf{1})$. Hence, by universality of product, all $\tilde{\A}\delta_i$ ($1\leq i\leq n$) induces a functor $\delta:\tilde{\A}(\mathbf{n}^\alpha)\rightarrow \tilde{\A}(\mathbf{1})^n$.
 
 \begin{defn}[$\F_{G,\vs}$ and $\F_{G,\RR}$-pseudoalgebra]
     An $\F_G$-pseudoalgebra $\tilde{\A}$ is \emph{very special} (or an $\F_{G,\vs}$-pseudoalgebra), if all $\delta:\tilde{\A}(\mathbf{n}^\alpha)\rightarrow \tilde{\A}(\mathbf{1})^{\mathbf{n}^\alpha}$ is an isomorphism for all $\mathbf{n}^\alpha\in\F_G$, and $\tilde{\A}$ is \emph{strictly special} (or an $\F_{G,\RR}$-pseudoalgebra), if all $\delta$ is in fact identity.
@@ -402,8 +635,6 @@ Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (n
 \begin{defn}[$\F_G$-1-cell]
     Given $\tilde{A},\tilde{B}$ two $\F_G$-pseudoalgebras, a morphism (or $\F_G$-1-cell) between them is a pseudo-transformation $(\FF,\zeta):\tilde{\A}\rightarrow \tilde{\B}$, such that restricting to $\Pi_G$, it becomes an actual natural transformation. 
 \end{defn}
-
-\textbf{Fill in details for the commutativity diagrams}
 
 \hfil
 
@@ -426,6 +657,7 @@ Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (n
 
 \newpage
 
+\begin{comment} REMARK: This section is wrong, because one of the original equivariance axioms destroy all information on $G$-equivariance, shouldn't be used.
 \section{Counterexample: $\F_{G,\RR}$-pseudoalgebra that's not $\Q_G$-pseudoalgebra}
 
 Here we fix the group $G:=\ZZ/2\ZZ$. Which, we have $\Q_G(1)=\cP_G(1) = *$, in particular $G\times \Sigma_1\cong G$ has trivial action on these. This leads to the following properties of $\Q_G$ or $\cP_G$-pseudoalgebra:
@@ -495,14 +727,15 @@ Possible things to assume: the $1$st-space $\A:=\B(\mathbf{1})$ should have a \e
 \textbf{Question:} This is necessary, but is it sufficient?
 
 \newpage
+\end{comment}
 
-\section{Construction of $\QQ_G$ under Extra Axiom (ND)}
+%\section{Construction of $\QQ_G$ under Extra Axiom (ND)}
 
-\newpage
+%\newpage
 
-\section{(If everything works out) $\RR_G$ and $\QQ_G$ are Isomorphisms (ND)}
+%\section{(If everything works out) $\RR_G$ and $\QQ_G$ are Isomorphisms (ND)}
 
-\newpage
+%\newpage
 
 %%references
 
