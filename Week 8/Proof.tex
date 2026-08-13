@@ -49,8 +49,8 @@ inducing an isomorphism of (strict) 2-categories. Here, $\_$ is some (yet to be 
 
 \newpage
 
-\section{Categorical Preliminaries: Category of Small Categories (ND)}
-\subsection{2-Categories (ND)}
+\section{Categorical Preliminaries: Category of Small Categories}
+\subsection{2-Categories}
 
 \begin{defn}
     A category $\C$ is a \emph{2-category}, if for each object $X,Y\in\C$ (called \emph{0-cells}), the homset $\C(X,Y)$ is itself a category (called the \emph{hom-category}). Also, for every 0-cells $X,Y,Z\in\C$, the \emph{composition} $\circ:\C(Y,Z)\times\C(X,Y)\rightarrow\C(X,Z)$ is a functor.
@@ -108,11 +108,9 @@ as 2-cells.
     This specifies $\Cat$ to be a 2-category. Also, a precise description of the horizontal composition of 2-cells is as follow: Given functors $F_1,F_2\in\Cat(\A,\B)$ and $G_1,G_2\in\Cat(\B,\C)$, natural transformations $\mu:F_1\Rightarrow F_2$ in $\Cat(\A,\B)$ and $\nu:G_1\Rightarrow G_2$ in $\Cat(\B,\C)$, then $\nu*\mu := \nu \circ F\mu$ defines a horizontal composition.
 \end{exmp}
 
-\textbf{Check the formula by hand!}
-
 \hfil
 
-\subsection{Chaotic-Forgetful Adjunction (ND)}
+\subsection{Chaotic-Forgetful Adjunction}
 
 Given any small category $\A\in\Cat$, its object $\Ob(\A)$ forms a set; moreover, any functor $F:\A\rightarrow\B$ also has an underlying map of objects $F:\Ob(\A)\rightarrow\Ob(\B)$. Conversely, given a set, it has certain category structure:
 
@@ -125,27 +123,16 @@ Given any small category $\A\in\Cat$, its object $\Ob(\A)$ forms a set; moreover
 
     \hfil
 
-    Given a set map $f:X\rightarrow Y$, define the functor $\mathscr{E}f:\mathscr{E}X\rightarrow\mathscr{E}Y$ so that the underlying object map is $f$, and for each morphism $x\xrightarrow{\sim}y$ in $\mathscr{E}X$, $\mathscr{E}f(x\rightarrow y):= f(x)\rightarrow f(y)$ in $\mathscr{E}Y$.
+    Given a set map $f:X\rightarrow Y$, define the functor $\mathscr{E}f:\mathscr{E}X\rightarrow\mathscr{E}Y$ so that the underlying object map is $f$, and for each morphism $x\xrightarrow{\sim}y$ in $\mathscr{E}X$, $\mathscr{E}f(x\rightarrow y):= f(x)\rightarrow f(y)$, the unique morphism between $f(x),f(y)$ in $\mathscr{E}Y$.
 \end{defn}
 
 Inspecting the definition, we see $\mathscr{E}:\Sets\rightarrow\Cat$ is a well-defined functor, called the \emph{chaotic functor}.
 
-\hfil
-
-These two functors satisfy the folowing nice properties:
-\begin{prop}
-    $(\Ob\dashv \mathscr{E})$ is an adjoint pair.
-\end{prop}
-\begin{proof}
-    Let $\A$ be a small category (and let $A:=\Ob(\A)$ be the underlying set), and $X$ be a set. We ought to show the existence of an isomorphism
-    \begin{align}
-        \Sets(A,X) \cong \Cat(\A,\mathscr{E}X)
-    \end{align}
-\end{proof}
+There is a well-known adjunction $(\Ob\dashv \mathscr{E})$, due to the fact that after fixing the objects, the morphisms can only be mapped to the unique morphisms between any two objects when the codomain is a choatic category.
 
 \hfil
 
-\subsection{Pseudofunctor, Pseudotransform, and Modification (ND)}
+\subsection{Pseudofunctor, Pseudotransform, and Modification}
 
 In some cases, the notion of functor is too restrictive: strictly preserving f
 
@@ -263,9 +250,9 @@ In some cases, the notion of functor is too restrictive: strictly preserving f
 
 \end{defn}
 
-\hfil
+%\hfil
 
-There are obvious composition laws between pseudofunctors, the pseudotransforms, and also the modifications. (\textbf{Depending on situation, fill in details, or delete this line})
+%There are obvious composition laws between pseudofunctors, the pseudotransforms, and also the modifications. (\textbf{Depending on situation, fill in details, or delete this line})
 
 %\hfil
 
@@ -273,18 +260,18 @@ There are obvious composition laws between pseudofunctors, the pseudotransforms,
 
 \newpage
 
-\section{Categorical Preliminaries: Operads (ND)}
+\section{Categorical Preliminaries: Operads}
 \subsection{Symmetric Monoidal Categories}
 
 \begin{defn}
     A category $\mathcal{V}$ is a \emph{monoidal category}, if there is a bifunctor $\tensor:\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ (called \emph{monoidal product}), and an object $\kappa\in\mathcal{V}$ (called \emph{unit/monoidal unit}), together with the following natural isomorphisms:
     \begin{itemize}
-        \item The \emph{associator} $a:(\_\tensor \_)\tensor \_ \xrightarrow{\sim} \_\tensor(\_\tensor \_)$ of functors $\mathcal{V}\times\mathcal{V}\times\mathcal{V}\xrightarrow{\sim}\mathcal{V}$. (So, $(X\tensor Y)\tensor Z\cong X\tensor(Y\tensor Z)$ in a canoncial way).
-        \item The \emph{left unit} $\lambda:\kappa\tensor\_\xrightarrow{\sim} \Id_{\mathcal{V}}$ ($\kappa\tensor X\cong X$ in a canonical way).
-        \item The \emph{right unit} $\rho:\_\tensor \kappa\xrightarrow{\sim}\Id_\mathcal{V}$ ($X\tensor \kappa\cong X$ in a canonical way).
+        \item The \emph{associator} $a:(\_\tensor \_)\tensor \_ \xrightarrow{\sim} \_\tensor(\_\tensor \_)$ of functors $\mathcal{V}^3\xrightarrow{\sim}\mathcal{V}$.
+        \item The \emph{left unit} $\lambda:\kappa\tensor\_\xrightarrow{\sim} \Id_{\mathcal{V}}$ and the \emph{right unit} $\rho:\_\tensor \kappa\xrightarrow{\sim}\Id_\mathcal{V}$ of functors $\V\rightarrow\V$.
+        \item The \emph{Symmetric Braiding} $B:\_ _1\tensor\_ _2\xrightarrow{\sim}\_ _2\tensor\_ _1$, with extra property $B_{Y,X}:Y\tensor X\rightarrow X\tensor Y$ equals to $B_{X,Y}^{-1}:X\tensor Y\rightarrow Y\tensor X$.
     \end{itemize} 
 
-    They also satisfy two extra axioms:
+    They also satisfy the following axioms:
     \begin{itemize}
         \item \emph{Triangle Axiom:}
         \[\xymatrix{
@@ -297,25 +284,18 @@ There are obvious composition laws between pseudofunctors, the pseudotransforms,
             (X\tensor (Y\tensor Z))\tensor W \ar[dr]_-{a_{X,Y\tensor Z,W}} && X\tensor (Y\tensor (Z\tensor W)) \\
             & X\tensor ((Y\tensor Z)\tensor W) \ar[ur]_-{\id_X\tensor a_{Y,Z,W}}
         }\]
+        \item \emph{Hexagon Axiom:}
+        \[\xymatrix{
+            (X\tensor Y)\tensor Z \ar[r]^-{a_{X,Y,Z}} \ar[d]_-{B_{X,Y}\tensor \Id_Z} & X\tensor (Y\tensor Z)\ar[r]^-{B_{X,Y\tensor Z}} & (Y\tensor Z)\tensor X \ar[d]^-{a_{Y,Z,X}}\\
+            (Y\tensor X)\tensor Z \ar[r]_-{a_{Y,X,Z}} & Y\tensor (X\tensor Z) \ar[r]_-{\id_Y\tensor B_{X,Z}} & Y\tensor (Z\tensor X)
+        }\]
+        \[\xymatrix{
+            X\tensor (Y\tensor Z) \ar[d]_-{\id_X\tensor B_{Y,Z}} & (X\tensor Y)\tensor Z \ar[l]_-{a_{X,Y,Z}} \ar[r]^-{B_{X\tensor Y,Z}} & Z\tensor (X\tensor Y)\\
+            X\tensor (Z\tensor Y) & (X\tensor Z)\tensor Y \ar[l]^-{a_{X,Z,Y}} \ar[r]_-{B_{X,Z}\tensor \id_Y} & (Z\tensor X)\tensor Y \ar[u]_-{a_{Z,X,Y}}
+        }\]
     \end{itemize}
 \end{defn}
 Based on \emph{Maclane's Coherence Theorem}, the above two axioms guarantees all finite sequences of $a,\lambda,\rho$ and their inverses agree, namely there is a unique isomorphism $P_1\rightarrow P_2$, where $P_i$ are (possibly) different orders of performing product on $X_1,...,X_n\in\mathcal{V}$. For reference, cf. \emph{Category Theory for Working Mathematicians}.
-
-This guarantees all monoidal category to be equivalent to a \emph{strict monoidal category},namely all $a,\lambda,\rho$ above are ``identity transformations'', or $1\tensor X=X,X\tensor 1=X$, and $(X\tensor Y)\tensor Z=X\tensor (Y\tensor Z)$, so WLOG one can assume the product $\tensor$ is associative.
-
-\begin{defn}
-    A monoidal category $\mathcal{V}$ is \emph{braided}, if there is a natural isomorphism $B:\__{1} \tensor \__{2}\xrightarrow{\sim} \__{2}\tensor \__{1}$ (so $B_{X,Y}:X\tensor Y\xrightarrow{\sim}Y\tensor X$ is an isomorphism), together with the \emph{Hexagon axioms} satisfied:
-    \[\xymatrix{
-        (X\tensor Y)\tensor Z \ar[r]^-{a_{X,Y,Z}} \ar[d]_-{B_{X,Y}\tensor \Id_Z} & X\tensor (Y\tensor Z)\ar[r]^-{B_{X,Y\tensor Z}} & (Y\tensor Z)\tensor X \ar[d]^-{a_{Y,Z,X}}\\
-        (Y\tensor X)\tensor Z \ar[r]_-{a_{Y,X,Z}} & Y\tensor (X\tensor Z) \ar[r]_-{\id_Y\tensor B_{X,Z}} & Y\tensor (Z\tensor X)
-    }\]
-    \[\xymatrix{
-        X\tensor (Y\tensor Z) \ar[d]_-{\id_X\tensor B_{Y,Z}} & (X\tensor Y)\tensor Z \ar[l]_-{a_{X,Y,Z}} \ar[r]^-{B_{X\tensor Y,Z}} & Z\tensor (X\tensor Y)\\
-        X\tensor (Z\tensor Y) & (X\tensor Z)\tensor Y \ar[l]^-{a_{X,Z,Y}} \ar[r]_-{B_{X,Z}\tensor \id_Y} & (Z\tensor X)\tensor Y \ar[u]_-{a_{Z,X,Y}}
-    }\]
-    $\mathcal{V}$ is a \emph{symmetric monoidal category}, if $B_{Y,X}=B_{X,Y}^{-1}$ for all $X,Y\in\mathcal{V}$.
-\end{defn}
-The two hexagons are uniqueness of 3-cycle permutations on three consecutive objects in a product, hence together with $B$ serving as transpositions, it guarantees unique isomorphism between all permutations of finite products, i.e., it imposes that there is a single way of doing such permutation (so there's no ``nontrivial braiding'', when $B_{Y,X}\circ B_{X,Y}:X\tensor Y\rightarrow Y\tensor X\rightarrow X\tensor Y$ is not identity). From my naive understanding of coherence theorem, WLOG we can again treat $X\tensor Y=Y\tensor X$.
 
 \hfil
 
@@ -372,13 +352,6 @@ If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ 
 
 \hfil
 
-A primary example is the \emph{associativity operad} in $\Sets$ or $\mathscr{U}$ (the category of spaces):
-\begin{exmp}
-    \textbf{Fill in Details}
-\end{exmp}
-
-\hfil
-
 \begin{defn}
     Given an operad $\mathcal{C}$ over a symmetric monoidal category $\mathcal{V}$, a \emph{$\mathcal{C}$-algebra} is an object $A\in\mathcal{V}$, with collections of morphisms $\theta:\mathcal{C}(j)\tensor A^j\rightarrow A$, that satisfies the following axioms:
     \begin{itemize}
@@ -403,14 +376,40 @@ A primary example is the \emph{associativity operad} in $\Sets$ or $\mathscr{U}$
 \end{defn}
 
 
-\hfil
-
-As an example, the operads over $\M$ mentioned previously is automatically a monoid (which describes the associativity structure).
-
 \newpage
 
-\section{Equivariance Preliminaries (ND)}
-\subsection{$G$-Categories (ND)}
+\section{Equivariance Preliminaries}
+\subsection{$G$-Categories}
+
+\begin{defn}
+    A small category $\A$ is a \emph{$G$-category}, if the object and morphism sets $\Ob(\A), \Mor(\A)$ are both (left) $G$-sets, such that the following four structure maps $(S,T,I,C)$ (stands for \emph{source, target, identity, and composition}) are all $G$-equivariant:
+    \begin{itemize}
+        \item $S,T:\Mor(\A)\rightarrow\Ob(\A)$ by $S(X\xrightarrow{f}Y):= X$, and $T(X\xrightarrow{f}Y):= Y$.
+        \item $I:\Ob(\A)\rightarrow\Mor(\A)$ by $I(X):= \id_X$.
+        \item $C:\Mor(\A)\times_{S,T}\Mor(\A)\rightarrow\Mor(\A)$ by $C(g,f):= g\circ f$.
+    \end{itemize}
+    Here, $\Mor(\A)\times_{S,T}\Mor(\A):= \{(g,f)\in \Mor(\A)^2\ |\ S(g)=T(f)\}$, precisely the pair of morphisms that're composable, and it endows $G$-set structure via restricting the diagonal $G$-action on $\Mor(\A)^2$. This is well-defined due to the assumption $S,T$ are $G$-maps.
+\end{defn}
+
+Another equivalent characterization can be viewed as a group homomorphism $G\rightarrow\Aut_{\Cat}(\A)$, which assigns each $g\in G$ an automorphism functor on $\A$ that respects $G$'s multiplication structure, and identity gets sent to the identity functor. So, from now on we view each element $g\in G$ as a functor, whenever a category is specified as a $G$-category.
+
+\hfil
+
+\begin{defn}
+Let $\Cat_G$ denotes the 2-category of small $G$-categories, with (nonequivariant) functors as $1$-cells, natural transformations as $2$-cells.  Which, the $G$-fixed subcategory of the hom-category $[\Cat_G(\A,\B)]^G$ precisely describes all $G$-functor, or the functors $F:\A\rightarrow\B$ such that $g\circ F=F\circ g$ for all $g\in G$.
+\end{defn}
+
+\hfil
+
+Another important notion is the twisted $G$-action on products when given a group homomorphism $\alpha:G\rightarrow\Sigma_n$. Given a category $\A$, the $n$-fold product $\A^\mathbf{n}$ has a natural left $\Sigma_n$-action via permuting the coordinates; if $\A$ is a $G$-category, $\A^\mathbf{n}$ also endows a natural diagonal $G$-action. The two coordinates to give a natural left $(G\times \Sigma_n)$-action on $\A^\mathbf{n}$.
+
+\begin{defn}
+    Let $\A^{\mathbf{n}^\alpha}$ be a $G$-category with the underlying category being $\A^\mathbf{n}$, with the $G$-action defined as follow:
+    \begin{align*}
+        g\cdot_\alpha (X_1,...,X_n):= (g\cdot X_{\alpha(g)^{-1}(1)},...,g\cdot X_{\alpha(g)^{-1}(n)})
+    \end{align*}
+\end{defn}
+Another characterization can be understood as follow: Given the graph subgroup $\Gamma_\alpha:= \{(g,\alpha(g))\in G\times\Sigma_n\}_{g\in G}$, the projection $\pi_G:G\times\Sigma_n\twoheadrightarrow G$ restricts to an isomorphism $\Gamma_\alpha\xrightarrow{\sim}G$. The $\alpha$-twisted action is induced by the pullback along this isomorphism.
 
 \newpage
 
@@ -602,18 +601,28 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
 \hfil
 
 \subsection{Category $\F_G$ (ND)}
-\begin{defn}
 
+\begin{defn}
+    $\F_G$ denotes the \emph{category of based finite sets}, where the objects are $\mathbf{n}^\alpha$, set wise being the finite set $\{0,1,...,n\}$ with $0$ fixed as the basepoint, and $\alpha:G\rightarrow\Sigma_n$ is a based $G$-action on the set.
+
+    The homset $\F_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)$ consists of all the based set map, which the homset also endows with a $G$-action via conjugation. From now on, we'll view $\F_G$ as a 2-category, where each hom-category $\F_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)$ is discrete with only identity 2-cells.
+
+    \hfil
+
+    Furthermore, we define the following:
+    \begin{itemize}
+        \item $\Pi_G\subset \F_G$ denotes the subcategory where each morphism $\phi:\mathbf{n}^\alpha\rightarrow\mathbf{m}^\beta$ satisfies $|\phi^{-1}(j)| = 0,1$ for all $j\neq 0$.
+        \item $\Lambda_G,\Lambda_G^\perp,\Sigma_G\subset\Pi_G$ denotes the subcategory where each morphism is injective, surjective, and bijective respectively (in particular, $\Lambda_G\cap \Lambda_G^\perp = \Sigma_G$).
+        \item $\mathscr{E}_G\subset \F_G$ denotes the subcategory where each morphism satisfies $\phi^{-1}(0)=\{0\}$.
+    \end{itemize}
 \end{defn}
 
 \hfil
 
 \subsection{2-Category $\F_G$-$\PsAlg$}
 
-In the category $\F_G$ (all based finite $G$-sets), the homsets $\F_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)$ can also be viewed as a discrete category. We'll use this identification to define some notions.
-
 \begin{defn}[$\F_G$-pseudoalgebra]
-    An $\F_G$-pseudoalgebra, is a pseudofunctor $\tilde{\A}:\F_G\rightarrow \Cat_G$, such that restricting to the full subcategory $\Pi_G\subset\F_G$, $\tilde{\A}$ is a strict functor. Moreover, we require it to be reduced, namely $\tilde{\A}(0)=*$ (the terminal $G$-category), and each hom-functor 
+    An $\F_G$-pseudoalgebra, is a pseudofunctor $\tilde{\A}:\F_G\rightarrow \Cat_G$, such that restricting to the subcategory $\Pi_G\subset\F_G$, $\tilde{\A}$ is a strict functor. Moreover, we require it to be reduced, namely $\tilde{\A}(0)=*$ (the terminal $G$-category), and each hom-functor 
     \begin{align*}
         \tilde{\A}_{\mathbf{n}^\alpha,\mathbf{m}^\beta}:\F_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)\rightarrow \Cat_G(\tilde{\A}(\mathbf{n}^\alpha),\tilde{\A}(\mathbf{m}^\beta))
     \end{align*}
@@ -654,6 +663,9 @@ Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (n
 \newpage
 
 \section{Construction of $\RR_G$ (ND)}
+\subsection{Construction of Objects}
+
+\subsection{Extension to 2-functor}
 
 \newpage
 
@@ -739,20 +751,73 @@ Possible things to assume: the $1$st-space $\A:=\B(\mathbf{1})$ should have a \e
 
 %%references
 
+\textbf{Reference Not Done (find their corresponding journal, if not the arxiv)}
 \begin{thebibliography}{9}
 
 \bibitem{BBKO21}
-Kayleigh Bangs, Skye Binegar, Young Kim, Kyle Ormsby, Ang\'elica M. Osorno, David Tamas-Parris and Livia Xu.
+K. Bangs, S. Binegar, Y. Kim, K. Ormsby, A. M. Osorno, D. Tamas-Parris and L. Xu.
 Biased Permutative Equivariant Categories.
 Homology, Homotopy and Applications, vol. 23.
 2021.
 https://arxiv.org/abs/1907.00933
 
+\bibitem{BP20}
+P. Bonventre, L. A. Pereira.
+Genuine Equivariant Operads.
+Available as ArXiv:0717.02226, 2020.
+
+\bibitem{GM17}
+B. J. Guillou and J. P. May.
+Equivariant Iterated Loop Space Theory and Permutative $G$-Categories.
+Avilable as ArXiv:1207.3459, 2017.
+
+\bibitem{GMMO18}
+B. J. Guillou, J. P. May, M. Merling, A. M. Osorno.
+A Symmetric Monoidal and Equivariant Segal Infinite Loop Space Machine.
+Available as AXiv:1711.09183, 2018.
+
+\bibitem{GMMO19}
+B. J. Guillou, J. P. May, M. Merling, A. M. Osorno.
+Symmetric Monoidal $G$-Categories and their Strictification.
+Available as ArXiv:1809.03017, 2019.
+
+\bibitem{GMMO21}
+B. J. Guillou, J. P. May, M. Merling, A. M. Osorno.
+Multiplicative Equivariant $K$-Theory and the Barratt-Priddy-Quillen Theorem.
+Available as ArXiv:2102.13246, 2021.
+
+\bibitem{JY20}
+N. Johnson, D. Yau.
+2-Dimensional Categories.
+Available as ArXiv:2002.06055, 2020.
+
+\bibitem{KMZ26}
+H. J. Kong, J. P. May, F. Zou.
+Orbital Presheaves in Equivariant Infinite Loop Space Theory.
+Available as ArXiv:2607.12141, 2026.
+
 \bibitem{LMRZ26}
 Jiasen Liu, J. P. May, Kyle I. Roke, Hongyi Zhang and Keming Zhou.
 What are Symmetric Monoidal Categories?
 Available as ArXiv:2607.13912, 2026.
+
+\bibitem{M97}
+J. P. May. Operads, Algebras and Modules. In \emph{Operads: Proceedings of Renaissance Conferences (Hartford, CT/Luminy, 1995)}, volume 202 of \emph{Contemp. Math.}, pages 15-31. Amer. Math. Soc., Providence, RI, 1997. 
+
+\bibitem{M98}
+S. Mac Lane.
+Categories for the Working Mathematician. 2nd ed. 
+Graduate Texts in Mathematics 5. New York, NY: Springer, 1998.
+
+\bibitem{MMO25}
+J. P. May, M. Merling, and A. M. Osorno.
+Equivariant Infinite Loop Space Theory, the Space Level Theory.
+Available as ArXiv:1704.03413, 2025.
+
+\bibitem{R17}
+E. Riehl.
+Category Theory in Context.
+Aurora: Modern Math Originals, Dover Publications, 2017.
+
 \end{thebibliography}
-
-
 \end{document}
