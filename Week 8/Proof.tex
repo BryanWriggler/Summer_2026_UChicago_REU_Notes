@@ -33,7 +33,7 @@ However, it is mentioned in \cite{BBKO21} that such $G$-operad is not finitely g
 
 As a substitution, \cite{BBKO21} defines a finitely-generated suboperad $Q_{G,\mathfrak{D}}\hookrightarrow P_G$ (for some parameter $\mathfrak{D}$ that's associated with choice of transitive $G$-sets), such that after chaotic generalization the two are equivalent in $\Cat_G$, and having equivalent categories of operadic algebras.
 
-We'll mimic the statement, define an intermediate operad $Q_{G,\mathfrak{D}}\hookrightarrow Q_G\hookrightarrow P_G$, promote it to $\Q_G$ in $\Cat_G$, and \emph{attempt to} modify the proof in \cite{LMRZ26} to show the equivalence of 2-categories between $\Q_G$-$\PsAlg$ and $\F_{G,\RR}$-$\PsAlg$. 
+We'll mimic the statement, define an intermediate operad $Q_{G,\mathfrak{D}}\hookrightarrow Q_G\hookrightarrow P_G$, promote it to $\cP_G$ in $\Cat_G$, and \emph{attempt to} modify the proof in \cite{LMRZ26} to show the equivalence of 2-categories between $\cP_G$-$\PsAlg$ and $\F_{G,\RR}$-$\PsAlg$. 
 
 \textbf{Future task (assume this works):} Prove the equivalence of operads/algebras/pseudoalgebras with the original permuativity $G$-operad.
 
@@ -41,7 +41,7 @@ We'll mimic the statement, define an intermediate operad $Q_{G,\mathfrak{D}}\hoo
 
 \textbf{Current Goal:} Add in extra axioms, so that there exist two $2$-functors 
 \begin{align*}
-    \RR_G:\Q_G\text{-}\PsAlg \leftrightarrows \F_{G,\RR,\_}\text{-}\PsAlg:\QQ_G
+    \RR_G:\cP_G\text{-}\PsAlg \leftrightarrows \F_{G,\RR,\_}\text{-}\PsAlg:\QQ_G
 \end{align*}
 inducing an isomorphism of (strict) 2-categories. Here, $\_$ is some (yet to be determined) axiom.
 
@@ -58,7 +58,7 @@ inducing an isomorphism of (strict) 2-categories. Here, $\_$ is some (yet to be 
     Every morphism $f\in \C(X,Y)$ is called a \emph{1-cell}, while given any 1-cells $f,g\in\C(X,Y)$, a morphism $\alpha:f\Rightarrow g$ in the hom-category $\C(X,Y)$ is called a \emph{2-cell}.
 \end{defn}
 
-Here, using the unitality and associativity of composition in a category, $\circ$ must be strictly unital and associative.
+Here, $\circ$ must be strictly unital and associative.
 
 \begin{rem}
     There is a more general notion of a \emph{bicategory}, which relaxes the composition functors to be associative and unital up to coherent natural isomorphisms, and in some literature this is called 2-categories. Here we'll take the strict associativity and unitality as axioms for 2-categories.
@@ -128,13 +128,11 @@ Given any small category $\A\in\Cat$, its object $\Ob(\A)$ forms a set; moreover
 
 Inspecting the definition, we see $\mathscr{E}:\Sets\rightarrow\Cat$ is a well-defined functor, called the \emph{chaotic functor}.
 
-There is a well-known adjunction $(\Ob\dashv \mathscr{E})$, due to the fact that after fixing the objects, the morphisms can only be mapped to the unique morphisms between any two objects when the codomain is a choatic category.
+Notice if a functor $F:\A\rightarrow\B$ has a chaotic target $\B$, then all the morphisms $f:X\rightarrow Y$ in $\A$ must be sent to the unique morphism $F(X)\rightarrow F(Y)$ in $\B$, hence $F$ is dictated by the object map $F:\Ob(\A)\rightarrow\Ob(\B)$. Such uniqueness specifies an adjunction $(\Ob\dashv \mathscr{E})$.
 
 \hfil
 
 \subsection{Pseudofunctor, Pseudotransform, and Modification}
-
-In some cases, the notion of functor is too restrictive: strictly preserving f
 
 \begin{defn}[Pseudofunctor]
     Given two 2-categories $\A,\B$, a \emph{pseudofunctor} $F:\A\rightarrow \B$ equips with an 0-cell map, functors between hom-categories $F_{X,Y}:\A(X,Y)\rightarrow \B(F(X),F(Y))$, an invertible 2-cell $\phi_{X,Y,Z}$ between compositions
@@ -260,7 +258,7 @@ In some cases, the notion of functor is too restrictive: strictly preserving f
 
 \newpage
 
-\section{Categorical Preliminaries: Operads}
+\section{Categorical Preliminaries: Operads (Consider cutting this section, and preserve the operad $\cP$ only)}
 \subsection{Symmetric Monoidal Categories}
 
 \begin{defn}
@@ -295,7 +293,7 @@ In some cases, the notion of functor is too restrictive: strictly preserving f
         }\]
     \end{itemize}
 \end{defn}
-Based on \emph{Maclane's Coherence Theorem}, the above two axioms guarantees all finite sequences of $a,\lambda,\rho$ and their inverses agree, namely there is a unique isomorphism $P_1\rightarrow P_2$, where $P_i$ are (possibly) different orders of performing product on $X_1,...,X_n\in\mathcal{V}$. For reference, cf. \emph{Category Theory for Working Mathematicians}.
+Based on \emph{Maclane's Coherence Theorem}, the above two axioms guarantees all finite sequences of $a,\lambda,\rho$ and their inverses agree, namely there is a unique isomorphism $P_1\rightarrow P_2$, where $P_i$ are (possibly) different orders of performing product on $X_1,...,X_n\in\mathcal{V}$. For details, cf. \cite{M98}.
 
 \hfil
 
@@ -375,6 +373,27 @@ If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ 
     \end{itemize}
 \end{defn}
 
+\hfil
+
+\subsection{Permutativity Operad $\cP$}
+We first starts by introducing a relevant operad in $\Sets$: The \emph{associativity operad} $\M$ in $\Sets$ is defined as $\M(j):=\Sigma_j$ (the symmetric group for cardinality $j$), which endows a natural right $\Sigma_j$-action via right multiplication. The operadic structure map is given by 
+\begin{align}
+    \gamma:\Sigma_k\times\prod_{r=1}^k\Sigma_{j_r}\rightarrow\Sigma_j,\quad \gamma(\sigma;\tau_1,...,\tau_k):= \tau_{\sigma^{-1}(1)}\oplus...\oplus\tau_{\sigma^{-1}(k)}\circ \sigma(j_{\sigma(1)},...,j_{\sigma(k)})
+\end{align}
+where $j=\sum_r j_r$, $\sigma(j_1,...,j_k)\in \Sigma_j$ denotes the block permutation of $j_1,...,j_k$ within $j$ (in order), and $\tau_1\oplus ... \tau_{k}$ is the image of the embedding $\oplus:\prod_{r=1}^k\Sigma_{j_r}\rightarrow\Sigma_j$, by viewing the $r$th block as finite set of cardinality $j_r$. Inspecting the definitions, the algebra over $\M$ precisely describes the set theoretic monoids. More details can be found in \textbf{(Yet to be determined...)}
+
+\hfil
+
+Now, recall that the chaotic functor $\mathscr{E}:\Sets\rightarrow\Cat$ is a right adjoint of $\Ob:\Cat\rightarrow\Sets$, in particular it preserves products. Hence, the chaotic categorification $\cP(j):= \mathscr{E}\M(j)$ also has a natural operadic structure, via the identification
+\begin{align}
+    \mathscr{E}\M(k)\times \prod_{r=1}^k \mathscr{E}\M(j_r)\cong \mathscr{E}\left(\M(k)\times\prod_{r=1}^k\M(j_r)\right) \xrightarrow{\mathscr{E}\gamma}\mathscr{E}\M(j).
+\end{align}
+This is called the \emph{permutativity operad in $\Cat$}, or the \emph{Barratt-Eccles operad} as credited to the authors who proposed it.
+
+\hfil
+
+It is known in \textbf{(Yet to be determined...check sym mon cat)} that the algebras over $\cP$ is isomorphic to the permutative categories. Later on, in \textbf{(Yet to be determined...)} the concept of pseudoalgebra over $\cP$ is proposed, and in \cite{LMRZ26} it specified an equivalence between the $\cP$-pseudoalgebras and the symmetric monoidal categories, by relaxing the strict associativity/unity in $\cP$-algebras to be only up to coherent natural isomorphisms.
+
 
 \newpage
 
@@ -391,12 +410,12 @@ If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ 
     Here, $\Mor(\A)\times_{S,T}\Mor(\A):= \{(g,f)\in \Mor(\A)^2\ |\ S(g)=T(f)\}$, precisely the pair of morphisms that're composable, and it endows $G$-set structure via restricting the diagonal $G$-action on $\Mor(\A)^2$. This is well-defined due to the assumption $S,T$ are $G$-maps.
 \end{defn}
 
-Another equivalent characterization can be viewed as a group homomorphism $G\rightarrow\Aut_{\Cat}(\A)$, which assigns each $g\in G$ an automorphism functor on $\A$ that respects $G$'s multiplication structure, and identity gets sent to the identity functor. So, from now on we view each element $g\in G$ as a functor, whenever a category is specified as a $G$-category.
+Another equivalent characterization can be viewed as a group homomorphism $G\rightarrow\Aut_{\Cat}(\A)$, which assigns each $g\in G$ an automorphism functor on $\A$ such that composition respects $G$'s multiplication structure, and identity gets sent to the identity functor. So, from now on we view each element $g\in G$ as a functor, whenever a category is specified as a $G$-category.
 
 \hfil
 
 \begin{defn}
-Let $\Cat_G$ denotes the 2-category of small $G$-categories, with (nonequivariant) functors as $1$-cells, natural transformations as $2$-cells.  Which, the $G$-fixed subcategory of the hom-category $[\Cat_G(\A,\B)]^G$ precisely describes all $G$-functor, or the functors $F:\A\rightarrow\B$ such that $g\circ F=F\circ g$ for all $g\in G$.
+Let $\Cat_G$ denotes the 2-category of small $G$-categories, with (nonequivariant) functors as $1$-cells, natural transformations as $2$-cells. The hom-category between any two $G$-categories $\Cat_G(\A,\B)$ also has a natural $G$-action via conjugation.  Which, the $G$-fixed subcategory of the hom-category $[\Cat_G(\A,\B)]^G$ precisely describes all $G$-functor, or the functors $F:\A\rightarrow\B$ such that $g\circ F=F\circ g$ for all $g\in G$.
 \end{defn}
 
 \hfil
@@ -413,15 +432,18 @@ Another characterization can be understood as follow: Given the graph subgroup $
 
 \newpage
 
-\section{Essential Categorical Tools (ND)}
+\section{Essential Categorical Tools (ND, consider cutting this section to only remain with the $G$-equivariance axioms)}
+\subsection{The Barratt-Eccels $G$-Operad $\cP_G$}
+If view each $\cP(j)$ as a $G$-trivial $G$-category, it's also an operad in $\Cat_G$. Its underlying algebra is called the \emph{naive permutative $G$-category}, as specified in \textbf{(Yet to be determined...)} it produces a naive $G$-spectrum under equivariant infinite loop space theory. In \cite{GM17}, a richer equivariant structure is introduced which produces the \emph{equivariant Barratt Eccles $G$-operad} $\cP_G$ as follow:
+\begin{defn}
+    
+\end{defn}
 
-\textbf{Define $P_G$, its chaotic categorification first}
-Here we introduce some definitions important to this paper.
-
+\begin{comment} Let's reserve this part for future (as in the exposition I don't think it's possible to finish it)
 \subsection{$G$-Operad $\mathscr{Q}_G$ in $\Cat_G$}
 
 \begin{defn}
-    Let $Q_G$ be the suboperad of $P_G$, generated by all the group homomorphisms $\alpha:G\rightarrow\Sigma_n$ spanning through all $n\in\NN$, the $P_G$ structure maps $\gamma_G$, and the $(G\times\Sigma)$-action on the elements. Define the operad $\Q_G:= \mathscr{E}Q_G$ as the chaotic generalization in $\Cat_G$.
+    Let $Q_G$ be the suboperad of $P_G$, generated by all the group homomorphisms $\alpha:G\rightarrow\Sigma_n$ spanning through all $n\in\NN$, the $P_G$ structure maps $\gamma_G$, and the $(G\times\Sigma)$-action on the elements. Define the operad $\cP_G:= \mathscr{E}Q_G$ as the chaotic generalization in $\Cat_G$.
 \end{defn}
 
 This operad is designed as a smallest suboperad that contains all group homomorphisms from $G$ to a symmetric group, such that it's still a free $(G\times\Sigma)$-operad.
@@ -433,29 +455,30 @@ This operad is designed as a smallest suboperad that contains all group homomorp
 \end{warn}
 
 \hfil
+\end{comment}
 
-\subsection{The 2-Category $\Q_G$-$\PsAlg$}
+\subsection{The 2-Category $\cP_G$-$\PsAlg$ (Need to check what's the equivariance for natural transform)}
 
-We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
+We mostly follow \cite{LMRZ26} in defining $\cP_G$-pseudoalgebras.
 
-\begin{defn}[$\Q_G$-pseudoalgebra]
-    A $\Q_G$-pseudoalgebra is a $G$-category $\A$ and operad action functors
+\begin{defn}[$\cP_G$-pseudoalgebra]
+    A $\cP_G$-pseudoalgebra is a $G$-category $\A$ and operad action functors
     \begin{align*}
-        \theta_j:\Q_G(j)\times \A^j\rightarrow\A
+        \theta_j:\cP_G(j)\times \A^j\rightarrow\A
     \end{align*}
     for each $n\in\NN$, together with an invertible natural transformation $\phi_1$ in the diagram
     \begin{align}
         \xymatrix{ 
-        \A\ar[r]^{\iota}\ar[dr]_{\Id_\A} & \Q_G(1)\times\A\ar[d]^{\theta_1}\ar@{=>}[dl]+<26pt>^>>>>{\phi_1}\\ 
+        \A\ar[r]^{\iota}\ar[dr]_{\Id_\A} & \cP_G(1)\times\A\ar[d]^{\theta_1}\ar@{=>}[dl]+<26pt>^>>>>{\phi_1}\\ 
         & C
         }
     \end{align}
     An invertible natural transformation $\phi=\phi(k;j_1,...,j_k)$ for each diagram 
     \begin{align}
         \xymatrix{
-            \Q_G(k) \times \left(\prod_{r=1}^k \Q_G(j_r)\times \A^{j_r}\right) \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\id\times\prod_r\theta_{j_r}} && \Q_G(k)\times\A^k \ar[d]^-{\theta_k} \ar@{=>}[ddll]^-{\phi}\\
+            \cP_G(k) \times \left(\prod_{r=1}^k \cP_G(j_r)\times \A^{j_r}\right) \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\id\times\prod_r\theta_{j_r}} && \cP_G(k)\times\A^k \ar[d]^-{\theta_k} \ar@{=>}[ddll]^-{\phi}\\
             && \A\\
-            \Q_G(k)\times \prod_{r=1}^k\Q_G(j_r)\times \A^{j_+} \ar[rr]_-{\gamma\times\id} && \Q_G(j_+)\times\A^{j_+} \ar[u]_-{\theta_{j_+}}
+            \cP_G(k)\times \prod_{r=1}^k\cP_G(j_r)\times \A^{j_+} \ar[rr]_-{\gamma\times\id} && \cP_G(j_+)\times\A^{j_+} \ar[u]_-{\theta_{j_+}}
         }
     \end{align}
     such that the following strict equivariance hold for $\theta_j$ and $\phi$:
@@ -463,7 +486,7 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
         \item[(i)]\textbf{(Equivariance of $\theta_j$)} The following diagram commutes for $(g,\sigma)\in G\times\Sigma_j$:
         \begin{align}
             \xymatrix{
-                \Q_G(j)\times \A^j \ar[d]_-{\theta_j}  \ar[rr]^-{(g,\sigma)\times(g,\sigma)^{-1}} && \Q_G(j)\times \A^j \ar[d]^-{\theta_j}\\
+                \cP_G(j)\times \A^j \ar[d]_-{\theta_j}  \ar[rr]^-{(g,\sigma)\times(g,\sigma)^{-1}} && \cP_G(j)\times \A^j \ar[d]^-{\theta_j}\\
                 \A \ar[rr]_-{g^{-1}} && \A
             }
         \end{align}
@@ -481,36 +504,36 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
         \item[(iii)] \textbf{(Operadic Composition)} The following pasting diagrams are equal, given $j_+=\sum j_r$, $i_r = \sum_si_{r,s}$, and $i_+ = \sum_{r,s}i_{r,s}$ with $1\leq r\leq k$ and $1\leq s\leq j_r$:
         \item[] \begin{align*}
             \xymatrix{
-                \Q_G(k)\times \prod_r\left(\Q_G(j_r)\times \prod_s\left(\Q_G(i_{r,s})\times \A^{i_{r,s}}\right)\right) \ar[r]^-{\id\times \prod(\id\times \theta_{i_{r,s}})} \ar[dd]_{\gamma\times\id} & Q_G(k)\times \prod_r\left(\Q_G(j_r)\times \A^{j_r}\right) \ar[dd]_-{\gamma} \ar[dr]^-{\id\times \prod_{\theta_{j_r}}}\\
-            && \Q_G(k)\times \A^k \ar[dd]^-{\theta_k} \ar@{=>}[dl]^-{\phi}\\
-            \Q_G(j_+)\times \prod_{r,s}\left(\Q_G(i_{r,s})\times \A^{i_{r,s}}\right) \ar[r]^-{\id\times \prod \theta_{i_{r,s}}} \ar[dr]_-{\gamma\times \id} & \Q_G(j_+)\times \A^{j_+} \ar[dr]^-{\theta_{j_+}} \ar@{=>}[d]^-{\phi}\\
-            & \Q_G(i_+)\times \A^{i_+} \ar[r]_-{\theta_{j_+}} & \A
+                \cP_G(k)\times \prod_r\left(\cP_G(j_r)\times \prod_s\left(\cP_G(i_{r,s})\times \A^{i_{r,s}}\right)\right) \ar[r]^-{\id\times \prod(\id\times \theta_{i_{r,s}})} \ar[dd]_{\gamma\times\id} & Q_G(k)\times \prod_r\left(\cP_G(j_r)\times \A^{j_r}\right) \ar[dd]_-{\gamma} \ar[dr]^-{\id\times \prod_{\theta_{j_r}}}\\
+            && \cP_G(k)\times \A^k \ar[dd]^-{\theta_k} \ar@{=>}[dl]^-{\phi}\\
+            \cP_G(j_+)\times \prod_{r,s}\left(\cP_G(i_{r,s})\times \A^{i_{r,s}}\right) \ar[r]^-{\id\times \prod \theta_{i_{r,s}}} \ar[dr]_-{\gamma\times \id} & \cP_G(j_+)\times \A^{j_+} \ar[dr]^-{\theta_{j_+}} \ar@{=>}[d]^-{\phi}\\
+            & \cP_G(i_+)\times \A^{i_+} \ar[r]_-{\theta_{j_+}} & \A
             }
         \end{align*}
         equals
         \begin{align*}
             \xymatrix{
-                \Q_G(k)\times \prod_r\left(\Q_G(j_r)\times \prod_s\left(\Q_G(i_{r,s})\times\A^{i_{r,s}}\right)\right) \ar[r]^-{\id\times \prod(\id\times \prod \theta_{i_{r,s}})} \ar[dd]_-{\gamma\times\id} \ar[dr]_-{\id\times \prod(\gamma\times\id)} & \Q_G(k)\times \prod_r\left(\Q_g(j_r)\times \A^{j_r}\right) \ar[dr]^-{\id\times \prod\theta_{j_r}} \ar@{=>}[d]^-{\id\times \prod\phi}\\
-                & \Q_G(k)\times \prod_r\left(\Q_G(i_r)\times \A^{i_r}\right) \ar[r]_-{\id\times\prod\gamma} \ar[dd]_-{\gamma\times\id} & \Q_G(k)\times\A^k \ar[dd]^-{\theta_k} \ar@{=>}[ddl]^-{\phi}\\
-                \Q_G(j_+)\times\prod_{r,s}\left(\Q_G(i_{r,s})\times \A^{i_{r,s}}\right) \ar[dr]_-{\gamma\times\id}\\
-                & \Q_G(i_+)\times\A^{i_+} \ar[r]_-{\theta_{i_+}} & \A
+                \cP_G(k)\times \prod_r\left(\cP_G(j_r)\times \prod_s\left(\cP_G(i_{r,s})\times\A^{i_{r,s}}\right)\right) \ar[r]^-{\id\times \prod(\id\times \prod \theta_{i_{r,s}})} \ar[dd]_-{\gamma\times\id} \ar[dr]_-{\id\times \prod(\gamma\times\id)} & \cP_G(k)\times \prod_r\left(\cP_G(j_r)\times \A^{j_r}\right) \ar[dr]^-{\id\times \prod\theta_{j_r}} \ar@{=>}[d]^-{\id\times \prod\phi}\\
+                & \cP_G(k)\times \prod_r\left(\cP_G(i_r)\times \A^{i_r}\right) \ar[r]_-{\id\times\prod\gamma} \ar[dd]_-{\gamma\times\id} & \cP_G(k)\times\A^k \ar[dd]^-{\theta_k} \ar@{=>}[ddl]^-{\phi}\\
+                \cP_G(j_+)\times\prod_{r,s}\left(\cP_G(i_{r,s})\times \A^{i_{r,s}}\right) \ar[dr]_-{\gamma\times\id}\\
+                & \cP_G(i_+)\times\A^{i_+} \ar[r]_-{\theta_{i_+}} & \A
             }
         \end{align*}
         (commuting squares are operadic associativity)
         \item[(iv)]\textbf{(Operadic Identity)} The following two pairs of two pasting diagrams are equal:
         \begin{align*}
             \xymatrix{
-                \Q_G(k)\times \A^k\ar[r]^-{\id\times\iota^k} & \Q_G(k)\times \left(\Q_G(1)\times\A\right)^k \ar[r]^-{\id\times \theta_1^k} \ar[d]_-{\text{shuffle}} & \Q_G(k)\times \A^k \ar[dd]^-{\theta_k} \ar@{=>}[ddl]^-{\phi}\\
-                & \Q_G(k)\times \Q_G(1)^k\times \A^k \ar[d]_-{\gamma\times\id}\\
-                &\Q_G(k)\times\A^k\ar[r]_-{\theta_k} & \A
+                \cP_G(k)\times \A^k\ar[r]^-{\id\times\iota^k} & \cP_G(k)\times \left(\cP_G(1)\times\A\right)^k \ar[r]^-{\id\times \theta_1^k} \ar[d]_-{\text{shuffle}} & \cP_G(k)\times \A^k \ar[dd]^-{\theta_k} \ar@{=>}[ddl]^-{\phi}\\
+                & \cP_G(k)\times \cP_G(1)^k\times \A^k \ar[d]_-{\gamma\times\id}\\
+                &\cP_G(k)\times\A^k\ar[r]_-{\theta_k} & \A
             }
         \end{align*}
         equals
         \begin{align*}
             \xymatrix{
-                & \Q_G(k)\times \left(\Q_G(1)\times\A\right)^k \ar[dr]^-{\id\times\theta_1^k} \ar@{=>}[d]^-{\id\times \prod \phi}\\
-                \Q_G(k)\times\A^k\ar[ur]^-{\id\times\iota^k} \ar[rr]_-{\id} \ar[d]_-{\id\times\iota^k} \ar[dr]_-{\iota^k} && \Q_G(k)\times\A^k\ar[r]^-{\theta_k} & \A\\
-                \Q_G(k)\times\left(\Q_G(1)\times\A\right)^k \ar[r]_-{\text{shuffle}}& \Q_G(k)\times \Q_G(1)^k\times\A^k \ar[ur]_-{\gamma\times\id}
+                & \cP_G(k)\times \left(\cP_G(1)\times\A\right)^k \ar[dr]^-{\id\times\theta_1^k} \ar@{=>}[d]^-{\id\times \prod \phi}\\
+                \cP_G(k)\times\A^k\ar[ur]^-{\id\times\iota^k} \ar[rr]_-{\id} \ar[d]_-{\id\times\iota^k} \ar[dr]_-{\iota^k} && \cP_G(k)\times\A^k\ar[r]^-{\theta_k} & \A\\
+                \cP_G(k)\times\left(\cP_G(1)\times\A\right)^k \ar[r]_-{\text{shuffle}}& \cP_G(k)\times \cP_G(1)^k\times\A^k \ar[ur]_-{\gamma\times\id}
             }
         \end{align*}
         (uses operadic associativity)
@@ -518,15 +541,15 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
         Also:
         \begin{align*}
             \xymatrix{
-                \Q_G(k)\times\A^k\ar[r]^-{\iota} \ar[dr]_-{\id} & \Q_G(1)\times\Q_G(k)\times \A^k \ar[r]^-{\id\times\theta_k} \ar[d]_-{\gamma\times\id} & \Q_G(1)\times\A \ar[d]^-{\theta_1} \ar@{=>}[dl]^-{\phi}\\
-                &\Q_G(k)\times\A^k \ar[r]_-{\theta_k} & \A
+                \cP_G(k)\times\A^k\ar[r]^-{\iota} \ar[dr]_-{\id} & \cP_G(1)\times\cP_G(k)\times \A^k \ar[r]^-{\id\times\theta_k} \ar[d]_-{\gamma\times\id} & \cP_G(1)\times\A \ar[d]^-{\theta_1} \ar@{=>}[dl]^-{\phi}\\
+                &\cP_G(k)\times\A^k \ar[r]_-{\theta_k} & \A
             }
         \end{align*}
         equals
         \begin{align*}
             \xymatrix{
-                \Q_G(k)\times \A^k \ar[r]^-{\iota} \ar[d]_-{\theta_k} & \Q_G(1)\times\Q_G(k)\times \A^k \ar[d]^-{\id\times\theta_k}\\
-                \A \ar[r]^-{\iota} \ar[dr]_-{\id} & \Q_G(1)\times\A \ar[d]^-{\theta_1} \ar@{=>}[dl]+<30pt>^>>>>>>>{\phi_1}\\
+                \cP_G(k)\times \A^k \ar[r]^-{\iota} \ar[d]_-{\theta_k} & \cP_G(1)\times\cP_G(k)\times \A^k \ar[d]^-{\id\times\theta_k}\\
+                \A \ar[r]^-{\iota} \ar[dr]_-{\id} & \cP_G(1)\times\A \ar[d]^-{\theta_1} \ar@{=>}[dl]+<30pt>^>>>>>>>{\phi_1}\\
                 & \A
             }
         \end{align*}
@@ -536,11 +559,11 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
 
 \hfil
 
-\begin{defn}[$\Q_G$-pseudomorphism]
-    A $\Q_G$-pseudomorphism $(\FF,\zeta):(\A,\theta,\phi)\rightarrow(\B,\vartheta,\varphi)$ consists of functor $\FF:\A\rightarrow\B$, such that for each $j$ in the follogin diagram commutes up to an invertible natural transformation $\zeta_j$:
+\begin{defn}[$\cP_G$-pseudomorphism]
+    A $\cP_G$-pseudomorphism $(\FF,\zeta):(\A,\theta,\phi)\rightarrow(\B,\vartheta,\varphi)$ consists of functor $\FF:\A\rightarrow\B$, such that for each $j$ in the follogin diagram commutes up to an invertible natural transformation $\zeta_j$:
     \begin{align*}
         \xymatrix{
-            \Q_G(j)\times \A^j\ar[r]^-{\id\times\FF^j} \ar[d]_-{\theta_j} & \Q_G(j)\times \B^j \ar[d]^-{\vartheta_j} \ar@{=>}[dl]^-{\zeta_j}\\
+            \cP_G(j)\times \A^j\ar[r]^-{\id\times\FF^j} \ar[d]_-{\theta_j} & \cP_G(j)\times \B^j \ar[d]^-{\vartheta_j} \ar@{=>}[dl]^-{\zeta_j}\\
             \A \ar[r]_-{\FF} & \B
         }
     \end{align*}
@@ -553,28 +576,28 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
         \begin{align*}
             \xymatrix{
                 \A \ar[r]^-{\FF} \ar[d]_-{\iota} & \B \ar[d]_-{\iota} \ar@(r,u)[ddr]^-{\id}\\
-                \Q_G(1)\times\A \ar[r]^-{\id\times\FF} \ar[dr]_-{\theta_1} & \Q_G(1)\times\B \ar[dr]_-{\vartheta_1} \ar@{=>}[r]-<10pt>^-{\varphi_1} & \\
+                \cP_G(1)\times\A \ar[r]^-{\id\times\FF} \ar[dr]_-{\theta_1} & \cP_G(1)\times\B \ar[dr]_-{\vartheta_1} \ar@{=>}[r]-<10pt>^-{\varphi_1} & \\
                 & \A \ar[r]_-{\FF} \ar@{=>}[u]_-{\zeta_1^{-1}} & \B
             }\quad = \quad \xymatrix{
                 \A \ar[r]^-{\FF} \ar[d]_-{\iota} \ar[dr]^-{\id} & \B \ar[dr]^-{\id}\\
-                \Q_G(1)\times \A \ar@{=>}[ur]-<25pt>^-{\phi_1} \ar[r]_-{\theta_1} & \A \ar[r]_-{\FF} & \B
+                \cP_G(1)\times \A \ar@{=>}[ur]-<25pt>^-{\phi_1} \ar[r]_-{\theta_1} & \A \ar[r]_-{\FF} & \B
             }
         \end{align*}
         \item[(iii)] \textbf{(Preserves Composition)} The following two pasting diagrams are equal:
         \begin{align*}
             \xymatrix{
-                \Q_G(k)\times \prod_r\left(\Q_G(j_r)\times \A^{j_r}\right) \ar[rr]^-{\id\times\prod(\id\times \FF^{j_r})} \ar[dr]_-{\id\times \prod\theta_{j_r}} \ar[dd]_-{\gamma} && \Q_G(k)\times \prod_r\left(\Q_G(j_r)\times \B^{j_r}\right) \ar[dr]^-{\id\times \prod\vartheta_{j_r}} \ar@{=>}[dl]^-{\id\times \prod \zeta_{j_r}}\\
-                & \Q_G(k)\times \A^k \ar[rr]_-{\id\times \FF^k} \ar@{=>}[dl]^-{\phi} \ar[dd]_-{\theta_k} && \Q_G(k)\times \B^k \ar[dd]^-{\vartheta_k} \ar@{=>}[ddll]^-{\zeta_k}\\
-                \Q_G(j)\times \A^j \ar[dr]_-{\theta_j}\\
+                \cP_G(k)\times \prod_r\left(\cP_G(j_r)\times \A^{j_r}\right) \ar[rr]^-{\id\times\prod(\id\times \FF^{j_r})} \ar[dr]_-{\id\times \prod\theta_{j_r}} \ar[dd]_-{\gamma} && \cP_G(k)\times \prod_r\left(\cP_G(j_r)\times \B^{j_r}\right) \ar[dr]^-{\id\times \prod\vartheta_{j_r}} \ar@{=>}[dl]^-{\id\times \prod \zeta_{j_r}}\\
+                & \cP_G(k)\times \A^k \ar[rr]_-{\id\times \FF^k} \ar@{=>}[dl]^-{\phi} \ar[dd]_-{\theta_k} && \cP_G(k)\times \B^k \ar[dd]^-{\vartheta_k} \ar@{=>}[ddll]^-{\zeta_k}\\
+                \cP_G(j)\times \A^j \ar[dr]_-{\theta_j}\\
                 & \A \ar[rr]_-{\FF} && \B
             }
         \end{align*}
         equals
         \begin{align*}
             \xymatrix{
-                \Q_G(k)\times \prod_r\left(\Q_G(j_r)\times\A^{j_r}\right) \ar[rr]^-{\id\times \prod(\id\times \FF^{j_r})} \ar[dd]_-{\gamma} && \Q_G(k)\times \prod\left(\Q_G(j_r)\times \B^{j_r}\right) \ar[dd]_-{\gamma} \ar[dr]^-{\id\times \prod\theta_{j_r}}\\
-                &&& \Q_G(k)\times \B^k \ar[dd]^-{\vartheta_k} \ar@{=>}[dl]^-{\varphi}\\
-                \Q_G(j)\times\A^j \ar[rr]^-{\id\times \FF^j} \ar[dr]_-{\theta_j} && \Q_G(j)\times \B^j \ar[dr]^-{\vartheta_j} \ar@{=>}[dl]^-{\zeta_j}\\
+                \cP_G(k)\times \prod_r\left(\cP_G(j_r)\times\A^{j_r}\right) \ar[rr]^-{\id\times \prod(\id\times \FF^{j_r})} \ar[dd]_-{\gamma} && \cP_G(k)\times \prod\left(\cP_G(j_r)\times \B^{j_r}\right) \ar[dd]_-{\gamma} \ar[dr]^-{\id\times \prod\theta_{j_r}}\\
+                &&& \cP_G(k)\times \B^k \ar[dd]^-{\vartheta_k} \ar@{=>}[dl]^-{\varphi}\\
+                \cP_G(j)\times\A^j \ar[rr]^-{\id\times \FF^j} \ar[dr]_-{\theta_j} && \cP_G(j)\times \B^j \ar[dr]^-{\vartheta_j} \ar@{=>}[dl]^-{\zeta_j}\\
                 & \A \ar[rr]_-{\FF} && \B
             }
         \end{align*}
@@ -583,14 +606,14 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
 
 \hfil
 
-\begin{defn}[$\Q_G$-2-cells]
-    Let $(\FF,\zeta),(\GG,\xi):(\A,\theta,\phi)\rightarrow (\B,\vartheta,\varphi)$ be two $\Q_G$-pseudomorphisms, a $\Q_G$-2-cell $\lambda:(\FF,\zeta)\Rightarrow(\GG,\xi)$ is a natural transformation $\lambda:\FF\rightarrow\GG$, such that the following two pasting diagrams are equal:
+\begin{defn}[$\cP_G$-2-cells]
+    Let $(\FF,\zeta),(\GG,\xi):(\A,\theta,\phi)\rightarrow (\B,\vartheta,\varphi)$ be two $\cP_G$-pseudomorphisms, a $\cP_G$-2-cell $\lambda:(\FF,\zeta)\Rightarrow(\GG,\xi)$ is a natural transformation $\lambda:\FF\rightarrow\GG$, such that the following two pasting diagrams are equal:
     \begin{align*}
         \xymatrix{
-            \Q_G(j)\times \A^j \ar@(ur,ul)[r]^-{\id\times \FF^j} \ar@{=>}[r]^-{\id\times \lambda^j} \ar@(dr,dl)[r]^-{\id\times\GG^j} \ar[d]_-{\theta_j} & \Q_G(j)\times \B^j \ar[d]^-{\vartheta_j} \ar@{=>}[dl]^-{\xi_j}\\
+            \cP_G(j)\times \A^j \ar@(ur,ul)[r]^-{\id\times \FF^j} \ar@{=>}[r]^-{\id\times \lambda^j} \ar@(dr,dl)[r]^-{\id\times\GG^j} \ar[d]_-{\theta_j} & \cP_G(j)\times \B^j \ar[d]^-{\vartheta_j} \ar@{=>}[dl]^-{\xi_j}\\
             \A \ar[r]_-{\GG} & \B
         }\quad = \quad \xymatrix{
-            \Q_G(j)\times \A^j \ar[d]_-{\theta_j} \ar[r]^-{\id\times \FF^j} & \Q_G(j)\times\B^j \ar[d]^-{\vartheta_j} \ar@{=>}[dl]_-{\zeta_j}\\
+            \cP_G(j)\times \A^j \ar[d]_-{\theta_j} \ar[r]^-{\id\times \FF^j} & \cP_G(j)\times\B^j \ar[d]^-{\vartheta_j} \ar@{=>}[dl]_-{\zeta_j}\\
             \A \ar@(ur,ul)[r]_-{\FF} \ar@{=>}[r]_-{\lambda} \ar@(dr,dl)[r]_-{\GG} & \B
         }
     \end{align*}
@@ -627,22 +650,23 @@ We mostly follow \cite{LMRZ26} in defining $\Q_G$-pseudoalgebras.
         \tilde{\A}_{\mathbf{n}^\alpha,\mathbf{m}^\beta}:\F_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)\rightarrow \Cat_G(\tilde{\A}(\mathbf{n}^\alpha),\tilde{\A}(\mathbf{m}^\beta))
     \end{align*}
     is a $G$-functor.
-
-    \textbf{Question: In operad case, we have natural isomorphism between any two $G$-actions, do we need it here?}
 \end{defn}
 
 \hfil
 
-Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (namely $i\mapsto 1$, and any $i\neq j\mapsto 0$), since it belongs to $\Pi_G$, it generates a functor $\tilde{\A}\delta_i:\tilde{\A}(\mathbf{n}^\alpha)\rightarrow \tilde{\A}(\mathbf{1})$. Hence, by universality of product, all $\tilde{\A}\delta_i$ ($1\leq i\leq n$) induces a functor $\delta:\tilde{\A}(\mathbf{n}^\alpha)\rightarrow \tilde{\A}(\mathbf{1})^n$.
+Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (namely $i\mapsto 1$, and any $i\neq j\mapsto 0$), since it belongs to $\Pi_G$, it generates a functor $\tilde{\A}\delta_i:\tilde{\A}(\mathbf{n}^\alpha)\rightarrow \tilde{\A}(\mathbf{1})$. Hence, by universality of product, all $\tilde{\A}\delta_i$ ($1\leq i\leq n$) induces a functor $\delta:\tilde{\A}(\mathbf{n}^\alpha)\rightarrow \tilde{\A}(\mathbf{1})^{\mathbf{n}^\alpha}$.
 
 \begin{defn}[$\F_{G,\vs}$ and $\F_{G,\RR}$-pseudoalgebra]
-    An $\F_G$-pseudoalgebra $\tilde{\A}$ is \emph{very special} (or an $\F_{G,\vs}$-pseudoalgebra), if all $\delta:\tilde{\A}(\mathbf{n}^\alpha)\rightarrow \tilde{\A}(\mathbf{1})^{\mathbf{n}^\alpha}$ is an isomorphism for all $\mathbf{n}^\alpha\in\F_G$, and $\tilde{\A}$ is \emph{strictly special} (or an $\F_{G,\RR}$-pseudoalgebra), if all $\delta$ is in fact identity.
+    An $\F_G$-pseudoalgebra $\tilde{\A}$ is \emph{very special} (or an $\F_{G,\vs}$-pseudoalgebra), if $\delta:\tilde{\A}(\mathbf{n}^\alpha)\rightarrow \tilde{\A}(\mathbf{1})^{\mathbf{n}^\alpha}$ is an isomorphism for all $\mathbf{n}^\alpha\in\F_G$, and $\tilde{\A}$ is \emph{strictly special} (or an $\F_{G,\RR}$-pseudoalgebra), if all $\delta$ is in fact identity.
 \end{defn}
 
 \hfil
 
 \begin{defn}[$\F_G$-1-cell]
-    Given $\tilde{A},\tilde{B}$ two $\F_G$-pseudoalgebras, a morphism (or $\F_G$-1-cell) between them is a pseudo-transformation $(\FF,\zeta):\tilde{\A}\rightarrow \tilde{\B}$, such that restricting to $\Pi_G$, it becomes an actual natural transformation. 
+    Given $\tilde{A},\tilde{B}$ two $\F_G$-pseudoalgebras, a morphism (or $\F_G$-1-cell) between them is a pseudo-transformation $(\FF,\zeta):\tilde{\A}\rightarrow \tilde{\B}$, such that restricting to $\Pi_G$, it becomes an actual natural transformation. Moreover, it respects $G$-equivariance for every $g\in G$ and morphism $f\in\Mor(\F_G)$:
+    \begin{align*}
+        \zeta(g\circ f\circ g^{-1}) = g\circ \zeta(f)\circ g^{-1}
+    \end{align*}
 \end{defn}
 
 \hfil
@@ -670,23 +694,23 @@ Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (n
 \newpage
 
 \begin{comment} REMARK: This section is wrong, because one of the original equivariance axioms destroy all information on $G$-equivariance, shouldn't be used.
-\section{Counterexample: $\F_{G,\RR}$-pseudoalgebra that's not $\Q_G$-pseudoalgebra}
+\section{Counterexample: $\F_{G,\RR}$-pseudoalgebra that's not $\cP_G$-pseudoalgebra}
 
-Here we fix the group $G:=\ZZ/2\ZZ$. Which, we have $\Q_G(1)=\cP_G(1) = *$, in particular $G\times \Sigma_1\cong G$ has trivial action on these. This leads to the following properties of $\Q_G$ or $\cP_G$-pseudoalgebra:
+Here we fix the group $G:=\ZZ/2\ZZ$. Which, we have $\cP_G(1)=\cP_G(1) = *$, in particular $G\times \Sigma_1\cong G$ has trivial action on these. This leads to the following properties of $\cP_G$ or $\cP_G$-pseudoalgebra:
 
 \begin{prop}
-    For any $\Q_G$-pseudoalgebra $\A$, any $G$-action $g:\A\xrightarrow{\sim} \A$ is naturally isomorphic to the identity functor $\Id_\A$.
+    For any $\cP_G$-pseudoalgebra $\A$, any $G$-action $g:\A\xrightarrow{\sim} \A$ is naturally isomorphic to the identity functor $\Id_\A$.
 \end{prop}
 \begin{proof}
     Pasting the unitality and equivariance diagram together, we get the following naturality diagram:
     \begin{align}
         \xymatrix{
             \A \ar@(dl,l)[ddr]_-{\Id_\A} \ar[dr]^-{\iota} \ar[rrrr]^-{g^{-1}} &&&& \A \ar[dl]_-{\iota} \ar@(dr,r)[ddl]^-{\Id_\A}\\
-            &\Q_G(1)\times\A \ar@{=>}[l]^-{\phi_1} \ar[d]_-{\theta_1} \ar[rr]^-{g\times g^{-1}} && \Q_G(1)\times\A \ar[d]^-{\theta_1} \ar@{<=}[r]_-{\phi_1^{-1}} & \\
+            &\cP_G(1)\times\A \ar@{=>}[l]^-{\phi_1} \ar[d]_-{\theta_1} \ar[rr]^-{g\times g^{-1}} && \cP_G(1)\times\A \ar[d]^-{\theta_1} \ar@{<=}[r]_-{\phi_1^{-1}} & \\
             &\A \ar@{=}[rr] && \A
         }
     \end{align}
-    Here, the top trapezoid commutes because $G$ acts trivially on $\Q_G(1)$. This identifies a natural isomorphism as follow:
+    Here, the top trapezoid commutes because $G$ acts trivially on $\cP_G(1)$. This identifies a natural isomorphism as follow:
     \begin{align}
         g^{-1}=\Id_\A\circ g^{-1} \xRightarrow{\phi_1^{-1}*\id_{g^{-1}}} (\theta_1\circ\iota)\circ g^{-1} = \theta_1\circ (g\times g^{-1})\circ \iota = \theta_1\circ \iota \xRightarrow{\phi_1} \Id_\A
     \end{align}
@@ -723,12 +747,12 @@ To check it preserves composition up to coherent natural isomorphism, consider $
 \end{align}
 (Here, the well-defineness of the function heavily relies on the assumption that if $f^{-1}(j)=\emptyset$, the corresponding sum is $0$). In particular, $\tilde{\A}(g\circ f) = \tilde{\A}g\circ \tilde{\A}f$, so $\tilde{\A}$ is a functor (or an $\F_G$-algebra), and since each $\tilde{\A}(\mathbf{n}^\alpha):= \A^{\mathbf{n}^\alpha}$, it's in fact an $\F_{G,\RR}$-algebra.
 
-Yet, since $\A$ is discrete, with $H_0,H_1$ being distinct functors on $\A$, we see that not all the $G$-actions on $\A$ are naturally isomorphic to $\Id_\A$, violating the property described in previous proposition. Hence, $\A$ cannot be a $\Q_G$-pseudoalgebra, or even a $\cP_G$-pseudoalgebra due to the same reasoning.
+Yet, since $\A$ is discrete, with $H_0,H_1$ being distinct functors on $\A$, we see that not all the $G$-actions on $\A$ are naturally isomorphic to $\Id_\A$, violating the property described in previous proposition. Hence, $\A$ cannot be a $\cP_G$-pseudoalgebra, or even a $\cP_G$-pseudoalgebra due to the same reasoning.
 \end{con}
 
 \hfil
 
-This shows that the functor $\RR_G:\cP_G$-$\PsAlg\rightarrow \F_G$-$\PsAlg$ is not essentially surjective, hence cannot be an equivalence of categories. Same statement holds true for $\Q_G$-$\PsAlg$.
+This shows that the functor $\RR_G:\cP_G$-$\PsAlg\rightarrow \F_G$-$\PsAlg$ is not essentially surjective, hence cannot be an equivalence of categories. Same statement holds true for $\cP_G$-$\PsAlg$.
 
 \hfil
 
