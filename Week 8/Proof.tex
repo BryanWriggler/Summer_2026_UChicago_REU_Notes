@@ -19,7 +19,13 @@ Here I tried to contain all possible details / definitions. I'll see which ones 
 
 \section{Abstract (ND)}
 
-\section{Introduction (ND)}
+Symmetric monoidal categories are central in modern algebraic topology, especially algebraic $K$-theory relying on constructing spectra out of symmetric monoidal categories. It is known that the two inputs - the categories with action by an operad $\cP$ in the category $\Cat$ of small categories, or suitable categories described by based finite sets $\F$ - are equivalent description for symmetric monoidal categories. 
+
+Within equivariant $K$-theory, similar machineries have been established, where the input for constructing $G$-spectra are described by an operad $\cP_G$ in the category $\Cat_G$ of small $G$-categories, or categories described by based finite $G$-sets $\F_G$. The equivalence of the two within equivariant case is a natural question to ask, and ponders the question of ``what is symmetric monoidal $G$-categories''.
+
+We'll provide an exposition on the two inputs, and establish a 2-functor $\RR_G$ that generates $\F_G$-pseudoalgebra from $\cP_G$-pseudoalgebra, relating the two.
+
+\section{Introduction (ND)}\label{sec_Intro}
 
 \textbf{Fix $G$ as a finite group.} Let $P_G$ be the \emph{associativity $G$-operad} in $\Sets_G$, defined by $P_G(n):= \Sets(G,\Sigma_n)$, with structure maps defined by post composition
 \begin{align*}
@@ -49,10 +55,10 @@ inducing an isomorphism of (strict) 2-categories. Here, $\_$ is some (yet to be 
 
 \newpage
 
-\section{Categorical Preliminaries: Category of Small Categories}
-\subsection{2-Categories}
+\section{Categorical Preliminaries}\label{sec_CatPrelim}
+\subsection{2-Categories}\label{sub_2_cat}
 
-\begin{defn}
+\begin{defn}\label{defn_2_cat}
     A category $\C$ is a \emph{2-category}, if for each object $X,Y\in\C$ (called \emph{0-cells}), the homset $\C(X,Y)$ is itself a category (called the \emph{hom-category}). Also, for every 0-cells $X,Y,Z\in\C$, the \emph{composition} $\circ:\C(Y,Z)\times\C(X,Y)\rightarrow\C(X,Z)$ is a functor.
 
     Every morphism $f\in \C(X,Y)$ is called a \emph{1-cell}, while given any 1-cells $f,g\in\C(X,Y)$, a morphism $\alpha:f\Rightarrow g$ in the hom-category $\C(X,Y)$ is called a \emph{2-cell}.
@@ -60,12 +66,13 @@ inducing an isomorphism of (strict) 2-categories. Here, $\_$ is some (yet to be 
 
 Here, $\circ$ must be strictly unital and associative.
 
-\begin{rem}
-    There is a more general notion of a \emph{bicategory}, which relaxes the composition functors to be associative and unital up to coherent natural isomorphisms, and in some literature this is called 2-categories. Here we'll take the strict associativity and unitality as axioms for 2-categories.
+\begin{rem}\label{rem_bicat}
+    There is a more general notion of a \emph{bicategory}, which relaxes the composition functors to be associative and unital up to coherent natural isomorphisms, and in some literature this is called 2-categories. Here we'll take the strict associativity and unitality as axioms for 2-categories. For more general bicategory, cf. \cite{JY20}.
 \end{rem}
 
 \hfil
 
+\begin{comment}
 An important notion is the compositions allowed for the 2-cells. Composition of 2-cells within the same hom-category $\C(X,Y)$ makes sense, as it's a defining feature of a category; on the other hand, since composition $\circ:\C(Y,Z)\times\C(X,Y)\rightarrow\C(X,Z)$ is a functor, any 2-cells $H:f_1\Rightarrow f_2$ in $\C(X,Y)$ and $H':g_1\Rightarrow g_2$ in $\C(Y,Z)$ induces a 2-cell $\circ(H',H):(g_1\circ f_1)\Rightarrow (g_2\circ f_2)$ by inspecting the definition of functors from product category.
 
 \begin{defn}
@@ -101,20 +108,21 @@ By inspecting the properties of composition functor, one realizes that vertical 
 as 2-cells.
 
 \hfil
+\end{comment}
 
-\begin{exmp}
-    Let $\Cat$ denote the \emph{category of small categories}, where the objects are small categories, the homsets $\Cat(\A,\B)$ are functors between small categories $\A$ and $\B$. Notice the homset also equips with a category structure, by specifying the morphisms in $\Cat(\A,\B)$ to be natural transformations between functors.
+\begin{exmp}\label{exmp_cat_of_cat}
+    Let $\Cat$ denote the \emph{category of small categories}, where the objects are small categories, the hom-categories $\Cat(\A,\B)$ are functors between small categories $\A$ and $\B$, and the morphisms in $\Cat(\A,\B)$ are natural transformations between functors.
 
     This specifies $\Cat$ to be a 2-category. Also, a precise description of the horizontal composition of 2-cells is as follow: Given functors $F_1,F_2\in\Cat(\A,\B)$ and $G_1,G_2\in\Cat(\B,\C)$, natural transformations $\mu:F_1\Rightarrow F_2$ in $\Cat(\A,\B)$ and $\nu:G_1\Rightarrow G_2$ in $\Cat(\B,\C)$, then $\nu*\mu := \nu \circ F\mu$ defines a horizontal composition.
 \end{exmp}
 
 \hfil
 
-\subsection{Chaotic-Forgetful Adjunction}
+\subsection{Chaotic-Forgetful Adjunction}\label{sub_chaot_adj}
 
 Given any small category $\A\in\Cat$, its object $\Ob(\A)$ forms a set; moreover, any functor $F:\A\rightarrow\B$ also has an underlying map of objects $F:\Ob(\A)\rightarrow\Ob(\B)$. Conversely, given a set, it has certain category structure:
 
-\begin{defn}
+\begin{defn}\label{defn_chaot}
     Given a set $X$, define $\mathscr{E}X$ to be the \emph{chaotic category} with underlying object set $\Ob(\mathscr{E}X):=X$, by encoding a unique isomorphism $x\xrightarrow{\sim} y$ between any element $x,y\in X$. The composition 
     \begin{align}
         (x\xrightarrow{\sim}y \xrightarrow{\sim}z) = (x\xrightarrow{\sim}z)
@@ -256,6 +264,38 @@ Notice if a functor $F:\A\rightarrow\B$ has a chaotic target $\B$, then all the 
 
 %If enlarging the notion of functors and natural transformations to pseudofunctors and pseudotransforms, $\Cat$ will be enlarged into another 2-categories. However, the detail of composition and its unitality/associativity is omitted here for space limit.
 
+\subsection{$G$-Categories}
+
+\begin{defn}
+    A small category $\A$ is a \emph{$G$-category}, if the object and morphism sets $\Ob(\A), \Mor(\A)$ are both (left) $G$-sets, such that the following four structure maps $(S,T,I,C)$ (stands for \emph{source, target, identity, and composition}) are all $G$-equivariant:
+    \begin{itemize}
+        \item $S,T:\Mor(\A)\rightarrow\Ob(\A)$ by $S(X\xrightarrow{f}Y):= X$, and $T(X\xrightarrow{f}Y):= Y$.
+        \item $I:\Ob(\A)\rightarrow\Mor(\A)$ by $I(X):= \id_X$.
+        \item $C:\Mor(\A)\times_{S,T}\Mor(\A)\rightarrow\Mor(\A)$ by $C(g,f):= g\circ f$.
+    \end{itemize}
+    Here, $\Mor(\A)\times_{S,T}\Mor(\A):= \{(g,f)\in \Mor(\A)^2\ |\ S(g)=T(f)\}$, precisely the pair of morphisms that're composable, and it endows $G$-set structure via restricting the diagonal $G$-action on $\Mor(\A)^2$. This is well-defined due to the assumption $S,T$ are $G$-maps.
+\end{defn}
+
+Another equivalent characterization can be viewed as a group homomorphism $G\rightarrow\Aut_{\Cat}(\A)$, which assigns each $g\in G$ an automorphism functor on $\A$ such that composition respects $G$'s multiplication structure, and identity gets sent to the identity functor. So, from now on we view each element $g\in G$ as a functor, whenever a category is specified as a $G$-category.
+
+\hfil
+
+\begin{defn}
+Let $\Cat_G$ denotes the 2-category of small $G$-categories, with (nonequivariant) functors as $1$-cells, natural transformations as $2$-cells. The hom-category between any two $G$-categories $\Cat_G(\A,\B)$ also has a natural $G$-action via conjugation.  Which, the $G$-fixed subcategory of the hom-category $[\Cat_G(\A,\B)]^G$ precisely describes all $G$-functor, or the functors $F:\A\rightarrow\B$ such that $g\circ F=F\circ g$ for all $g\in G$.
+\end{defn}
+
+\hfil
+
+Another important notion is the twisted $G$-action on products when given a group homomorphism $\alpha:G\rightarrow\Sigma_n$. Given a category $\A$, the $n$-fold product $\A^\mathbf{n}$ has a natural left $\Sigma_n$-action via permuting the coordinates; if $\A$ is a $G$-category, $\A^\mathbf{n}$ also endows a natural diagonal $G$-action. The two coordinates to give a natural left $(G\times \Sigma_n)$-action on $\A^\mathbf{n}$.
+
+\begin{defn}
+    Let $\A^{\mathbf{n}^\alpha}$ be a $G$-category with the underlying category being $\A^\mathbf{n}$, with the $G$-action defined as follow:
+    \begin{align*}
+        g\cdot_\alpha (X_1,...,X_n):= (g\cdot X_{\alpha(g)^{-1}(1)},...,g\cdot X_{\alpha(g)^{-1}(n)})
+    \end{align*}
+\end{defn}
+Another characterization can be understood as follow: Given the graph subgroup $\Gamma_\alpha:= \{(g,\alpha(g))\in G\times\Sigma_n\}_{g\in G}$, the projection $\pi_G:G\times\Sigma_n\twoheadrightarrow G$ restricts to an isomorphism $\Gamma_\alpha\xrightarrow{\sim}G$. The $\alpha$-twisted action is induced by the pullback along this isomorphism.
+
 \newpage
 
 \section{Categorical Preliminaries: Operads (Consider cutting this section, and preserve the operad $\cP$ only)}
@@ -388,7 +428,7 @@ Now, recall that the chaotic functor $\mathscr{E}:\Sets\rightarrow\Cat$ is a rig
 \begin{align}
     \mathscr{E}\M(k)\times \prod_{r=1}^k \mathscr{E}\M(j_r)\cong \mathscr{E}\left(\M(k)\times\prod_{r=1}^k\M(j_r)\right) \xrightarrow{\mathscr{E}\gamma}\mathscr{E}\M(j).
 \end{align}
-This is called the \emph{permutativity operad in $\Cat$}, or the \emph{Barratt-Eccles operad} as credited to the authors who proposed it.
+This is called the \emph{permutativity operad in $\Cat$}, or the \emph{Barratt-Eccles operad} as credited to the authors who proposed it. As an abuse of notation, the operadic structure map of $\cP$ is also denoted $\gamma$.
 
 \hfil
 
@@ -398,37 +438,6 @@ It is known in \textbf{(Yet to be determined...check sym mon cat)} that the alge
 \newpage
 
 \section{Equivariance Preliminaries}
-\subsection{$G$-Categories}
-
-\begin{defn}
-    A small category $\A$ is a \emph{$G$-category}, if the object and morphism sets $\Ob(\A), \Mor(\A)$ are both (left) $G$-sets, such that the following four structure maps $(S,T,I,C)$ (stands for \emph{source, target, identity, and composition}) are all $G$-equivariant:
-    \begin{itemize}
-        \item $S,T:\Mor(\A)\rightarrow\Ob(\A)$ by $S(X\xrightarrow{f}Y):= X$, and $T(X\xrightarrow{f}Y):= Y$.
-        \item $I:\Ob(\A)\rightarrow\Mor(\A)$ by $I(X):= \id_X$.
-        \item $C:\Mor(\A)\times_{S,T}\Mor(\A)\rightarrow\Mor(\A)$ by $C(g,f):= g\circ f$.
-    \end{itemize}
-    Here, $\Mor(\A)\times_{S,T}\Mor(\A):= \{(g,f)\in \Mor(\A)^2\ |\ S(g)=T(f)\}$, precisely the pair of morphisms that're composable, and it endows $G$-set structure via restricting the diagonal $G$-action on $\Mor(\A)^2$. This is well-defined due to the assumption $S,T$ are $G$-maps.
-\end{defn}
-
-Another equivalent characterization can be viewed as a group homomorphism $G\rightarrow\Aut_{\Cat}(\A)$, which assigns each $g\in G$ an automorphism functor on $\A$ such that composition respects $G$'s multiplication structure, and identity gets sent to the identity functor. So, from now on we view each element $g\in G$ as a functor, whenever a category is specified as a $G$-category.
-
-\hfil
-
-\begin{defn}
-Let $\Cat_G$ denotes the 2-category of small $G$-categories, with (nonequivariant) functors as $1$-cells, natural transformations as $2$-cells. The hom-category between any two $G$-categories $\Cat_G(\A,\B)$ also has a natural $G$-action via conjugation.  Which, the $G$-fixed subcategory of the hom-category $[\Cat_G(\A,\B)]^G$ precisely describes all $G$-functor, or the functors $F:\A\rightarrow\B$ such that $g\circ F=F\circ g$ for all $g\in G$.
-\end{defn}
-
-\hfil
-
-Another important notion is the twisted $G$-action on products when given a group homomorphism $\alpha:G\rightarrow\Sigma_n$. Given a category $\A$, the $n$-fold product $\A^\mathbf{n}$ has a natural left $\Sigma_n$-action via permuting the coordinates; if $\A$ is a $G$-category, $\A^\mathbf{n}$ also endows a natural diagonal $G$-action. The two coordinates to give a natural left $(G\times \Sigma_n)$-action on $\A^\mathbf{n}$.
-
-\begin{defn}
-    Let $\A^{\mathbf{n}^\alpha}$ be a $G$-category with the underlying category being $\A^\mathbf{n}$, with the $G$-action defined as follow:
-    \begin{align*}
-        g\cdot_\alpha (X_1,...,X_n):= (g\cdot X_{\alpha(g)^{-1}(1)},...,g\cdot X_{\alpha(g)^{-1}(n)})
-    \end{align*}
-\end{defn}
-Another characterization can be understood as follow: Given the graph subgroup $\Gamma_\alpha:= \{(g,\alpha(g))\in G\times\Sigma_n\}_{g\in G}$, the projection $\pi_G:G\times\Sigma_n\twoheadrightarrow G$ restricts to an isomorphism $\Gamma_\alpha\xrightarrow{\sim}G$. The $\alpha$-twisted action is induced by the pullback along this isomorphism.
 
 \newpage
 
@@ -436,8 +445,14 @@ Another characterization can be understood as follow: Given the graph subgroup $
 \subsection{The Barratt-Eccels $G$-Operad $\cP_G$}
 If view each $\cP(j)$ as a $G$-trivial $G$-category, it's also an operad in $\Cat_G$. Its underlying algebra is called the \emph{naive permutative $G$-category}, as specified in \textbf{(Yet to be determined...)} it produces a naive $G$-spectrum under equivariant infinite loop space theory. In \cite{GM17}, a richer equivariant structure is introduced which produces the \emph{equivariant Barratt Eccles $G$-operad} $\cP_G$ as follow:
 \begin{defn}
-    
+    The $j$th category $\cP_G(j) := \Cat(\mathscr{E}G,\cP(j))$, with the operadic structure map determined by the fact that $\Cat(\mathscr{E}G,\_)$ preserves product:
+    \begin{align}
+        \Cat(\mathscr{E}G,\cP(k))\times \prod_{r=1}^k\Cat(\mathscr{E}G,\cP(j_r))\cong \Cat\left(\mathscr{E}G,\cP(k)\times \prod_{r=1}^k\cP(j_r)\right)\xrightarrow{\gamma\circ\_}\Cat(\mathscr{E},\cP(j))
+    \end{align}
+    Abuse of notation, we'll denote the operadic structure map as $\gamma$ again.
 \end{defn}
+
+Another formulation can be done by defining $P_G(j):= \Sets(G,\Sigma_j)$ in $\Sets$, then utilize chaotic functor promoting this to a chaotic operad $\mathscr{E}\Sets(G,\Sigma)\cong \cP_G$.
 
 \begin{comment} Let's reserve this part for future (as in the exposition I don't think it's possible to finish it)
 \subsection{$G$-Operad $\mathscr{Q}_G$ in $\Cat_G$}
@@ -571,7 +586,7 @@ We mostly follow \cite{LMRZ26} in defining $\cP_G$-pseudoalgebras.
     
     Moreover, they satisfy the following properties:
     \begin{itemize}
-        \item[(i)]\textbf{(Equivariance of $\zeta$)} For each $j$,$\zeta_j=\zeta_j\circ ((g,\sigma)\times (g,\sigma)^{-1})$ for all $(g,\sigma)\in G\times\Sigma_j$.
+        \item[(i)]\textbf{(Equivariance of $\zeta$)} For each $j$,$\zeta_j=\zeta_j\circ ((g,\sigma)\times (g,\sigma)^{-1})$ for all $(g,\sigma)\in G\times\Sigma_j$. \textbf{Check this.}
         \item[(ii)] \textbf{(Preserves Identity)} The following two pasting diagrams are equal:
         \begin{align*}
             \xymatrix{
@@ -623,7 +638,7 @@ We mostly follow \cite{LMRZ26} in defining $\cP_G$-pseudoalgebras.
 
 \hfil
 
-\subsection{Category $\F_G$ (ND)}
+\subsection{Category $\F_G$}
 
 \begin{defn}
     $\F_G$ denotes the \emph{category of based finite sets}, where the objects are $\mathbf{n}^\alpha$, set wise being the finite set $\{0,1,...,n\}$ with $0$ fixed as the basepoint, and $\alpha:G\rightarrow\Sigma_n$ is a based $G$-action on the set.
