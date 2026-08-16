@@ -298,11 +298,11 @@ Another characterization can be understood as follow: Given the graph subgroup $
 
 \newpage
 
-\section{Categorical Preliminaries: Operads (Consider cutting this section, and preserve the operad $\cP$ only)}
+\section{Operads, Operadic Algebra, and Operad $\cP$}
 \subsection{Symmetric Monoidal Categories}
 
 \begin{defn}
-    A category $\mathcal{V}$ is a \emph{monoidal category}, if there is a bifunctor $\tensor:\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ (called \emph{monoidal product}), and an object $\kappa\in\mathcal{V}$ (called \emph{unit/monoidal unit}), together with the following natural isomorphisms:
+    A category $\mathcal{V}$ is a \emph{symmetric monoidal category}, if there is a bifunctor $\tensor:\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ (called \emph{monoidal product}), and an object $\kappa\in\mathcal{V}$ (called \emph{unit/monoidal unit}), together with the following natural isomorphisms:
     \begin{itemize}
         \item The \emph{associator} $a:(\_\tensor \_)\tensor \_ \xrightarrow{\sim} \_\tensor(\_\tensor \_)$ of functors $\mathcal{V}^3\xrightarrow{\sim}\mathcal{V}$.
         \item The \emph{left unit} $\lambda:\kappa\tensor\_\xrightarrow{\sim} \Id_{\mathcal{V}}$ and the \emph{right unit} $\rho:\_\tensor \kappa\xrightarrow{\sim}\Id_\mathcal{V}$ of functors $\V\rightarrow\V$.
@@ -327,10 +327,10 @@ Another characterization can be understood as follow: Given the graph subgroup $
             (X\tensor Y)\tensor Z \ar[r]^-{a_{X,Y,Z}} \ar[d]_-{B_{X,Y}\tensor \Id_Z} & X\tensor (Y\tensor Z)\ar[r]^-{B_{X,Y\tensor Z}} & (Y\tensor Z)\tensor X \ar[d]^-{a_{Y,Z,X}}\\
             (Y\tensor X)\tensor Z \ar[r]_-{a_{Y,X,Z}} & Y\tensor (X\tensor Z) \ar[r]_-{\id_Y\tensor B_{X,Z}} & Y\tensor (Z\tensor X)
         }\]
-        \[\xymatrix{
-            X\tensor (Y\tensor Z) \ar[d]_-{\id_X\tensor B_{Y,Z}} & (X\tensor Y)\tensor Z \ar[l]_-{a_{X,Y,Z}} \ar[r]^-{B_{X\tensor Y,Z}} & Z\tensor (X\tensor Y)\\
-            X\tensor (Z\tensor Y) & (X\tensor Z)\tensor Y \ar[l]^-{a_{X,Z,Y}} \ar[r]_-{B_{X,Z}\tensor \id_Y} & (Z\tensor X)\tensor Y \ar[u]_-{a_{Z,X,Y}}
-        }\]
+        %\[\xymatrix{
+        %    X\tensor (Y\tensor Z) \ar[d]_-{\id_X\tensor B_{Y,Z}} & (X\tensor Y)\tensor Z \ar%[l]_-{a_{X,Y,Z}} \ar[r]^-{B_{X\tensor Y,Z}} & Z\tensor (X\tensor Y)\\
+        %    X\tensor (Z\tensor Y) & (X\tensor Z)\tensor Y \ar[l]^-{a_{X,Z,Y}} \ar[r]_-{B_{X,Z}\tensor \id_Y} & (Z\tensor X)\tensor Y \ar[u]_-{a_{Z,X,Y}}
+        %}\]
     \end{itemize}
 \end{defn}
 Based on \emph{Maclane's Coherence Theorem}, the above two axioms guarantees all finite sequences of $a,\lambda,\rho$ and their inverses agree, namely there is a unique isomorphism $P_1\rightarrow P_2$, where $P_i$ are (possibly) different orders of performing product on $X_1,...,X_n\in\mathcal{V}$. For details, cf. \cite{M98}.
@@ -434,14 +434,9 @@ This is called the \emph{permutativity operad in $\Cat$}, or the \emph{Barratt-E
 
 It is known in \textbf{(Yet to be determined...check sym mon cat)} that the algebras over $\cP$ is isomorphic to the permutative categories. Later on, in \textbf{(Yet to be determined...)} the concept of pseudoalgebra over $\cP$ is proposed, and in \cite{LMRZ26} it specified an equivalence between the $\cP$-pseudoalgebras and the symmetric monoidal categories, by relaxing the strict associativity/unity in $\cP$-algebras to be only up to coherent natural isomorphisms.
 
-
 \newpage
 
-\section{Equivariance Preliminaries}
-
-\newpage
-
-\section{Essential Categorical Tools (ND, consider cutting this section to only remain with the $G$-equivariance axioms)}
+\section{$G$-Operad $\cP_G$ and its Pseudoalgebra}
 \subsection{The Barratt-Eccels $G$-Operad $\cP_G$}
 If view each $\cP(j)$ as a $G$-trivial $G$-category, it's also an operad in $\Cat_G$. Its underlying algebra is called the \emph{naive permutative $G$-category}, as specified in \textbf{(Yet to be determined...)} it produces a naive $G$-spectrum under equivariant infinite loop space theory. In \cite{GM17}, a richer equivariant structure is introduced which produces the \emph{equivariant Barratt Eccles $G$-operad} $\cP_G$ as follow:
 \begin{defn}
@@ -582,11 +577,10 @@ We mostly follow \cite{LMRZ26} in defining $\cP_G$-pseudoalgebras.
             \A \ar[r]_-{\FF} & \B
         }
     \end{align*}
-    \textbf{(Guess: Want to not restrict ourselves to only equivariant 1-cells, if want so restrict to ones commuting with $G$-action)}
     
     Moreover, they satisfy the following properties:
     \begin{itemize}
-        \item[(i)]\textbf{(Equivariance of $\zeta$)} For each $j$,$\zeta_j=\zeta_j\circ ((g,\sigma)\times (g,\sigma)^{-1})$ for all $(g,\sigma)\in G\times\Sigma_j$. \textbf{Check this.}
+        \item[(i)]\textbf{(Equivariance of $\zeta$)} For each $j$,$\zeta_j=\zeta_j\circ (\sigma\times\sigma^{-1})$ for all $\sigma\in \Sigma_j$. \textbf{Check $G$-equivariance}
         \item[(ii)] \textbf{(Preserves Identity)} The following two pasting diagrams are equal:
         \begin{align*}
             \xymatrix{
@@ -634,11 +628,9 @@ We mostly follow \cite{LMRZ26} in defining $\cP_G$-pseudoalgebras.
     \end{align*}
 \end{defn}
 
-\hfil
+\newpage
 
-\hfil
-
-\subsection{Category $\F_G$}
+\section{Category $\F_G$ and its Pseudoalgebras}
 
 \begin{defn}
     $\F_G$ denotes the \emph{category of based finite sets}, where the objects are $\mathbf{n}^\alpha$, set wise being the finite set $\{0,1,...,n\}$ with $0$ fixed as the basepoint, and $\alpha:G\rightarrow\Sigma_n$ is a based $G$-action on the set.
