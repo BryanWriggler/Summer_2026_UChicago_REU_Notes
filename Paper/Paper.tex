@@ -1,63 +1,302 @@
-\documentclass{article}
-\usepackage{Self_Style}
 
-\usepackage{tikz-cd} %as a current substitution of xypic...
+\documentclass[openany, amssymb, psamsfonts]{amsart}
+\usepackage{mathrsfs,comment}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[normalem]{ulem}
+\usepackage{url}
+\usepackage[all,arc,2cell]{xy}
+\UseAllTwocells
+\usepackage{enumerate}
+%%% hyperref stuff is taken from AGT style file
+\usepackage{hyperref}  
+\hypersetup{%
+  bookmarksnumbered=true,%
+  bookmarks=true,%
+  colorlinks=true,%
+  linkcolor=blue,%
+  citecolor=blue,%
+  filecolor=blue,%
+  menucolor=blue,%
+  pagecolor=blue,%
+  urlcolor=blue,%
+  pdfnewwindow=true,%
+  pdfstartview=FitBH}   
+  
+\let\fullref\autoref
+%
+%  \autoref is very crude.  It uses counters to distinguish environments
+%  so that if say {lemma} uses the {theorem} counter, then autrorefs
+%  which should come out Lemma X.Y in fact come out Theorem X.Y.  To
+%  correct this give each its own counter eg:
+%                 \newtheorem{theorem}{Theorem}[section]
+%                 \newtheorem{lemma}{Lemma}[section]
+%  and then equate the counters by commands like:
+%                 \makeatletter
+%                   \let\c@lemma\c@theorem
+%                  \makeatother
+%
+%  To work correctly the environment name must have a corrresponding 
+%  \XXXautorefname defined.  The following command does the job:
+%
+\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+%
+%  Some standard autorefnames.  If the environment name for an autoref 
+%  you need is not listed below, add a similar line to your TeX file:
+%  
+%\makeautorefname{equation}{Equation}%
+\def\equationautorefname~#1\null{(#1)\null}
+\makeautorefname{footnote}{footnote}%
+\makeautorefname{item}{item}%
+\makeautorefname{figure}{Figure}%
+\makeautorefname{table}{Table}%
+\makeautorefname{part}{Part}%
+\makeautorefname{appendix}{Appendix}%
+\makeautorefname{chapter}{Chapter}%
+\makeautorefname{section}{Section}%
+\makeautorefname{subsection}{Section}%
+\makeautorefname{subsubsection}{Section}%
+\makeautorefname{theorem}{Theorem}%
+\makeautorefname{thm}{Theorem}%
+\makeautorefname{cor}{Corollary}%
+\makeautorefname{lem}{Lemma}%
+\makeautorefname{prop}{Proposition}%
+\makeautorefname{pro}{Property}
+\makeautorefname{conj}{Conjecture}%
+\makeautorefname{defn}{Definition}%
+\makeautorefname{notn}{Notation}
+\makeautorefname{notns}{Notations}
+\makeautorefname{rem}{Remark}%
+\makeautorefname{quest}{Question}%
+\makeautorefname{exmp}{Example}%
+\makeautorefname{ax}{Axiom}%
+\makeautorefname{claim}{Claim}%
+\makeautorefname{ass}{Assumption}%
+\makeautorefname{asss}{Assumptions}%
+\makeautorefname{con}{Construction}%
+\makeautorefname{prob}{Problem}%
+\makeautorefname{warn}{Warning}%
+\makeautorefname{obs}{Observation}%
+\makeautorefname{conv}{Convention}%
 
-\usepackage[normalem]{ulem} %for strike through
 
-\title{Inputs of Equivariant Infinite Loop Space Machines}
+%
+%                  *** End of hyperref stuff ***
+
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{prob}{Problem}[section]
+\newtheorem{conj}{Conjecture}[section]
+%\newtheorem{ass}{Assumption}[section]
+%\newtheorem{asses}{Assumptions}[section]
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{ass}{Assumption}[section]
+\newtheorem{asss}{Assumptions}[section]
+\newtheorem{ax}{Axiom}[section]
+\newtheorem{con}{Construction}[section]
+\newtheorem{exmp}{Example}[section]
+\newtheorem{notn}{Notation}[section]
+\newtheorem{notns}{Notations}[section]
+\newtheorem{pro}{Property}[section]
+\newtheorem{quest}{Question}[section]
+\newtheorem{rem}{Remark}[section]
+\newtheorem{warn}{Warning}[section]
+\newtheorem{sch}{Scholium}[section]
+\newtheorem{obs}{Observation}[section]
+\newtheorem{conv}{Convention}[section]
+
+%%%% hack to get fullref working correctly
+\makeatletter
+\let\c@obs=\c@thm
+\let\c@cor=\c@thm
+\let\c@prop=\c@thm
+\let\c@lem=\c@thm
+\let\c@prob=\c@thm
+\let\c@con=\c@thm
+\let\c@conj=\c@thm
+\let\c@defn=\c@thm
+\let\c@notn=\c@thm
+\let\c@notns=\c@thm
+\let\c@exmp=\c@thm
+\let\c@ax=\c@thm
+\let\c@pro=\c@thm
+\let\c@ass=\c@thm
+\let\c@warn=\c@thm
+\let\c@rem=\c@thm
+\let\c@sch=\c@thm
+\let\c@equation\c@thm
+\numberwithin{equation}{section}
+\makeatother
+
+%Self notation
+%%Notations for Project
+\newcommand{\Cat}{\mathbf{Cat}} %the 2-category of small category
+\newcommand{\SymMon}{\mathbf{SymMon}} %2-category of sym mon cat, with lax functors and natural transforms
+\newcommand{\PsAlg}{\mathbf{PsAlg}} %the pseudo-alg 
+\newcommand{\PsFun}{\mathbf{PsFun}} %the pseudo-functor
+\newcommand{\vs}{\mathrm{vs}} %very special
+\newcommand{\Sets}{\mathbf{Set}} %cat of sets
+\newcommand{\Q}{\mathscr{Q}} %Q operad (used for Q_G)
+\newcommand{\F}{\mathscr{F}} %F cat of finite sets (used for F_G)
+\newcommand{\cP}{\mathscr{P}} %P operad (used for P_G also), stands for curly P
+\newcommand{\cO}{\mathscr{O}} %operad in general
+%used for $G$-categories
+\newcommand{\M}{\mathscr{M}} %associativity operad
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\B}{\mathscr{B}} 
+\newcommand{\V}{\mathscr{V}} %general labels for symm mon cat
+\newcommand{\C}{\mathscr{C}} 
+\newcommand{\U}{\mathscr{U}}
+
+%%common commands (add to template)
+%general
+\newcommand{\FF}{\mathbb{F}} %field F
+\newcommand{\NN}{\mathbb{N}} %natural number
+\newcommand{\ZZ}{\mathbb{Z}} %integer
+\newcommand{\QQ}{\mathbb{Q}} %rational field
+\newcommand{\RR}{\mathbb{R}} %real field
+\newcommand{\CC}{\mathbb{C}} %complex field
+\newcommand{\KK}{\mathbb{K}} %field K
+\newcommand{\GG}{\mathbb{G}} %for some functor
+
+\newcommand{\id}{\mathrm{id}} %identity
+\newcommand{\Id}{\mathrm{Id}} %big identity
+\newcommand{\lcm}{\mathrm{lcm}} %least common multiple
+\newcommand{\tensor}{\otimes} %tensor
+\newcommand{\bigtensor}{\bigotimes} %big tensor
+
+%algebra
+\newcommand{\Gal}{\mathrm{Gal}} %galois extension
+\newcommand{\Aut}{\mathrm{Aut}} %automorphism
+\newcommand{\End}{\mathrm{End}} %endomorphism
+\newcommand{\Hom}{\mathrm{Hom}} %set of morphism
+\newcommand{\Mor}{\mathrm{Mor}} %set of morphisms (in general category, lang)
+\newcommand{\Nil}{\mathrm{Nil}} %nilradical in commutatitive ring
+\newcommand{\Ann}{\mathrm{Ann}} %annihilator (as ideal in commutative ring)
+\newcommand{\Char}{\mathrm{char}} %characteristic
+\newcommand{\coker}{\mathrm{coker}} %coker
+%\let\im\undefined
+\newcommand{\im}{\mathrm{im}} %image
+\newcommand{\Spec}{\mathrm{Spec}} %spectrum (used in either operator theory, or spectrum as Zariski Topology)
+\newcommand{\coim}{\mathrm{coim}} %coimage in homological algebra
+%\newcommand{\span}{\mathrm{span}} %span in linear algebra
+\newcommand{\Orb}{\mathrm{Orb}}%orbit in group theory
+\newcommand{\Ob}{\mathrm{Ob}}%object in cat theory
+
+%category theory
+\newcommand{\cat}[1]{\mathsf{#1}} %general category font command
+\newcommand{\Grp}{\mathsf{Grp}} %cat of group
+\newcommand{\Ab}{\mathsf{Ab}} %cat of abel group
+\newcommand{\Ring}{\mathsf{Ring}} %cat of ring
+\newcommand{\CRing}{\mathsf{CRing}} %cat of comm ring
+\newcommand{\Fld}{\mathsf{Fld}} %cat of field
+\newcommand{\RMod}{\mathsf{R}\text{-}\mathsf{Mod}} %cat of R-Mod
+\newcommand{\BiMod}{\mathsf{BiMod}} %cat of abel group
+\newcommand{\RAlg}{\mathsf{R}\text{-}\mathsf{Alg}} %cat of R-Alg
+\newcommand{\Vect}[1]{\mathsf{Vect}_\mathsf{#1}} %cat of vector spaces
+\newcommand{\Top}{\mathsf{Top}} %cat of topological spaces
+\newcommand{\hTop}{\mathsf{hTop}} %cat of topological spaces with homotopic classes of continuous maps
+\newcommand{\Op}{\mathrm{op}}%for opposite category's notation
+%\newcommand{\Sets}{\mathsf{Set}} %cat of sets
+%\newcommand{\Cat}{\mathsf{Cat}} %cat of small cat
+\newcommand{\Ch}[1]{\mathsf{Ch(#1)}} %cat of chain complex / cochain complex over an abelian category
+\newcommand{\D}[1]{\mathsf{D(#1)}} %derived category
+\newcommand{\Met}{\mathsf{Met}} %cat of metric spaces
+\newcommand{\colim}{\mathrm{colim}}
+
+%Lie Group / Lie Algebra
+\newcommand{\GL}{\mathrm{GL}} %general linear
+\newcommand{\SL}{\mathrm{SL}} %special linear
+%\newcommand{\U}{\mathrm{U}} %unitary
+\newcommand{\SO}{\mathrm{SO}} %special orthogonal
+\newcommand{\SU}{\mathrm{SU}} %special unitary
+\newcommand{\gl}{\mathfrak{gl}}
+\let\sl\undefined
+\newcommand{\sl}{\mathfrak{sl}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\su}{\mathfrak{su}}
+
+%analysis
+\newcommand{\Vol}{\mathrm{Vol}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\Supp}{\mathrm{Supp}} %used for support, but can be in a lot of other use, like support in a spectrum of a commutative ring
+
+%complex
+\newcommand{\Real}{\mathrm{Re}} %real part
+\newcommand{\Imag}{\mathrm{Im}} %imaginary part
+%\newcommand{\Res}{\mathrm{Res}} %residue
+\newcommand{\Holo}{\mathcal{O}} %represent holomorphic / analytic function
+\newcommand{\Mero}{\mathcal{M}} %represent meromorphic function
+
+
+%physics
+\newcommand{\bR}{\mathbf{R}} %upper case position...for center of mass
+\newcommand{\br}{\mathbf{r}} %position
+\newcommand{\bv}{\mathbf{v}} %velocity
+\newcommand{\ba}{\mathbf{a}} %acceleration
+\newcommand{\bg}{\mathbf{g}} %gravity acceleration
+\newcommand{\bs}{\mathbf{s}} %sometimes for extra position
+\newcommand{\bF}{\mathbf{F}} %force
+\newcommand{\bP}{\mathbf{P}} %momentum
+\newcommand{\bp}{\mathbf{p}} %momentum operator in QM (or relativistic fourmomentum)
+\newcommand{\bk}{\mathbf{k}} %wavevector
+\newcommand{\bE}{\mathbf{B}} %electric field
+\newcommand{\bB}{\mathbf{B}} %magnetic field
+\newcommand{\bL}{\mathbf{L}} %angular momentum
+\newcommand{\bS}{\mathbf{S}} %spin (QM)
+\newcommand{\bJ}{\mathbf{J}} %total angular momentum
+\newcommand{\bN}{\mathbf{N}} %torque
+\newcommand{\bw}{\boldsymbol{\omega}} %angular velocity
+\newcommand{\bOmega}{\boldsymbol{\Omega}} %big angular velocity
+\newcommand{\bzero}{\mathbf{0}} %zero vector
+\newcommand{\anti}{\mathrm{anti}} %antisymmetric
+\newcommand{\symm}{\mathrm{symm}} %symmetric
+
+%Probability
+\newcommand{\PP}{\mathbb{P}} %probability function
+\newcommand{\EE}{\mathbb{E}} %expectation value
+\newcommand{\Var}{\mathrm{Var}} %use for variance
+\newcommand{\Bin}{\mathrm{Bin}} %binomial distribution
+\newcommand{\Ber}{\mathrm{Ber}} %bernoulli distribution
+\newcommand{\Poi}{\mathrm{Poi}} %poisson distribution
+\newcommand{\Unif}{\mathrm{Unif}} %uniform distribution
+\newcommand{\Exp}{\mathrm{Exp}} %exponential distribution
+\newcommand{\Cov}{\mathrm{Cov}} %covariance
+\newcommand{\Corr}{\mathrm{Corr}} %correlation
+\newcommand{\Beta}{\mathrm{Beta}} %beta distribution
+\newcommand{\GammaD}{\mathrm{Gamma}} %gamma distribution
+%
+
+\bibliographystyle{plain}
+
+%--------Meta Data: Fill in your info------
+\title{Inputs for Equivariant Infinite Loop Space Machine}
+
 \author{Zih-Yu Hsieh}
-\date{\today}
+
+%\date{DEADLINES: Draft AUGUST 14 and Final version AUGUST 28, 2024}
 
 \begin{document}
-\maketitle
-\tableofcontents
 
-%Here I tried to contain all possible details / definitions. I'll see which ones are supposed to be cut eventually. For some of the stuffs that can be omitted, check the SymMonCat paper for reference.
-
-\newpage
-
-\section{Abstract}
+\begin{abstract}
 
 Symmetric monoidal categories are central studies in modern algebraic topology, for instance $K$-theory relies on constructing spectra with suitable homotopy groups out of symmetric monoidal categories using the infinite loop space machine. It's known that the two inputs - pesudoalgebra over an operad $\cP$, or suitable categories described by based finite sets $\F$ - are equivalent description for symmetric monoidal categories. 
 
 Within equivariant $K$-theory, similar machineries have been established, where the input for constructing $G$-spectra are described by pseudoalgebra over an operad $\cP_G$ as $G$-categories, or categories described by based finite $G$-sets $\F_G$. The equivalence of the two within equivariant case is a natural question to ask, and associates to the question of ``what is symmetric monoidal $G$-categories''.
 
 We'll provide an exposition on the two inputs by collecting the axioms scattered (or implicitly assumed) in varioius literatures, while describe some equivariance properties of the two inputs.
-% and establish a 2-functor $\RR_G$ generating $\F_G$-pseudoalgebra from $\cP_G$-pseudoalgebra, relating the two.
-
-\section{Introduction (ND)}\label{sec_Intro}
 
 
-\begin{comment}
-\textbf{Fix $G$ as a finite group.} Let $P_G$ be the \emph{associativity $G$-operad} in $\Sets_G$, defined by $P_G(n):= \Sets(G,\Sigma_n)$, with structure maps defined by post composition
-\begin{align*}
-    \gamma:\Sets(G,\Sigma_k)\times \prod_{r=1}^k\Sets(G,\Sigma_{j_r})\cong \Sets\left(G,\Sigma_k\times \prod_{r=1}^k \Sigma_{j_r}\right)\xrightarrow{\ \gamma\circ\_\ }\Sets(G,\Sigma_j),
-\end{align*},
-where $j=\sum_{r=1}^k j_r$, and $\gamma:\Sigma_k\times \prod_{r=1}^k \Sigma_{j_r}\rightarrow \Sigma_j$ is the structure map for associativity operad $\mathscr{M}$ in $\Sets$. This is naturally a free $(G\times\Sigma)$-operad, as the right $(G\times \Sigma_n)$-action at each $P_G(n)$ is free.
+\end{abstract}
 
-However, it is mentioned in \cite{BBKO21} that such $G$-operad is not finitely generated, as a rough explanation, for every $n\in\NN$, there exists $m>n$ and a function $f:G\rightarrow \Sigma_m$, such that it cannot be generated using $\{P_G(k)\}_{k\leq n}$ with the operadic structure map and the $(G\times \Sigma)$-actions.
+\maketitle
 
-\hfil
+\tableofcontents
 
-As a substitution, \cite{BBKO21} defines a finitely-generated suboperad $Q_{G,\mathfrak{D}}\hookrightarrow P_G$ (for some parameter $\mathfrak{D}$ that's associated with choice of transitive $G$-sets), such that after chaotic generalization the two are equivalent in $\Cat_G$, and having equivalent categories of operadic algebras.
-
-We'll mimic the statement, define an intermediate operad $Q_{G,\mathfrak{D}}\hookrightarrow Q_G\hookrightarrow P_G$, promote it to $\cP_G$ in $\Cat_G$, and \emph{attempt to} modify the proof in \cite{LMRZ26} to show the equivalence of 2-categories between $\cP_G$-$\PsAlg$ and $\F_{G,\RR}$-$\PsAlg$. 
-
-\textbf{Future task (assume this works):} Prove the equivalence of operads/algebras/pseudoalgebras with the original permuativity $G$-operad.
-
-\hfil
-
-\textbf{Current Goal:} Add in extra axioms, so that there exist two $2$-functors 
-\begin{align*}
-    \RR_G:\cP_G\text{-}\PsAlg \leftrightarrows \F_{G,\RR,\_}\text{-}\PsAlg:\QQ_G
-\end{align*}
-inducing an isomorphism of (strict) 2-categories. Here, $\_$ is some (yet to be determined) axiom.
-
-\hfil
-\end{comment}
-
-\newpage
 
 \section{Categorical Preliminaries}\label{sec_CatPrelim}
 \subsection{2-Categories}\label{sub_2_cat}
@@ -277,7 +516,7 @@ Another important notion is the twisted $G$-action on products when given a grou
         g\cdot_\alpha (X_1,...,X_n):= (g\cdot X_{\alpha(g)^{-1}(1)},...,g\cdot X_{\alpha(g)^{-1}(n)})
     \end{align*}
 \end{defn}
-Another characterization can be understood as follow: Given the graph subgroup $\Gamma_\alpha:= \{(g,\alpha(g))\in G\times\Sigma_n\}_{g\in G}$, the projection $\pi_G:G\times\Sigma_n\twoheadrightarrow G$ restricts to an isomorphism $\Gamma_\alpha\xrightarrow{\sim}G$. The $\alpha$-twisted action is induced by the pullback along this isomorphism.
+Another characterization can be understood as follow: Given $\alpha$'s graph subgroup $\Gamma_\alpha:= \{(g,\alpha(g))\in G\times\Sigma_n\}_{g\in G}$, the projection $\pi_G:G\times\Sigma_n\rightarrow G$ restricts to an isomorphism $\Gamma_\alpha\xrightarrow{\sim}G$. The $\alpha$-twisted action is induced by the pullback along this isomorphism.
 
 \hfil
 
@@ -755,162 +994,36 @@ For (iii), the main problem for equivariant case is: Not every map can be expres
 
 %\subsection{Extension to 2-functor}
 
-\newpage
 
-\begin{comment} REMARK: This section is wrong, because one of the original equivariance axioms destroy all information on $G$-equivariance, shouldn't be used.
-\section{Counterexample: $\F_{G,\RR}$-pseudoalgebra that's not $\cP_G$-pseudoalgebra}
+\section*{Acknowledgments}  You should thank anyone who deserves thanks, and for sure you should
+thank your mentor.   ``It is a pleasure to thank my mentor, 
+his/her name, for ....  ".   Or add anyone else, for example ``I thank [another participant] for helping 
+me understand [something or other]"
 
-Here we fix the group $G:=\ZZ/2\ZZ$. Which, we have $\cP_G(1)=\cP_G(1) = *$, in particular $G\times \Sigma_1\cong G$ has trivial action on these. This leads to the following properties of $\cP_G$ or $\cP_G$-pseudoalgebra:
-
-\begin{prop}
-    For any $\cP_G$-pseudoalgebra $\A$, any $G$-action $g:\A\xrightarrow{\sim} \A$ is naturally isomorphic to the identity functor $\Id_\A$.
-\end{prop}
-\begin{proof}
-    Pasting the unitality and equivariance diagram together, we get the following naturality diagram:
-    \begin{align}
-        \xymatrix{
-            \A \ar@(dl,l)[ddr]_-{\Id_\A} \ar[dr]^-{\iota} \ar[rrrr]^-{g^{-1}} &&&& \A \ar[dl]_-{\iota} \ar@(dr,r)[ddl]^-{\Id_\A}\\
-            &\cP_G(1)\times\A \ar@{=>}[l]^-{\phi_1} \ar[d]_-{\theta_1} \ar[rr]^-{g\times g^{-1}} && \cP_G(1)\times\A \ar[d]^-{\theta_1} \ar@{<=}[r]_-{\phi_1^{-1}} & \\
-            &\A \ar@{=}[rr] && \A
-        }
-    \end{align}
-    Here, the top trapezoid commutes because $G$ acts trivially on $\cP_G(1)$. This identifies a natural isomorphism as follow:
-    \begin{align}
-        g^{-1}=\Id_\A\circ g^{-1} \xRightarrow{\phi_1^{-1}*\id_{g^{-1}}} (\theta_1\circ\iota)\circ g^{-1} = \theta_1\circ (g\times g^{-1})\circ \iota = \theta_1\circ \iota \xRightarrow{\phi_1} \Id_\A
-    \end{align}
-\end{proof}
-%Self note: In particular, this extends the $G$-action $G\rightarrow \Aut_{\Cat_G}(\A)$ into a functor $\mathscr{E}G\rightarrow \Aut_{\Cat_G}(\A)$.
-
-\hfil
-
-To construct a counterexample for our fixed $G$, it suffices to find an $\F_{G,\RR}$-pseudoalgebra that doesn't have the above property. Here, we largely use the fact that for two naturally isomorphic functors, if the target category is discrete, the two functors must be equal.
-
-\begin{con}
-Let $\A:=\{0,1\}$ denotes the discrete category with $2$ objects, which a $G$-action on $\A$ is specified by its action on the objects due to its discreteness. Define a $G$-action on $\A$ given by 
-\begin{align}
-    &H_0:\A\xrightarrow{\sim}\A,\quad H_0(0)=0,\ H_0(1)=1\\
-    &H_1:\A\xrightarrow{\sim}\A,\quad H_1(0)=1,\ H_1(1)=0,
-\end{align}
-Which, $H_0^2=H_0$, $H_0\circ H_1=H_1\circ H_0$, and $H_1^2=H_0$, so $H_0,H_1$ satisfies the relations of $G=\ZZ/2\ZZ$, hence inducing a $G$-action on $\A$.
-
-\hfil
-
-Define $\B:\F_G\rightarrow \Cat_G$ given by $\B(\mathbf{n}^\alpha):=\A^{\mathbf{n}^\alpha}$ (with underlying category $\A^n$, a discrete category with $2^n$ objects), and for any morphism $f:\mathbf{n}^\alpha\rightarrow\mathbf{m}^\beta$, define $\Bf:\A^{\mathbf{n}^\alpha}\rightarrow\A^{\mathbf{m}^\beta}$ by 
-\begin{align}
-    \Bf\left((a_i)_{i=1,...,n}\right):= \left(\sum_{i\in f^{-1}(j)}a_i\ \mathrm{mod}\ 2 \right)_{j=1,...,m},
-\end{align}
-for special case where $f^{-1}(j)=\emptyset$, define the $j$th entry as $0$.
-
-To check it preserves composition up to coherent natural isomorphism, consider $\mathbf{n}^\alpha\xrightarrow{f}\mathbf{m}^\beta\xrightarrow{g}\mathbf{k}^\gamma$ in $\F_G$, then $\B(g\circ f):\B^{\mathbf{n}^\alpha}\rightarrow\B^{\mathbf{m}^\beta}$ is given as follow:
-\begin{align}
-    \B(g\circ f)((a_i)_{i=1,...,n}) &= \left(\sum_{i\in (g\circ f)^{-1}(\ell)}a_i\ \mathrm{mod}\ 2\right)_{\ell=1,...,k}\\
-    &= \left(\sum_{i\in f^{-1}(g^{-1}(\ell))}a_i\ \mathrm{mod}\ 2\right)_{\ell=1,...,k}\\
-    &= \left(\sum_{j\in g^{-1}(\ell)}\left(\sum_{i\in f^{-1}(j)}a_i\ \mathrm{mod}\ 2\right)\ \mathrm{mod}\ 2\right)_{\ell=1,...,k}\\
-    &= \Bg\left(\left(\sum_{i\in f^{-1}(j)}a_i\ \mathrm{mod}\ 2\right)_{j=1,...,m}\right)\\
-    &= \Bg\left(\Bf((a_i)_{i=1,...,k})\right)
-\end{align}
-(Here, the well-defineness of the function heavily relies on the assumption that if $f^{-1}(j)=\emptyset$, the corresponding sum is $0$). In particular, $\B(g\circ f) = \Bg\circ \Bf$, so $\B$ is a functor (or an $\F_G$-algebra), and since each $\B(\mathbf{n}^\alpha):= \A^{\mathbf{n}^\alpha}$, it's in fact an $\F_{G,\RR}$-algebra.
-
-Yet, since $\A$ is discrete, with $H_0,H_1$ being distinct functors on $\A$, we see that not all the $G$-actions on $\A$ are naturally isomorphic to $\Id_\A$, violating the property described in previous proposition. Hence, $\A$ cannot be a $\cP_G$-pseudoalgebra, or even a $\cP_G$-pseudoalgebra due to the same reasoning.
-\end{con}
-
-\hfil
-
-This shows that the functor $\RR_G:\cP_G$-$\PsAlg\rightarrow \F_G$-$\PsAlg$ is not essentially surjective, hence cannot be an equivalence of categories. Same statement holds true for $\cP_G$-$\PsAlg$.
-
-\hfil
-
-\subsection{Extra Axioms Required on $\F_G$-$\PsAlg$}
-
-Possible things to assume: the $1$st-space $\A:=\B(\mathbf{1})$ should have a \emph{chaotic $G$-actions}, meaning any $g\in G$ should describe an isomorphism functor $g:\A\xrightarrow{\sim}\A$, such that $g,\Id_\A$ are naturally isomorphic.
-
-\textbf{Question:} This is necessary, but is it sufficient?
-
-\newpage
-
-\section{Reference}
-\end{comment}
+\section{bibliography}  The bibliography should list all sources that you have used and referenced.
+And you should reference anything you use.   Especially if you quote any result without proof, you MUST
+give a reference.   And never ever should you copy material directly or more or less directly, from a source.
+If you include a figure or diagram from some source, that source should be identified.
 
 \begin{thebibliography}{9}
 
-\bibitem{BBKO21}
-K. Bangs, S. Binegar, Y. Kim, K. Ormsby, A. M. Osorno, D. Tamas-Parris and L. Xu.
-Biased Permutative Equivariant Categories.
-Homology, Homotopy and Applications, vol. 23.
-2021.
-https://arxiv.org/abs/1907.00933
+\bibitem{ams} http://www.ams.org/publications/authors/tex/amslatex
 
-%\bibitem{BP20}
-%P. Bonventre, L. A. Pereira.
-%Genuine Equivariant Operads.
-%Available as ArXiv:0717.02226, 2020.
+\bibitem{amsshort}
+Michael Downes.
+Short Math Guide for \LaTeX.
+http://tex.loria.fr/general/downes-short-math-guide.pdf
 
-\bibitem{CG14}
-A. S. Corner, N. Gurski.
-Operads with gerneral groups of equivariance, and some 2-categorical aspects of operads in $\Cat$.
-Available as arXiv:1312.5910v2, 2014.
+\bibitem{May}
+J. P. May.
+A Concise Course in Algebraic Topology.
+University of Chicago Press. 1999. 
 
-\bibitem{GM17}
-B. J. Guillou and J. P. May.
-Equivariant iterated loop space theory and permutative $G$-categories.
-\emph{Algebr. Geom. Topol.}, 17(6):3259-3339, 2017.
-
-\bibitem{GMMO18}
-B. J. Guillou, J. P. May, M. Merling, A. M. Osorno.
-A symmetric monoidal and equivariant segal infinite loop space machine.
-Available as arXiv:1711.09183, 2018.
-
-\bibitem{GMMO20}
-B. J. Guillou, J. P. May, M. Merling, A. M. Osorno.
-Symmetric monoidal $G$-categories and their strictification.
-\emph{Q. J. Math.}, 71(1):207-246, 2020.
-
-\bibitem{GMMO21}
-B. J. Guillou, J. P. May, M. Merling, A. M. Osorno.
-Multiplicative equivariant $K$-Theory and the Barratt-Priddy-Quillen theorem.
-Available as arXiv:2102.13246, 2021.
-
-\bibitem{JY21}
-N. Johnson, D. Yau.
-\emph{2-dimensional categories}.
-Oxford University Press, Oxford, 2021.
-
-%\bibitem{KMZ26}
-%H. J. Kong, J. P. May, F. Zou.
-%Orbital Presheaves in Equivariant Infinite Loop Space Theory.
-%Available as ArXiv:2607.12141, 2026.
-
-\bibitem{LMRZ26}
-J. Liu, J. P. May, K. I. Roke, H. Zhang and K. Zhou.
-What are symmetric monoidal categories?
-Available as arXiv:2607.13912, 2026.
-
-\bibitem{M72}
-J. P. May. $E_\infty$ spaces, group completions, and permutative categories. In \emph{New Development in Topology (Proc. Sympos. Algebraic Topology, Oxford, 1972)}, pages 61-93. London Math. Soc. Lecture Note Ser., No. 11. Cambridge Univ. Press, London, 1974.
-
-\bibitem{M97}
-J. P. May. Operads, algebras and modules. In \emph{Operads: Proceedings of Renaissance Conferences (Hartford, CT/Luminy, 1995)}, volume 202 of \emph{Contemp. Math.}, pages 15-31. Amer. Math. Soc., Providence, RI, 1997. 
-
-\bibitem{M98}
-S. Mac Lane.
-\emph{Categories for the working mathematician}, volume 5 of \emph{Graduate Texts in Mathematics}. Springer-Verlag, New York, 2nd edition, 1998.
-
-\bibitem{MMO25}
-J. P. May, M. Merling, and A. M. Osorno.
-Equivariant infinite loop space theory, the space level theory.
-Available as arXiv:1704.03413, 2025.
-
-\bibitem{R16}
-E. Riehl.
-\emph{Category theory in context}. Courier Dover Publications, 2016.
-
-\bibitem{S89}
-K. Shimakawa. 
-Infinite loop $G$-spaces associated to monoidal $G$-graded categories.
-Publ. Res. Inst. Math. Sci 25, no. 2, pp. 239-262, 1989.
-
-\bibitem{Y24}
-D. Yau. Multifunctorial equivariant algebraic $K$-theory. Available as arXiv:2404.02794, 2024.
+\bibitem{notsoshort}
+Tobias Oekiter, Hubert Partl, Irene Hyna and Elisabeth Schlegl.
+The Not So Short Introduction to \LaTeX 2e.
+https://tobi.oetiker.ch/lshort/lshort.pdf
 
 \end{thebibliography}
+
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  15 AUG 2026 17:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  19 AUG 2026 06:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -759,185 +759,164 @@ Package xypdf Info: Line width: 0.39998pt on input line 12.
 
  [1
 
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (10.81844pt too wide) in paragraph at lines 26--27
-[]\OT1/cmr/m/n/10 We'll pro-vide an ex-po-si-tion on the two in-puts, and es-tab-lish a 2-functor $\U/msb/m/n/10 R[]$ \OT1/cmr/m/n/10 that gen-er-ates $\U/rsfs/m/n/10 F[]$\OT1/cmr/m/n/10 -pseudoalgebra
- []
-
-LaTeX Font Info:    Trying to load font information for U+euf on input line 40.
-(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/ueuf.fd
-File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [2] Excluding 'comment' comment. [3] <xymatrix 3x2 246> <xymatrix 3x2 246> <xymatrix 3x1 154> <xymatrix 3x1 154> <xymatrix 3x3 434> <xymatrix 3x3 434> <xymatrix 3x3 434> <xymatrix 3x3 434> <xymatrix 3x3 294> <xymatrix 3x3 294> <xymatrix 3x3 294> <xymatrix 3x3 294> [4] <xymatrix 2x2 238> <xymatrix 2x2 238> <xymatrix 4x3 526> <xymatrix 4x3 394> <xymatrix 4x3 526> <xymatrix 4x3 394> <xymatrix 3x3 342> <xymatrix 3x3 386> <xymatrix 3x3 342> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> [5]
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] Excluding 'comment' comment. [2] Excluding 'comment' comment. <xymatrix 3x2 246> <xymatrix 3x2 246> <xymatrix 3x1 154> <xymatrix 3x1 154> <xymatrix 3x3 434> <xymatrix 3x3 434> <xymatrix 3x3 434> <xymatrix 3x3 434> [3] <xymatrix 3x3 294> <xymatrix 3x3 294> <xymatrix 3x3 294> <xymatrix 3x3 294> <xymatrix 2x2 238> <xymatrix 2x2 238> <xymatrix 4x3 526> <xymatrix 4x3 394> <xymatrix 4x3 526> <xymatrix 4x3 394> [4] <xymatrix 3x3 342> <xymatrix 3x3 386> <xymatrix 3x3 342> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386>
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 267.
+(hyperref)                removing `math shift' on input line 250.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 267.
+(hyperref)                removing `math shift' on input line 250.
 
-[6{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 301.
-
+[5{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [6] [7]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 301.
-
-<xymatrix 3x2 154> <xymatrix 3x3 254> <xymatrix 3x2 290> <xymatrix 3x2 154> <xymatrix 3x2 154> [7] <xymatrix 3x3 258> <xymatrix 3x2 202> <xymatrix 3x2 199> <xymatrix 2x2 194> [8] <xymatrix 4x3 262> <xymatrix 3x2 154> <xymatrix 3x2 154>
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 418.
+(hyperref)                removing `math shift' on input line 317.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 418.
+(hyperref)                removing `math shift' on input line 317.
 
-[9] [10]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 439.
-
+<xymatrix 3x2 154> <xymatrix 3x3 254> <xymatrix 3x2 290> [8] <xymatrix 3x2 154> <xymatrix 3x2 154> <xymatrix 3x3 258> <xymatrix 3x2 202> <xymatrix 3x2 199> Excluding 'comment' comment. <xymatrix 3x3 258> [9] <xymatrix 3x2 154> <xymatrix 3x2 154>
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 439.
+(hyperref)                removing `math shift' on input line 444.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 439.
+(hyperref)                removing `math shift' on input line 444.
+
+[10]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 439.
+(hyperref)                removing `math shift' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 439.
+(hyperref)                removing `math shift' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 440.
+(hyperref)                removing `subscript' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 440.
+(hyperref)                removing `math shift' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 440.
+(hyperref)                removing `math shift' on input line 454.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 440.
+(hyperref)                removing `math shift' on input line 454.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 440.
+(hyperref)                removing `math shift' on input line 454.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 454.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 454.
 
 Excluding 'comment' comment.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 470.
+(hyperref)                removing `math shift' on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 470.
+(hyperref)                removing `subscript' on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 470.
+(hyperref)                removing `math shift' on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 470.
+(hyperref)                removing `math shift' on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 470.
+(hyperref)                removing `math shift' on input line 484.
 
-<xymatrix 2x2 190> <xymatrix 2x2 190> <xymatrix 3x3 302> <xymatrix 3x3 302> <xymatrix 3x2 202> <xymatrix 3x2 202> [11] <xymatrix 3x4 523> <xymatrix 3x4 523>
-Overfull \hbox (17.71541pt too wide) detected at line 522
+<xymatrix 2x2 190> <xymatrix 2x2 190> <xymatrix 3x3 302> <xymatrix 3x3 302> <xymatrix 3x2 154> <xymatrix 3x2 202> <xymatrix 3x2 154> <xymatrix 3x2 202> [11] <xymatrix 3x4 523> <xymatrix 3x4 523>
+Overfull \hbox (17.71541pt too wide) detected at line 541
 []
  []
 
 <xymatrix 3x4 522> <xymatrix 3x4 522>
-Overfull \hbox (19.93602pt too wide) detected at line 531
+Overfull \hbox (19.93602pt too wide) detected at line 550
 []
  []
 
 <xymatrix 3x3 342> <xymatrix 3x3 342> [12] <xymatrix 4x3 430> <xymatrix 4x3 430> <xymatrix 3x2 334> <xymatrix 3x2 334> <xymatrix 2x3 342> <xymatrix 2x3 342> <xymatrix 2x2 238> <xymatrix 2x2 238> [13] <xymatrix 3x3 502> <xymatrix 3x2 334> <xymatrix 3x3 502> <xymatrix 3x2 334> <xymatrix 4x4 578> <xymatrix 4x4 578>
-Overfull \hbox (26.0685pt too wide) detected at line 603
+Overfull \hbox (26.0685pt too wide) detected at line 628
 []
  []
 
-<xymatrix 4x4 542> <xymatrix 4x4 542> <xymatrix 2x2 374> <xymatrix 2x2 374> <xymatrix 2x2 374> <xymatrix 2x2 374> [14]
+<xymatrix 4x4 542> <xymatrix 4x4 542> <xymatrix 2x3 378> <xymatrix 2x3 378> <xymatrix 2x3 378> <xymatrix 2x3 378> [14] [15]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 633.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 633.
+(hyperref)                removing `math shift' on input line 660.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 633.
+(hyperref)                removing `subscript' on input line 660.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 652.
+(hyperref)                removing `math shift' on input line 660.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 652.
+(hyperref)                removing `math shift' on input line 684.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 652.
+(hyperref)                removing `subscript' on input line 684.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 652.
+(hyperref)                removing `math shift' on input line 684.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 652.
-
-<xymatrix 3x2 382> <xymatrix 3x2 382> <xymatrix 3x2 382> <xymatrix 3x2 382> [15] [16]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 696.
+(hyperref)                removing `math shift' on input line 684.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 696.
+(hyperref)                removing `math shift' on input line 684.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 696.
-
-[17] Excluding 'comment' comment. [18] (./Proof.aux)
+[16] <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> [17] [18] Excluding 'comment' comment. [19] (./Proof.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `Proof.out' has not changed.
-(rerunfilecheck)             Checksum: CE323B35379B9B9BBB29D1F956383C3D;4230.
+(rerunfilecheck)             Checksum: 7C1ED2FC484E205832F6DCCD85E8C85C;3455.
  ) 
 Here is how much of TeX's memory you used:
- 28032 strings out of 474116
- 503627 string characters out of 5743681
- 1971187 words of memory out of 5000000
- 49806 multiletter control sequences out of 15000+600000
- 574873 words of font info for 108 fonts, out of 8000000 for 9000
+ 28033 strings out of 474116
+ 503530 string characters out of 5743681
+ 1970187 words of memory out of 5000000
+ 49809 multiletter control sequences out of 15000+600000
+ 571809 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,23n,107p,3289b,1074s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xyatip10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xybtip10.pfb>
-Output written on Proof.pdf (18 pages, 384363 bytes).
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xyatip10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xybtip10.pfb>
+Output written on Proof.pdf (19 pages, 376680 bytes).
 PDF statistics:
- 413 PDF objects out of 1000 (max. 8388607)
- 327 compressed objects within 4 object streams
- 84 named destinations out of 1000 (max. 500000)
- 165 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 415 PDF objects out of 1000 (max. 8388607)
+ 332 compressed objects within 4 object streams
+ 88 named destinations out of 1000 (max. 500000)
+ 149 words of extra memory for PDF output out of 10000 (max. 10000000)
 

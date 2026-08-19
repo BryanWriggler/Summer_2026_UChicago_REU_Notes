@@ -1,0 +1,737 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  19 AUG 2026 06:42
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/Users/hsieh/Desktop/Summer_2026_UChicago_REU_Notes/Paper/Paper
+(/Users/hsieh/Desktop/Summer_2026_UChicago_REU_Notes/Paper/Paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-02-20>
+(/usr/local/texlive/2024/texmf-dist/tex/latex/amscls/amsart.cls
+Document Class: amsart 2020/05/29 v2.20.6
+\linespacing=\dimen140
+\normalparindent=\dimen141
+\normaltopskip=\skip48
+(/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2023/05/13 v2.17o AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks17
+\ex@=\dimen142
+)) (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen143
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count188
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count189
+\leftroot@=\count190
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count191
+\DOTSCASE@=\count192
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box51
+\strutbox@=\box52
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen144
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count193
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count194
+\dotsspace@=\muskip16
+\c@parentequation=\count195
+\dspbrk@lvl=\count196
+\tag@help=\toks18
+\row@=\count197
+\column@=\count198
+\maxfields@=\count199
+\andhelp@=\toks19
+\eqnshift@=\dimen145
+\alignsep@=\dimen146
+\tagshift@=\dimen147
+\tagwidth@=\dimen148
+\totwidth@=\dimen149
+\lineht@=\dimen150
+\@envbody=\toks20
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 397.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+
+
+Package amsfonts Warning: The 'psamsfonts' option is obsolete in AMSFonts v3.
+
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+\copyins=\insert252
+\abstractbox=\box53
+\listisep=\skip52
+\c@part=\count266
+\c@section=\count267
+\c@subsection=\count268
+\c@subsubsection=\count269
+\c@paragraph=\count270
+\c@subparagraph=\count271
+\c@figure=\count272
+\c@table=\count273
+\abovecaptionskip=\skip53
+\belowcaptionskip=\skip54
+\captionindent=\dimen151
+\thm@style=\toks22
+\thm@bodyfont=\toks23
+\thm@headfont=\toks24
+\thm@notefont=\toks25
+\thm@headpunct=\toks26
+\thm@preskip=\skip55
+\thm@postskip=\skip56
+\thm@headsep=\skip57
+\dth@everypar=\toks27
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup6
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/comment/comment.sty
+\CommentStream=\write3
+ Excluding comment 'comment') (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 149.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/usr/local/texlive/2024/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box54
+\UL@hyphenbox=\box55
+\UL@skip=\skip58
+\UL@hook=\toks28
+\UL@height=\dimen152
+\UL@pe=\count274
+\UL@pixel=\dimen153
+\ULC@box=\box56
+Package: ulem 2019/11/18
+\ULdepth=\dimen154
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xy.sty (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xy.tex Bootstrap'ing: catcodes, docmode, (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xyrecat.tex) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xyidioms.tex)
+
+ Xy-pic version 3.8.9 <2013/10/06>
+ Copyright (c) 1991-2013 by Kristoffer H. Rose <krisrose@tug.org> and others
+ Xy-pic is free software: see the User's Guide for details.
+
+Loading kernel: messages; fonts; allocations: state,
+\X@c=\dimen155
+\Y@c=\dimen156
+\U@c=\dimen157
+\D@c=\dimen158
+\L@c=\dimen159
+\R@c=\dimen160
+\Edge@c=\toks29
+\X@p=\dimen161
+\Y@p=\dimen162
+\U@p=\dimen163
+\D@p=\dimen164
+\L@p=\dimen165
+\R@p=\dimen166
+\Edge@p=\toks30
+\X@origin=\dimen167
+\Y@origin=\dimen168
+\X@xbase=\dimen169
+\Y@xbase=\dimen170
+\X@ybase=\dimen171
+\Y@ybase=\dimen172
+\X@min=\dimen173
+\Y@min=\dimen174
+\X@max=\dimen175
+\Y@max=\dimen176
+\lastobjectbox@=\box57
+\zerodotbox@=\box58
+\almostz@=\dimen177
+ direction,
+\d@X=\dimen178
+\d@Y=\dimen179
+\K@=\count275
+\KK@=\count276
+\Direction=\count277
+\K@dXdY=\dimen180
+\K@dYdX=\dimen181
+\xyread@=\read2
+\xywrite@=\write4
+\csp@=\count278
+\quotPTK@=\dimen182
+ utility macros; pictures: \xy, positions,
+\swaptoks@@=\toks31
+\connectobjectbox@@=\box59
+ objects,
+\styletoks@=\toks32
+ decorations; kernel objects: directionals, circles, text; options; algorithms: directions, edges, connections;  Xy-pic loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifpdf.sty
+Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+))
+Package: xy 2013/10/06 Xy-pic version 3.8.9
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xyall.tex  Xy-pic option: All features v.3.8 (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xycurve.tex  Xy-pic option: Curve and Spline extension v.3.12 curve,
+\crv@cnt@=\count279
+\crvpts@=\toks33
+\splinebox@=\box60
+\splineval@=\dimen183
+\splinedepth@=\dimen184
+\splinetol@=\dimen185
+\splinelength@=\dimen186
+ circles,
+\L@=\dimen187
+ loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xyframe.tex  Xy-pic option: Frame and Bracket extension v.3.14 loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xycmtip.tex  Xy-pic option: Computer Modern tip extension v.3.7 (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xytips.tex  Xy-pic option: More Tips extension v.3.11 loaded) loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xyline.tex  Xy-pic option: Line styles extension v.3.10
+\xylinethick@=\dimen188
+ loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xyrotate.tex  Xy-pic option: Rotate and Scale extension v.3.8 loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xycolor.tex  Xy-pic option: Colour extension v.3.11 loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xymatrix.tex  Xy-pic option: Matrix feature v.3.14
+\Row=\count280
+\Col=\count281
+\queue@=\toks34
+\queue@@=\toks35
+\qcount@=\count282
+\qcount@@=\count283
+\matrixsize@=\count284
+ loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xyarrow.tex  Xy-pic option: Arrow and Path feature v.3.9 path, \ar, loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xygraph.tex  Xy-pic option: Graph feature v.3.11 loaded) loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xyarc.tex  Xy-pic option: Circle, Ellipse, Arc feature v.3.8 circles, ellipses, elliptical arcs, loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xy2cell.tex  Xy-pic option: Two-cell feature v.3.7 two-cells, loaded) (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xypdf.tex  Xy-pic option: PDF driver v.1.7 Xy-pic pdf driver: `color' extension support (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xypdf-co.tex loaded) Xy-pic pdf driver: `curve' extension support (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xypdf-cu.tex loaded) Xy-pic pdf driver: `frame' extension support (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xypdf-fr.tex loaded) Xy-pic pdf driver: `line' extension support (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xypdf-li.tex loaded) Xy-pic pdf driver: `rotate' extension support (/usr/local/texlive/2024/texmf-dist/tex/generic/xypic/xypdf-ro.tex loaded) loaded)) (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 2023/07/04 v3.00 enumerate extensions (DPC)
+\@enLab=\toks36
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks37
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+) (/usr/local/texlive/2024/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/usr/local/texlive/2024/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+) (/usr/local/texlive/2024/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)) (/usr/local/texlive/2024/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (/usr/local/texlive/2024/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count285
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count286
+)
+\@linkdim=\dimen189
+\Hy@linkcounter=\count287
+\Hy@pagecounter=\count288
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+) (/usr/local/texlive/2024/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count289
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4179.
+Package hyperref Info: Link nesting OFF on input line 4184.
+Package hyperref Info: Hyper index ON on input line 4187.
+Package hyperref Info: Plain pages OFF on input line 4194.
+Package hyperref Info: Backreferencing OFF on input line 4199.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4446.
+\c@Hy@tempcnt=\count290
+LaTeX Info: Redefining \url on input line 4784.
+\XeTeXLinkMargin=\dimen190
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count291
+\Field@Width=\dimen191
+\Fld@charsize=\dimen192
+Package hyperref Info: Hyper figures OFF on input line 6063.
+Package hyperref Info: Link nesting OFF on input line 6068.
+Package hyperref Info: Hyper index ON on input line 6071.
+Package hyperref Info: backreferencing OFF on input line 6078.
+Package hyperref Info: Link coloring OFF on input line 6083.
+Package hyperref Info: Link coloring with OCG OFF on input line 6088.
+Package hyperref Info: PDF/A mode OFF on input line 6093.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count292
+\c@Item=\count293
+\c@Hfootnote=\count294
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
+with kernel methods
+)
+\Fld@listcount=\count295
+\c@bookmark@seq@number=\count296
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
+)
+\Hy@SectionHShift=\skip59
+)
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 23.
+
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 23.
+
+Package hyperref Info: Option `colorlinks' set `true' on input line 23.
+
+Package hyperref Warning: Option `pagecolor' is not available anymore.
+
+Package hyperref Info: Option `pdfnewwindow' set `true' on input line 23.
+\c@thm=\count297
+\c@cor=\count298
+\c@prop=\count299
+\c@lem=\count300
+\c@prob=\count301
+\c@conj=\count302
+\c@defn=\count303
+\c@ass=\count304
+\c@asss=\count305
+\c@ax=\count306
+\c@con=\count307
+\c@exmp=\count308
+\c@notn=\count309
+\c@notns=\count310
+\c@pro=\count311
+\c@quest=\count312
+\c@rem=\count313
+\c@warn=\count314
+\c@sch=\count315
+\c@obs=\count316
+\c@conv=\count317
+\bibstyle{plain}
+(/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count318
+\l__pdf_internal_box=\box61
+)
+
+LaTeX Warning: Unused global option(s):
+    [openany,amssymb].
+
+(./Paper.aux)
+\openout1 = `Paper.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 283.
+LaTeX Font Info:    ... okay on input line 283.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 283.
+LaTeX Font Info:    ... okay on input line 283.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 283.
+LaTeX Font Info:    ... okay on input line 283.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 283.
+LaTeX Font Info:    ... okay on input line 283.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 283.
+LaTeX Font Info:    ... okay on input line 283.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 283.
+LaTeX Font Info:    ... okay on input line 283.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 283.
+LaTeX Font Info:    ... okay on input line 283.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 283.
+LaTeX Font Info:    ... okay on input line 283.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 283.
+LaTeX Font Info:    ... okay on input line 283.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 283.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 283.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 283.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+) (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count319
+\scratchdimen=\dimen193
+\scratchbox=\box62
+\nofMPsegments=\count320
+\nofMParguments=\count321
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count322
+\MPscratchDim=\dimen194
+\MPnumerator=\count323
+\makeMPintoPDFobject=\count324
+\everyMPtoPDFconversion=\toks39
+)
+Package xypdf Info: Line width: 0.39998pt on input line 283.
+Package hyperref Info: Link coloring ON on input line 283.
+ (./Paper.out) (./Paper.out)
+\@outlinefile=\write5
+\openout5 = `Paper.out'.
+
+ (./Paper.toc)
+\tf@toc=\write6
+\openout6 = `Paper.toc'.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Citation `JY21' on page 2 undefined on input line 313.
+
+Excluding 'comment' comment. <xymatrix 3x2 246> <xymatrix 3x2 246> <xymatrix 3x1 154> <xymatrix 3x1 154> <xymatrix 3x3 434> <xymatrix 3x3 434>
+Overfull \hbox (80.51772pt too wide) detected at line 392
+[]
+ []
+
+
+Underfull \vbox (badness 1348) has occurred while \output is active []
+
+ [2] <xymatrix 3x3 434> <xymatrix 3x3 434>
+Overfull \hbox (80.51772pt too wide) detected at line 400
+[]
+ []
+
+<xymatrix 3x3 294> <xymatrix 3x3 294>
+Overfull \hbox (12.5212pt too wide) detected at line 408
+[]
+ []
+
+<xymatrix 3x3 294> <xymatrix 3x3 294>
+Overfull \hbox (8.35463pt too wide) detected at line 415
+[]
+ []
+
+<xymatrix 2x2 238> <xymatrix 2x2 238> [3] <xymatrix 4x3 526> <xymatrix 4x3 394> <xymatrix 4x3 526> <xymatrix 4x3 394>
+Overfull \hbox (67.04404pt too wide) detected at line 447
+[]
+ []
+
+<xymatrix 3x3 342> <xymatrix 3x3 386> <xymatrix 3x3 342> <xymatrix 3x3 386>
+Overfull \hbox (3.67761pt too wide) detected at line 459
+[]
+ []
+
+<xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386>
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 491.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 491.
+
+[4] [5]
+
+LaTeX Warning: Citation `GM17' on page 6 undefined on input line 552.
+
+[6]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 556.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 556.
+
+<xymatrix 3x2 154> <xymatrix 3x3 254> <xymatrix 3x2 290>
+
+LaTeX Warning: Citation `M98' on page 7 undefined on input line 591.
+
+[7] <xymatrix 3x2 154> <xymatrix 3x2 154>
+Overfull \hbox (24.93785pt too wide) detected at line 611
+[]\OML/cmm/m/it/10 ;   []
+ []
+
+<xymatrix 3x3 258>
+Overfull \hbox (3.20856pt too wide) detected at line 617
+[]
+ []
+
+<xymatrix 3x2 202> <xymatrix 3x2 199> Excluding 'comment' comment. [8] <xymatrix 3x3 258> <xymatrix 3x2 154> <xymatrix 3x2 154>
+
+LaTeX Warning: Citation `GM17' on page 9 undefined on input line 680.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 684.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 684.
+
+[9] [10]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 692.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 692.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 692.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 692.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 692.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 694.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 694.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 694.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 694.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 694.
+
+
+LaTeX Warning: Citation `GM17' on page 11 undefined on input line 694.
+
+
+Overfull \hbox (44.69646pt too wide) detected at line 699
+[]
+ []
+
+Excluding 'comment' comment.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 725.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 725.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 725.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 725.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 725.
+
+
+LaTeX Warning: Citation `CG14' on page 11 undefined on input line 725.
+
+
+LaTeX Warning: Citation `GMMO20' on page 11 undefined on input line 725.
+
+
+LaTeX Warning: Citation `LMRZ26' on page 11 undefined on input line 725.
+
+<xymatrix 2x2 190> <xymatrix 2x2 190> <xymatrix 3x3 302> <xymatrix 3x3 302> <xymatrix 3x2 154> <xymatrix 3x2 202> <xymatrix 3x2 154> <xymatrix 3x2 202>
+Overfull \hbox (31.05788pt too wide) detected at line 758
+[]
+ []
+
+[11] <xymatrix 3x4 523> <xymatrix 3x4 523>
+Overfull \hbox (102.47076pt too wide) detected at line 780
+[]
+ []
+
+<xymatrix 3x4 522> <xymatrix 3x4 522>
+Overfull \hbox (104.69138pt too wide) detected at line 789
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12] <xymatrix 3x3 342> <xymatrix 3x3 342> <xymatrix 4x3 430> <xymatrix 4x3 430>
+Overfull \hbox (18.41016pt too wide) detected at line 806
+[]
+ []
+
+<xymatrix 3x2 334> <xymatrix 3x2 334> <xymatrix 2x3 342> <xymatrix 2x3 342> [13]
+
+LaTeX Warning: Citation `CG14' on page 14 undefined on input line 831.
+
+
+LaTeX Warning: Citation `GMMO20' on page 14 undefined on input line 831.
+
+
+LaTeX Warning: Citation `LMRZ26' on page 14 undefined on input line 831.
+
+
+Overfull \hbox (6.37665pt too wide) in paragraph at lines 837--838
+[][]\OT1/cmr/bx/n/10 Definition 3.8 \OT1/cmr/m/n/10 ($\U/rsfs/m/n/10 P[]$\OT1/cmr/m/n/10 -pseudomorphism)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/n/10 A $\U/rsfs/m/n/10 P[]$\OT1/cmr/m/n/10 -pseudomorphism $(\U/msb/m/n/10 F\OML/cmm/m/it/10 ; ^^P\OT1/cmr/m/n/10 ) : (\U/rsfs/m/n/10 A\OML/cmm/m/it/10 ; ^^R; ^^^\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 !
+ []
+
+<xymatrix 2x2 238> <xymatrix 2x2 238> <xymatrix 3x3 502> <xymatrix 3x2 334> <xymatrix 3x3 502> <xymatrix 3x2 334> <xymatrix 4x4 578> <xymatrix 4x4 578>
+Overfull \hbox (110.82385pt too wide) detected at line 867
+[]
+ []
+
+
+Underfull \vbox (badness 4193) has occurred while \output is active []
+
+ [14] <xymatrix 4x4 542> <xymatrix 4x4 542>
+Overfull \hbox (59.10251pt too wide) detected at line 876
+[]
+ []
+
+<xymatrix 2x3 378> <xymatrix 2x3 378> <xymatrix 2x3 378> <xymatrix 2x3 378> [15]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 899.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 899.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 899.
+
+
+LaTeX Warning: Citation `S89' on page 16 undefined on input line 901.
+
+
+Overfull \hbox (23.79218pt too wide) in paragraph at lines 901--902
+[]\OT1/cmr/m/n/10 Within the equi-vari-ant in-fi-nite loop space ma-chine, the pur-pose for $\U/rsfs/m/n/10 F[]$\OT1/cmr/m/n/10 -pseudoalgebras
+ []
+
+
+LaTeX Warning: Citation `LMRZ26' on page 16 undefined on input line 903.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 925.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 925.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 925.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 925.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 925.
+
+[16] <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> [17]
+
+LaTeX Warning: Citation `LMRZ26' on page 18 undefined on input line 970.
+
+
+Overfull \hbox (22.82474pt too wide) in paragraph at lines 970--971
+[]\OT1/cmr/m/n/10 The even-tual goal is con-struct-ing an $\U/rsfs/m/n/10 F[]$\OT1/cmr/m/n/10 -pseudoalgebra out of an $\U/rsfs/m/n/10 P[]$\OT1/cmr/m/n/10 -pseudoalgebra,
+ []
+
+
+Overfull \hbox (1.96379pt too wide) in paragraph at lines 987--988
+[]\OT1/cmr/m/n/10 Step (i) is gen-er-al-izes nat-u-rally to the equi-vari-ant case, as each $\U/rsfs/m/n/10 P[]$\OT1/cmr/m/n/10 -pseudoalgebra
+ []
+
+[18] [19] (./Paper.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-02-20>
+ ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package rerunfilecheck Info: File `Paper.out' has not changed.
+(rerunfilecheck)             Checksum: 2750556C66044D085F94F2F8E3030C4D;3619.
+ ) 
+Here is how much of TeX's memory you used:
+ 13107 strings out of 474116
+ 187675 string characters out of 5743681
+ 1970187 words of memory out of 5000000
+ 35030 multiletter control sequences out of 15000+600000
+ 567743 words of font info for 79 fonts, out of 8000000 for 9000
+ 1302 hyphenation exceptions out of 8191
+ 75i,23n,79p,3285b,1093s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xyatip10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xybtip10.pfb>
+Output written on Paper.pdf (19 pages, 363493 bytes).
+PDF statistics:
+ 377 PDF objects out of 1000 (max. 8388607)
+ 299 compressed objects within 3 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 145 words of extra memory for PDF output out of 10000 (max. 10000000)
+
