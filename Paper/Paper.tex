@@ -222,7 +222,7 @@
 
 %analysis
 \newcommand{\Vol}{\mathrm{Vol}}
-\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\Cont}{\C}
 \newcommand{\Supp}{\mathrm{Supp}} %used for support, but can be in a lot of other use, like support in a spectrum of a commutative ring
 
 %complex
@@ -283,10 +283,7 @@
 \begin{document}
 
 \begin{abstract}
-
-Symmetric monoidal categories are central studies in modern algebraic topology, for instance $K$-theory relies on constructing spectra with suitable homotopy groups out of symmetric monoidal categories using the infinite loop space machine. It's known that the two inputs - pesudoalgebra over an operad $\cP$, or suitable categories described by based finite sets $\F$ - are equivalent description for symmetric monoidal categories. In equivariant $K$-theory, similar machineries have been established, where the input for constructing $G$-spectra are described by pseudoalgebra over an operad $\cP_G$ as $G$-categories, or categories described by based finite $G$-sets $\F_G$. The equivalence of the two within equivariant case is a natural question to ask, and associates to the question of ``what is symmetric monoidal $G$-categories''. We'll provide an exposition on the two inputs by collecting the axioms scattered (or implicitly assumed) in varioius literatures, while describe some equivariance properties of the two inputs.
-
-
+Symmetric monoidal categories are central in modern algebraic topology, for instance $K$-theory relies on constructing spectra with suitable homotopy groups from spaces produced out of symmetric monoidal categories. It is known that the two inputs - pseudoalgebra over an operad $\cP$, or suitable categories described by based finite sets $\F$ - are equivalent descriptions for symmetric monoidal categories. In equivariant $K$-theory, similar machinery have been established, where the inputs for constructing $G$-spectra are described by pseudoalgebra over an operad $\cP_G$ as $G$-categories, or categories described by based finite $G$-sets $\F_G$. The equivalence of the two in the equivariant case is a natural question to ask, and associates to the question of ``what is symmetric monoidal $G$-categories''. We'll provide an exposition on the two inputs by collecting the axioms scattered throughout various pieces of the literature, while describe potential directions in equiariant equivalence.
 \end{abstract}
 
 \maketitle
@@ -295,13 +292,13 @@ Symmetric monoidal categories are central studies in modern algebraic topology, 
 
 \section*{Introduction}
 
-Symmetric monoidal categories and its applications in stable homotopy theory had been developed extensively. The symmetric \emph{strict} monoidal categories (also called \emph{permutative categories}) and the $\F$-categories are central inputs for constructing spectra (where $\F$ is the standard skeleton of category of based finite sets). It is known that permutative categories are equivalent to $\cP$-algebras, where $\cP$ is the \emph{permutativity operad}. A question then arise: up to what degree are the two inputs equivalent? A more general question is answered in \cite{LMRZ26}, where the $\cP$-pseudoalgebras and \emph{strictly special $\F$-pseudoalgebras} are in fact isomorphic, showing the two inputs are directly related.
+Symmetric monoidal categories and their applications in stable homotopy theory have been developed extensively. The symmetric \emph{strict} monoidal categories (also called \emph{permutative categories}) and the $\F$-categories are central inputs for constructing spectra (where $\F$ is the standard skeleton of category of based finite sets). It is known that permutative categories are equivalent to $\cP$-algebras, where $\cP$ is the \emph{permutativity operad}. A question then arises: up to what degree are the two inputs equivalent? A more general question is answered in \cite{LMRZ26}, where the $\cP$-pseudoalgebras and \emph{strictly special $\F$-pseudoalgebras} are in fact isomorphic, showing the two inputs are directly related.
 
-Transfer to the equivariant world, similar machines have been established: The main source of generating \emph{genuine $G$-spectra} is the $\F_G$-$G$-categories, where $\F_G$ is the category of based finite $G$-sets. Another source in the literature came from the equivariant generalization of permutativity operad, $\cP_G$-algebras. After seeing the nonequivariant equivalence, a natural followup question is whether it holds in the equivariant case or not. Here we'll collect some preliminaries needed for answering the question, together with some discussions on some potential details and problems of such generalization.
+Transferring to the equivariant world, similar machines have been established: The main source of generating \emph{genuine $G$-spectra} is the $\F_G$-$G$-categories, where $\F_G$ is the category of based finite $G$-sets. Another source in the literature comes from the equivariant generalization of permutativity operad $\cP_G$, which the algebras over it is defined as \emph{permutative $G$-categories} in \cite{GM17}, while the pseudoalgebras are defined as \emph{symmetric monoidal $G$-categories} in \cite{GMMO20}. After seeing the nonequivariant equivalence, a natural followup question is whether the equivalence also holds in the equivariant case. Here we'll collect some preliminaries needed for answering the question, together with some discussions on some potential details and problems of such generalization.
 
 \vspace{1pt}
 
-We assume the readers have some basics about what is a category, functor, and natural transformation. In Section \ref{sec_CatPrelim} we'll discuss some tools needed for making all definitions and axioms, including 2-categories, pseudofunctors / transform / modification between them, and the category of small $G$-categories $\Cat_G$ we mainly work with. In Section \ref{sec_operad} we define operads over general symmetric monoidal categories, the operadic algebra, and define the nonequivariant Barratt-Eccles operad $\cP$ in $\Cat$. In Section \ref{sec_perm_G} we define the equivariant version of Barratt-Eccles operad $\cP_G$ in $\Cat_G$, together with the notion of pseudoalgebra over it. In Section \ref{sec_F_Gm} we define the category of based finite $G$-sets $\F_G$, and discuss the pseudofunctors from it to $\Cat_G$. Finally, in Section \ref{sec_results}, we discuss some potential direction (and obstacles) in generalizing the resuls of \cite{LMRZ26} into the equivariant case.
+We assume the readers have some basics about what is a category, functor, and natural transformation. In Section \ref{sec_CatPrelim} we'll discuss some tools needed for making all definitions and axioms, including 2-categories, pseudofunctors, pseudotransform, and modification between them, together with the category of small $G$-categories $\Cat_G$ we mainly work with. In Section \ref{sec_operad} we define operads over general symmetric monoidal categories, the operadic algebra, and define the nonequivariant Barratt-Eccles operad $\cP$ in $\Cat$. In Section \ref{sec_perm_G} we define the equivariant version of Barratt-Eccles operad $\cP_G$ in $\Cat_G$, together with the notion of pseudoalgebra over it. In Section \ref{sec_F_Gm} we define the category of based finite $G$-sets $\F_G$, and discuss the pseudofunctors from it to $\Cat_G$. Finally, in Section \ref{sec_results}, we discuss some potential directions (and obstacles) in generalizing the results of \cite{LMRZ26} into the equivariant case.
 
 \vspace{1pt}
 
@@ -309,7 +306,7 @@ We assume the readers have some basics about what is a category, functor, and na
 \subsection{2-Categories}\label{sub_2_cat}
 
 \begin{defn}\label{defn_2_cat}
-    A category $\C$ is a \emph{2-category}, if for each object $X,Y\in\C$ (called \emph{0-cells}), the homset $\C(X,Y)$ is itself a category (called the \emph{hom-category}). Also, for every 0-cells $X,Y,Z\in\C$, the \emph{composition} $\circ:\C(Y,Z)\times\C(X,Y)\rightarrow\C(X,Z)$ is a functor.
+    A category $\C$ is a \emph{2-category} if for each object $X,Y\in\C$ (called \emph{0-cells}), the homset $\C(X,Y)$ is itself a category (called the \emph{hom-category}). Also, for all 0-cells $X,Y,Z\in\C$, the \emph{composition} $\circ:\C(Y,Z)\times\C(X,Y)\rightarrow\C(X,Z)$ is a functor.
 
     Every morphism $f\in \C(X,Y)$ is called a \emph{1-cell}, while given any 1-cells $f,g\in\C(X,Y)$, a morphism $\alpha:f\Rightarrow g$ in the hom-category $\C(X,Y)$ is called a \emph{2-cell}.
 \end{defn}
@@ -317,11 +314,11 @@ We assume the readers have some basics about what is a category, functor, and na
 Here, $\circ$ must be strictly unital and associative.
 
 \begin{rem}\label{rem_bicat}
-    There is a more general notion of a \emph{bicategory}, which relaxes the composition functors to be associative and unital up to coherent natural isomorphisms, and in some literature this is called 2-categories. Here we'll take the strict associativity and unitality as axioms for 2-categories. For more general bicategory, cf. \cite{JY21} Section 2.1.
+    A more general notion is that of a \emph{bicategory}, which relaxes the composition functors to be associative and unital up to coherent natural isomorphisms, and in some literature this is called 2-categories. Here we'll take the strict associativity and unitality as axioms for 2-categories. For more general notion of bicategories, cf. \cite{JY21} Section 2.1.
 \end{rem}
 
 \begin{exmp}\label{exmp_cat_of_cat}
-    Let $\Cat$ denote the \emph{category of small categories}, where the objects are small categories, the hom-categories $\Cat(\A,\B)$ are functors between small categories $\A$ and $\B$, and the morphisms in $\Cat(\A,\B)$ are natural transformations between functors. This specifies $\Cat$ to be a 2-category. 
+    Let $\Cat$ denote the \emph{category of small categories}, where the 0-cells are small categories, the hom-categories $\Cat(\A,\B)$ are functors between small categories $\A$ and $\B$ (with 1-cells being functors), and the morphisms in $\Cat(\A,\B)$ are natural transformations between functors (with 2-cells being natural transformations). Thus, $\Cat$ is a 2-category.
     
     %Also, a precise description of the horizontal composition of 2-cells is as follow: Given functors $F_1,F_2\in\Cat(\A,\B)$ and $G_1,G_2\in\Cat(\B,\C)$, natural transformations $\mu:F_1\Rightarrow F_2$ in $\Cat(\A,\B)$ and $\nu:G_1\Rightarrow G_2$ in $\Cat(\B,\C)$, then the \emph{Godemen Product} $\nu*\mu := \nu \circ F\mu$ defines a horizontal composition.
 \end{exmp}
@@ -331,7 +328,7 @@ Here, $\circ$ must be strictly unital and associative.
 \subsection{Pseudofunctor, Pseudotransform, and Modification}\label{sub_pseudos}
 
 \begin{defn}[Pseudofunctor]\label{defn_pseudofunctor}
-    Given two 2-categories $\A,\B$, a \emph{pseudofunctor} $F:\A\rightarrow \B$ equips with an 0-cell map, functors between hom-categories $F_{X,Y}:\A(X,Y)\rightarrow \B(F(X),F(Y))$, an invertible 2-cell $\phi_{X,Y,Z}$ between compositions
+    Given two 2-categories $\A,\B$, a \emph{pseudofunctor} $F:\A\rightarrow \B$ equips with a 0-cell map, functors between hom-categories $F_{X,Y}:\A(X,Y)\rightarrow \B(F(X),F(Y))$, an invertible 2-cell $\phi_{X,Y,Z}$ between compositions
     \begin{align*}
         \xymatrix{
             \A(Y,Z)\times \A(X,Y) \ar[d]_-{\circ} \ar[rr]^-{F_{Y,Z}\times F_{X,Y}} && \B(F(Y),F(Z))\times\B(F(X),F(Y)) \ar[d]^-{\circ} \ar@{=>}[dll]_-{\phi_{X,Y,Z}}\\
@@ -385,7 +382,7 @@ Here, $\circ$ must be strictly unital and associative.
         where $\id_X:*\rightarrow\A(X,X)$ is the functor indicating identity of $X$.
     \end{itemize}
 
-    If $\psi_X$ is identity 2-cell for all 0-cell $X$, then the pseudofunctor $F$ is called \emph{normal}.
+    If $\psi_X$ is the identity 2-cell for all 0-cell $X$, then the pseudofunctor $F$ is called \emph{normal}.
 \end{defn}
 
 \vspace{1pt}
@@ -458,7 +455,7 @@ Here, $\circ$ must be strictly unital and associative.
 \subsection{$G$-Categories}\label{sub_G_cat}
 
 \begin{defn}\label{defn_G_cat}
-    A small category $\A$ is a \emph{$G$-category}, if the object and morphism sets $\Ob(\A), \Mor(\A)$ are both (left) $G$-sets, such that the following four structure maps $(S,T,I,C)$ (stands for \emph{source, target, identity, and composition}) are all $G$-equivariant:
+    A small category $\A$ is a \emph{$G$-category} if the object and morphism sets $\Ob(\A), \Mor(\A)$ are both (left) $G$-sets, such that the following four structure maps $(S,T,I,C)$ (stands for \emph{source, target, identity, and composition}) are all $G$-equivariant:
     \begin{itemize}
         \item $S,T:\Mor(\A)\rightarrow\Ob(\A)$ by $S(X\xrightarrow{f}Y):= X$, and $T(X\xrightarrow{f}Y):= Y$.
         \item $I:\Ob(\A)\rightarrow\Mor(\A)$ by $I(X):= \id_X$.
@@ -467,25 +464,25 @@ Here, $\circ$ must be strictly unital and associative.
     Here, $\Mor(\A)\times_{S,T}\Mor(\A):= \{(g,f)\in \Mor(\A)^2\ |\ S(g)=T(f)\}$, precisely the pair of morphisms that're composable, and it endows $G$-set structure via restricting the diagonal $G$-action on $\Mor(\A)^2$. This is well-defined due to the assumption $S,T$ are $G$-maps.
 \end{defn}
 
-Another equivalent characterization can be viewed as a group homomorphism $G\rightarrow\Aut_{\Cat}(\A)$, which assigns each $g\in G$ an automorphism functor on $\A$ such that composition respects $G$'s multiplication structure, and identity gets sent to the identity functor. So, from now on we view each element $g\in G$ as a functor, whenever a category is specified as a $G$-category.
+Another equivalent characterization can be viewed as a group homomorphism $G\rightarrow\Aut_{\Cat}(\A)$, which assigns each $g\in G$ an automorphism functor on $\A$ such that composition respects $G$'s multiplication structure, and identity gets sent to the identity functor. So, from now on we view each element $g\in G$ as a functor, whenever a category is specified as a $G$-category. 
 
 \vspace{1pt}
 
 \begin{defn}\label{defn_cat_of_G_cat}
-Let $\Cat_G$ denotes the 2-category of small $G$-categories, with (nonequivariant) functors as $1$-cells, natural transformations as $2$-cells. The hom-category between any two $G$-categories $\Cat_G(\A,\B)$ also has a natural $G$-action via conjugation.  Which, the $G$-fixed subcategory of the hom-category $[\Cat_G(\A,\B)]^G$ precisely describes all $G$-functor, or the functors $F:\A\rightarrow\B$ such that $g\circ F=F\circ g$ for all $g\in G$.
+Let $\Cat_G$ denotes the 2-category of small $G$-categories, with (nonequivariant) functors as $1$-cells, natural transformations as $2$-cells. The hom-category between any two $G$-categories $\Cat_G(\A,\B)$ also has a natural $G$-action via conjugation.  Which, the $G$-fixed subcategory of the hom-category $[\Cat_G(\A,\B)]^G$ precisely describes all $G$-functors, or the functors $F:\A\rightarrow\B$ such that $g\circ F=F\circ g$ for all $g\in G$.
 \end{defn}
 
 \vspace{1pt}
 
-Another important notion is the twisted $G$-action on products when given a group homomorphism $\alpha:G\rightarrow\Sigma_n$. Given a category $\A$, the $n$-fold product $\A^\mathbf{n}$ has a natural left $\Sigma_n$-action via permuting the coordinates; if $\A$ is a $G$-category, $\A^\mathbf{n}$ also endows a natural diagonal $G$-action. The two coordinates to give a natural left $(G\times \Sigma_n)$-action on $\A^\mathbf{n}$.
+Another important notion is the twisted $G$-action on products when given a group homomorphism $\alpha:G\rightarrow\Sigma_n$. Given a category $\A$, the $n$-fold product $\A^\mathbf{n}$ has a natural left $\Sigma_n$-action via permuting the coordinates; if $\A$ is a $G$-category, $\A^\mathbf{n}$ also endows a natural diagonal $G$-action. These give a natural left $(G\times \Sigma_n)$-action on $\A^\mathbf{n}$.
 
 \begin{defn}
-    Let $\A^{\mathbf{n}^\alpha}$ be a $G$-category with the underlying category being $\A^\mathbf{n}$, with the $G$-action defined as follow:
+    Let $\A^{\mathbf{n}^\alpha}$ be a $G$-category with the underlying category being $\A^\mathbf{n}$, with the $G$-action defined as follows:
     \begin{align*}
         g\cdot_\alpha (X_1,...,X_n):= (g\cdot X_{\alpha(g)^{-1}(1)},...,g\cdot X_{\alpha(g)^{-1}(n)})
     \end{align*}
 \end{defn}
-Another characterization can be understood as follow: Given $\alpha$'s graph subgroup $\Gamma_\alpha:= \{(g,\alpha(g))\in G\times\Sigma_n\}_{g\in G}$, the projection $\pi_G:G\times\Sigma_n\rightarrow G$ restricts to an isomorphism $\Gamma_\alpha\xrightarrow{\sim}G$. The $\alpha$-twisted action is induced by the pullback along this isomorphism.
+Another characterization can be given as follow: Given $\alpha$'s graph subgroup $\Gamma_\alpha:= \{(g,\alpha(g))\in G\times\Sigma_n\}_{g\in G}$, the projection $\pi_G:G\times\Sigma_n\rightarrow G$ restricts to an isomorphism $\Gamma_\alpha\xrightarrow{\sim}G$. The $\alpha$-twisted action is induced by the pullback along this isomorphism.
 
 \vspace{1pt}
 
@@ -507,7 +504,7 @@ Given any small category $\A\in\Cat$, its object $\Ob(\A)$ forms a set; moreover
 
 Inspecting the definition, we see $\mathscr{E}:\Sets\rightarrow\Cat$ is a well-defined functor, called the \emph{chaotic functor}.
 
-Notice if a functor $F:\A\rightarrow\B$ has a chaotic target $\B$, then all the morphisms $f:X\rightarrow Y$ in $\A$ must be sent to the unique morphism $F(X)\rightarrow F(Y)$ in $\B$, hence $F$ is dictated by the object map $F:\Ob(\A)\rightarrow\Ob(\B)$. Such uniqueness specifies an adjunction $(\Ob\dashv \mathscr{E})$.
+Notice that if a functor $F:\A\rightarrow\B$ has a chaotic target $\B$, then all the morphisms $f:X\rightarrow Y$ in $\A$ must be sent to the unique morphism $F(X)\rightarrow F(Y)$ in $\B$, hence $F$ is dictated by the object map $F:\Ob(\A)\rightarrow\Ob(\B)$. Such uniqueness specifies an adjunction $(\Ob\dashv \mathscr{E})$.
 
 The consequence is the following natural isomorphism of homset for any two sets $X,Y$:
 \begin{align}
@@ -515,7 +512,7 @@ The consequence is the following natural isomorphism of homset for any two sets 
 \end{align}
 
 \begin{rem}\label{rem_equiv_chaot}
-    Let $\Sets_G$ denotes the category of (left) $G$-sets, with all maps between $G$-sets (not necessarily equivariant) being the morphisms, the above adjunction can be promoted to $\Ob:\Cat_G\rightarrow \Sets_G$, and $\mathscr{E}:\Sets_G\rightarrow\Cat_G$. Similar notions hold when transfer from left to right $G$-sets/categories.
+    Let $\Sets_G$ denotes the category of (left) $G$-sets, with all maps between $G$-sets (not necessarily equivariant) being the morphisms, the above adjunction can be extended to $\Ob:\Cat_G\rightarrow \Sets_G$, and $\mathscr{E}:\Sets_G\rightarrow\Cat_G$. Similar notions hold when transfer from left to right $G$-sets/categories.
 \end{rem}
 
 In this exposition we only need $\mathscr{E}$ to be a right adjoint, there are richer details demonstrated in \cite{GM17} Section 3.
@@ -528,7 +525,7 @@ In this exposition we only need $\mathscr{E}$ to be a right adjoint, there are r
     \begin{itemize}
         \item The \emph{associator} $a:(\_ _1\tensor \_ _2)\tensor \_ _3 \xrightarrow{\sim} \_ _1\tensor(\_ _2\tensor \_ _3)$.
         \item The \emph{left unit} $\lambda:\kappa\tensor\_\xrightarrow{\sim} \Id_{\mathcal{V}}$ and the \emph{right unit} $\rho:\_\tensor \kappa\xrightarrow{\sim}\Id_\mathcal{V}$.
-        \item The \emph{Symmetric Braiding} $B:\_ _1\tensor\_ _2\xrightarrow{\sim}\_ _2\tensor\_ _1$, with extra property $B_{Y,X}:Y\tensor X\rightarrow X\tensor Y$ equals to $B_{X,Y}^{-1}:X\tensor Y\rightarrow Y\tensor X$.
+        \item The \emph{symmetric braiding} $B:\_ _1\tensor\_ _2\xrightarrow{\sim}\_ _2\tensor\_ _1$, with extra property $B_{Y,X}:Y\tensor X\rightarrow X\tensor Y$ equals to $B_{X,Y}^{-1}:X\tensor Y\rightarrow Y\tensor X$.
     \end{itemize} 
 
     They also satisfy the following axioms:
@@ -555,7 +552,7 @@ In this exposition we only need $\mathscr{E}$ to be a right adjoint, there are r
         %}\]
     \end{itemize}
 \end{defn}
-Based on \emph{Maclane's Coherence Theorem}, the above two axioms guarantees all finite sequences of $a,\lambda,\rho$ and their inverses agree, namely there is a unique isomorphism $P_1\rightarrow P_2$, where $P_i$ are (possibly) different orders of performing product on $X_1,...,X_n\in\mathcal{V}$. For details, cf. \cite{M98}.
+Based on \emph{Maclane's Coherence Theorem}, the Triangle and Pentagon axioms guarantees all finite sequences of $a,\lambda,\rho$ and their inverses agree, namely there is a unique isomorphism $P_1\rightarrow P_2$ consists of compositions of $a,\lambda,\rho$, where $P_i$ are (possibly) different orders of performing product on $X_1,...,X_n\in\mathcal{V}$. For details, cf. \cite{M98} Chapter XI.
 
 The category of sets $\Sets$, small categories $\Cat$ in Example \ref{exmp_cat_of_cat}, and small $G$-categories $\Cat_G$ in Definition \ref{defn_cat_of_G_cat} are central examples for this, where the cartesian product $\A\times\B$ serves as monoidal product, and a terminal set/category $*$ serves as units for both.
 
@@ -564,43 +561,43 @@ The category of sets $\Sets$, small categories $\Cat$ in Example \ref{exmp_cat_o
 \subsection{Operads, Operadic Algebras}\label{sub_operad}
 
 \begin{defn}\label{defn_operad}
-Given symmetric monoidal category $\mathcal{V}$, a \emph{$\Sigma$ operad} $\mathcal{C}$ in $\mathcal{V}$ is a collection of objects $\{\mathcal{C}(j)\in\mathcal{V}\}_{j\in\NN}$, each $\mathcal{C}(j)$ with a right $\Sigma_j$-action (a group homomorphism $\Sigma_j^\Op\rightarrow \Aut_\mathcal{V}(\mathcal{C}(j))$), a \emph{unit map} $\eta:1\rightarrow \mathcal{C}(1)$, together with composition maps
-\[\gamma:\mathcal{C}(k)\tensor \mathcal{C}(j_1)\tensor...\tensor \mathcal{C}(j_k)\rightarrow \mathcal{C}(j_1+...+j_k)\]
+Given symmetric monoidal category $\mathcal{V}$, a \emph{$\Sigma$-operad} $\C$ in $\mathcal{V}$ is a collection of objects $\{\C(j)\in\mathcal{V}\}_{j\in\NN}$, each $\C(j)$ equipsx with a right $\Sigma_j$-action (a group homomorphism $\Sigma_j^\Op\rightarrow \Aut_\mathcal{V}(\C(j))$), a \emph{unit map} $\eta:1\rightarrow \C(1)$, together with composition maps
+\[\gamma:\C(k)\tensor \C(j_1)\tensor...\tensor \C(j_k)\rightarrow \C(j_1+...+j_k)\]
 that satisfies the following axioms:
 \begin{itemize}
     \item \textbf{(Unit)}
     \[\xymatrix{
-        \mathcal{C}(j)\tensor \kappa^{\tensor j} \ar[dr]_-{\id_{\mathcal{C}(j)}\tensor \eta^{\tensor j}} \ar[rr]^-{\sim} && \mathcal{C}(j)\\
-        & \mathcal{C}(j)\tensor \mathcal{C}(1)^{\tensor j} \ar[ur]_-{\gamma}
+        \C(j)\tensor \kappa^{\tensor j} \ar[dr]_-{\id_{\C(j)}\tensor \eta^{\tensor j}} \ar[rr]^-{\sim} && \C(j)\\
+        & \C(j)\tensor \C(1)^{\tensor j} \ar[ur]_-{\gamma}
     },\quad\quad \xymatrix{
-        \kappa\tensor \mathcal{C}(j) \ar[dr]_-{\eta\tensor \id_{\mathcal{C}(j)}} \ar[rr]^-{\sim} && \mathcal{C}(j)\\
-        & \mathcal{C}(1)\tensor \mathcal{C}(j) \ar[ur]_-{\gamma}
+        \kappa\tensor \C(j) \ar[dr]_-{\eta\tensor \id_{\C(j)}} \ar[rr]^-{\sim} && \C(j)\\
+        & \C(1)\tensor \C(j) \ar[ur]_-{\gamma}
     }\]
     \item \textbf{(Associativity)} Fix natural numbers $k$, $j = \sum_{s=1}^k j_s$, define index $g_s:= j_1+...+j_s$ for $1\leq s\leq k$. For each $i_1,...,i_{g_k}=i_j$, with sum $i=\sum_{r=1}^j i_r$, and $h_s:= i_{g_{(s-1)}+1}+...+i_{g_s}$ (so $i=\sum_{s=1}^k h_s$ also), the following diagram commutes:
     \[\xymatrix{
-        \left[\mathcal{C}(k)\tensor \left(\bigtensor_{s=1}^k \mathcal{C}(j_s)\right)\right]\tensor \left(\bigtensor_{r=1}^j \mathcal{C}(i_r)\right) \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\gamma\tensor \id} && \mathcal{C}(j) \tensor \left(\bigtensor_{r=1}^j \mathcal{C}(i_r)\right) \ar[d]^-{\gamma}\\
-        && \mathcal{C}(i)\\
-        \mathcal{C}(k) \tensor \left[\bigtensor_{s=1}^k \left(\mathcal{C}(j_s)\tensor \left(\bigtensor_{q=1}^{j_s} \mathcal{C}(i_{g_{(s-1)}+q})\right)\right)\right] \ar[rr]_-{\id_{\mathcal{C}(k)} \tensor (\bigtensor_s \gamma)} && \mathcal{C}(k)\tensor \left(\bigtensor_{s=1}^k \mathcal{C}(h_s)\right) \ar[u]_-{\gamma}
+        \left[\C(k)\tensor \left(\bigtensor_{s=1}^k \C(j_s)\right)\right]\tensor \left(\bigtensor_{r=1}^j \C(i_r)\right) \ar[dd]_-{\text{shuffle}} \ar[rr]^-{\gamma\tensor \id} && \C(j) \tensor \left(\bigtensor_{r=1}^j \C(i_r)\right) \ar[d]^-{\gamma}\\
+        && \C(i)\\
+        \C(k) \tensor \left[\bigtensor_{s=1}^k \left(\C(j_s)\tensor \left(\bigtensor_{q=1}^{j_s} \C(i_{g_{(s-1)}+q})\right)\right)\right] \ar[rr]_-{\id_{\C(k)} \tensor (\bigtensor_s \gamma)} && \C(k)\tensor \left(\bigtensor_{s=1}^k \C(h_s)\right) \ar[u]_-{\gamma}
     }\]
     \item \textbf{(Equivariance)}
     \begin{itemize}
         \item Given $\sigma\in\Sigma_k$, $j_1+...+j_k = \Sigma_j$, let $\sigma(j_1,...,j_k)\in\Sigma_j$ denotes ``permutation of $k$-blocks of letters'', by $(j_1,...,j_k)\mapsto (j_{\sigma^{-1}(1)},...,j_{\sigma^{-1}(k)})$.
         Then, the following diagram commutes:
         \[\xymatrix{
-            \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right) \ar[d]_-{\gamma} \ar[rr]^-{\sigma\tensor \sigma^{-1}} && \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_{\sigma(r)})\right) \ar[d]^-{\gamma}\\
-            \mathcal{C}(j) \ar[rr]_-{\sigma(j_{\sigma(1)},...,j_{\sigma(k)})} && \mathcal{C}(j)
+            \C(k)\tensor \left(\bigtensor_{r=1}^k \C(j_r)\right) \ar[d]_-{\gamma} \ar[rr]^-{\sigma\tensor \sigma^{-1}} && \C(k)\tensor \left(\bigtensor_{r=1}^k \C(j_{\sigma(r)})\right) \ar[d]^-{\gamma}\\
+            \C(j) \ar[rr]_-{\sigma(j_{\sigma(1)},...,j_{\sigma(k)})} && \C(j)
         }\]
-        \item Given $\tau_r\in \Sigma_{j_r}$, denote $\tau_1\oplus ... \oplus \tau_k\in \Sigma_j$ by letting each $\tau_r$ permuting the $j_r$th block in $j$. 
+        \item Given $\tau_r\in \Sigma_{j_r}$, denote $\tau_1\oplus ... \oplus \tau_k\in \Sigma_j$ by letting each $\tau_r$ permute the $j_r$th block in $j$. 
         %(for instance, let $\tau_1$ acts on $1,...,j_1$; let $\tau_2$ acts on $j_1+1,...,j_1+j_2$, etc.). 
         Then, the following diagram commutes:
         \[\xymatrix{
-            \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right)\ar[d]_-{\gamma} \ar[rr]^-{\id_{\mathcal{C}(k)}\tensor (\bigtensor_r \tau_r)} && \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right) \ar[d]^-{\gamma}\\
-            \mathcal{C}(j) \ar[rr]_{\tau_1\oplus...\oplus\tau_k} && \mathcal{C}(j)
+            \C(k)\tensor \left(\bigtensor_{r=1}^k \C(j_r)\right)\ar[d]_-{\gamma} \ar[rr]^-{\id_{\C(k)}\tensor (\bigtensor_r \tau_r)} && \C(k)\tensor \left(\bigtensor_{r=1}^k \C(j_r)\right) \ar[d]^-{\gamma}\\
+            \C(j) \ar[rr]_{\tau_1\oplus...\oplus\tau_k} && \C(j)
         }\]
     \end{itemize}
 \end{itemize}
 
-If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ being $\id_{\mathcal{C}(0)}$), the operad is \emph{reduced}.
+If $\C(0)=\kappa$ (with $\gamma:\C(0)\rightarrow \C$ being $\id_{\C(0)}$), the operad is \emph{reduced}.
 \end{defn}
 
 \begin{defn}\label{defn_operad_alg}
@@ -631,7 +628,7 @@ If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ 
     \begin{align}
         \gamma:\Sigma_k\times\prod_{r=1}^k\Sigma_{j_r}\rightarrow\Sigma_j,\quad \gamma(\sigma;\tau_1,...,\tau_k):= \tau_{\sigma^{-1}(1)}\oplus...\oplus\tau_{\sigma^{-1}(k)}\circ \sigma(j_{\sigma(1)},...,j_{\sigma(k)})
     \end{align}
-    where $j=\sum_r j_r$, $\sigma(j_1,...,j_k)\in \Sigma_j$ denotes the block permutation of $j_1,...,j_k$ within $j$ (in order), and $\tau_1\oplus ... \tau_{k}$ is the image of the embedding $\oplus:\prod_{r=1}^k\Sigma_{j_r}\rightarrow\Sigma_j$, by viewing the $r$th block of $\mathbf{j}$ (with $j_r$-elements) as finite set $\mathbf{j}_r$. Inspecting the definitions, the algebra over $\M$ precisely describes the set theoretic monoids. For more details, cf.  \cite{GM17} Section 4.1.
+    where $j=\sum_r j_r$, $\sigma(j_1,...,j_k)\in \Sigma_j$ denotes the block permutation of $j_1,...,j_k$ within $j$ (in order), and $\tau_1\oplus ... \tau_{k}$ is the image of the embedding $\oplus:\prod_{r=1}^k\Sigma_{j_r}\rightarrow\Sigma_j$, by viewing the $r$th block of $\mathbf{j}$ (with $j_r$-elements) as finite set $\mathbf{j}_r$. Inspecting the definitions, the algebra over $\M$ precisely describes the set-theoretic monoids. For more details, cf.  \cite{GM17} Section 4.1.
 \end{exmp}
 
 \subsection{Permutativity Operad $\cP$} \label{sub_perm_operad}
@@ -766,7 +763,7 @@ The general notion of operadic pseudoalgebra is defined in \cite{CG14}, \cite{GM
 \end{rem}
 
 \begin{defn}[$\cP_G$-pseudomorphism]\label{defn_P_G_pseudomorph}
-    A $\cP_G$-pseudomorphism $(\FF,\zeta):(\A,\theta,\phi)\rightarrow(\B,\vartheta,\varphi)$ consists of functor $\FF:\A\rightarrow\B$, such that for each $j$ in the follogin diagram commutes up to an invertible natural transformation $\zeta_j$:
+    A $\cP_G$-pseudomorphism $(\FF,\zeta):(\A,\theta,\phi)\rightarrow(\B,\vartheta,\varphi)$ consists of functor $\FF:\A\rightarrow\B$, such that for each $j$, the following diagram commutes up to an invertible natural transformation $\zeta_j$:
     \begin{align*}
         \xymatrix{
             \cP_G(j)\times \A^j\ar[r]^-{\id\times\FF^j} \ar[d]_-{\theta_j} & \cP_G(j)\times \B^j \ar[d]^-{\vartheta_j} \ar@{=>}[dl]^-{\zeta_j}\\
@@ -776,7 +773,7 @@ The general notion of operadic pseudoalgebra is defined in \cite{CG14}, \cite{GM
     
     Moreover, they satisfy the following properties:
     \begin{itemize}
-        \item[(i)]\textbf{(Equivariance of $\zeta$)} For each $j$,$\zeta_j=\zeta_j\circ (\sigma\times\sigma^{-1})$ for all $\sigma\in \Sigma_j$. \textbf{Check $G$-equivariance}
+        \item[(i)]\textbf{(Equivariance of $\zeta$)} For each $j$,$\zeta_j=\zeta_j\circ (\sigma\times\sigma^{-1})$ for all $\sigma\in \Sigma_j$. 
         \item[(ii)] \textbf{(Preserves Identity)} The following two pasting diagrams are equal:
         \begin{align*}
             \xymatrix{
@@ -825,6 +822,12 @@ The general notion of operadic pseudoalgebra is defined in \cite{CG14}, \cite{GM
         }
     \end{align*}
 \end{defn}
+
+\begin{rem}\label{rem_gen_G_op}
+    The above definitions can be shared across all $G$-operad in $\Cat_G$, it's just the main focus here being $\cP_G$.
+\end{rem}
+
+\vspace{1pt}
 
 \section{Category $\F_G$ and its Pseudoalgebras}\label{sec_F_Gm}
 
