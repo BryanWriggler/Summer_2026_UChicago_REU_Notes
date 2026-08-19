@@ -297,6 +297,7 @@ We'll provide an exposition on the two inputs by collecting the axioms scattered
 
 \tableofcontents
 
+\section*{Introduction (ND)}
 
 \section{Categorical Preliminaries}\label{sec_CatPrelim}
 \subsection{2-Categories}\label{sub_2_cat}
@@ -313,51 +314,13 @@ Here, $\circ$ must be strictly unital and associative.
     There is a more general notion of a \emph{bicategory}, which relaxes the composition functors to be associative and unital up to coherent natural isomorphisms, and in some literature this is called 2-categories. Here we'll take the strict associativity and unitality as axioms for 2-categories. For more general bicategory, cf. \cite{JY21} Section 2.1.
 \end{rem}
 
-\begin{comment}
-An important notion is the compositions allowed for the 2-cells. Composition of 2-cells within the same hom-category $\C(X,Y)$ makes sense, as it's a defining feature of a category; on the other hand, since composition $\circ:\C(Y,Z)\times\C(X,Y)\rightarrow\C(X,Z)$ is a functor, any 2-cells $H:f_1\Rightarrow f_2$ in $\C(X,Y)$ and $H':g_1\Rightarrow g_2$ in $\C(Y,Z)$ induces a 2-cell $\circ(H',H):(g_1\circ f_1)\Rightarrow (g_2\circ f_2)$ by inspecting the definition of functors from product category.
-
-\begin{defn}
-    Given $\mathcal{C}$ a 2-category, the \emph{vertical composition} of 2-cells is the composition within each hom-category $\mathcal{C}(X,Y)$: Given 2-cells $H_1:f\Rightarrow g$ and $H_2:g\Rightarrow h$ in the hom-category $\C(X,Y)$, the vertical composition is $H_2H_1:f\Rightarrow h$:
-    \begin{align*}
-        \xymatrix@C=2pc{
-        X \ar@/^3pc/[rr]^{f}="1"
-            \ar[rr]^-{g}="2" 
-            \ar@/_3pc/[rr]_-{h}="3" 
-        && Y 
-        \ar@{=>} "1";"2"^{H_1} \ar@{=>}"2";"3"^{H_2}
-        }
-    \end{align*}
-    
-    The \emph{horizontal composition} of 2-cells is the one induced by the composition functor $\circ:\mathcal{C}(Y,Z)\times \mathcal{C}(X,Y)\rightarrow \mathcal{C}(X,Z)$: Given 2-cells $H:f_1\Rightarrow f_2$ in $\mathcal{C}(X,Y)$ and $H':g_1\Rightarrow g_2$ in $\mathcal{C}(Y,Z)$, define their horizontal composition as $H'*H:= \circ(H',H):(g_1\circ f_1)\Rightarrow (g_2\circ f_2)$:
-    \begin{align*}
-        \xymatrix@C=2pc{
-        X \ar@/^1.5pc/[rr]^{f_1}="1" \ar@/_1.5pc/[rr]_{f_2}="2"
-        \ar@{=>} "1";"2"^{H}
-        && Y \ar@/^1.5pc/[rr]^{g_1}="3" \ar@/_1.5pc/[rr]_{g_2}="4"
-        \ar@{=>} "3";"4"^{H'}
-        && Z
-    }
-    \end{align*}
-\end{defn}
-
-\hfil
-
-By inspecting the properties of composition functor, one realizes that vertical and horizontal composition commutes: Suppose $H_1:f\Rightarrow g$, $H_2:g\Rightarrow h$ are 2-cells in $\C(X,Y)$, while $H'_1:f'\Rightarrow g'$, $H'_2:g'\Rightarrow h'$ are 2-cells in $\C(Y,Z)$, then
-\begin{align}
-    (H'_2H'_1)*(H_2H_1) = (H'_2*H_2)(H'_1*H_1):(f'\circ f)\Rightarrow (h'\circ h)
-\end{align}
-as 2-cells.
-
-\hfil
-\end{comment}
-
 \begin{exmp}\label{exmp_cat_of_cat}
     Let $\Cat$ denote the \emph{category of small categories}, where the objects are small categories, the hom-categories $\Cat(\A,\B)$ are functors between small categories $\A$ and $\B$, and the morphisms in $\Cat(\A,\B)$ are natural transformations between functors. This specifies $\Cat$ to be a 2-category. 
     
     %Also, a precise description of the horizontal composition of 2-cells is as follow: Given functors $F_1,F_2\in\Cat(\A,\B)$ and $G_1,G_2\in\Cat(\B,\C)$, natural transformations $\mu:F_1\Rightarrow F_2$ in $\Cat(\A,\B)$ and $\nu:G_1\Rightarrow G_2$ in $\Cat(\B,\C)$, then the \emph{Godemen Product} $\nu*\mu := \nu \circ F\mu$ defines a horizontal composition.
 \end{exmp}
 
-\hfil
+\vspace{1pt}
 
 \subsection{Pseudofunctor, Pseudotransform, and Modification}\label{sub_pseudos}
 
@@ -419,7 +382,7 @@ as 2-cells.
     If $\psi_X$ is identity 2-cell for all 0-cell $X$, then the pseudofunctor $F$ is called \emph{normal}.
 \end{defn}
 
-\hfil
+\vspace{1pt}
 
 \begin{defn}[Pseudotransform]\label{defn_pseudotransform}
     Fix 2-categories $\A,\B$, let $(F,\phi,\psi), (G,\varphi,\vartheta):\A\rightarrow\B$ be two pseudofunctors. A \emph{pseudotransform} $\mu:(F,\phi,\psi)\rightarrow (G,\varphi,\vartheta)$ collects 1-cells $\mu_X:F(X)\rightarrow G(X)$ for each 0-cell $X\in\A$, and for each 1-cell $f:X\rightarrow Y$ in $\A$, associates a 2-cell $\mu f$ such that 
@@ -460,7 +423,7 @@ as 2-cells.
     \end{itemize}
 \end{defn}
 
-\hfil
+\vspace{1pt}
 
 \begin{defn}[Modification]\label{defn_modification}
     Continue with the same notation as above. Let $\mu,\nu:(F,\phi,\psi)\rightarrow (G,\varphi,\vartheta)$ be two pseudotransforms, a \emph{modification} $\lambda:\mu\Rightarrow\nu$ is a collection of 2-cells $\lambda_X:\mu_X\Rightarrow\nu_X$ for each 0-cell $X\in\A$, such that the following two pasting diagrams are equal, for each 1-cell $f:X\rightarrow Y$ in $\A$:
@@ -478,11 +441,11 @@ as 2-cells.
 
 \end{defn}
 
-\hfil
+\vspace{1pt}
 
 %There are obvious composition laws between pseudofunctors, the pseudotransforms, and also the modifications. (\textbf{Depending on situation, fill in details, or delete this line})
 
-%\hfil
+%\vspace{1pt}
 
 %If enlarging the notion of functors and natural transformations to pseudofunctors and pseudotransforms, $\Cat$ will be enlarged into another 2-categories. However, the detail of composition and its unitality/associativity is omitted here for space limit.
 
@@ -500,13 +463,13 @@ as 2-cells.
 
 Another equivalent characterization can be viewed as a group homomorphism $G\rightarrow\Aut_{\Cat}(\A)$, which assigns each $g\in G$ an automorphism functor on $\A$ such that composition respects $G$'s multiplication structure, and identity gets sent to the identity functor. So, from now on we view each element $g\in G$ as a functor, whenever a category is specified as a $G$-category.
 
-\hfil
+\vspace{1pt}
 
 \begin{defn}\label{defn_cat_of_G_cat}
 Let $\Cat_G$ denotes the 2-category of small $G$-categories, with (nonequivariant) functors as $1$-cells, natural transformations as $2$-cells. The hom-category between any two $G$-categories $\Cat_G(\A,\B)$ also has a natural $G$-action via conjugation.  Which, the $G$-fixed subcategory of the hom-category $[\Cat_G(\A,\B)]^G$ precisely describes all $G$-functor, or the functors $F:\A\rightarrow\B$ such that $g\circ F=F\circ g$ for all $g\in G$.
 \end{defn}
 
-\hfil
+\vspace{1pt}
 
 Another important notion is the twisted $G$-action on products when given a group homomorphism $\alpha:G\rightarrow\Sigma_n$. Given a category $\A$, the $n$-fold product $\A^\mathbf{n}$ has a natural left $\Sigma_n$-action via permuting the coordinates; if $\A$ is a $G$-category, $\A^\mathbf{n}$ also endows a natural diagonal $G$-action. The two coordinates to give a natural left $(G\times \Sigma_n)$-action on $\A^\mathbf{n}$.
 
@@ -518,7 +481,7 @@ Another important notion is the twisted $G$-action on products when given a grou
 \end{defn}
 Another characterization can be understood as follow: Given $\alpha$'s graph subgroup $\Gamma_\alpha:= \{(g,\alpha(g))\in G\times\Sigma_n\}_{g\in G}$, the projection $\pi_G:G\times\Sigma_n\rightarrow G$ restricts to an isomorphism $\Gamma_\alpha\xrightarrow{\sim}G$. The $\alpha$-twisted action is induced by the pullback along this isomorphism.
 
-\hfil
+\vspace{1pt}
 
 \subsection{Chaotic-Forgetful Adjunction}\label{sub_chaot_adj}
 
@@ -531,7 +494,7 @@ Given any small category $\A\in\Cat$, its object $\Ob(\A)$ forms a set; moreover
     \end{align}
     using the uniqueness.
 
-    \hfil
+    \vspace{1pt}
 
     Given a set map $f:X\rightarrow Y$, define the functor $\mathscr{E}f:\mathscr{E}X\rightarrow\mathscr{E}Y$ so that the underlying object map is $f$, and for each morphism $x\xrightarrow{\sim}y$ in $\mathscr{E}X$, $\mathscr{E}f(x\rightarrow y):= f(x)\rightarrow f(y)$, the unique morphism between $f(x),f(y)$ in $\mathscr{E}Y$.
 \end{defn}
@@ -546,12 +509,10 @@ The consequence is the following natural isomorphism of homset for any two sets 
 \end{align}
 
 \begin{rem}\label{rem_equiv_chaot}
-    Let $\Sets_G$ denotes the category of (left) $G$-sets, with all maps between $G$-sets (not necessarily equivariant) being the morphisms, the above adjunction can be promoted to $\Ob:\Cat_G\rightarrow \Sets_G$, and $\mathscr{E}:\Sets_G\rightarrow\Cat_G$. Also, similar notions hold when transfer from left to right $G$-sets/categories.
+    Let $\Sets_G$ denotes the category of (left) $G$-sets, with all maps between $G$-sets (not necessarily equivariant) being the morphisms, the above adjunction can be promoted to $\Ob:\Cat_G\rightarrow \Sets_G$, and $\mathscr{E}:\Sets_G\rightarrow\Cat_G$. Similar notions hold when transfer from left to right $G$-sets/categories.
 \end{rem}
 
 In this exposition we only need $\mathscr{E}$ to be a right adjoint, there are richer details demonstrated in \cite{GM17}, 
-
-\newpage
 
 \section{Operads, Operadic Algebra, and Operad $\cP$}\label{sec_operad}
 \subsection{Symmetric Monoidal Categories}\label{sub_symmon}
@@ -592,7 +553,7 @@ Based on \emph{Maclane's Coherence Theorem}, the above two axioms guarantees all
 
 The category of sets $\Sets$, small categories $\Cat$ in \ref{exmp_cat_of_cat}, and small $G$-categories $\Cat_G$ in \ref{defn_cat_of_G_cat} are central examples for this, where the cartesian product $\A\times\B$ serves as monoidal product, and the terminal set/category $*$ serves as units for both.
 
-\hfil
+\vspace{1pt}
 
 \subsection{Operads, Operadic Algebras}\label{sub_operad}
 
@@ -618,9 +579,6 @@ that satisfies the following axioms:
     \item \emph{Equivariance:}
     \begin{itemize}
         \item Given $\sigma\in\Sigma_k$, $j_1+...+j_k = \Sigma_j$, let $\sigma(j_1,...,j_k)\in\Sigma_j$ denotes ``permutation of $k$-blocks of letters'', by $(j_1,...,j_k)\mapsto (j_{\sigma^{-1}(1)},...,j_{\sigma^{-1}(k)})$.
-        %\begin{exmp}
-        %    Given $j=5=2+3$, the permutation $(1\ 2)\in \Sigma_2$, $\sigma(2,3)$ is the permutation $\langle 1,2;3,4,5 \rangle \mapsto \langle 3,4,5;1,2\rangle$ (namely changing the blocks' order, without changing the order in each block).
-        %\end{exmp} 
         Then, the following diagram commutes:
         \[\xymatrix{
             \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_r)\right) \ar[d]_-{\gamma} \ar[rr]^-{\sigma\tensor \sigma^{-1}} && \mathcal{C}(k)\tensor \left(\bigtensor_{r=1}^k \mathcal{C}(j_{\sigma(r)})\right) \ar[d]^-{\gamma}\\
@@ -638,16 +596,6 @@ that satisfies the following axioms:
 
 If $\mathcal{C}(0)=\kappa$ (with $\gamma:\mathcal{C}(0)\rightarrow \mathcal{C}$ being $\id_{\mathcal{C}(0)}$), the operad is \emph{reduced}.
 \end{defn}
-
-\begin{comment}
-\begin{defn}\label{defn_operad_morphism}
-    Let $\mathcal{C},\mathcal{C}'$ be two operads on symmetric monoidal category $\mathcal{V}$, a \emph{morphism of operads} $\psi:\mathcal{C}\rightarrow \mathcal{C}'$, is a sequence of $\Sigma_j$-equivariant morphisms $\psi_j:\mathcal{C}(j)\rightarrow \mathcal{C}'(j)$ in $\mathcal{V}$ (i.e., $\sigma^{-1}\circ \psi_j\circ \sigma = \psi_j$, for all $\sigma\in \Sigma_j$), such that it preserves the operad's structure morphism:
-    \[\xymatrix{
-        \mathcal{C}(k)\tensor \mathcal{C}(j_1)\tensor...\tensor \mathcal{C}(j_k) \ar[d]_-{\psi_k\tensor \psi_{j_1}\tensor...\tensor \psi_{j_k}} \ar[r]^-{\gamma} & \mathcal{C}(j_1+...+j_k) \ar[d]^-{\psi_{j_1+...+j_k}}\\
-        \mathcal{C}'(k)\tensor \mathcal{C}'(j_1)\tensor ..\tensor \mathcal{C}'(j_k) \ar[r]_-{\gamma'} & \mathcal{C}'(j_1+...+j_k)
-    }\]
-\end{defn}
-\end{comment}
 
 \begin{defn}\label{defn_operad_alg}
     Given an operad $\C$ over a symmetric monoidal category $\mathcal{V}$, a \emph{$\C$-algebra} is an object $A\in\mathcal{V}$, with collections of morphisms $\theta:\C(j)\tensor A^j\rightarrow A$, that satisfies the following axioms:
@@ -687,8 +635,6 @@ Now, recall that the chaotic functor $\mathscr{E}:\Sets\rightarrow\Cat$ is a rig
 \end{align}
 This is called the \emph{permutativity operad in $\Cat$}, or the \emph{Barratt-Eccles operad}. As an abuse of notation, the operadic structure map of $\cP$ is also denoted $\gamma$.
 
-\newpage
-
 \section{$G$-Operad $\cP_G$ and its Pseudoalgebra}\label{sec_perm_G}
 \subsection{The $G$-Operad $\cP_G$}\label{sub_perm_G}
 If view each $\cP(j)$ as a $G$-trivial $G$-category, it's also an operad in $\Cat_G$. Its underlying algebra is called the \emph{naive permutative $G$-category}, as specified in \cite{GM17} Section 4.1, it produces a naive $G$-spectrum under equivariant infinite loop space theory. In the same source Section 4.2, a richer equivariant structure is introduced which produces the \emph{equivariant Barratt Eccles $G$-operad} $\cP_G$ as follow:
@@ -701,24 +647,6 @@ If view each $\cP(j)$ as a $G$-trivial $G$-category, it's also an operad in $\Ca
 \end{defn}
 
 Another formulation can be done by defining $P_G(j):= \Sets(G,\Sigma_j)$ in $\Sets$, then utilize chaotic functor promoting this to a chaotic operad $\mathscr{E}\Sets(G,\Sigma)\cong \cP_G$.
-
-\begin{comment} Let's reserve this part for future (as in the exposition I don't think it's possible to finish it)
-\subsection{$G$-Operad $\mathscr{Q}_G$ in $\Cat_G$}
-
-\begin{defn}
-    Let $Q_G$ be the suboperad of $P_G$, generated by all the group homomorphisms $\alpha:G\rightarrow\Sigma_n$ spanning through all $n\in\NN$, the $P_G$ structure maps $\gamma_G$, and the $(G\times\Sigma)$-action on the elements. Define the operad $\cP_G:= \mathscr{E}Q_G$ as the chaotic generalization in $\Cat_G$.
-\end{defn}
-
-This operad is designed as a smallest suboperad that contains all group homomorphisms from $G$ to a symmetric group, such that it's still a free $(G\times\Sigma)$-operad.
-
-\textbf{Potential (fun) question:} Is this suboperad finitely generated, or equals to any $\Q_{G,\mathfrak{D}}$ described in \cite{BBKO21}?
-
-\begin{warn}
-    If naively taken all group homomorphisms and their orbits under $(G\times\Sigma)$-action, it doesn't form a suboperad in general for nontrivial group $G$. A counterexample can be constructed even for $G=\ZZ/2\ZZ$.
-\end{warn}
-
-\hfil
-\end{comment}
 
 \subsection{The 2-Category $\cP_G$-$\PsAlg$}\label{sub_P_G_psalg}
 
@@ -825,13 +753,13 @@ The general notion of operadic pseudoalgebra is defined in \cite{CG14}, \cite{GM
     \end{itemize}
 \end{defn}
 
-\hfil
+\vspace{1pt}
 
 \begin{rem}
     In \cite{CG14} Corner and Gurski includes unital natural isomorphisms, while in \cite{GMMO20} it requires strict unitality. The main result in nonequivariant case of \cite{LMRZ26} alleviates the result from strict unitality.x
 \end{rem}
 
-\hfil
+\vspace{1pt}
 
 \begin{defn}[$\cP_G$-pseudomorphism]\label{defn_P_G_pseudomorph}
     A $\cP_G$-pseudomorphism $(\FF,\zeta):(\A,\theta,\phi)\rightarrow(\B,\vartheta,\varphi)$ consists of functor $\FF:\A\rightarrow\B$, such that for each $j$ in the follogin diagram commutes up to an invertible natural transformation $\zeta_j$:
@@ -877,7 +805,7 @@ The general notion of operadic pseudoalgebra is defined in \cite{CG14}, \cite{GM
     \end{itemize}
 \end{defn}
 
-\hfil
+\vspace{1pt}
 
 \begin{defn}[$\cP_G$-2-cells]\label{defn_P_G_2_cell}
     Let $(\FF,\zeta),(\GG,\xi):(\A,\theta,\phi)\rightarrow (\B,\vartheta,\varphi)$ be two $\cP_G$-pseudomorphisms, a $\cP_G$-2-cell $\lambda:(\FF,\zeta)\Rightarrow(\GG,\xi)$ is a natural transformation $\lambda:\FF\rightarrow\GG$, such that the following two pasting diagrams are equal:
@@ -894,15 +822,13 @@ The general notion of operadic pseudoalgebra is defined in \cite{CG14}, \cite{GM
     \end{align*}
 \end{defn}
 
-\newpage
-
 \section{Category $\F_G$ and its Pseudoalgebras}\label{sec_F_Gm}
 
 Within the equivariant infinite loop space machine, the purpose for $\F_G$-pseudoalgebras (after strictifying to algebras) are to construct $\F_G$-spaces, which are collections of $G$-spaces indexed over finite based $G$-sets (and morphisms between them encoding extra structure). The $\F_G$-spaces are primary inputs in producing a genuine $G$-spectra, and the other main character we wish to study the correspondance. For details of $\F_G$-spaces, cf. \cite{S89} Section 1 (which is named after $\Gamma_G$ instead of $\F_G$).
 
 The following definitions are equivariant generalizations of $\F$-pseudofunctors in \cite{LMRZ26}, and we'll utilize similar notations.
 
-\hfil
+\vspace{1pt}
 
 \begin{defn}
     $\F_G$ denotes the \emph{category of based finite sets}, where the objects are $\mathbf{n}^\alpha$, set wise being the finite set $\{0,1,...,n\}$ with $0$ fixed as the basepoint, and $\alpha:G\rightarrow\Sigma_n$ is a based $G$-action on the set.
@@ -918,7 +844,7 @@ The following definitions are equivariant generalizations of $\F$-pseudofunctors
     We also denote the map $\phi_{\mathbf{n}^\alpha}:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ (with $j\mapsto 1$ for all $j\neq 0$) in $\mathscr{E}$ as the \emph{canonical product}.
 \end{defn}
 
-\hfil
+\vspace{1pt}
 
 \subsection{2-Category $\F_G$-$\PsAlg$}
 
@@ -930,7 +856,7 @@ The following definitions are equivariant generalizations of $\F$-pseudofunctors
     is a $G$-functor.
 \end{defn}
 
-\hfil
+\vspace{1pt}
 
 Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (namely $i\mapsto 1$, and any $i\neq j\mapsto 0$), since it belongs to $\Pi_G$, it generates a functor $\B\delta_i:\B(\mathbf{n}^\alpha)\rightarrow \B(\mathbf{1})$. Hence, by universality of product, the collection $\B\delta_i$ ($1\leq i\leq n$) induces a functor $\delta:\B(\mathbf{n}^\alpha)\rightarrow \B(\mathbf{1})^{\mathbf{n}^\alpha}$ (where $\B(\mathbf{1})^{\mathbf{n}}\cong \B(\mathbf{1})^{\mathbf{n}^{\alpha}}$ nonequivariantly).
 
@@ -938,7 +864,7 @@ Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (n
     An $\F_G$-pseudoalgebra $\B$ is \emph{very special} (or an $\F_{G,\vs}$-pseudoalgebra), if $\delta:\B(\mathbf{n}^\alpha)\rightarrow \B(\mathbf{1})^{\mathbf{n}^\alpha}$ is an isomorphism for all $\mathbf{n}^\alpha\in\F_G$, and $\B$ is \emph{strictly special} (or an $\F_{G,\RR}$-pseudoalgebra), if all $\delta$ is in fact identity.
 \end{defn}
 
-\hfil
+\vspace{1pt}
 
 \begin{defn}[$\F_G$-1-cell]
     Given $\A,\B$ two $\F_G$-pseudoalgebras, a morphism (or $\F_G$-1-cell) between them is a pseudotransform $(\FF,\zeta):\A\rightarrow \B$ (cf. Definition \ref{defn_pseudotransform}), such that restricting to $\Pi_G$, it becomes an actual natural transformation. Moreover, it respects $G$-equivariance for every $g\in G$ and morphism $f\in\Mor(\F_G)$:
@@ -947,7 +873,7 @@ Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (n
     \end{align*}
 \end{defn}
 
-\hfil
+\vspace{1pt}
 
 \begin{defn}[$\F_G$-2-cell]
     Given $\tilde{A},\tilde{B}$ two $\F_G$-pseudoalgebras, and two $\F_G$-1-cells $(\FF,\zeta),(\GG,\xi):\tilde{A}\rightarrow\tilde{\B}$, an $\F_G$-2-cell is a modification $\lambda:\FF\Rightarrow\GG$ (cf. Definition \ref{defn_modification}), such that for any morphism $f:\mathbf{n}^\alpha\rightarrow\mathbf{m}^\beta$ in $\F_G$, the following two pasting diagrams are equal:
@@ -964,17 +890,16 @@ Let $\delta_i:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ be the $i$th projection (n
     \end{align*}
 \end{defn}
 
-\newpage
+\section{Obstacles in Equivariant Case (ND)}
+The eventual goal is constructing an equivalence between $\F_{G,\RR}$-pseudoalgebra and $\cP_G$-pseudoalgebra (though it's still an open question). \cite{LMRZ26} provides a general construction for the non-equivariant case (or $G=\mathbf{1}$), here we discuss some potential steps and problems when generalizing the procedure to nonequivariant case.
 
-\section{Transition to Equivariant Correspondance}
-The eventual goal is constructing an $\F_{G,\RR}$-pseudoalgebra out of an $\cP_G$-pseudoalgebra, while extend it to a $2$-functor. \cite{LMRZ26} provides a general construction for the non-equivariant case (or $G=\mathbf{1}$). 
-
+\subsection{Functor $\cP_G\text{-}\PsAlg\rightarrow\F_{G,\RR}\text{-}\PsAlg$}
 Given a $\cP$-pseudoalgebra $\A$, define object map $\B:\F\rightarrow\Cat$ by $\B(\mathbf{n}):=\A^n$. For extending to a pseudofunctor (and restricting to functor on $\Pi$), the central concepts include: 
 \begin{itemize}
     \item[(i)] Substituting the vanishing coordinates of maps $\psi:\mathbf{n}\rightarrow\mathbf{m}$ in $\Pi$ using the specified baseopint $\theta_0:*\cong \cP(0)\rightarrow\A$. In particular, since each $j\in\mathbf{m}$ has preimage being empty or a singleton, define $\psi:\A^n\rightarrow\A^m$ by 
-    \begin{align}
+    \begin{align*}
         \psi(a_1,...,a_n):= (a_{\psi^{-1}(1)},...,a_{\psi^{-1}(m)}),
-    \end{align}
+    \end{align*}
     with $a_{\psi^{-1}(j)}:=*$ (the basepoint) if $\psi^{-1}(j)=\emptyset$. This defines $\B$ to be a functor with source $\Pi$.
     \item[(ii)] Treating each canonical $n$-fold product $\phi_n:\mathbf{n}\rightarrow\mathbf{1}$ in $\mathscr{E}$ (with $\phi_n(j)=1$ for all $j\neq 0$) using the $n$-fold product $e\times\A\hookrightarrow \cP(n)\times \A\xrightarrow{\gamma}\A$.
     \item[(iii)] Finally, show the decomposition laws, that maps in $\mathscr{E}$ are compositions of permutation and wedge of cannoical products (when fixing a specific order, it's unique), while maps in $\F$ decomposes into a projection and a map in $\mathscr{E}$. Using the laws to construct functors $\A^n\rightarrow\A^m$ using each map $\psi$.
@@ -982,47 +907,117 @@ Given a $\cP$-pseudoalgebra $\A$, define object map $\B:\F\rightarrow\Cat$ by $\
 
 The coherent natural isomorphisms for $\cP$-pseudoalgebra provides the pseudofunctoriality modulo extensive diagram chasing.
 
-\hfil
+\vspace{1pt}
 
-Step (i) is generalizes naturally to the equivariant case, as each $\cP_G$-pseudoalgebra $\A$ has a natural basepoint specified by $\theta_0:*\cong \cP_G(0)\rightarrow\A$, each $\A^{\mathbf{n}^\alpha}\cong \A^n$ nonequivariantly, and the maps in $\Pi_G$ includes all nonequivariant ones, hence the same construction carries over. 
+Step (i) generalizes  to the equivariant case, as each $\cP_G$-pseudoalgebra $\A$ has a natural basepoint specified by $\theta_0:*\cong \cP_G(0)\rightarrow\A$, each $\A^{\mathbf{n}^\alpha}\cong \A^n$ nonequivariantly, and the maps in $\Pi_G$ includes all nonequivariant ones, hence the same construction carries over. 
 
-For (ii), each canonical product $\phi_{\mathbf{n}^\alpha}:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ has a choice given by $\alpha\times \A^n\hookrightarrow \cP_G(n)\times \A^n\xrightarrow{\theta_n}\A$ (by treating ), with some equivariance details we'll specify below.
+For (ii), each canonical product $\phi_{\mathbf{n}^\alpha}:\mathbf{n}^\alpha\rightarrow\mathbf{1}$ has a choice given by $\alpha\times \A^n\hookrightarrow \cP_G(n)\times \A^n\xrightarrow{\theta_n}\A$ by treating $\alpha$ as an object in $\cP_G(n)=\Cat(\mathscr{E}G,\mathscr{E}\Sigma_n)\cong \Sets(G,\Sigma_n)$.
 
-For (iii), the main problem for equivariant case is: Not every map can be expressed as wedges of canonical product, as the preimage of an element may not necessarily be wedges of $G$-orbits. So, potentially some choices
+For (iii), the main problem in equivariant case is: Not every map can be expressed as wedges of canonical product, as the preimage of an element may not necessarily be wedges of $G$-orbits. So, potentially some choices of maps needed to be made, and more combinatorial details are awaiting.
 
-%\subsection{Construction of Objects}
+\vspace{1pt}
 
-%\subsection{Extension to 2-functor}
+\subsection{Functor $\cP_G\text{-}\PsAlg\leftarrow\F_{G,\RR}\text{-}\PsAlg$}
+
+For the converse, given an $\F_{\RR}$- pseudofunctor $\B$, define the category $\A:=\B(\mathbf{1})$, then each canonical product $\phi_n:\mathbf{n}\rightarrow\mathbf{1}$ (by $j\mapsto 1$ for all $j\neq 0$) generates an $n$-fold product $\phi_n:\A^n\rightarrow\A$. By appealing to more categrial details, this defines $\A$ as a $\cP$-pseudoalgebra.
+
+The main obstacle in the equivariant case is the non-finiteness of $G$-operad $\cP_G$ when $G\neq \mathbf{1}$: In \cite{BBKO21}
+
+\vspace{1pt}
+
+\subsection{Other Potential Direction}
 
 
-\section*{Acknowledgments}  You should thank anyone who deserves thanks, and for sure you should
+\section*{Acknowledgments (ND)}  
+
+I'd like to thank my mentor, Jon Peter May, for suggesting this interesting topic to investigate
+
+You should thank anyone who deserves thanks, and for sure you should
 thank your mentor.   ``It is a pleasure to thank my mentor, 
 his/her name, for ....  ".   Or add anyone else, for example ``I thank [another participant] for helping 
 me understand [something or other]"
 
-\section{bibliography}  The bibliography should list all sources that you have used and referenced.
-And you should reference anything you use.   Especially if you quote any result without proof, you MUST
-give a reference.   And never ever should you copy material directly or more or less directly, from a source.
-If you include a figure or diagram from some source, that source should be identified.
 
 \begin{thebibliography}{9}
 
-\bibitem{ams} http://www.ams.org/publications/authors/tex/amslatex
+\bibitem{BBKO21}%small change
+K. Bangs, S. Binegar, Y. Kim, K. Ormsby, A. M. Osorno, D. Tamas-Parris and L. Xu.
+Biased Permutative Equivariant Categories.
+Homology, Homotopy and Applications, vol. 23.
+2021.
+https://arxiv.org/abs/1907.00933
 
-\bibitem{amsshort}
-Michael Downes.
-Short Math Guide for \LaTeX.
-http://tex.loria.fr/general/downes-short-math-guide.pdf
+%\bibitem{BP20}
+%P. Bonventre, L. A. Pereira.
+%Genuine Equivariant Operads.
+%Available as ArXiv:0717.02226, 2020.
 
-\bibitem{May}
-J. P. May.
-A Concise Course in Algebraic Topology.
-University of Chicago Press. 1999. 
+\bibitem{CG14}
+A. S. Corner, N. Gurski.
+Operads with gerneral groups of equivariance, and some 2-categorical aspects of operads in $\Cat$.
+Available as arXiv:1312.5910v2, 2014.
 
-\bibitem{notsoshort}
-Tobias Oekiter, Hubert Partl, Irene Hyna and Elisabeth Schlegl.
-The Not So Short Introduction to \LaTeX 2e.
-https://tobi.oetiker.ch/lshort/lshort.pdf
+\bibitem{GM17}
+B. J. Guillou and J. P. May.
+Equivariant iterated loop space theory and permutative $G$-categories.
+\emph{Algebr. Geom. Topol.}, 17(6):3259-3339, 2017.
+
+\bibitem{GMMO18}
+B. J. Guillou, J. P. May, M. Merling, A. M. Osorno.
+A symmetric monoidal and equivariant segal infinite loop space machine.
+Available as arXiv:1711.09183, 2018.
+
+\bibitem{GMMO20}
+B. J. Guillou, J. P. May, M. Merling, A. M. Osorno.
+Symmetric monoidal $G$-categories and their strictification.
+\emph{Q. J. Math.}, 71(1):207-246, 2020.
+
+\bibitem{GMMO21}
+B. J. Guillou, J. P. May, M. Merling, A. M. Osorno.
+Multiplicative equivariant $K$-Theory and the Barratt-Priddy-Quillen theorem.
+Available as arXiv:2102.13246, 2021.
+
+\bibitem{JY21}
+N. Johnson, D. Yau.
+\emph{2-dimensional categories}.
+Oxford University Press, Oxford, 2021.
+
+%\bibitem{KMZ26}
+%H. J. Kong, J. P. May, F. Zou.
+%Orbital Presheaves in Equivariant Infinite Loop Space Theory.
+%Available as ArXiv:2607.12141, 2026.
+
+\bibitem{LMRZ26}
+J. Liu, J. P. May, K. I. Roke, H. Zhang and K. Zhou.
+What are symmetric monoidal categories?
+Available as arXiv:2607.13912, 2026.
+
+\bibitem{M72}
+J. P. May. $E_\infty$ spaces, group completions, and permutative categories. In \emph{New Development in Topology (Proc. Sympos. Algebraic Topology, Oxford, 1972)}, pages 61-93. London Math. Soc. Lecture Note Ser., No. 11. Cambridge Univ. Press, London, 1974.
+
+\bibitem{M97}
+J. P. May. Operads, algebras and modules. In \emph{Operads: Proceedings of Renaissance Conferences (Hartford, CT/Luminy, 1995)}, volume 202 of \emph{Contemp. Math.}, pages 15-31. Amer. Math. Soc., Providence, RI, 1997. 
+
+\bibitem{M98}
+S. Mac Lane.
+\emph{Categories for the working mathematician}, volume 5 of \emph{Graduate Texts in Mathematics}. Springer-Verlag, New York, 2nd edition, 1998.
+
+\bibitem{MMO25}
+J. P. May, M. Merling, and A. M. Osorno.
+Equivariant infinite loop space theory, the space level theory.
+Available as arXiv:1704.03413, 2025.
+
+\bibitem{R16}
+E. Riehl.
+\emph{Category theory in context}. Courier Dover Publications, 2016.
+
+\bibitem{S89}
+K. Shimakawa. 
+Infinite loop $G$-spaces associated to monoidal $G$-graded categories.
+Publ. Res. Inst. Math. Sci 25, no. 2, pp. 239-262, 1989.
+
+\bibitem{Y24}
+D. Yau. Multifunctorial equivariant algebraic $K$-theory. Available as arXiv:2404.02794, 2024.
 
 \end{thebibliography}
 
