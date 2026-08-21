@@ -681,14 +681,21 @@ The following definitions are equivariant generalizations of $\F$-pseudofunctors
 
 \hfil
 
-\subsection{2-Category $\F_G$-$\PsAlg$}
+\subsection{2-Category $\F_G$-$\PsAlg$ (Maybe need some extra $G$-axioms on the coherent natural isomorphisms)}
 
 \begin{defn}[$\F_G$-pseudoalgebra]
     An $\F_G$-pseudoalgebra, is a pseudofunctor $\B:\F_G\rightarrow \Cat_G$ (cf. Definition \ref{defn_pseudofunctor}), such that restricting to the subcategory $\Pi_G\subset\F_G$, $\B$ is a strict functor. Moreover, we require it to be reduced, namely $\B(0)=*$ (the terminal $G$-category), and each hom-functor 
     \begin{align*}
         \B_{\mathbf{n}^\alpha,\mathbf{m}^\beta}:\F_G(\mathbf{n}^\alpha,\mathbf{m}^\beta)\rightarrow \Cat_G(\B(\mathbf{n}^\alpha),\B(\mathbf{m}^\beta))
     \end{align*}
-    is a $G$-functor.
+    is a $G$-functor. Finally, we also require the transformation for composition to be $G$-equivariant. Given $f:X\rightarrow Y$ and $\ell:Y\rightarrow Z$ in $\F_G$, the following equality holds for all $g\in G$:
+    \begin{align*}
+        \xymatrix{
+            \B(X) \ar[r]^-{g^{-1}} & \B(X) \ar@(ur,ul)[r]^-{\B(\ell\circ f)} \ar@(dr,dl)[r]_-{\B(\ell)\circ \B(f)} \ar@{=>}[r]^-{\psi_{f,\ell}} & \B(Z) \ar[r]^-{g} & \B(Z)
+        } \quad=\quad \xymatrix{
+            \B(X) \ar@(ur,ul)[rr]^-{\B(g\ell g^{-1}\circ gfg^{-1})} \ar@(dr,dl)[rr]_-{\B(g\ell g^{-1})\circ \B(gfg^{-1})} \ar@{=>}[rr]^-{\psi_{gfg^{-1},g\ell g^{-1}}} && \B(Z)
+        }
+    \end{align*}
 \end{defn}
 
 \hfil

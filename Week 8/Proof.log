@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  19 AUG 2026 06:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  20 AUG 2026 09:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -896,27 +896,35 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 684.
 
-[16] <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> [17] [18] Excluding 'comment' comment. [19] (./Proof.aux)
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 684.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 684.
+
+<xymatrix 4x1 286> <xymatrix 3x1 194> <xymatrix 4x1 286> <xymatrix 3x1 194> [16] <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> <xymatrix 3x3 386> [17] [18] Excluding 'comment' comment. [19] (./Proof.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `Proof.out' has not changed.
-(rerunfilecheck)             Checksum: 7C1ED2FC484E205832F6DCCD85E8C85C;3455.
+(rerunfilecheck)             Checksum: CC829870BF28CD8F22ED66D1691FA615;3841.
  ) 
 Here is how much of TeX's memory you used:
- 28033 strings out of 474116
- 503530 string characters out of 5743681
+ 28034 strings out of 474116
+ 503535 string characters out of 5743681
  1970187 words of memory out of 5000000
- 49809 multiletter control sequences out of 15000+600000
+ 49810 multiletter control sequences out of 15000+600000
  571809 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,23n,107p,3289b,1074s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xyatip10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/xypic/xybtip10.pfb>
-Output written on Proof.pdf (19 pages, 376680 bytes).
+Output written on Proof.pdf (19 pages, 378849 bytes).
 PDF statistics:
- 415 PDF objects out of 1000 (max. 8388607)
- 332 compressed objects within 4 object streams
+ 416 PDF objects out of 1000 (max. 8388607)
+ 333 compressed objects within 4 object streams
  88 named destinations out of 1000 (max. 500000)
  149 words of extra memory for PDF output out of 10000 (max. 10000000)
 
